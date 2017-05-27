@@ -80,18 +80,36 @@
     <string name="b1901">(ng/L)</string>
     <string name="b20">فشار خون  </string>
     <string name="b21">کیا ماں کو پہلے سے ہی زیابیطس ہے </string>
-    <string name="b22">دیگر ادوایات (صرف کوڈ استعمال کریں)</string>
+    <string name="b2101">  اگر ہاں ،قسم 1 </string>
+    <string name="b2102">  اگر ہاں ،قسم 1 </string>
+    <string name="b22">دیگر ادوایات کی تفصیلات (صرف کوڈ استعمال کریں)</string>
     <string name="b2201">حمل ضمیمہ </string>
-    <string name="b22r">اگر ہاں تو براہ مہربانی وضاحت کریں </string>
-    <string name="b23">حیاتیاتی نمونے </string>
-    <string name="b23r">اگر نہیں تو براہ مہربانی وضاحت کریں </string>
-    <string name="b2301">خون کے نمونے </string>
-    <string name="b2302">پیشاب کے نمونے </string>
-    <string name="b2303">پاخانہ کے نمونے</string>
-    <string name="b24">سوالنامہ مریض  </string>
-    <string name="b24r">اگر نہیں تو براہ مہربانی وضاحت کریں     </string>
-    <string name="b2401">کیا SF-12V2  مکمل کرلیا گیا ہے؟</string>
-    <string name="b2402">کیا AQ0L8D  مکمل کرلیا گیا ہے؟ </string>
+    <string name="b23">حمل ضمیمہ کی فہرست اور فولاد کے مواد (نیچے صرف کوڈ استعمال کریں </string>
+    <string name="b2301">Elevit (60mg elemental iron) </string>
+    <string name="b2302">Blackmores Pregnancy and Breastfeeding Gold (5mg elemental iron)</string>
+    <string name="b2303">Blackmores Conceive Well (24mg elemental iron) </string>
+    <string name="b2304">Blackmores Folate (0 elemental iron) </string>
+    <string name="b2305">Blackmores IFolic  (0 elemental iron) </string>
+    <string name="b2306">Cenovis Multi Plus Pregnancy and Breastfeeding (5mg elemental iron) </string>
+    <string name="b2307">Megafol 0.5 (0 elemental iron) </string>
+    <string name="b2308">Megafol 5 (0 elemental iron) </string>
+    <string name="b2309">Natures Own Pregnancy Platinum  (5mg elemental iron)</string>
+    <string name="b2310">Fefol (87.4mg elemental iron) </string>
+    <string name="b2311">Fefol Multi‐Preg with Omega3 and Iodine (12mg elemental iron) </string>
+    <string name="b2312">Fabfol (12mg elemental iron) </string>
+    <string name="b2313">FGF One per day (80mg elemental iron) </string>
+    <string name="b2314">Swisse Pregnancy Ultivite (5mg elemental iron) </string>
+    <string name="b2315">Zycia (6mg elemental iron) </string>
+    <string name="b2316">Ostelin Pregnancy Essentials (0 elemental iron) </string>
+    <string name="b24">حیاتیاتی نمونے </string>
+    <string name="b24r">اگر نہیں تو براہ مہربانی وضاحت کریں </string>
+    <string name="b2401">خون کے نمونے </string>
+    <string name="b2402">پیشاب کے نمونے </string>
+    <string name="b2403">پاخانہ کے نمونے</string>
+    <string name="b25">سوالنامہ مریض  </string>
+    <string name="b25r">اگر نہیں تو براہ مہربانی وضاحت کریں     </string>
+    <string name="b2501">کیا SF-12V2  مکمل کرلیا گیا ہے؟</string>
+    <string name="b2502">کیا AQ0L8D  مکمل کرلیا گیا ہے؟ </string>
 
 
     <!-- Strings related to login -->
