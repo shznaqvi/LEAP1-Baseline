@@ -63,14 +63,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
-            android:text="@string/mrnumber" />
+            android:text="@string/studyID" />
 
         <EditText
-            android:id="@+id/mrnumber"
+            android:id="@+id/studyID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:hint="@string/mrnumber"
+            android:hint="@string/studyID"
             android:inputType="number"
             android:maxLength="10" />
 
@@ -85,8 +85,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="@string/b01" />
+            android:hint="@string/b01"
+            android:inputType="number"
+            android:maxLength="13" />
 
         <TextView
             android:layout_width="match_parent"
@@ -179,9 +180,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:hint="@string/b06"
-            android:inputType="number"
-            android:maxLength="5" />
+            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+            android:hint="@string/b06" />
 
         <TextView
             android:layout_width="match_parent"
@@ -250,7 +250,7 @@
             android:layout_marginTop="1dp"
             android:hint="@string/b09"
             android:inputType="number"
-            android:maxLength="5" />
+            android:maxLength="2" />
 
         <TextView
             android:layout_width="match_parent"
@@ -545,8 +545,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
-            android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
-            android:hint="@string/b13" />
+            android:hint="@string/b13"
+            android:inputType="number"
+            android:maxLength="5" />
 
         <TextView
             android:layout_width="match_parent"
@@ -734,7 +735,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:visibility="visible">
+            android:visibility="gone">
 
             <TextView
             android:layout_width="match_parent"
@@ -900,13 +901,13 @@
         </RadioGroup>
 
         <EditText
-            android:id="@+id/b228801x"
+            android:id="@+id/b228801r"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:layout_marginTop="1dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMnoPQRSTUVWXYZ"
-            android:hint="@string/other"
+            android:hint="@string/b228801r"
             android:maxLength="30"
             android:visibility="gone" />
 
