@@ -3,6 +3,7 @@ package edu.aku.hassannaqvi.leap1_baseline.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -19,6 +20,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -98,8 +100,8 @@ public class SectionAActivity extends Activity {
     RadioButton b1016;
     @BindView(R.id.b1017)
     RadioButton b1017;
-    @BindView(R.id.b1018)
-    RadioButton b1018;
+    @BindView(R.id.b1077)
+    RadioButton b1077;
     @BindView(R.id.b1088)
     RadioButton b1088;
     @BindView(R.id.b1088x)
@@ -160,6 +162,27 @@ public class SectionAActivity extends Activity {
     EditText b19;
     @BindView(R.id.b20)
     EditText b20;
+
+    @BindView(R.id.b21)
+    RadioGroup b21;
+    @BindView(R.id.b2101)
+    RadioButton b2101;
+    @BindView(R.id.b2102)
+    RadioButton b2102;
+    @BindView(R.id.fldGrp21)
+    LinearLayout fldGrp21;
+    @BindView(R.id.b21t1)
+    RadioGroup b21t1;
+    @BindView(R.id.b21t101)
+    RadioButton b21t101;
+    @BindView(R.id.b21t102)
+    RadioButton b21t102;
+    @BindView(R.id.b21t2)
+    RadioGroup b21t2;
+    @BindView(R.id.b21t201)
+    RadioButton b21t201;
+    @BindView(R.id.b21t202)
+    RadioButton b21t202;
     @BindView(R.id.b2201)
     RadioGroup b2201;
     @BindView(R.id.b220101)
@@ -256,6 +279,9 @@ public class SectionAActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_a);
         ButterKnife.bind(this);
+
+        b15.setMaxDate(new Date().getTime());
+        //b18.setMaxDate(new Date().getTime());
 
 
         b2201.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -426,6 +452,19 @@ public class SectionAActivity extends Activity {
             }
         });
 
+        b21.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
+                if (b2101.isChecked()) {
+                    fldGrp21.setVisibility(View.VISIBLE);
+                } else {
+                    fldGrp21.setVisibility(View.GONE);
+                    b21t1.clearCheck();
+                    b21t2.clearCheck();
+                }
+            }
+        });
+
     }
 
     @OnClick(R.id.btnNext)
@@ -566,35 +605,46 @@ public class SectionAActivity extends Activity {
         sa.put("b0802", b0802.getText().toString());
         sa.put("b0803", b0803.getText().toString());
         sa.put("b09", b09.getText().toString());
-        sa.put("b10", b1001.isChecked() ? "1" : b1002.isChecked() ? "2" : b1003.isChecked() ? "3" : b1004.isChecked() ? "4" : b1005.isChecked() ? "5" : b1006.isChecked() ? "6" : b1007.isChecked() ? "7" : b1008.isChecked() ? "8" : b1009.isChecked() ? "9" : b1010.isChecked() ? "10" : b1011.isChecked() ? "11" : b1012.isChecked() ? "12" : b1013.isChecked() ? "13" : b1014.isChecked() ? "14" : b1015.isChecked() ? "15" : b1016.isChecked() ? "16" : b1017.isChecked() ? "17" : b1018.isChecked() ? "18" : b1088.isChecked() ? "88" : "0");
-        sa.put("b11", b1101.isChecked() ? "1" : b1102.isChecked() ? "2" : b1103.isChecked() ? "3" : b1104.isChecked() ? "4" : b1188.isChecked() ? "88" : "0");
-        sa.put("b12", b1201.isChecked() ? "1" : b1202.isChecked() ? "2" : b1203.isChecked() ? "3" : b1204.isChecked() ? "4" : b1205.isChecked() ? "5" : b1288.isChecked() ? "88" : "0");
+        sa.put("b10", b1001.isChecked() ? "1" : b1002.isChecked() ? "2" : b1003.isChecked() ? "3" : b1004.isChecked() ? "4"
+                : b1005.isChecked() ? "5" : b1006.isChecked() ? "6" : b1007.isChecked() ? "7" : b1008.isChecked() ? "8"
+                : b1009.isChecked() ? "9" : b1010.isChecked() ? "10" : b1011.isChecked() ? "11" : b1012.isChecked() ? "12"
+                : b1013.isChecked() ? "13" : b1014.isChecked() ? "14" : b1015.isChecked() ? "15" : b1016.isChecked() ? "16"
+                : b1017.isChecked() ? "17" : b1077.isChecked() ? "77" : b1088.isChecked() ? "88" : "0");
+        sa.put("b11", b1101.isChecked() ? "1" : b1102.isChecked() ? "2" : b1103.isChecked() ? "3" : b1104.isChecked() ? "4"
+                : b1188.isChecked() ? "88" : "0");
+        sa.put("b12", b1201.isChecked() ? "1" : b1202.isChecked() ? "2" : b1203.isChecked() ? "3" : b1204.isChecked() ? "4"
+                : b1205.isChecked() ? "5" : b1288.isChecked() ? "88" : "0");
         sa.put("b13", b13.getText().toString());
-        sa.put("b14", b1401.isChecked() ? "1" : b1402.isChecked() ? "2" : b1403.isChecked() ? "3" : b1188.isChecked() ? "88" : "0");
+        sa.put("b14", b1401.isChecked() ? "1" : b1402.isChecked() ? "2" : b1403.isChecked() ? "3"
+                : b1188.isChecked() ? "88" : "0");
+        sa.put("b15", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(b15.getCalendarView().getDate()));
         sa.put("b16", b16.getText().toString());
         sa.put("b17", b17.getText().toString());
         sa.put("b18", new SimpleDateFormat("dd-MM-yyyy").format(b18.getCalendarView().getDate()));
         sa.put("b19", b19.getText().toString());
         sa.put("b20", b20.getText().toString());
+        sa.put("b21", b2101.isChecked() ? "1" : b2102.isChecked() ? "2" : "0");
+        sa.put("b21t1", b21t101.isChecked() ? "1" : b21t102.isChecked() ? "2" : "0");
+        sa.put("b21t2", b21t201.isChecked() ? "1" : b21t202.isChecked() ? "2" : "0");
         sa.put("b2201", b220101.isChecked() ? "1" : b220102.isChecked() ? "2" : "0");
         sa.put("b2288", b228801.isChecked() ? "1" : b228802.isChecked() ? "2" : "0");
         sa.put("b228801x", b228801r.getText().toString());
         sa.put("b2301", b2301.isChecked() ? "1" : "0");
-        sa.put("b2302", b2302.isChecked() ? "1" : "0");
-        sa.put("b2303", b2303.isChecked() ? "1" : "0");
-        sa.put("b2304", b2304.isChecked() ? "1" : "0");
-        sa.put("b2305", b2305.isChecked() ? "1" : "0");
-        sa.put("b2306", b2306.isChecked() ? "1" : "0");
-        sa.put("b2307", b2307.isChecked() ? "1" : "0");
-        sa.put("b2308", b2308.isChecked() ? "1" : "0");
-        sa.put("b2309", b2309.isChecked() ? "1" : "0");
-        sa.put("b2310", b2310.isChecked() ? "1" : "0");
-        sa.put("b2311", b2311.isChecked() ? "1" : "0");
-        sa.put("b2312", b2312.isChecked() ? "1" : "0");
-        sa.put("b2313", b2313.isChecked() ? "1" : "0");
-        sa.put("b2314", b2314.isChecked() ? "1" : "0");
-        sa.put("b2315", b2315.isChecked() ? "1" : "0");
-        sa.put("b2316", b2316.isChecked() ? "1" : "0");
+        sa.put("b2302", b2302.isChecked() ? "2" : "0");
+        sa.put("b2303", b2303.isChecked() ? "3" : "0");
+        sa.put("b2304", b2304.isChecked() ? "4" : "0");
+        sa.put("b2305", b2305.isChecked() ? "5" : "0");
+        sa.put("b2306", b2306.isChecked() ? "6" : "0");
+        sa.put("b2307", b2307.isChecked() ? "7" : "0");
+        sa.put("b2308", b2308.isChecked() ? "8" : "0");
+        sa.put("b2309", b2309.isChecked() ? "9" : "0");
+        sa.put("b2310", b2310.isChecked() ? "10" : "0");
+        sa.put("b2311", b2311.isChecked() ? "11" : "0");
+        sa.put("b2312", b2312.isChecked() ? "12" : "0");
+        sa.put("b2313", b2313.isChecked() ? "13" : "0");
+        sa.put("b2314", b2314.isChecked() ? "14" : "0");
+        sa.put("b2315", b2315.isChecked() ? "15" : "0");
+        sa.put("b2316", b2316.isChecked() ? "16" : "0");
         sa.put("b2401", b240101.isChecked() ? "1" : b240102.isChecked() ? "2" : "0");
         sa.put("b240102r", b240102r.getText().toString());
         sa.put("b2402", b240201.isChecked() ? "1" : b240202.isChecked() ? "2" : "0");
@@ -624,7 +674,7 @@ public class SectionAActivity extends Activity {
         } else {
             studyID.setError(null);
         }
-        if (Double.parseDouble(studyID.getText().toString()) == 0) {
+        if (Integer.valueOf(studyID.getText().toString()) == 0) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
             studyID.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "studyID: Invalid data is 0");
@@ -643,7 +693,7 @@ public class SectionAActivity extends Activity {
             b01.setError(null);
         }
 
-        if (Double.parseDouble(b01.getText().toString()) == 0) {
+        if (Integer.valueOf(b01.getText().toString()) == 0) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b01), Toast.LENGTH_SHORT).show();
             b01.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "b01: Invalid data is 0");
@@ -747,13 +797,13 @@ public class SectionAActivity extends Activity {
         if (b13.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b13), Toast.LENGTH_SHORT).show();
             b13.setError("This data is required");
-            Log.d(TAG, " b13 :empty ");
+            Log.d(TAG, " b13 : This data is required ");
             return false;
         } else {
             b13.setError(null);
         }
 
-        if (Double.parseDouble(b13.getText().toString()) == 0) {
+        if (Integer.valueOf(b13.getText().toString()) == 0) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b13), Toast.LENGTH_SHORT).show();
             b13.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "b13: Invalid data is 0");
@@ -798,10 +848,10 @@ public class SectionAActivity extends Activity {
         } else {
             b16.setError(null);
         }
-        if (Double.parseDouble(b16.getText().toString()) < 30 || Double.parseDouble(b16.getText().toString()) > 150) {
+        if (Double.parseDouble(b16.getText().toString()) < 30.0 || Double.parseDouble(b16.getText().toString()) > 150.0) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b16), Toast.LENGTH_SHORT).show();
-            b16.setError("Invalid: Range is 30-150 ");
-            Log.i(TAG, "b16: Invalid Range is 30-150 kg");
+            b16.setError("Invalid: Range is 30.0 - 150.0 ");
+            Log.i(TAG, "b16: Invalid Range is 30.0 - 150.0 kg");
             return false;
         } else {
             b16.setError(null);
@@ -851,6 +901,36 @@ public class SectionAActivity extends Activity {
             return false;
         } else {
             b20.setError(null);
+        }
+
+        //=================b21================
+        if (b21.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b21), Toast.LENGTH_SHORT).show();
+            b2102.setError("This data is Required!");
+            Log.i(TAG, "b21: This Data is Required!");
+            return false;
+        } else {
+            b2102.setError(null);
+        }
+
+        if (b2101.isChecked()) {
+            if (b21t1.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2101), Toast.LENGTH_SHORT).show();
+                b21t102.setError("This data is Required!");
+                Log.i(TAG, "b21t1: This Data is Required!");
+                return false;
+            } else {
+                b21t102.setError(null);
+            }
+
+            if (b21t2.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2102), Toast.LENGTH_SHORT).show();
+                b21t202.setError("This data is Required!");
+                Log.i(TAG, "b21t2: This Data is Required!");
+                return false;
+            } else {
+                b21t202.setError(null);
+            }
         }
 
         //=================== b2201==============

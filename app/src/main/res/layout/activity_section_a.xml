@@ -383,11 +383,11 @@
                 android:text="@string/b1017" />
 
             <RadioButton
-                android:id="@+id/b1018"
+                android:id="@+id/b1077"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/b1018" />
+                android:text="@string/b1077" />
 
             <RadioButton
                 android:id="@+id/b1088"
@@ -579,7 +579,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/b1203" />
+                android:text="@string/b1403" />
 
             <RadioButton
                 android:id="@+id/b1488"
@@ -629,7 +629,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
             android:hint="@string/b1601"
-            android:inputType="number"
+            android:inputType="numberDecimal"
             android:maxLength="4" />
 
         <TextView
@@ -692,6 +692,89 @@
             android:hint="@string/b20"
             android:inputType="number"
             android:maxLength="4" />
+
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="@string/b21" />
+
+        <RadioGroup
+            android:id="@+id/b21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/b2101"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/yes" />
+
+            <RadioButton
+                android:id="@+id/b2102"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/no" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/fldGrp21"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/b2101" />
+
+            <RadioGroup
+                android:id="@+id/b21t1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/b21t101"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/b21t102"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+
+            </RadioGroup>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/b2102" />
+
+            <RadioGroup
+                android:id="@+id/b21t2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/b21t201"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/yes" />
+
+                <RadioButton
+                    android:id="@+id/b21t202"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no" />
+
+            </RadioGroup>
+        </LinearLayout>
 
 
         <TextView
