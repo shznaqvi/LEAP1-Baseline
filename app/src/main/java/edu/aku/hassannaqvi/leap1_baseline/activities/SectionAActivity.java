@@ -107,19 +107,7 @@ public class SectionAActivity extends Activity {
     @BindView(R.id.b1088x)
     EditText b1088x;
     @BindView(R.id.b11)
-    RadioGroup b11;
-    @BindView(R.id.b1101)
-    RadioButton b1101;
-    @BindView(R.id.b1102)
-    RadioButton b1102;
-    @BindView(R.id.b1103)
-    RadioButton b1103;
-    @BindView(R.id.b1104)
-    RadioButton b1104;
-    @BindView(R.id.b1188)
-    RadioButton b1188;
-    @BindView(R.id.b1188x)
-    EditText b1188x;
+    EditText b11;
     @BindView(R.id.b12)
     RadioGroup b12;
     @BindView(R.id.b1201)
@@ -132,12 +120,50 @@ public class SectionAActivity extends Activity {
     RadioButton b1204;
     @BindView(R.id.b1205)
     RadioButton b1205;
+    @BindView(R.id.b1206)
+    RadioButton b1206;
+    @BindView(R.id.b1207)
+    RadioButton b1207;
+    @BindView(R.id.b1208)
+    RadioButton b1208;
+    @BindView(R.id.b1209)
+    RadioButton b1209;
+    @BindView(R.id.b1210)
+    RadioButton b1210;
+    @BindView(R.id.b1211)
+    RadioButton b1211;
+    @BindView(R.id.b1212)
+    RadioButton b1212;
+    @BindView(R.id.b1213)
+    RadioButton b1213;
+    @BindView(R.id.b1214)
+    RadioButton b1214;
+    @BindView(R.id.b1215)
+    RadioButton b1215;
+    @BindView(R.id.b1216)
+    RadioButton b1216;
+    @BindView(R.id.b1217)
+    RadioButton b1217;
+    @BindView(R.id.b1277)
+    RadioButton b1277;
     @BindView(R.id.b1288)
     RadioButton b1288;
     @BindView(R.id.b1288x)
     EditText b1288x;
     @BindView(R.id.b13)
-    EditText b13;
+    RadioGroup b13;
+    @BindView(R.id.b1301)
+    RadioButton b1301;
+    @BindView(R.id.b1302)
+    RadioButton b1302;
+    @BindView(R.id.b1303)
+    RadioButton b1303;
+    @BindView(R.id.b1304)
+    RadioButton b1304;
+    @BindView(R.id.b1388)
+    RadioButton b1388;
+    @BindView(R.id.b1388x)
+    EditText b1388x;
     @BindView(R.id.b14)
     RadioGroup b14;
     @BindView(R.id.b1401)
@@ -146,131 +172,148 @@ public class SectionAActivity extends Activity {
     RadioButton b1402;
     @BindView(R.id.b1403)
     RadioButton b1403;
+    @BindView(R.id.b1404)
+    RadioButton b1404;
+    @BindView(R.id.b1405)
+    RadioButton b1405;
     @BindView(R.id.b1488)
     RadioButton b1488;
     @BindView(R.id.b1488x)
     EditText b1488x;
     @BindView(R.id.b15)
-    DatePicker b15;
+    EditText b15;
     @BindView(R.id.b16)
-    EditText b16;
+    RadioGroup b16;
+    @BindView(R.id.b1601)
+    RadioButton b1601;
+    @BindView(R.id.b1602)
+    RadioButton b1602;
+    @BindView(R.id.b1603)
+    RadioButton b1603;
+    @BindView(R.id.b1688)
+    RadioButton b1688;
+    @BindView(R.id.b1688x)
+    EditText b1688x;
     @BindView(R.id.b17)
-    EditText b17;
+    DatePicker b17;
     @BindView(R.id.b18)
-    DatePicker b18;
+    EditText b18;
     @BindView(R.id.b19)
     EditText b19;
     @BindView(R.id.b20)
-    EditText b20;
-
+    DatePicker b20;
     @BindView(R.id.b21)
-    RadioGroup b21;
-    @BindView(R.id.b2101)
-    RadioButton b2101;
-    @BindView(R.id.b2102)
-    RadioButton b2102;
-    @BindView(R.id.fldGrp21)
-    LinearLayout fldGrp21;
-    @BindView(R.id.b21t1)
-    RadioGroup b21t1;
-    @BindView(R.id.b21t101)
-    RadioButton b21t101;
-    @BindView(R.id.b21t102)
-    RadioButton b21t102;
-    @BindView(R.id.b21t2)
-    RadioGroup b21t2;
-    @BindView(R.id.b21t201)
-    RadioButton b21t201;
-    @BindView(R.id.b21t202)
-    RadioButton b21t202;
-    @BindView(R.id.b2201)
-    RadioGroup b2201;
-    @BindView(R.id.b220101)
-    RadioButton b220101;
-    @BindView(R.id.b220102)
-    RadioButton b220102;
+    EditText b21;
+    @BindView(R.id.b22)
+    EditText b22;
+    @BindView(R.id.b23)
+    RadioGroup b23;
+    @BindView(R.id.b2301)
+    RadioButton b2301;
+    @BindView(R.id.b2302)
+    RadioButton b2302;
     @BindView(R.id.fldGrp23)
     LinearLayout fldGrp23;
-    @BindView(R.id.b2301)
-    CheckBox b2301;
-    @BindView(R.id.b2302)
-    CheckBox b2302;
-    @BindView(R.id.b2303)
-    CheckBox b2303;
-    @BindView(R.id.b2304)
-    CheckBox b2304;
-    @BindView(R.id.b2305)
-    CheckBox b2305;
-    @BindView(R.id.b2306)
-    CheckBox b2306;
-    @BindView(R.id.b2307)
-    CheckBox b2307;
-    @BindView(R.id.b2308)
-    CheckBox b2308;
-    @BindView(R.id.b2309)
-    CheckBox b2309;
-    @BindView(R.id.b2310)
-    CheckBox b2310;
-    @BindView(R.id.b2311)
-    CheckBox b2311;
-    @BindView(R.id.b2312)
-    CheckBox b2312;
-    @BindView(R.id.b2313)
-    CheckBox b2313;
-    @BindView(R.id.b2314)
-    CheckBox b2314;
-    @BindView(R.id.b2315)
-    CheckBox b2315;
-    @BindView(R.id.b2316)
-    CheckBox b2316;
-    @BindView(R.id.b2288)
-    RadioGroup b2288;
-    @BindView(R.id.b228801)
-    RadioButton b228801;
-    @BindView(R.id.b228802)
-    RadioButton b228802;
-    @BindView(R.id.b228801r)
-    EditText b228801r;
+    @BindView(R.id.b23t1)
+    RadioGroup b23t1;
+    @BindView(R.id.b23t101)
+    RadioButton b23t101;
+    @BindView(R.id.b23t102)
+    RadioButton b23t102;
+    @BindView(R.id.b23t2)
+    RadioGroup b23t2;
+    @BindView(R.id.b23t201)
+    RadioButton b23t201;
+    @BindView(R.id.b23t202)
+    RadioButton b23t202;
     @BindView(R.id.b2401)
     RadioGroup b2401;
     @BindView(R.id.b240101)
     RadioButton b240101;
     @BindView(R.id.b240102)
     RadioButton b240102;
-    @BindView(R.id.b240102r)
-    EditText b240102r;
-    @BindView(R.id.b2402)
-    RadioGroup b2402;
-    @BindView(R.id.b240201)
-    RadioButton b240201;
-    @BindView(R.id.b240202)
-    RadioButton b240202;
-    @BindView(R.id.b240202r)
-    EditText b240202r;
-    @BindView(R.id.b2403)
-    RadioGroup b2403;
-    @BindView(R.id.b240301)
-    RadioButton b240301;
-    @BindView(R.id.b240302)
-    RadioButton b240302;
-    @BindView(R.id.b240302r)
-    EditText b240302r;
+    @BindView(R.id.fldGrp25)
+    LinearLayout fldGrp25;
     @BindView(R.id.b2501)
-    RadioGroup b2501;
-    @BindView(R.id.b250101)
-    RadioButton b250101;
-    @BindView(R.id.b250102)
-    RadioButton b250102;
-    @BindView(R.id.b250102r)
-    EditText b250102r;
+    CheckBox b2501;
     @BindView(R.id.b2502)
-    RadioGroup b2502;
-    @BindView(R.id.b250201)
-    RadioButton b250201;
-    @BindView(R.id.b250202)
-    RadioButton b250202;
-    @BindView(R.id.b250202r)
-    EditText b250202r;
+    CheckBox b2502;
+    @BindView(R.id.b2503)
+    CheckBox b2503;
+    @BindView(R.id.b2504)
+    CheckBox b2504;
+    @BindView(R.id.b2505)
+    CheckBox b2505;
+    @BindView(R.id.b2506)
+    CheckBox b2506;
+    @BindView(R.id.b2507)
+    CheckBox b2507;
+    @BindView(R.id.b2508)
+    CheckBox b2508;
+    @BindView(R.id.b2509)
+    CheckBox b2509;
+    @BindView(R.id.b2510)
+    CheckBox b2510;
+    @BindView(R.id.b2511)
+    CheckBox b2511;
+    @BindView(R.id.b2512)
+    CheckBox b2512;
+    @BindView(R.id.b2513)
+    CheckBox b2513;
+    @BindView(R.id.b2514)
+    CheckBox b2514;
+    @BindView(R.id.b2515)
+    CheckBox b2515;
+    @BindView(R.id.b2516)
+    CheckBox b2516;
+    @BindView(R.id.b2488)
+    RadioGroup b2488;
+    @BindView(R.id.b248801)
+    RadioButton b248801;
+    @BindView(R.id.b248802)
+    RadioButton b248802;
+    @BindView(R.id.b248801r)
+    EditText b248801r;
+    @BindView(R.id.b2601)
+    RadioGroup b2601;
+    @BindView(R.id.b260101)
+    RadioButton b260101;
+    @BindView(R.id.b260102)
+    RadioButton b260102;
+    @BindView(R.id.b260102r)
+    EditText b260102r;
+    @BindView(R.id.b2602)
+    RadioGroup b2602;
+    @BindView(R.id.b260201)
+    RadioButton b260201;
+    @BindView(R.id.b260202)
+    RadioButton b260202;
+    @BindView(R.id.b260202r)
+    EditText b260202r;
+    @BindView(R.id.b2603)
+    RadioGroup b2603;
+    @BindView(R.id.b260301)
+    RadioButton b260301;
+    @BindView(R.id.b260302)
+    RadioButton b260302;
+    @BindView(R.id.b260302r)
+    EditText b260302r;
+    @BindView(R.id.b2701)
+    RadioGroup b2701;
+    @BindView(R.id.b270101)
+    RadioButton b270101;
+    @BindView(R.id.b270102)
+    RadioButton b270102;
+    @BindView(R.id.b270102r)
+    EditText b270102r;
+    @BindView(R.id.b2702)
+    RadioGroup b2702;
+    @BindView(R.id.b270201)
+    RadioButton b270201;
+    @BindView(R.id.b270202)
+    RadioButton b270202;
+    @BindView(R.id.b270202r)
+    EditText b270202r;
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
 
@@ -280,34 +323,34 @@ public class SectionAActivity extends Activity {
         setContentView(R.layout.activity_section_a);
         ButterKnife.bind(this);
 
-        b15.setMaxDate(new Date().getTime());
+        b17.setMaxDate(new Date().getTime());
         //b18.setMaxDate(new Date().getTime());
 
 
-        b2201.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        b2401.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (b220101.isChecked()) {
-                    fldGrp23.setVisibility(View.VISIBLE);
+                if (b240101.isChecked()) {
+                    fldGrp25.setVisibility(View.VISIBLE);
 
                 } else {
-                    fldGrp23.setVisibility(View.GONE);
-                    b2301.setChecked(false);
-                    b2302.setChecked(false);
-                    b2303.setChecked(false);
-                    b2304.setChecked(false);
-                    b2305.setChecked(false);
-                    b2306.setChecked(false);
-                    b2307.setChecked(false);
-                    b2308.setChecked(false);
-                    b2309.setChecked(false);
-                    b2310.setChecked(false);
-                    b2311.setChecked(false);
-                    b2312.setChecked(false);
-                    b2313.setChecked(false);
-                    b2314.setChecked(false);
-                    b2315.setChecked(false);
-                    b2316.setChecked(false);
+                    fldGrp25.setVisibility(View.GONE);
+                    b2501.setChecked(false);
+                    b2502.setChecked(false);
+                    b2503.setChecked(false);
+                    b2504.setChecked(false);
+                    b2505.setChecked(false);
+                    b2506.setChecked(false);
+                    b2507.setChecked(false);
+                    b2508.setChecked(false);
+                    b2509.setChecked(false);
+                    b2510.setChecked(false);
+                    b2511.setChecked(false);
+                    b2512.setChecked(false);
+                    b2513.setChecked(false);
+                    b2514.setChecked(false);
+                    b2515.setChecked(false);
+                    b2516.setChecked(false);
                 }
             }
         });
@@ -326,19 +369,6 @@ public class SectionAActivity extends Activity {
             }
         });
 
-        // =================== Q11 Others ====================
-
-        b1188.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    b1188x.setVisibility(View.VISIBLE);
-                } else {
-                    b1188x.setVisibility(View.GONE);
-                    b1188x.setText(null);
-                }
-            }
-        });
 
         // =================== Q12 Others ====================
 
@@ -350,6 +380,20 @@ public class SectionAActivity extends Activity {
                 } else {
                     b1288x.setVisibility(View.GONE);
                     b1288x.setText(null);
+                }
+            }
+        });
+
+        // =================== Q13 Others ====================
+
+        b1388.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    b1388x.setVisibility(View.VISIBLE);
+                } else {
+                    b1388x.setVisibility(View.GONE);
+                    b1388x.setText(null);
                 }
             }
         });
@@ -368,99 +412,113 @@ public class SectionAActivity extends Activity {
             }
         });
 
-        // =================== Q22 others ====================
+        // =================== Q16 Others ====================
 
-        b228801.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        b1688.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    b228801r.setVisibility(View.VISIBLE);
+                    b1688x.setVisibility(View.VISIBLE);
                 } else {
-                    b228801r.setVisibility(View.GONE);
-                    b228801r.setText(null);
+                    b1688x.setVisibility(View.GONE);
+                    b1688x.setText(null);
                 }
             }
         });
 
-        // =================== Q2401 reason ====================
+        // =================== Q24 others ====================
 
-        b240102.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        b248801.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    b240102r.setVisibility(View.VISIBLE);
+                    b248801r.setVisibility(View.VISIBLE);
                 } else {
-                    b240102r.setVisibility(View.GONE);
-                    b240102r.setText(null);
+                    b248801r.setVisibility(View.GONE);
+                    b248801r.setText(null);
                 }
             }
         });
 
-        // =================== Q2402 reason ====================
+        // =================== Q2601 reason ====================
 
-        b240202.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        b260102.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    b240202r.setVisibility(View.VISIBLE);
+                    b260102r.setVisibility(View.VISIBLE);
                 } else {
-                    b240202r.setVisibility(View.GONE);
-                    b240202r.setText(null);
+                    b260102r.setVisibility(View.GONE);
+                    b260102r.setText(null);
                 }
             }
         });
 
-        // =================== Q2403 reason ====================
+        // =================== Q2602 reason ====================
 
-        b240302.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        b260202.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    b240302r.setVisibility(View.VISIBLE);
+                    b260202r.setVisibility(View.VISIBLE);
                 } else {
-                    b240302r.setVisibility(View.GONE);
-                    b240302r.setText(null);
+                    b260202r.setVisibility(View.GONE);
+                    b260202r.setText(null);
                 }
             }
         });
 
-        // =================== Q2501 reason ====================
+        // =================== Q2603 reason ====================
 
-        b250102.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        b260302.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    b250102r.setVisibility(View.VISIBLE);
+                    b260302r.setVisibility(View.VISIBLE);
                 } else {
-                    b250102r.setVisibility(View.GONE);
-                    b250102r.setText(null);
+                    b260302r.setVisibility(View.GONE);
+                    b260302r.setText(null);
                 }
             }
         });
 
-        // =================== Q2502 reason ====================
+        // =================== Q2701 reason ====================
 
-        b250202.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        b270102.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (isChecked) {
-                    b250202r.setVisibility(View.VISIBLE);
+                    b270102r.setVisibility(View.VISIBLE);
                 } else {
-                    b250202r.setVisibility(View.GONE);
-                    b250202r.setText(null);
+                    b270102r.setVisibility(View.GONE);
+                    b270102r.setText(null);
                 }
             }
         });
 
-        b21.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        // =================== Q2702 reason ====================
+
+        b270202.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    b270202r.setVisibility(View.VISIBLE);
+                } else {
+                    b270202r.setVisibility(View.GONE);
+                    b270202r.setText(null);
+                }
+            }
+        });
+
+        b23.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, @IdRes int checkedId) {
-                if (b2101.isChecked()) {
-                    fldGrp21.setVisibility(View.VISIBLE);
+                if (b2301.isChecked()) {
+                    fldGrp23.setVisibility(View.VISIBLE);
                 } else {
-                    fldGrp21.setVisibility(View.GONE);
-                    b21t1.clearCheck();
-                    b21t2.clearCheck();
+                    fldGrp23.setVisibility(View.GONE);
+                    b23t1.clearCheck();
+                    b23t2.clearCheck();
                 }
             }
         });
@@ -610,51 +668,60 @@ public class SectionAActivity extends Activity {
                 : b1009.isChecked() ? "9" : b1010.isChecked() ? "10" : b1011.isChecked() ? "11" : b1012.isChecked() ? "12"
                 : b1013.isChecked() ? "13" : b1014.isChecked() ? "14" : b1015.isChecked() ? "15" : b1016.isChecked() ? "16"
                 : b1017.isChecked() ? "17" : b1077.isChecked() ? "77" : b1088.isChecked() ? "88" : "0");
-        sa.put("b11", b1101.isChecked() ? "1" : b1102.isChecked() ? "2" : b1103.isChecked() ? "3" : b1104.isChecked() ? "4"
-                : b1188.isChecked() ? "88" : "0");
+
+        sa.put("b11", b11.getText().toString());
         sa.put("b12", b1201.isChecked() ? "1" : b1202.isChecked() ? "2" : b1203.isChecked() ? "3" : b1204.isChecked() ? "4"
-                : b1205.isChecked() ? "5" : b1288.isChecked() ? "88" : "0");
-        sa.put("b13", b13.getText().toString());
-        sa.put("b14", b1401.isChecked() ? "1" : b1402.isChecked() ? "2" : b1403.isChecked() ? "3"
-                : b1188.isChecked() ? "88" : "0");
-        sa.put("b15", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(b15.getCalendarView().getDate()));
-        sa.put("b16", b16.getText().toString());
-        sa.put("b17", b17.getText().toString());
-        sa.put("b18", new SimpleDateFormat("dd-MM-yyyy").format(b18.getCalendarView().getDate()));
+                : b1205.isChecked() ? "5" : b1206.isChecked() ? "6" : b1207.isChecked() ? "7" : b1208.isChecked() ? "8"
+                : b1209.isChecked() ? "9" : b1210.isChecked() ? "10" : b1211.isChecked() ? "11" : b1212.isChecked() ? "12"
+                : b1213.isChecked() ? "13" : b1214.isChecked() ? "14" : b1215.isChecked() ? "15" : b1216.isChecked() ? "16"
+                : b1217.isChecked() ? "17" : b1277.isChecked() ? "77" : b1288.isChecked() ? "88" : "0");
+
+
+        sa.put("b13", b1301.isChecked() ? "1" : b1302.isChecked() ? "2" : b1303.isChecked() ? "3" : b1304.isChecked() ? "4"
+                : b1388.isChecked() ? "88" : "0");
+        sa.put("b14", b1401.isChecked() ? "1" : b1402.isChecked() ? "2" : b1403.isChecked() ? "3" : b1404.isChecked() ? "4"
+                : b1405.isChecked() ? "5" : b1488.isChecked() ? "88" : "0");
+        sa.put("b15", b15.getText().toString());
+        sa.put("b16", b1601.isChecked() ? "1" : b1602.isChecked() ? "2" : b1603.isChecked() ? "3"
+                : b1688.isChecked() ? "88" : "0");
+        sa.put("b17", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(b17.getCalendarView().getDate()));
+        sa.put("b18", b18.getText().toString());
         sa.put("b19", b19.getText().toString());
-        sa.put("b20", b20.getText().toString());
-        sa.put("b21", b2101.isChecked() ? "1" : b2102.isChecked() ? "2" : "0");
-        sa.put("b21t1", b21t101.isChecked() ? "1" : b21t102.isChecked() ? "2" : "0");
-        sa.put("b21t2", b21t201.isChecked() ? "1" : b21t202.isChecked() ? "2" : "0");
-        sa.put("b2201", b220101.isChecked() ? "1" : b220102.isChecked() ? "2" : "0");
-        sa.put("b2288", b228801.isChecked() ? "1" : b228802.isChecked() ? "2" : "0");
-        sa.put("b228801x", b228801r.getText().toString());
-        sa.put("b2301", b2301.isChecked() ? "1" : "0");
-        sa.put("b2302", b2302.isChecked() ? "2" : "0");
-        sa.put("b2303", b2303.isChecked() ? "3" : "0");
-        sa.put("b2304", b2304.isChecked() ? "4" : "0");
-        sa.put("b2305", b2305.isChecked() ? "5" : "0");
-        sa.put("b2306", b2306.isChecked() ? "6" : "0");
-        sa.put("b2307", b2307.isChecked() ? "7" : "0");
-        sa.put("b2308", b2308.isChecked() ? "8" : "0");
-        sa.put("b2309", b2309.isChecked() ? "9" : "0");
-        sa.put("b2310", b2310.isChecked() ? "10" : "0");
-        sa.put("b2311", b2311.isChecked() ? "11" : "0");
-        sa.put("b2312", b2312.isChecked() ? "12" : "0");
-        sa.put("b2313", b2313.isChecked() ? "13" : "0");
-        sa.put("b2314", b2314.isChecked() ? "14" : "0");
-        sa.put("b2315", b2315.isChecked() ? "15" : "0");
-        sa.put("b2316", b2316.isChecked() ? "16" : "0");
+        sa.put("b20", new SimpleDateFormat("dd-MM-yyyy").format(b20.getCalendarView().getDate()));
+        sa.put("b21", b21.getText().toString());
+        sa.put("b22", b22.getText().toString());
+        sa.put("b23", b2301.isChecked() ? "1" : b2302.isChecked() ? "2" : "0");
+        sa.put("b23t1", b23t101.isChecked() ? "1" : b23t102.isChecked() ? "2" : "0");
+        sa.put("b23t2", b23t201.isChecked() ? "1" : b23t202.isChecked() ? "2" : "0");
         sa.put("b2401", b240101.isChecked() ? "1" : b240102.isChecked() ? "2" : "0");
-        sa.put("b240102r", b240102r.getText().toString());
-        sa.put("b2402", b240201.isChecked() ? "1" : b240202.isChecked() ? "2" : "0");
-        sa.put("b240202r", b240202r.getText().toString());
-        sa.put("b2403", b240301.isChecked() ? "1" : b240302.isChecked() ? "2" : "0");
-        sa.put("b240302r", b240302r.getText().toString());
-        sa.put("b2501", b250101.isChecked() ? "1" : b250102.isChecked() ? "2" : "0");
-        sa.put("b250102r", b250102r.getText().toString());
-        sa.put("b2502", b250201.isChecked() ? "1" : b250202.isChecked() ? "2" : "0");
-        sa.put("b250202r", b250202r.getText().toString());
+        sa.put("b2488", b248801.isChecked() ? "1" : b248802.isChecked() ? "2" : "0");
+        sa.put("b248801x", b248801r.getText().toString());
+        sa.put("b2501", b2501.isChecked() ? "1" : "0");
+        sa.put("b2502", b2502.isChecked() ? "2" : "0");
+        sa.put("b2503", b2503.isChecked() ? "3" : "0");
+        sa.put("b2504", b2504.isChecked() ? "4" : "0");
+        sa.put("b2505", b2505.isChecked() ? "5" : "0");
+        sa.put("b2506", b2506.isChecked() ? "6" : "0");
+        sa.put("b2507", b2507.isChecked() ? "7" : "0");
+        sa.put("b2508", b2508.isChecked() ? "8" : "0");
+        sa.put("b2509", b2509.isChecked() ? "9" : "0");
+        sa.put("b2510", b2510.isChecked() ? "10" : "0");
+        sa.put("b2511", b2511.isChecked() ? "11" : "0");
+        sa.put("b2512", b2512.isChecked() ? "12" : "0");
+        sa.put("b2513", b2513.isChecked() ? "13" : "0");
+        sa.put("b2514", b2514.isChecked() ? "14" : "0");
+        sa.put("b2515", b2515.isChecked() ? "15" : "0");
+        sa.put("b2516", b2516.isChecked() ? "16" : "0");
+        sa.put("b2601", b260101.isChecked() ? "1" : b260102.isChecked() ? "2" : "0");
+        sa.put("b260102r", b260102r.getText().toString());
+        sa.put("b2602", b260201.isChecked() ? "1" : b260202.isChecked() ? "2" : "0");
+        sa.put("b260202r", b260202r.getText().toString());
+        sa.put("b2603", b260301.isChecked() ? "1" : b260302.isChecked() ? "2" : "0");
+        sa.put("b260302r", b260302r.getText().toString());
+        sa.put("b2701", b270101.isChecked() ? "1" : b270102.isChecked() ? "2" : "0");
+        sa.put("b270102r", b270102r.getText().toString());
+        sa.put("b2702", b270201.isChecked() ? "1" : b270202.isChecked() ? "2" : "0");
+        sa.put("b250202r", b270202r.getText().toString());
 
         // setGPS();
 
@@ -753,27 +820,28 @@ public class SectionAActivity extends Activity {
             b1088x.setError(null);
         }
 
-        //=================== b11==============
-        if (b11.getCheckedRadioButtonId() == -1) {
+        //==================== b11 ====================
+        if (b11.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b11), Toast.LENGTH_SHORT).show();
-            b1188.setError("This data is Required!");
+            b11.setError("This data is Required!");
             Log.i(TAG, "b11: This Data is Required!");
             return false;
         } else {
-            b1188.setError(null);
+            b11.setError(null);
         }
 
-        //=================== b11 Others ==============
-        if (b1188.isChecked() && b1188x.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b11) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
-            b1188x.setError("This data is Required!");
-            Log.i(TAG, "b1188x: This Data is Required!");
+        //============== Check on Education=============
+        if ((Integer.valueOf(b11.getText().toString()) < 0)
+                || (Integer.valueOf(b11.getText().toString()) > 16)) {
+            Toast.makeText(this, "ERROR(Invalid) " + getString(R.string.b11), Toast.LENGTH_LONG).show();
+            b11.setError("Range is 1-16");
+            Log.i(TAG, "b11: Range is 1-16");
             return false;
         } else {
-            b1188x.setError(null);
+            b11.setError(null);
         }
 
-        //=================== b12==============
+        //=================== b12 ==============
         if (b12.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b12), Toast.LENGTH_SHORT).show();
             b1288.setError("This data is Required!");
@@ -793,24 +861,26 @@ public class SectionAActivity extends Activity {
             b1288x.setError(null);
         }
 
-        // =================== b13 ====================
-        if (b13.getText().toString().isEmpty()) {
+        //=================== b13 ==============
+        if (b13.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b13), Toast.LENGTH_SHORT).show();
-            b13.setError("This data is required");
-            Log.d(TAG, " b13 : This data is required ");
+            b1388.setError("This data is Required!");
+            Log.i(TAG, "b13: This Data is Required!");
             return false;
         } else {
-            b13.setError(null);
+            b1388.setError(null);
         }
 
-        if (Integer.valueOf(b13.getText().toString()) == 0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b13), Toast.LENGTH_SHORT).show();
-            b13.setError("Invalid: Data cannot be Zero");
-            Log.i(TAG, "b13: Invalid data is 0");
+        //=================== b13 Others ==============
+        if (b1388.isChecked() && b1388x.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b13) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
+            b1388x.setError("This data is Required!");
+            Log.i(TAG, "b1388x: This Data is Required!");
             return false;
         } else {
-            b13.setError(null);
+            b1388x.setError(null);
         }
+
         //=================== b14==============
         if (b14.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b14), Toast.LENGTH_SHORT).show();
@@ -831,152 +901,145 @@ public class SectionAActivity extends Activity {
             b1488x.setError(null);
         }
 
-        // =================== b16 ====================
-        if (b16.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b16), Toast.LENGTH_SHORT).show();
-            b16.setError("This data is Required!");
-            Log.i(TAG, "b16: This data is Required!");
+        // =================== b15 ====================
+        if (b15.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b15), Toast.LENGTH_SHORT).show();
+            b15.setError("This data is required");
+            Log.d(TAG, " b15 : This data is required ");
             return false;
         } else {
-            b16.setError(null);
-        }
-        if (Double.parseDouble(b16.getText().toString()) == 0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b16), Toast.LENGTH_SHORT).show();
-            b16.setError("Invalid: Data cannot be Zero");
-            Log.i(TAG, "b16: Invalid data is 0");
-            return false;
-        } else {
-            b16.setError(null);
-        }
-        if (Double.parseDouble(b16.getText().toString()) < 30.0 || Double.parseDouble(b16.getText().toString()) > 150.0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b16), Toast.LENGTH_SHORT).show();
-            b16.setError("Invalid: Range is 30.0 - 150.0 ");
-            Log.i(TAG, "b16: Invalid Range is 30.0 - 150.0 kg");
-            return false;
-        } else {
-            b16.setError(null);
+            b15.setError(null);
         }
 
-        // =================== b17 ====================
-        if (b17.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b17), Toast.LENGTH_SHORT).show();
-            b17.setError("This data is Required!");
-            Log.i(TAG, "b17: This data is Required!");
+        if (Integer.valueOf(b15.getText().toString()) == 0) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b15), Toast.LENGTH_SHORT).show();
+            b15.setError("Invalid: Data cannot be Zero");
+            Log.i(TAG, "b15: Invalid data is 0");
             return false;
         } else {
-            b17.setError(null);
+            b15.setError(null);
         }
-        if (Double.parseDouble(b17.getText().toString()) == 0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b17), Toast.LENGTH_SHORT).show();
-            b17.setError("Invalid: Data cannot be Zero");
-            Log.i(TAG, "b17: Invalid data is 0");
+        //=================== b16==============
+        if (b16.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b16), Toast.LENGTH_SHORT).show();
+            b1688.setError("This data is Required!");
+            Log.i(TAG, "b16: This Data is Required!");
             return false;
         } else {
-            b17.setError(null);
-        }
-        if (Double.parseDouble(b17.getText().toString()) < 137 || Double.parseDouble(b17.getText().toString()) > 160) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b17), Toast.LENGTH_SHORT).show();
-            b17.setError("Invalid: Range is 137-160 cm");
-            Log.i(TAG, "b17: Invalid Range is 137-160 cm");
-            return false;
-        } else {
-            b17.setError(null);
+            b1688.setError(null);
         }
 
-        //==================== b19====================
+        //=================== b16 Others ==============
+        if (b1688.isChecked() && b1688x.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b16) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
+            b1688x.setError("This data is Required!");
+            Log.i(TAG, "b1688x: This Data is Required!");
+            return false;
+        } else {
+            b1688x.setError(null);
+        }
+
+        // =================== b18 ====================
+        if (b18.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
+            b18.setError("This data is Required!");
+            Log.i(TAG, "b18: This data is Required!");
+            return false;
+        } else {
+            b18.setError(null);
+        }
+        if (Double.parseDouble(b18.getText().toString()) == 0) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
+            b18.setError("Invalid: Data cannot be Zero");
+            Log.i(TAG, "b18: Invalid data is 0");
+            return false;
+        } else {
+            b18.setError(null);
+        }
+        if (Double.parseDouble(b18.getText().toString()) < 30.0 || Double.parseDouble(b18.getText().toString()) > 150.0) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
+            b18.setError("Invalid: Range is 30.0 - 150.0 ");
+            Log.i(TAG, "b18: Invalid Range is 30.0 - 150.0 kg");
+            return false;
+        } else {
+            b18.setError(null);
+        }
+
+        // =================== b19 ====================
         if (b19.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b19), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
             b19.setError("This data is Required!");
-            Log.i(TAG, "b19: This Data is Required!");
+            Log.i(TAG, "b19: This data is Required!");
+            return false;
+        } else {
+            b19.setError(null);
+        }
+        if (Double.parseDouble(b19.getText().toString()) == 0) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
+            b19.setError("Invalid: Data cannot be Zero");
+            Log.i(TAG, "b19: Invalid data is 0");
+            return false;
+        } else {
+            b19.setError(null);
+        }
+        if (Double.parseDouble(b19.getText().toString()) < 137 || Double.parseDouble(b19.getText().toString()) > 160) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
+            b19.setError("Invalid: Range is 137-160 cm");
+            Log.i(TAG, "b19: Invalid Range is 137-160 cm");
             return false;
         } else {
             b19.setError(null);
         }
 
-        //==================== b20====================
-        if (b20.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b20), Toast.LENGTH_SHORT).show();
-            b20.setError("This data is Required!");
-            Log.i(TAG, "b20: This Data is Required!");
-            return false;
-        } else {
-            b20.setError(null);
-        }
-
-        //=================b21================
-        if (b21.getCheckedRadioButtonId() == -1) {
+        //==================== b21====================
+        if (b21.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b21), Toast.LENGTH_SHORT).show();
-            b2102.setError("This data is Required!");
+            b21.setError("This data is Required!");
             Log.i(TAG, "b21: This Data is Required!");
             return false;
         } else {
-            b2102.setError(null);
+            b21.setError(null);
         }
 
-        if (b2101.isChecked()) {
-            if (b21t1.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2101), Toast.LENGTH_SHORT).show();
-                b21t102.setError("This data is Required!");
-                Log.i(TAG, "b21t1: This Data is Required!");
-                return false;
-            } else {
-                b21t102.setError(null);
-            }
-
-            if (b21t2.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2102), Toast.LENGTH_SHORT).show();
-                b21t202.setError("This data is Required!");
-                Log.i(TAG, "b21t2: This Data is Required!");
-                return false;
-            } else {
-                b21t202.setError(null);
-            }
-        }
-
-        //=================== b2201==============
-        if (b2201.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2201), Toast.LENGTH_SHORT).show();
-            b220102.setError("This data is Required!");
-            Log.i(TAG, "b2201: This Data is Required!");
+        //==================== b22====================
+        if (b22.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b22), Toast.LENGTH_SHORT).show();
+            b22.setError("This data is Required!");
+            Log.i(TAG, "b22: This Data is Required!");
             return false;
         } else {
-            b220102.setError(null);
+            b22.setError(null);
         }
 
-        if (b220101.isChecked()) {
-            // ====================== b23 ===================
-            if (!(b2301.isChecked() || b2302.isChecked() || b2303.isChecked() || b2304.isChecked()
-                    || b2305.isChecked() || b2306.isChecked() || b2307.isChecked() || b2308.isChecked() || b2309.isChecked() || b2310.isChecked() || b2311.isChecked()
-                    || b2312.isChecked() || b2313.isChecked() || b2314.isChecked() || b2315.isChecked() || b2316.isChecked())) {
-                Toast.makeText(this, "ERROR(empty): " + getString(R.string.b23), Toast.LENGTH_LONG).show();
-                b2316.setError("This data is Required!");    // Set Error on last check box
-                Log.i(TAG, "b2316: This data is Required!");
+        //=================b23================
+        if (b23.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b23), Toast.LENGTH_SHORT).show();
+            b2302.setError("This data is Required!");
+            Log.i(TAG, "b23: This Data is Required!");
+            return false;
+        } else {
+            b2302.setError(null);
+        }
+
+        if (b2301.isChecked()) {
+            if (b23t1.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2301), Toast.LENGTH_SHORT).show();
+                b23t102.setError("This data is Required!");
+                Log.i(TAG, "b23t1: This Data is Required!");
                 return false;
             } else {
-                b2316.setError(null);
+                b23t102.setError(null);
+            }
+
+            if (b23t2.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2302), Toast.LENGTH_SHORT).show();
+                b23t202.setError("This data is Required!");
+                Log.i(TAG, "b23t2: This Data is Required!");
+                return false;
+            } else {
+                b23t202.setError(null);
             }
         }
-
-        //=================== b2288==============
-        if (b2288.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other), Toast.LENGTH_SHORT).show();
-            b228802.setError("This data is Required!");
-            Log.i(TAG, "b2288: This Data is Required!");
-            return false;
-        } else {
-            b228802.setError(null);
-        }
-
-        //=================== b22other ==============
-        if (b228801.isChecked() && b228801r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other) + " - " + getString(R.string.b228801r), Toast.LENGTH_SHORT).show();
-            b228801r.setError("This data is Required!");
-            Log.i(TAG, "b2403r: This Data is Required!");
-            return false;
-        } else {
-            b228801r.setError(null);
-        }
-
 
         //=================== b2401==============
         if (b2401.getCheckedRadioButtonId() == -1) {
@@ -988,102 +1051,140 @@ public class SectionAActivity extends Activity {
             b240102.setError(null);
         }
 
-        //=================== b2401 reason ==============
-        if (b240102.isChecked() && b240102r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2401) + " - " + getString(R.string.b24r), Toast.LENGTH_SHORT).show();
-            b240102r.setError("This data is Required!");
-            Log.i(TAG, "b2401r: This Data is Required!");
-            return false;
-        } else {
-            b240102r.setError(null);
+        if (b240101.isChecked()) {
+            // ====================== b23 ===================
+            if (!(b2501.isChecked() || b2502.isChecked() || b2503.isChecked() || b2504.isChecked()
+                    || b2505.isChecked() || b2506.isChecked() || b2507.isChecked() || b2508.isChecked() || b2509.isChecked() || b2510.isChecked() || b2511.isChecked()
+                    || b2512.isChecked() || b2513.isChecked() || b2514.isChecked() || b2515.isChecked() || b2516.isChecked())) {
+                Toast.makeText(this, "ERROR(empty): " + getString(R.string.b25), Toast.LENGTH_LONG).show();
+                b2516.setError("This data is Required!");    // Set Error on last check box
+                Log.i(TAG, "b2516: This data is Required!");
+                return false;
+            } else {
+                b2516.setError(null);
+            }
         }
 
-        //=================== b2402==============
-        if (b2402.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2402), Toast.LENGTH_SHORT).show();
-            b240202.setError("This data is Required!");
-            Log.i(TAG, "b2402: This Data is Required!");
+        //=================== b2488==============
+        if (b2488.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other), Toast.LENGTH_SHORT).show();
+            b248802.setError("This data is Required!");
+            Log.i(TAG, "b2488: This Data is Required!");
             return false;
         } else {
-            b240202.setError(null);
+            b248802.setError(null);
         }
 
-        //=================== b2402 reason ==============
-        if (b240202.isChecked() && b240202r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2402) + " - " + getString(R.string.b24r), Toast.LENGTH_SHORT).show();
-            b240202r.setError("This data is Required!");
-            Log.i(TAG, "b2402r: This Data is Required!");
-            return false;
-        } else {
-            b240202r.setError(null);
-        }
-
-        //=================== b2403==============
-        if (b2403.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2403), Toast.LENGTH_SHORT).show();
-            b240302.setError("This data is Required!");
-            Log.i(TAG, "b2403: This Data is Required!");
-            return false;
-        } else {
-            b240302.setError(null);
-        }
-
-        //=================== b2403 reason ==============
-        if (b240302.isChecked() && b240302r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2403) + " - " + getString(R.string.b24r), Toast.LENGTH_SHORT).show();
-            b240302r.setError("This data is Required!");
+        //=================== b22other ==============
+        if (b248801.isChecked() && b248801r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other) + " - " + getString(R.string.b248801r), Toast.LENGTH_SHORT).show();
+            b248801r.setError("This data is Required!");
             Log.i(TAG, "b2403r: This Data is Required!");
             return false;
         } else {
-            b240302r.setError(null);
+            b248801r.setError(null);
         }
 
-        //=================== b2501==============
-        if (b2501.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2501), Toast.LENGTH_SHORT).show();
-            b250102.setError("This data is Required!");
-            Log.i(TAG, "b2501: This Data is Required!");
+
+        //=================== b2601==============
+        if (b2601.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601), Toast.LENGTH_SHORT).show();
+            b260102.setError("This data is Required!");
+            Log.i(TAG, "b2601: This Data is Required!");
             return false;
         } else {
-            b250102.setError(null);
+            b260102.setError(null);
         }
 
-        //=================== b2501 reason ==============
-        if (b250102.isChecked() && b250102r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2501) + " - " + getString(R.string.b25r), Toast.LENGTH_SHORT).show();
-            b250102r.setError("This data is Required!");
-            Log.i(TAG, "b2501r: This Data is Required!");
+        //=================== b2601 reason ==============
+        if (b260102.isChecked() && b260102r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
+            b260102r.setError("This data is Required!");
+            Log.i(TAG, "b2601r: This Data is Required!");
             return false;
         } else {
-            b250102r.setError(null);
+            b260102r.setError(null);
         }
 
-        //=================== b2502==============
-        if (b2502.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2502), Toast.LENGTH_SHORT).show();
-            b250202.setError("This data is Required!");
-            Log.i(TAG, "b2502: This Data is Required!");
+        //=================== b2602==============
+        if (b2602.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602), Toast.LENGTH_SHORT).show();
+            b260202.setError("This data is Required!");
+            Log.i(TAG, "b2602: This Data is Required!");
             return false;
         } else {
-            b250202.setError(null);
+            b260202.setError(null);
         }
 
-        //=================== b2502 reason ==============
-        if (b250202.isChecked() && b250202r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2502) + " - " + getString(R.string.b25r), Toast.LENGTH_SHORT).show();
-            b250202r.setError("This data is Required!");
-            Log.i(TAG, "b2502r: This Data is Required!");
+        //=================== b2602 reason ==============
+        if (b260202.isChecked() && b260202r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
+            b260202r.setError("This data is Required!");
+            Log.i(TAG, "b2602r: This Data is Required!");
             return false;
         } else {
-            b250202r.setError(null);
+            b260202r.setError(null);
         }
 
+        //=================== b2603==============
+        if (b2603.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603), Toast.LENGTH_SHORT).show();
+            b260302.setError("This data is Required!");
+            Log.i(TAG, "b2603: This Data is Required!");
+            return false;
+        } else {
+            b260302.setError(null);
+        }
 
+        //=================== b2603 reason ==============
+        if (b260302.isChecked() && b260302r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
+            b260302r.setError("This data is Required!");
+            Log.i(TAG, "b2603r: This Data is Required!");
+            return false;
+        } else {
+            b260302r.setError(null);
+        }
 
+        //=================== b2701==============
+        if (b2701.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701), Toast.LENGTH_SHORT).show();
+            b270102.setError("This data is Required!");
+            Log.i(TAG, "b2701: This Data is Required!");
+            return false;
+        } else {
+            b270102.setError(null);
+        }
 
+        //=================== b2701 reason ==============
+        if (b270102.isChecked() && b270102r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
+            b270102r.setError("This data is Required!");
+            Log.i(TAG, "b2701r: This Data is Required!");
+            return false;
+        } else {
+            b270102r.setError(null);
+        }
 
+        //=================== b2702==============
+        if (b2702.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702), Toast.LENGTH_SHORT).show();
+            b270202.setError("This data is Required!");
+            Log.i(TAG, "b2702: This Data is Required!");
+            return false;
+        } else {
+            b270202.setError(null);
+        }
 
-
+        //=================== b2702 reason ==============
+        if (b270202.isChecked() && b270202r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
+            b270202r.setError("This data is Required!");
+            Log.i(TAG, "b2702r: This Data is Required!");
+            return false;
+        } else {
+            b270202r.setError(null);
+        }
 
         return true;
 
