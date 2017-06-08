@@ -1,14 +1,13 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.RadioButton;
@@ -20,17 +19,19 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.Calendar;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
+import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 import static android.content.ContentValues.TAG;
 
-public class SectionAActivity extends Activity {
+public class SectionAActivity extends AppCompatActivity {
 
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
@@ -195,13 +196,13 @@ public class SectionAActivity extends Activity {
     @BindView(R.id.b1688x)
     EditText b1688x;
     @BindView(R.id.b17)
-    DatePicker b17;
+    DatePickerInputEditText b17;
     @BindView(R.id.b18)
     EditText b18;
     @BindView(R.id.b19)
     EditText b19;
     @BindView(R.id.b20)
-    DatePicker b20;
+    DatePickerInputEditText b20;
     @BindView(R.id.b21)
     EditText b21;
     @BindView(R.id.b22)
@@ -317,14 +318,35 @@ public class SectionAActivity extends Activity {
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_section_a);
         ButterKnife.bind(this);
+        String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        String maxDate43Weeks = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTimeInMillis() + (AppMain.MILLISECONDS_IN_43_WEEKS));
 
-        b17.setMaxDate(new Date().getTime());
-        //b18.setMaxDate(new Date().getTime());
+
+        b17.setManager(getSupportFragmentManager());
+        b20.setManager(getSupportFragmentManager());
+        b17.setMaxDate(dateToday);
+        b20.setMinDate(dateToday);
+        b20.setMaxDate(maxDate43Weeks);
+
+        b17.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                b17.onFocusChange(v, true);
+            }
+        });
+        b20.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                b20.onFocusChange(v, true);
+            }
+        });
+
 
 
         b2401.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -684,10 +706,10 @@ public class SectionAActivity extends Activity {
         sa.put("b15", b15.getText().toString());
         sa.put("b16", b1601.isChecked() ? "1" : b1602.isChecked() ? "2" : b1603.isChecked() ? "3"
                 : b1688.isChecked() ? "88" : "0");
-        sa.put("b17", new SimpleDateFormat("dd-MM-yyyy HH:mm").format(b17.getCalendarView().getDate()));
+        sa.put("b17", b17.getText().toString());
         sa.put("b18", b18.getText().toString());
         sa.put("b19", b19.getText().toString());
-        sa.put("b20", new SimpleDateFormat("dd-MM-yyyy").format(b20.getCalendarView().getDate()));
+        sa.put("b20", b20.getText().toString());
         sa.put("b21", b21.getText().toString());
         sa.put("b22", b22.getText().toString());
         sa.put("b23", b2301.isChecked() ? "1" : b2302.isChecked() ? "2" : "0");
@@ -779,7 +801,7 @@ public class SectionAActivity extends Activity {
             b06.setError(null);
         }
 
-        //==================== b09====================
+        //==================== b09 ====================
         if (b09.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b09), Toast.LENGTH_SHORT).show();
             b09.setError("This data is Required!");
@@ -800,7 +822,7 @@ public class SectionAActivity extends Activity {
             b09.setError(null);
         }
 
-        //=================== b10==============
+        //=================== b10 ==============
         if (b10.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b10), Toast.LENGTH_SHORT).show();
             b1088.setError("This data is Required!");
@@ -940,6 +962,16 @@ public class SectionAActivity extends Activity {
         }
 
         // =================== b18 ====================
+        if (b17.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b17), Toast.LENGTH_SHORT).show();
+            b17.setError("This data is Required!");
+            Log.i(TAG, "b17: This data is Required!");
+            return false;
+        } else {
+            b17.setError(null);
+        }
+
+        // =================== b18 ====================
         if (b18.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
             b18.setError("This data is Required!");
@@ -989,6 +1021,16 @@ public class SectionAActivity extends Activity {
             return false;
         } else {
             b19.setError(null);
+        }
+
+        //==================== b20====================
+        if (b20.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b20), Toast.LENGTH_SHORT).show();
+            b20.setError("This data is Required!");
+            Log.i(TAG, "b20: This Data is Required!");
+            return false;
+        } else {
+            b20.setError(null);
         }
 
         //==================== b21====================
