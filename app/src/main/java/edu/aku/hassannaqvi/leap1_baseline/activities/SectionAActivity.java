@@ -1148,7 +1148,7 @@ public class SectionAActivity extends AppCompatActivity {
             b260102r.setError(null);
         }
 
-        //=================== b2602==============
+        //=================== b2602 ==============
         if (b2602.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602), Toast.LENGTH_SHORT).show();
             b260202.setError("This data is Required!");
@@ -1168,7 +1168,7 @@ public class SectionAActivity extends AppCompatActivity {
             b260202r.setError(null);
         }
 
-        //=================== b2603==============
+        //=================== b2603 ==============
         if (b2603.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603), Toast.LENGTH_SHORT).show();
             b260302.setError("This data is Required!");
@@ -1188,7 +1188,7 @@ public class SectionAActivity extends AppCompatActivity {
             b260302r.setError(null);
         }
 
-        //=================== b2701==============
+        //=================== b2701  ==============
         if (b2701.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701), Toast.LENGTH_SHORT).show();
             b270102.setError("This data is Required!");

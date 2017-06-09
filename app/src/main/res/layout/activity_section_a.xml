@@ -790,7 +790,7 @@
             android:focusable="false"
             android:hint="@string/b17"
             android:textColor="@android:color/black"
-            app:dateFormat="dd/MM/yyyy" />
+            app:dateFormat="dd-MM-yyyy" />
 
         <!--<DatePicker
             android:id="@+id/b17"
@@ -846,7 +846,7 @@
             android:focusable="false"
             android:hint="@string/b20"
             android:textColor="@android:color/black"
-            app:dateFormat="dd/MM/yyyy" />
+            app:dateFormat="dd-MM-yyyy" />
 
         <TextView
             android:layout_width="match_parent"
