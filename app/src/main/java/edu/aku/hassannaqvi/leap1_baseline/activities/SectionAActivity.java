@@ -29,9 +29,10 @@ import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
-import static android.content.ContentValues.TAG;
 
 public class SectionAActivity extends AppCompatActivity {
+
+    private static final String TAG = SectionAActivity.class.getSimpleName();
 
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
@@ -333,19 +334,6 @@ public class SectionAActivity extends AppCompatActivity {
         b17.setMaxDate(dateToday);
         b20.setMinDate(dateToday);
         b20.setMaxDate(maxDate43Weeks);
-
-        b17.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                b17.onFocusChange(v, true);
-            }
-        });
-        b20.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                b20.onFocusChange(v, true);
-            }
-        });
 
 
 
