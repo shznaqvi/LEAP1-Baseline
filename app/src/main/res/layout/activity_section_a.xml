@@ -827,6 +827,7 @@
             android:id="@+id/b19"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
             android:layout_marginTop="1dp"
             android:hint="@string/b1901"
             android:inputType="number"
@@ -867,6 +868,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layoutDirection="rtl"
             android:text="@string/b22" />
 
         <EditText

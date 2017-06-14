@@ -841,8 +841,7 @@ public class SectionAActivity extends AppCompatActivity {
         }
 
         //============== Check on Education=============
-        if ((Integer.valueOf(b11.getText().toString()) < 0)
-                || (Integer.valueOf(b11.getText().toString()) > 16)) {
+        if ((Integer.valueOf(b11.getText().toString()) < 0) || (Integer.valueOf(b11.getText().toString()) > 16)) {
             Toast.makeText(this, "ERROR(Invalid) " + getString(R.string.b11), Toast.LENGTH_LONG).show();
             b11.setError("Range is 1-16");
             Log.i(TAG, "b11: Range is 1-16");
