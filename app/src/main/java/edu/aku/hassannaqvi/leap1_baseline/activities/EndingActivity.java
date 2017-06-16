@@ -7,6 +7,7 @@ import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
+import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -79,23 +80,9 @@ public class EndingActivity extends Activity {
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
 
-        /*switch (mna7.getCheckedRadioButtonId()) {
-            case R.id.mna7a:
-                AppMain.fc.setiStatus("1");
-                break;
-            case R.id.mna7b:
-                AppMain.fc.setiStatus("2");
-                break;
-            case R.id.mna7c:
-                AppMain.fc.setiStatus("3");
-                break;
-            case R.id.mna7d:
-                AppMain.fc.setiStatus("4");
-                break;
-            default:
-                AppMain.fc.setiStatus("default");
-                break;
-        }*/
+        JSONObject sa = new JSONObject();
+
+
 
     }
 
