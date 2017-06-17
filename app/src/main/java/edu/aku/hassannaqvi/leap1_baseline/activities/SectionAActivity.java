@@ -705,7 +705,7 @@ public class SectionAActivity extends AppCompatActivity {
         sa.put("b23t2", b23t201.isChecked() ? "1" : b23t202.isChecked() ? "2" : "0");
         sa.put("b2401", b240101.isChecked() ? "1" : b240102.isChecked() ? "2" : "0");
         sa.put("b2488", b248801.isChecked() ? "1" : b248802.isChecked() ? "2" : "0");
-        sa.put("b248801x", b248801r.getText().toString());
+        sa.put("b248801r", b248801r.getText().toString());
         sa.put("b2501", b2501.isChecked() ? "1" : "0");
         sa.put("b2502", b2502.isChecked() ? "2" : "0");
         sa.put("b2503", b2503.isChecked() ? "3" : "0");
@@ -731,7 +731,7 @@ public class SectionAActivity extends AppCompatActivity {
         sa.put("b2701", b270101.isChecked() ? "1" : b270102.isChecked() ? "2" : "0");
         sa.put("b270102r", b270102r.getText().toString());
         sa.put("b2702", b270201.isChecked() ? "1" : b270202.isChecked() ? "2" : "0");
-        sa.put("b250202r", b270202r.getText().toString());
+        sa.put("b270202r", b270202r.getText().toString());
 
         // setGPS();
 
