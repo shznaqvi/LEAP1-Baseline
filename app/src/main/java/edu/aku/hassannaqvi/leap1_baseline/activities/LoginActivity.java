@@ -63,6 +63,12 @@ import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUsers;
  */
 public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
+
+    /**
+     * A dummy authentication store containing known user names and passwords.
+     * TODO: check dbBackup.
+     */
+
     /**
      * A dummy authentication store containing known user names and passwords.
      * TODO: remove after connecting to a real authentication system.
@@ -106,6 +112,16 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
+
+
+//        Get data from wrapper app
+        Bundle b = getIntent().getExtras();
+        if(b!=null){
+            String user = b.getString("userName_from_wrapper");
+            AppMain.username = user;
+            finish();
+            startActivity(new Intent(LoginActivity.this, MainActivity.class));
+        }
 
         try {
             long installedOn = this
@@ -258,7 +274,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
 
 //        DB backup
-
         dbBackup();
     }
 
@@ -478,6 +493,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     }
 
     public void gotoMain(View v) {
+        finish();
         Intent im = new Intent(LoginActivity.this, MainActivity.class);
         startActivity(im);
     }
@@ -542,6 +558,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     AppMain.username = mEmail;
                     AppMain.admin = mEmail.contains("@");
 
+                    finish();
                     Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                     startActivity(iLogin);
 

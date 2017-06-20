@@ -15,7 +15,7 @@
     <application
         android:name=".core.AppMain"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/leap1baseline"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
@@ -23,6 +23,7 @@
         <activity
             android:name="edu.aku.hassannaqvi.leap1_baseline.activities.SplashScreenActivity"
             android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.NoActionBar"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -37,7 +38,13 @@
         <activity
             android:name="edu.aku.hassannaqvi.leap1_baseline.activities.LoginActivity"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize" />
+            android:windowSoftInputMode="adjustResize" >
+            <intent-filter>
+                <action android:name="edu.aku.hassannaqvi.leap1_baseline.activities.LoginActivity" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+
         <activity
             android:name="edu.aku.hassannaqvi.leap1_baseline.activities.MainActivity"
             android:screenOrientation="portrait"
