@@ -25,9 +25,9 @@
     <string name="b02">تاریخ اندراج  Date of Enrolment </string>
     <string name="b03">ہسپتال کی آئی ڈی Hospital ID  </string>
     <string name="b04">   شریک کا نام   Name of participant  </string>
-    <string name="b05">  Group </string>
-    <string name="b0501"> Group A </string>
-    <string name="b0502">Group B </string>
+    <string name="b05">  Group گروپ</string>
+    <string name="b0501"> Group A   گروپ اے  </string>
+    <string name="b0502">Group B گروپ بی </string>
     <string name="b06">Husband’s Name  شوہر کا نام </string>
     <string name="b07">Complete Address   مکمل پتہ  </string>
     <string name="b08">Contact Number رابطہ نمبر</string>
@@ -104,7 +104,7 @@
     <string name="b2514">Swisse Pregnancy Ultivite (5mg elemental iron) </string>
     <string name="b2515">Zycia (6mg elemental iron) </string>
     <string name="b2516">Ostelin Pregnancy Essentials (0 elemental iron) </string>
-    <string name="b26">Biological Samples </string>
+    <string name="b26">Biological Samples حیاتیاتی نمونے</string>
     <string name="b26r">If No, please specify reason اگر نہیں تو براہ مہربانی وضاحت کریں </string>
     <string name="b2601">Blood sampleخون کے نمونے </string>
     <string name="b2602">پیشاب کے نمونے Urine sample</string>
@@ -131,7 +131,6 @@
     <string name="title_activity_splash_screen">Splash Screen Activity</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
-    <string name="mna7d">منتخب شدہ بچہ موجود نہیں</string>
 
 </resources>
 
