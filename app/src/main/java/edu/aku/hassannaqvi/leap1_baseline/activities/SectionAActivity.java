@@ -555,9 +555,9 @@ public class SectionAActivity extends AppCompatActivity {
 
                 finish();
 
-/*
-                startActivity(new Intent(this, SectionBActivity.class));
-*/
+
+                startActivity(new Intent(this, MainActivity.class));
+
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -568,6 +568,7 @@ public class SectionAActivity extends AppCompatActivity {
 
     @OnClick(R.id.btnEnd)
     void onBtnEndClick() {
+
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 
         if (ValidateForm()) {
@@ -579,7 +580,7 @@ public class SectionAActivity extends AppCompatActivity {
             if (UpdateDB()) {
                 finish();
                 Toast.makeText(this, "Starting Form Ending Section", Toast.LENGTH_SHORT).show();
-                Intent endSec = new Intent(this, EndingActivity.class);
+                Intent endSec = new Intent(this, MainActivity.class);
                 startActivity(endSec);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
