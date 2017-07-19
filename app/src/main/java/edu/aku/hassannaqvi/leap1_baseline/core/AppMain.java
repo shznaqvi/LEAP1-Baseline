@@ -13,6 +13,10 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.Map;
 
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
@@ -27,7 +31,7 @@ public class AppMain extends Application {
     //public static final String _IP = "192.168.1.10"; // Test NODE server
     public static final String _IP = "43.245.131.159"; // Test PHP server
     public static final Integer _PORT = 8080; // Port - with colon (:)
-    public static final String PROJECT_URI = "http://" + AppMain._IP + ":" + AppMain._PORT + "/cbt/api";
+    public static final String PROJECT_URI = "http://" + AppMain._IP + ":" + AppMain._PORT + "/leap1/api";
 
     /*
         public static final String _IP = "43.245.131.159"; // Test server
@@ -60,6 +64,7 @@ public class AppMain extends Application {
     public static boolean scanned = false;
     public static FormsContract fc;
     public static SharedPreferences sharedPref;
+    public static String enrollDate;
     //    Ali
     public static String tehsilCode;
     public static String hfCode = "0000";  //hf code
@@ -69,12 +74,26 @@ public class AppMain extends Application {
     public static Boolean VillageCodeFlag = true;
     public static String VillageName;
     public static String username = "";
+    public static String studyID = "";
     public static long installedOn;
     public static Integer versionCode;
     public static String versionName;
     protected LocationManager locationManager;
     Location location;
 
+    public static Calendar getCalendarDate(String value) {
+        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+        Calendar calendar = Calendar.getInstance();
+        try {
+            Date date = sdf.parse(value);
+            calendar.setTime(date);
+            return calendar;
+
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return calendar;
+    }
 
     @Override
     public void onCreate() {

@@ -60,7 +60,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + singleForm.TABLE_NAME + "("
             + singleForm.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             singleForm.COLUMN_UID + " TEXT," +
-            singleForm.COLUMN_HHDT + " TEXT," +
+            singleForm.COLUMN_FORMDATE + " TEXT," +
             singleForm.COLUMN_TEHSIL + " TEXT," +
             singleForm.COLUMN_HFACILITY + " TEXT," +
             singleForm.COLUMN_LHWCODE + " TEXT," +
@@ -72,19 +72,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             singleForm.COLUMN_NAME_USERNAME + " TEXT," +
             singleForm.COLUMN_DEVICETAGID + " TEXT," +
             singleForm.COLUMN_SA + " TEXT," +
-            singleForm.COLUMN_SB + " TEXT," +
-            singleForm.COLUMN_SC + " TEXT," +
-            singleForm.COLUMN_SD + " TEXT," +
-            singleForm.COLUMN_SE + " TEXT," +
-            singleForm.COLUMN_SF + " TEXT," +
-            singleForm.COLUMN_SG + " TEXT," +
-            singleForm.COLUMN_SH + " TEXT," +
-            singleForm.COLUMN_SI + " TEXT," +
-            singleForm.COLUMN_SJ + " TEXT," +
-            singleForm.COLUMN_SK + " TEXT," +
-            singleForm.COLUMN_SL + " TEXT," +
-            singleForm.COLUMN_SM + " TEXT," +
-            singleForm.COLUMN_SN + " TEXT," +
+            singleForm.COLUMN_STUDYID + " TEXT," +
             singleForm.COLUMN_GPSLAT + " TEXT," +
             singleForm.COLUMN_GPSLNG + " TEXT," +
             singleForm.COLUMN_GPSTIME + " TEXT," +
@@ -178,7 +166,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_HHDT, fc.getHhDT());
+        values.put(singleForm.COLUMN_FORMDATE, fc.getFormDate());
         values.put(singleForm.COLUMN_TEHSIL, fc.getTehsil());
         values.put(singleForm.COLUMN_HFACILITY, fc.gethFacility());
         values.put(singleForm.COLUMN_LHWCODE, fc.getLhwCode());
@@ -190,19 +178,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(singleForm.COLUMN_NAME_USERNAME, fc.getUserName());
         values.put(singleForm.COLUMN_DEVICETAGID, fc.getTagId());
         values.put(singleForm.COLUMN_SA, fc.getsA());
-        values.put(singleForm.COLUMN_SB, fc.getsB());
-        values.put(singleForm.COLUMN_SC, fc.getsC());
-        values.put(singleForm.COLUMN_SD, fc.getsD());
-        values.put(singleForm.COLUMN_SE, fc.getsE());
-        values.put(singleForm.COLUMN_SF, fc.getsF());
-        values.put(singleForm.COLUMN_SG, fc.getsG());
-        values.put(singleForm.COLUMN_SH, fc.getsH());
-        values.put(singleForm.COLUMN_SI, fc.getsI());
-        values.put(singleForm.COLUMN_SJ, fc.getsJ());
-        values.put(singleForm.COLUMN_SK, fc.getsK());
-        values.put(singleForm.COLUMN_SL, fc.getsL());
-        values.put(singleForm.COLUMN_SM, fc.getsM());
-        values.put(singleForm.COLUMN_SN, fc.getsN());
+        values.put(singleForm.COLUMN_STUDYID, fc.getStudyID());
         values.put(singleForm.COLUMN_GPSLAT, fc.getGpsLat());
         values.put(singleForm.COLUMN_GPSLNG, fc.getGpsLng());
         values.put(singleForm.COLUMN_GPSTIME, fc.getGpsTime());
@@ -265,7 +241,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 singleForm.COLUMN_ID,
                 singleForm.COLUMN_UID,
-                singleForm.COLUMN_HHDT,
+                singleForm.COLUMN_FORMDATE,
                 singleForm.COLUMN_TEHSIL,
                 singleForm.COLUMN_HFACILITY,
                 singleForm.COLUMN_LHWCODE,
@@ -277,19 +253,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_NAME_USERNAME,
                 singleForm.COLUMN_DEVICETAGID,
                 singleForm.COLUMN_SA,
-                singleForm.COLUMN_SB,
-                singleForm.COLUMN_SC,
-                singleForm.COLUMN_SD,
-                singleForm.COLUMN_SE,
-                singleForm.COLUMN_SF,
-                singleForm.COLUMN_SG,
-                singleForm.COLUMN_SH,
-                singleForm.COLUMN_SI,
-                singleForm.COLUMN_SJ,
-                singleForm.COLUMN_SK,
-                singleForm.COLUMN_SL,
-                singleForm.COLUMN_SM,
-                singleForm.COLUMN_SN,
+                singleForm.COLUMN_STUDYID,
                 singleForm.COLUMN_GPSLAT,
                 singleForm.COLUMN_GPSLNG,
                 singleForm.COLUMN_GPSTIME,
@@ -338,7 +302,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 singleForm.COLUMN_ID,
                 singleForm.COLUMN_UID,
-                singleForm.COLUMN_HHDT,
+                singleForm.COLUMN_FORMDATE,
                 singleForm.COLUMN_TEHSIL,
                 singleForm.COLUMN_HFACILITY,
                 singleForm.COLUMN_LHWCODE,
@@ -350,19 +314,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm.COLUMN_NAME_USERNAME,
                 singleForm.COLUMN_DEVICETAGID,
                 singleForm.COLUMN_SA,
-                singleForm.COLUMN_SB,
-                singleForm.COLUMN_SC,
-                singleForm.COLUMN_SD,
-                singleForm.COLUMN_SE,
-                singleForm.COLUMN_SF,
-                singleForm.COLUMN_SG,
-                singleForm.COLUMN_SH,
-                singleForm.COLUMN_SI,
-                singleForm.COLUMN_SJ,
-                singleForm.COLUMN_SK,
-                singleForm.COLUMN_SL,
-                singleForm.COLUMN_SM,
-                singleForm.COLUMN_SN,
+                singleForm.COLUMN_STUDYID,
                 singleForm.COLUMN_GPSLAT,
                 singleForm.COLUMN_GPSLNG,
                 singleForm.COLUMN_GPSTIME,
@@ -413,7 +365,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 singleForm._ID
         };
 
-        String whereClause = singleForm.COLUMN_HHDT + " LIKE ?";
+        String whereClause = singleForm.COLUMN_FORMDATE + " LIKE ?";
         String[] whereArgs = {spDateT};
         String groupBy = null;
         String having = null;
@@ -450,13 +402,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return formList;
     }
 
-
-    public int updateSB() {
+    public int updateSA() {
         SQLiteDatabase db = this.getReadableDatabase();
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SB, AppMain.fc.getsB());
+        values.put(singleForm.COLUMN_SA, AppMain.fc.getsA());
         values.put(singleForm.COLUMN_UID, AppMain.fc.getUID());
 
 
@@ -472,12 +423,12 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public int updateSC() {
+    public int updateStudyID() {
         SQLiteDatabase db = this.getReadableDatabase();
 
         // New value for one column
         ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SC, AppMain.fc.getsC());
+        values.put(singleForm.COLUMN_STUDYID, AppMain.fc.getStudyID());
 
 
         // Which row to update, based on the ID
@@ -491,213 +442,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
-    public int updateSD() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SD, AppMain.fc.getsD());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSE() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SE, AppMain.fc.getsE());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSF() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SF, AppMain.fc.getsF());
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSG() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SG, AppMain.fc.getsG());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSH() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SH, AppMain.fc.getsH());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSI() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SI, AppMain.fc.getsI());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSJ() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SJ, AppMain.fc.getsJ());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSK() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SK, AppMain.fc.getsK());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSL() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SL, AppMain.fc.getsL());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSM() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SM, AppMain.fc.getsM());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
-
-    public int updateSN() {
-        SQLiteDatabase db = this.getReadableDatabase();
-
-        // New value for one column
-        ContentValues values = new ContentValues();
-        values.put(singleForm.COLUMN_SN, AppMain.fc.getsN());
-
-
-        // Which row to update, based on the ID
-        String selection = singleForm._ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(singleForm.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
 
     public int updateEnd() {
         SQLiteDatabase db = this.getReadableDatabase();

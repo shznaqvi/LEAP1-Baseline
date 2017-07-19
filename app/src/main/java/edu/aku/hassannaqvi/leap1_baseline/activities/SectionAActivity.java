@@ -39,26 +39,23 @@ import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 public class SectionAActivity extends AppCompatActivity {
 
     private static final String TAG = SectionAActivity.class.getSimpleName();
-
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
-    @BindView(R.id.sitenumber)
-    EditText sitenumber;
     @BindView(R.id.studyID)
     EditText studyID;
     @BindView(R.id.b01)
     EditText b01;
-    @BindView(R.id.b02)
-    EditText b02;
-    @BindView(R.id.b03)
-    EditText b03;
-    @BindView(R.id.b04)
-    EditText b04;
-    @BindView(R.id.b05)
-    RadioGroup b05;
-    @BindView(R.id.b0501)
-    RadioButton b0501;
-    @BindView(R.id.b0502)
+    /*  @BindView(R.id.b02)
+      EditText b02;
+      @BindView(R.id.b03)
+      EditText b03;
+      @BindView(R.id.b04)
+      EditText b04;
+      @BindView(R.id.b05)
+      RadioGroup b05;
+      @BindView(R.id.b0501)
+      RadioButton b0501;
+      @BindView(R.id.b0502)*/
     RadioButton b0502;
     @BindView(R.id.b06)
     EditText b06;
@@ -620,7 +617,11 @@ public class SectionAActivity extends AppCompatActivity {
         AppMain.fc.setUserName(AppMain.username);
         AppMain.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
                 Settings.Secure.ANDROID_ID));
-        AppMain.fc.setHhDT((DateFormat.format("dd-MM-yyyy HH:mm",new Date())).toString());
+        AppMain.fc.setFormDate((DateFormat.format("dd-MM-yyyy HH:mm", new Date())).toString());
+        AppMain.fc.setTagId(sharedPref.getString("tagName", ""));
+
+        AppMain.fc.setStudyID(studyID.getText().toString());
+
 
 //        AppMain.fc.setTehsil(AppMain.tehsilCode);
 //        AppMain.fc.sethFacility(AppMain.hfCode);
@@ -629,16 +630,13 @@ public class SectionAActivity extends AppCompatActivity {
 //        AppMain.fc.setVillagename(AppMain.VillageName);
 //        AppMain.fc.setChildId(cra03.getText().toString());
 
-        AppMain.fc.setTagId(sharedPref.getString("tagName", ""));
         JSONObject sa = new JSONObject();
 
-        sa.put("sitenumber", sitenumber.getText().toString());
-        sa.put("studyID", studyID.getText().toString());
         sa.put("b01", b01.getText().toString());
-        sa.put("b02", b02.getText().toString());
+       /* sa.put("b02", b02.getText().toString());
         sa.put("b03", b03.getText().toString());
         sa.put("b04", b04.getText().toString());
-        sa.put("b05", b0501.isChecked() ? "1" : b0502.isChecked() ? "2" : "0");
+        sa.put("b05", b0501.isChecked() ? "1" : b0502.isChecked() ? "2" : "0");*/
         sa.put("b06", b06.getText().toString());
         sa.put("b07", b07.getText().toString());
         sa.put("b0801", b0801.getText().toString());
@@ -661,11 +659,9 @@ public class SectionAActivity extends AppCompatActivity {
 
         sa.put("b13", b1301.isChecked() ? "1" : b1302.isChecked() ? "2" : b1303.isChecked() ? "3" : b1304.isChecked() ? "4"
                 : b1388.isChecked() ? "88" : "0");
-        sa.put("b14", b1401.isChecked() ? "1" : b1402.isChecked() ? "2" : b1403.isChecked() ? "3" : b1404.isChecked() ? "4"
-                : b1405.isChecked() ? "5" : b1488.isChecked() ? "88" : "0");
+        sa.put("b14", b1401.isChecked() ? "1" : b1402.isChecked() ? "2" : b1403.isChecked() ? "3" : b1404.isChecked() ? "4" : b1405.isChecked() ? "5" : b1488.isChecked() ? "88" : "0");
         sa.put("b15", b15.getText().toString());
-        sa.put("b16", b1601.isChecked() ? "1" : b1602.isChecked() ? "2" : b1603.isChecked() ? "3"
-                : b1688.isChecked() ? "88" : "0");
+        sa.put("b16", b1601.isChecked() ? "1" : b1602.isChecked() ? "2" : b1603.isChecked() ? "3" : b1688.isChecked() ? "88" : "0");
         sa.put("b17", b17.getText().toString());
         sa.put("b18", b18.getText().toString());
         sa.put("b19", b19.getText().toString());

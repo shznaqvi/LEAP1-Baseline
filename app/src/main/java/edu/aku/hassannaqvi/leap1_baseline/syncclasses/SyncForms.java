@@ -36,13 +36,13 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
         mContext = context;
     }
 
-    /*public static void longInfo(String str) {
+    public static void longInfo(String str) {
         if (str.length() > 4000) {
             Log.i("TAG: ", str.substring(0, 4000));
             longInfo(str.substring(4000));
         } else
             Log.i("TAG: ", str);
-    }*/
+    }
 
     @Override
     protected void onPreExecute() {
@@ -57,16 +57,17 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
     @Override
     protected String doInBackground(Void... params) {
 
-        String line = "No Response";
         try {
-            return downloadUrl(AppMain.PROJECT_URI + "cash_basedtransferchildrecruitment/api/forms.php");
+            String url = AppMain.PROJECT_URI + FormsContract.singleForm.URI;
+            Log.d(TAG, "doInBackground: URL " + url);
+            return downloadUrl(url);
         } catch (IOException e) {
             return "Unable to upload data. Server may be down.";
         }
 
     }
 
-    @Override
+/*    @Override
     protected void onPostExecute(String result) {
         super.onPostExecute(result);
         int sSynced = 0;
@@ -97,13 +98,47 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
 
         }
 
+    }*/
+
+    protected void onPostExecute(String result) {
+        super.onPostExecute(result);
+        int sSynced = 0;
+        String sSyncedError = "";
+        JSONArray json = null;
+        try {
+            json = new JSONArray(result);
+            DatabaseHelper db = new DatabaseHelper(mContext);
+            for (int i = 0; i < json.length(); i++) {
+
+                JSONObject jsonObject = new JSONObject(json.getString(i));
+                if (jsonObject.getString("status").equals("1") && jsonObject.getString("error").equals("0")) {
+                    db.updateForms(jsonObject.getString("id"));
+                    sSynced++;
+                } else {
+                    sSyncedError += jsonObject.getString("message").toString() + "\n";
+                }
+            }
+
+            Toast.makeText(mContext, sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError, Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(sSynced + " Forms synced." + String.valueOf(json.length() - sSynced) + " Errors: " + sSyncedError);
+            pd.setTitle("Done uploading Forms data");
+            pd.show();
+        } catch (JSONException e) {
+            e.printStackTrace();
+            Toast.makeText(mContext, "Failed Sync " + result, Toast.LENGTH_SHORT).show();
+
+            pd.setMessage(result);
+            pd.setTitle("Forms Sync Failed");
+            pd.show();
+        }
     }
 
     private String downloadUrl(String myurl) throws IOException {
         String line = "No Response";
         // Only display the first 500 characters of the retrieved
         // web page content.
-        int len = 500;
+        //  int len = 500;
         DatabaseHelper db = new DatabaseHelper(mContext);
         Collection<FormsContract> forms = db.getUnsyncedForms();
         Log.d(TAG, String.valueOf(forms.size()));
