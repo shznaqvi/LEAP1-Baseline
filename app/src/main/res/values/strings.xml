@@ -35,6 +35,14 @@
     <string name="b0802">شوہر Husband</string>
     <string name="b0803"> PTCL </string>
     <string name="b09"> Education of woman خاتون کی تعلیم </string>
+    <string name="education1">No Formal Education </string>
+    <string name="education2">Only Quranic education</string>
+    <string name="education3">Primary school</string>
+    <string name="education4">Secondary school</string>
+    <string name="education5">Bachelor degree</string>
+    <string name="education6">Masters</string>
+    <string name="education7">PhD</string>
+    <string name="education8">Technical education</string>
     <string name="b10"> Occupation of Womanخاتون کا پیشہ  </string>
     <string name="b11"> شوہر کی  تعلیم Education of Husband</string>
     <string name="b12">Occupation of Husband شوہر کا پیشہ </string>
