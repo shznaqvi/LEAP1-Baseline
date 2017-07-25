@@ -192,7 +192,8 @@
             android:layout_marginTop="1dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:gravity="right"
-            android:hint="@string/b06" />
+            android:hint="@string/b06"
+            android:inputType="textCapWords" />
 
         <!--<TextView
             android:layout_width="match_parent"
@@ -335,6 +336,7 @@
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMnoPQRSTUVWXYZ"
             android:gravity="right"
             android:hint="@string/other"
+            android:inputType="textCapWords"
             android:maxLength="30"
             android:visibility="gone" />
 
