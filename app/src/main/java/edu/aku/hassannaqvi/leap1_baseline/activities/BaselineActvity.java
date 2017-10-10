@@ -36,9 +36,10 @@ import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 
-public class SectionAActivity extends AppCompatActivity {
+public class BaselineActvity extends AppCompatActivity
+{
 
-    private static final String TAG = SectionAActivity.class.getSimpleName();
+    private static final String TAG = BaselineActvity.class.getSimpleName();
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
     @BindView(R.id.studyID)
@@ -368,7 +369,7 @@ public class SectionAActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_section_a);
+        setContentView(R.layout.activity_baseline);
         ButterKnife.bind(this);
         String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
         String maxDate43Weeks = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTimeInMillis() + (AppMain.MILLISECONDS_IN_43_WEEKS));
@@ -791,7 +792,7 @@ public class SectionAActivity extends AppCompatActivity {
         sa.put("b2702", b270201.isChecked() ? "1" : b270202.isChecked() ? "2" : "0");
         sa.put("b270202r", b270202r.getText().toString());
 
-         setGPS();
+        setGPS();
 
         AppMain.fc.setsA(String.valueOf(sa));
 

@@ -53,6 +53,8 @@ public class AppMain extends Application {
     public static final long MILLISECONDS_IN_6_MONTHS = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_6_MONTHS;
     private static final long DAYS_IN_43_WEEKS = 43 * 7;
     public static final long MILLISECONDS_IN_43_WEEKS = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_43_WEEKS;
+    private static final long DAYS_IN_18_YEARS = 365 * 18;
+    public static final long MILLISECONDS_IN_18YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_18_YEARS;
 
     public static String deviceId;
 
