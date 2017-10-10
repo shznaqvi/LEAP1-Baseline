@@ -810,7 +810,7 @@ public class BaselineActvity extends AppCompatActivity
         } else {
             studyID.setError(null);
         }
-        if (Integer.valueOf(studyID.getText().toString()) == 0) {
+        if (Double.valueOf(studyID.getText().toString()) == 0) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
             studyID.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "studyID: Invalid data is 0");
@@ -829,7 +829,7 @@ public class BaselineActvity extends AppCompatActivity
             b01.setError(null);
         }
 
-        if (Integer.valueOf(b01.getText().toString()) == 0) {
+        if (Double.valueOf(b01.getText().toString()) == 0) {
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b01), Toast.LENGTH_SHORT).show();
             b01.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "b01: Invalid data is 0");
