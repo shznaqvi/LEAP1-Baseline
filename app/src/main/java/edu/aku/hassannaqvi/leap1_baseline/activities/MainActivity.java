@@ -259,7 +259,7 @@ public class MainActivity extends Activity {
 
     public void openForm(View v) {
         if (sharedPref.getString("tagName", null) != "" && sharedPref.getString("tagName", null) != null) {
-            Intent oF = new Intent(MainActivity.this, BaselineActvity.class);
+            Intent oF = new Intent(MainActivity.this, InfoActivity.class);
             startActivity(oF);
         } else {
 
@@ -279,7 +279,7 @@ public class MainActivity extends Activity {
                         editor.commit();
 
                         if (mN01.getSelectedItem() != null) {
-                            Intent oF = new Intent(MainActivity.this, BaselineActvity.class);
+                            Intent oF = new Intent(MainActivity.this, InfoActivity.class);
                             startActivity(oF);
                         } else {
                             Toast.makeText(MainActivity.this, "First Download Data", Toast.LENGTH_SHORT).show();

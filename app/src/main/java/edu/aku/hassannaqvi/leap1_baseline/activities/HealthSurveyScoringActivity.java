@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.util.Log;
@@ -18,13 +17,10 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.Date;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
-import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 
@@ -185,24 +181,26 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
     @OnClick(R.id.btnNext)
     void onBtnNextClick() {
-        if (ValidateForm()) {
-            try {
-                SaveDraft();
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-            if (UpdateDB()) {
-                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+//        if (ValidateForm()) {
+//            try {
+//                SaveDraft();
+//            } catch (JSONException e) {
+//                e.printStackTrace();
+//            }
+//            if (UpdateDB()) {
+//                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+//
+//                finish();
+//
+//
+//                startActivity(new Intent(this, MainActivity.class));
+//
+//            } else {
+//                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+//            }
+//        }
 
-                finish();
-
-
-                startActivity(new Intent(this, MainActivity.class));
-
-            } else {
-                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-            }
-        }
+        startActivity(new Intent(this, DataCollectionActivity.class));
 
     }
 
@@ -230,7 +228,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
 
-        long updcount = db.addForm(AppMain.fc);
+        /*long updcount = db.addForm(AppMain.fc);
 
         AppMain.fc.set_ID(String.valueOf(updcount));
 
@@ -244,7 +242,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
         }
-
+*/
         return true;
     }
 
@@ -253,7 +251,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
 
-        AppMain.fc = new FormsContract();
+       /* AppMain.fc = new FormsContract();
 
         AppMain.fc.setUsername(AppMain.username);
         AppMain.fc.setDevicetagID(sharedPref.getString("tagName", null));
@@ -261,7 +259,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
                 Settings.Secure.ANDROID_ID));
         AppMain.fc.setFormDate((DateFormat.format("dd-MM-yyyy HH:mm", new Date())).toString());
         //MainApp.fc.setTagId(sharedPref.getString("tagName", ""));
-
+*/
         AppMain.fc.setStudyID(studyID.getText().toString());
 
         JSONObject sa = new JSONObject();

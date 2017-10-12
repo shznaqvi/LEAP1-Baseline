@@ -50,7 +50,7 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
         <activity
-            android:name=".activities.SectionAActivity"
+            android:name=".activities.RandomizationActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize"/>
@@ -58,14 +58,27 @@
             android:name=".activities.EndingActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".activities.BaselineActivity2">
+        <activity
+            android:name=".activities.BaselineActvity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".activities.HealthSurveyScoringActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize">
         </activity>
-        <activity android:name=".activities.RandomizationActivity">
+        <activity
+            android:name=".activities.DataCollectionActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme1"
+            android:windowSoftInputMode="adjustResize">
         </activity>
-        <activity android:name=".activities.HealthSurveyScoringActivity">
-        </activity>
-        <activity android:name=".activities.DataCollectionActivity">
-        </activity>
+        <activity
+            android:name=".activities.InfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
     </application>
 
 </manifest>

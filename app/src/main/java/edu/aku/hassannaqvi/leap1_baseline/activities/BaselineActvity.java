@@ -1,13 +1,9 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.IdRes;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
@@ -24,15 +20,12 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
-import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
-import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 
@@ -42,10 +35,10 @@ public class BaselineActvity extends AppCompatActivity
     private static final String TAG = BaselineActvity.class.getSimpleName();
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
-    @BindView(R.id.studyID)
+    /*@BindView(R.id.studyID)
     EditText studyID;
     @BindView(R.id.b01)
-    EditText b01;
+    EditText b01;*/
     /*  @BindView(R.id.b02)
       EditText b02;
       @BindView(R.id.b03)
@@ -57,9 +50,9 @@ public class BaselineActvity extends AppCompatActivity
       @BindView(R.id.b0501)
       RadioButton b0501;
       @BindView(R.id.b0502)*/
-    RadioButton b0502;
+    /*RadioButton b0502;
     @BindView(R.id.b06)
-    EditText b06;
+    EditText b06;*/
     /* @BindView(R.id.b07)
      EditText b07;
      @BindView(R.id.b0801)
@@ -613,7 +606,7 @@ public class BaselineActvity extends AppCompatActivity
     @OnClick(R.id.btnNext)
     void onBtnNextClick() {
 
-        if (ValidateForm()) {
+        /*if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -631,7 +624,9 @@ public class BaselineActvity extends AppCompatActivity
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
+*/
 
+        startActivity(new Intent(this, HealthSurveyScoringActivity.class));
     }
 
 
@@ -659,7 +654,7 @@ public class BaselineActvity extends AppCompatActivity
 
 
     private boolean UpdateDB() {
-        DatabaseHelper db = new DatabaseHelper(this);
+        /*DatabaseHelper db = new DatabaseHelper(this);
 
         long updcount = db.addForm(AppMain.fc);
 
@@ -673,47 +668,13 @@ public class BaselineActvity extends AppCompatActivity
             db.updateFormID();
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }
+        }*/
         return true;
     }
 
     private void SaveDraft() throws JSONException {
-        Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
-
-//        AppMain.VillageName = cravillage.getText().toString();
-
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-
-        AppMain.fc = new FormsContract();
-
-        AppMain.fc.setUserName(AppMain.username);
-        AppMain.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        AppMain.fc.setFormDate((DateFormat.format("dd-MM-yyyy HH:mm", new Date())).toString());
-        AppMain.fc.setTagId(sharedPref.getString("tagName", ""));
-
-        AppMain.fc.setStudyID(studyID.getText().toString());
-
-
-//        AppMain.fc.setTehsil(AppMain.tehsilCode);
-//        AppMain.fc.sethFacility(AppMain.hfCode);
-//        AppMain.fc.setLhwCode(AppMain.lhwCode);
-//        AppMain.fc.setUccode(getAllUCs.get(crauc.getSelectedItem().toString()));
-//        AppMain.fc.setVillagename(AppMain.VillageName);
-//        AppMain.fc.setChildId(cra03.getText().toString());
 
         JSONObject sa = new JSONObject();
-
-        sa.put("b01", b01.getText().toString());
-       /* sa.put("b02", b02.getText().toString());
-        sa.put("b03", b03.getText().toString());
-        sa.put("b04", b04.getText().toString());
-        sa.put("b05", b0501.isChecked() ? "1" : b0502.isChecked() ? "2" : "0");*/
-        sa.put("b06", b06.getText().toString());
-       /* sa.put("b07", b07.getText().toString());
-        sa.put("b0801", b0801.getText().toString());
-        sa.put("b0802", b0802.getText().toString());
-        sa.put("b0803", b0803.getText().toString());*/
 
         sa.put("b09", b0901.isChecked() ? "1" : b0902.isChecked() ? "2" : b0903.isChecked() ? "3" : b0904.isChecked() ? "4"
                 : b0905.isChecked() ? "5" : b0906.isChecked() ? "6" : b0907.isChecked() ? "7" : b0908.isChecked() ? "8" : b0988.isChecked() ? "88" : "0");
@@ -792,7 +753,6 @@ public class BaselineActvity extends AppCompatActivity
         sa.put("b2702", b270201.isChecked() ? "1" : b270202.isChecked() ? "2" : "0");
         sa.put("b270202r", b270202r.getText().toString());
 
-        setGPS();
 
         AppMain.fc.setsA(String.valueOf(sa));
 
@@ -800,53 +760,6 @@ public class BaselineActvity extends AppCompatActivity
     }
 
     public boolean ValidateForm() {
-
-        // =================== studyID ====================
-        if (studyID.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
-            studyID.setError("This data is required");
-            Log.d(TAG, " studyID :empty ");
-            return false;
-        } else {
-            studyID.setError(null);
-        }
-        if (Double.valueOf(studyID.getText().toString()) == 0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
-            studyID.setError("Invalid: Data cannot be Zero");
-            Log.i(TAG, "studyID: Invalid data is 0");
-            return false;
-        } else {
-            studyID.setError(null);
-        }
-
-        // =================== b01 ====================
-        if (b01.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b01), Toast.LENGTH_SHORT).show();
-            b01.setError("This data is required");
-            Log.d(TAG, " b01 :empty ");
-            return false;
-        } else {
-            b01.setError(null);
-        }
-
-        if (Double.valueOf(b01.getText().toString()) == 0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b01), Toast.LENGTH_SHORT).show();
-            b01.setError("Invalid: Data cannot be Zero");
-            Log.i(TAG, "b01: Invalid data is 0");
-            return false;
-        } else {
-            b01.setError(null);
-        }
-
-        // =================== b06 ====================
-        if (b06.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b06), Toast.LENGTH_SHORT).show();
-            b06.setError("This data is required");
-            Log.d(TAG, "b06: empty");
-            return false;
-        } else {
-            b06.setError(null);
-        }
 
         //=================== b09 ==============
         if (b09.getCheckedRadioButtonId() == -1) {
@@ -1308,37 +1221,5 @@ public class BaselineActvity extends AppCompatActivity
     }
 
 
-    public void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-
-//        String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
-            String dt = GPSPref.getString("Time", "0");
-
-            if (lat == "0" && lang == "0") {
-                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            AppMain.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
-            AppMain.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
-            AppMain.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
-//            AppMain.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            AppMain.fc.setGpsTime(date); // Timestamp is converted to date above
-
-            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
 
 }

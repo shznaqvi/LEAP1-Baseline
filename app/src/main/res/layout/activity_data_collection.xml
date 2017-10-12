@@ -16,23 +16,27 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@color/grayOverlay"/>
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"/>
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/Main"/>
+            android:layout_margin="5dp"
+            android:background="@color/colorMainHeading"
+            android:gravity="center"
+            android:text="@string/aq"
+            android:textSize="30sp"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@color/grayOverlay"/>
-
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:gravity="right"
             android:text="@string/studyID"/>
 
@@ -40,30 +44,15 @@
             android:id="@+id/studyID"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
             android:gravity="right"
             android:hint="@string/studyID"
             android:inputType="number"
             android:maxLength="10"/>
 
         <TextView
-            android:id="@+id/textView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
-            android:text="@string/sectionA"
-            android:textAlignment="center"
-            android:textColor="@color/colorPrimaryDark"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:typeface="serif"/>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ01"/>
 
         <RadioGroup
@@ -111,7 +100,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ02"/>
 
         <RadioGroup
@@ -159,7 +148,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ03"/>
 
         <RadioGroup
@@ -214,7 +203,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ04"/>
 
         <RadioGroup
@@ -255,7 +244,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ05"/>
 
         <RadioGroup
@@ -303,7 +292,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ06"/>
 
         <RadioGroup
@@ -344,7 +333,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ07"/>
 
         <RadioGroup
@@ -392,7 +381,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ08"/>
 
         <RadioGroup
@@ -440,7 +429,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ09"/>
 
         <RadioGroup
@@ -481,7 +470,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ10"/>
 
         <RadioGroup
@@ -529,7 +518,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ11"/>
 
         <RadioGroup
@@ -570,7 +559,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ12"/>
 
         <RadioGroup
@@ -618,7 +607,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ13"/>
 
         <RadioGroup
@@ -666,7 +655,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ14"/>
 
         <RadioGroup
@@ -714,7 +703,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ15"/>
 
         <RadioGroup
@@ -770,7 +759,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ16"/>
 
         <RadioGroup
@@ -818,7 +807,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ17"/>
 
         <RadioGroup
@@ -866,7 +855,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ18"/>
 
         <RadioGroup
@@ -914,7 +903,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ19"/>
 
         <RadioGroup
@@ -962,7 +951,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ20"/>
 
         <RadioGroup
@@ -1010,7 +999,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ21"/>
 
         <RadioGroup
@@ -1058,7 +1047,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ22"/>
 
         <RadioGroup
@@ -1100,7 +1089,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ23"/>
 
         <RadioGroup
@@ -1148,7 +1137,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ24"/>
 
         <RadioGroup
@@ -1196,7 +1185,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ25"/>
 
         <RadioGroup
@@ -1244,7 +1233,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ26"/>
 
         <RadioGroup
@@ -1292,7 +1281,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ27"/>
 
         <RadioGroup
@@ -1340,7 +1329,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ28"/>
 
         <RadioGroup
@@ -1395,7 +1384,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ29"/>
 
         <RadioGroup
@@ -1443,7 +1432,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ30"/>
 
         <RadioGroup
@@ -1491,7 +1480,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ31"/>
 
         <RadioGroup
@@ -1539,7 +1528,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ32"/>
 
         <RadioGroup
@@ -1594,7 +1583,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ33"/>
 
         <RadioGroup
@@ -1649,7 +1638,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ34"/>
 
         <RadioGroup
@@ -1697,7 +1686,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/AQ35"/>
 
         <RadioGroup
@@ -1759,7 +1748,7 @@
                 android:layout_weight="1"
                 android:onClick="submitSecA"
                 android:text="@string/nextSection"
-                android:textColor="@android:color/holo_green_light"
+                android:textColor="@color/colorTextBtnContinue"
                 android:textSize="24sp"/>
 
             <Button

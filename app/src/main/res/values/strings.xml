@@ -18,6 +18,10 @@
 
 
     <string name="Main"> Should we treat iron deficiency anaemia of pregnancy with Lactoferrin?    کیا حمل کے دوران فولاد کی کمی کو لیکٹوفرین سے علاج کے ذریعے ٹھیک کیا جانا چاہیے؟رینڈ مائزکنڑول ٹرائل</string>
+    <string name="randomization">RANDOMIZATION WORKSHEET</string>
+    <string name="baseline">BASELINE</string>
+    <string name="sf">SF-12v2 HEALTH SURVEY SCORING DEMONSTRATION</string>
+    <string name="aq">AQOL-8D Data Collection Copy</string>
     <string name="sectionA">اہلیت کی تفصیلات</string>
     <string name="siteNumber">Site Number .جگہ کا نمبر</string>
     <string name="studyID">Mother’s Study ID ماں کی اسٹیڈی آئی ڈی</string>

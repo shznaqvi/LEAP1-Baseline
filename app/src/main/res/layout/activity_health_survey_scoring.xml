@@ -16,40 +16,38 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@color/grayOverlay"/>
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"/>
 
         <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/sfheading"
-            android:textAlignment="center"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:typeface="serif"/>
+            android:layout_margin="5dp"
+            android:background="@color/colorMainHeading"
+            android:gravity="center"
+            android:text="@string/sf"
+            android:textSize="30sp"/>
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="8dp"
-            android:background="@color/grayOverlay"/>
+            android:layout_height="2dp"
+            android:background="@color/colorPrimary"/>
 
         <TextView
+            style="@style/helperText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
             android:layout_marginTop="5dp"
-            android:background="@color/pink_100"
+            android:background="@color/colorSubHeading"
             android:text="@string/sfsub1"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            tools:typeface="serif"/>
+            android:textColor="@color/black"/>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:gravity="right"
             android:text="@string/studyID"/>
 
@@ -66,7 +64,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/sf01"/>
 
         <RadioGroup
@@ -111,19 +109,25 @@
 
         </RadioGroup>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/sf02"/>
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bacground_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/sf02"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf02a"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -158,9 +162,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf02b"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -192,19 +195,27 @@
 
         </RadioGroup>
 
-        <TextView
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/sf03"/>
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bacground_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/sf03"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf03a"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -253,9 +264,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf03b"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -301,19 +311,27 @@
 
         </RadioGroup>
 
-        <TextView
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/sf04"/>
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bacground_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/sf04"/>
 
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf04a"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -362,9 +380,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf04b"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -410,10 +427,13 @@
 
         </RadioGroup>
 
+        </LinearLayout>
+
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="16dp"
             android:text="@string/sf05"/>
 
 
@@ -459,19 +479,25 @@
 
         </RadioGroup>
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:background="@drawable/bacground_border"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text="@string/sf06"/>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="@string/sf06"/>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf06a"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -520,9 +546,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf06b"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -571,9 +596,8 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="5dp"
-            android:background="@color/colorPrimaryAlpha"
+            android:layout_marginTop="16dp"
+            android:background="@color/colorSubHeading"
             android:text="@string/sf06c"
             android:textColor="@color/colorPrimaryDark"/>
 
@@ -619,10 +643,12 @@
 
         </RadioGroup>
 
+        </LinearLayout>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="5dp"
             android:text="@string/sf07"/>
 
         <RadioGroup
@@ -667,6 +693,7 @@
 
         </RadioGroup>
 
+
         <LinearLayout
             android:id="@+id/fldGrpbtn"
             android:layout_width="match_parent"
@@ -683,7 +710,7 @@
                 android:layout_weight="1"
                 android:onClick="submitSecA"
                 android:text="@string/nextSection"
-                android:textColor="@android:color/holo_green_light"
+                android:textColor="@color/colorTextBtnContinue"
                 android:textSize="24sp"/>
 
             <Button

@@ -57,6 +57,7 @@ public class AppMain extends Application {
     public static final long MILLISECONDS_IN_18YEAR = MILLIS_IN_SECOND * SECONDS_IN_MINUTE * MINUTES_IN_HOUR * HOURS_IN_DAY * DAYS_IN_18_YEARS;
 
     public static String deviceId;
+    public static String formType;
 
     public static Boolean admin = false;
     public static int mna3 = -1;

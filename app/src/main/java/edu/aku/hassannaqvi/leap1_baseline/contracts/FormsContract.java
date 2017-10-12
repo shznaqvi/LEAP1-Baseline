@@ -8,6 +8,8 @@ import org.json.JSONObject;
 
 import java.util.Iterator;
 
+import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
+
 /**
  * Created by hassan.naqvi on 10/25/2016.
  */
@@ -15,21 +17,19 @@ import java.util.Iterator;
 public class FormsContract {
 
     private final String projectName = "LEAP1 - Baseline";
-    private final String surveyType = "SN";
+    private String appVer = AppMain.versionName + "." + AppMain.versionCode;
     private String userName = "";
     private String ID = "";
     private String UID = "";
     private String formDate = ""; // Date
-    private String tehsil = "0000"; // Tehsil code
-    private String hFacility = ""; // HF
-    private String uccode = ""; // uc code
-    private String villagename = ""; // Village code
-    private String lhwCode = ""; // lhw Code
-    private String houseHold = ""; // HH no.
-    private String childId = ""; // Index Child ID
+    private String formType = "";
     private String iStatus = ""; // Form Status
     private String tagId = "";
-    private String sA = "";
+    private String sInfo = "";
+    private String sRandomization = "";
+    private String sBaseline = "";
+    private String sSF = "";
+    private String sAQ = "";
     private String studyID = "";
     private String gpsLat = "";
     private String gpsLng = "";
@@ -46,18 +46,17 @@ public class FormsContract {
         this.ID = jsonObject.getString(singleForm.COLUMN_ID);
         this.UID = jsonObject.getString(singleForm.COLUMN_UID);
         this.formDate = jsonObject.getString(singleForm.COLUMN_FORMDATE);
-        this.tehsil = jsonObject.getString(singleForm.COLUMN_TEHSIL);
-        this.hFacility = jsonObject.getString(singleForm.COLUMN_HFACILITY);
-        this.lhwCode = jsonObject.getString(singleForm.COLUMN_LHWCODE);
-        this.houseHold = jsonObject.getString(singleForm.COLUMN_HOUSEHOLD);
-        this.childId = jsonObject.getString(singleForm.COLUMN_CHILDID);
-        this.uccode = jsonObject.getString(singleForm.COLUMN_UCCODE);
-        this.villagename = jsonObject.getString(singleForm.COLUMN_VILLAGENAME);
         this.iStatus = jsonObject.getString(singleForm.COLUMN_ISTATUS);
         this.userName = jsonObject.getString(singleForm.COLUMN_NAME_USERNAME);
         this.tagId = jsonObject.getString(singleForm.COLUMN_DEVICETAGID);
-        this.sA = jsonObject.getString(singleForm.COLUMN_SA);
+        this.appVer = jsonObject.getString(singleForm.COLUMN_APPVER);
         this.studyID = jsonObject.getString(singleForm.COLUMN_STUDYID);
+        this.formType = jsonObject.getString(singleForm.COLUMN_FORMTYPE);
+        this.sInfo = jsonObject.getString(singleForm.COLUMN_INFO);
+        this.sRandomization = jsonObject.getString(singleForm.COLUMN_RANDOMIZATION);
+        this.sBaseline = jsonObject.getString(singleForm.COLUMN_BASELINE);
+        this.sSF = jsonObject.getString(singleForm.COLUMN_SF);
+        this.sAQ = jsonObject.getString(singleForm.COLUMN_AQ);
         this.gpsLat = jsonObject.getString(singleForm.COLUMN_GPSLAT);
         this.gpsLng = jsonObject.getString(singleForm.COLUMN_GPSLNG);
         this.gpsTime = jsonObject.getString(singleForm.COLUMN_GPSTIME);
@@ -70,14 +69,63 @@ public class FormsContract {
         return this;
     }
 
+    public void setAppVer(String appVer) {
+        this.appVer = appVer;
+    }
+
+    public String getFormType() {
+        return formType;
+    }
+
+    public void setFormType(String formType) {
+        this.formType = formType;
+    }
+
+    public String getsInfo() {
+        return sInfo;
+    }
+
+    public void setsInfo(String sInfo) {
+        this.sInfo = sInfo;
+    }
+
+    public String getsRandomization() {
+        return sRandomization;
+    }
+
+    public void setsRandomization(String sRandomization) {
+        this.sRandomization = sRandomization;
+    }
+
+    public String getsBaseline() {
+        return sBaseline;
+    }
+
+    public void setsBaseline(String sBaseline) {
+        this.sBaseline = sBaseline;
+    }
+
+    public String getsSF() {
+        return sSF;
+    }
+
+    public void setsSF(String sSF) {
+        this.sSF = sSF;
+    }
+
+    public String getsAQ() {
+        return sAQ;
+    }
+
+    public void setsAQ(String sAQ) {
+        this.sAQ = sAQ;
+    }
+
     public String getProjectName() {
 
         return projectName;
     }
 
-    public String getSurveyType() {
-        return surveyType;
-    }
 
     public String getTagId() {
 
@@ -120,61 +168,6 @@ public class FormsContract {
         this.formDate = formDate;
     }
 
-    public String getTehsil() {
-        return tehsil;
-    }
-
-    public void setTehsil(String tehsil) {
-        this.tehsil = tehsil;
-    }
-
-    public String gethFacility() {
-        return hFacility;
-    }
-
-    public void sethFacility(String hFacility) {
-        this.hFacility = hFacility;
-    }
-
-    public String getLhwCode() {
-        return lhwCode;
-    }
-
-    public void setLhwCode(String lhwCode) {
-        this.lhwCode = lhwCode;
-    }
-
-    public String getHouseHold() {
-        return houseHold;
-    }
-
-    public void setHouseHold(String houseHold) {
-        this.houseHold = houseHold;
-    }
-
-    public String getChildId() {
-        return childId;
-    }
-
-    public void setChildId(String childId) {
-        this.childId = childId;
-    }
-
-    public String getUccode() {
-        return uccode;
-    }
-
-    public void setUccode(String uccode) {
-        this.uccode = uccode;
-    }
-
-    public String getVillagename() {
-        return villagename;
-    }
-
-    public void setVillagename(String villagename) {
-        this.villagename = villagename;
-    }
 
     public String getiStatus() {
         return iStatus;
@@ -182,14 +175,6 @@ public class FormsContract {
 
     public void setiStatus(String iStatus) {
         this.iStatus = iStatus;
-    }
-
-    public String getsA() {
-        return sA;
-    }
-
-    public void setsA(String sA) {
-        this.sA = sA;
     }
 
 
@@ -261,18 +246,17 @@ public class FormsContract {
         this.ID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_ID));
         this.UID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_UID));
         this.formDate = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_FORMDATE));
-        this.tehsil = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_TEHSIL));
-        this.hFacility = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_HFACILITY));
-        this.lhwCode = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_LHWCODE));
-        this.houseHold = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_HOUSEHOLD));
-        this.childId = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_CHILDID));
-        this.uccode = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_UCCODE));
-        this.villagename = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_VILLAGENAME));
         this.iStatus = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_ISTATUS));
         this.userName = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_NAME_USERNAME));
         this.tagId = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_DEVICETAGID));
-        this.sA = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SA));
+        this.appVer = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_APPVER));
         this.studyID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_STUDYID));
+        this.formType = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_FORMTYPE));
+        this.sInfo = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_INFO));
+        this.sRandomization = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_RANDOMIZATION));
+        this.sBaseline = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_BASELINE));
+        this.sSF = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_SF));
+        this.sAQ = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_AQ));
         this.gpsLat = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_GPSLAT));
         this.gpsLng = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_GPSLNG));
         this.gpsTime = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_GPSTIME));
@@ -290,22 +274,20 @@ public class FormsContract {
         JSONObject json = new JSONObject();
 
         json.put(singleForm.COLUMN_PROJECT_NAME, this.projectName == null ? JSONObject.NULL : this.projectName);
-        json.put(singleForm.COLUMN_SURVEY_TYPE, this.surveyType == null ? JSONObject.NULL : this.surveyType);
         json.put(singleForm.COLUMN_ID, this.ID == null ? JSONObject.NULL : this.ID);
         json.put(singleForm.COLUMN_UID, this.UID == null ? JSONObject.NULL : this.UID);
         json.put(singleForm.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
-        json.put(singleForm.COLUMN_TEHSIL, this.tehsil == null ? JSONObject.NULL : this.tehsil);
-        json.put(singleForm.COLUMN_HFACILITY, this.hFacility == null ? JSONObject.NULL : this.hFacility);
-        json.put(singleForm.COLUMN_LHWCODE, this.lhwCode == null ? JSONObject.NULL : this.lhwCode);
-        json.put(singleForm.COLUMN_HOUSEHOLD, this.houseHold == null ? JSONObject.NULL : this.houseHold);
-        json.put(singleForm.COLUMN_CHILDID, this.childId == null ? JSONObject.NULL : this.childId);
-        json.put(singleForm.COLUMN_UCCODE, this.uccode == null ? JSONObject.NULL : this.uccode);
-        json.put(singleForm.COLUMN_VILLAGENAME, this.villagename == null ? JSONObject.NULL : this.villagename);
         json.put(singleForm.COLUMN_ISTATUS, this.iStatus == null ? JSONObject.NULL : this.iStatus);
         json.put(singleForm.COLUMN_NAME_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
         json.put(singleForm.COLUMN_DEVICETAGID, this.tagId == null ? JSONObject.NULL : this.tagId);
-        json.put(singleForm.COLUMN_SA, this.sA == null ? JSONObject.NULL : new JSONObject(this.sA));
         json.put(singleForm.COLUMN_STUDYID, this.studyID == null ? JSONObject.NULL : this.studyID);
+        json.put(singleForm.COLUMN_APPVER, this.appVer == null ? JSONObject.NULL : this.appVer);
+        json.put(singleForm.COLUMN_FORMTYPE, this.formType == null ? JSONObject.NULL : this.formType);
+        json.put(singleForm.COLUMN_INFO, this.sInfo == null ? JSONObject.NULL : this.sInfo);
+        json.put(singleForm.COLUMN_RANDOMIZATION, this.sRandomization == null ? JSONObject.NULL : this.sRandomization);
+        json.put(singleForm.COLUMN_BASELINE, this.sBaseline == null ? JSONObject.NULL : this.sBaseline);
+        json.put(singleForm.COLUMN_SF, this.sSF == null ? JSONObject.NULL : this.sSF);
+        json.put(singleForm.COLUMN_AQ, this.sAQ == null ? JSONObject.NULL : this.sAQ);
         json.put(singleForm.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
         json.put(singleForm.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
         json.put(singleForm.COLUMN_GPSTIME, this.gpsTime == null ? JSONObject.NULL : this.gpsTime);
@@ -345,29 +327,27 @@ public class FormsContract {
         public static final String URI = "/syncblforms.php";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECT_NAME = "projectname";
-        public static final String COLUMN_SURVEY_TYPE = "surveytype";
         public static final String COLUMN_ID = "_id";
         public static final String COLUMN_UID = "uid";
         public static final String COLUMN_FORMDATE = "formdate";
-        public static final String COLUMN_TEHSIL = "tehsil";
-        public static final String COLUMN_HFACILITY = "hfacility";
-        public static final String COLUMN_LHWCODE = "lhwcode";
-        public static final String COLUMN_HOUSEHOLD = "household";
-        public static final String COLUMN_CHILDID = "childid";
-        public static final String COLUMN_UCCODE = "uccode";
-        public static final String COLUMN_VILLAGENAME = "villagename";
-        public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_NAME_USERNAME = "username";
-        public static final String COLUMN_DEVICETAGID = "tagId";
-        public static final String COLUMN_SA = "sa";
+        public static final String COLUMN_FORMTYPE = "formtype";
+        public static final String COLUMN_INFO = "sinfo";
+        public static final String COLUMN_RANDOMIZATION = "srandomization";
+        public static final String COLUMN_BASELINE = "sbaseline";
+        public static final String COLUMN_SF = "ssf";
+        public static final String COLUMN_AQ = "saq";
         public static final String COLUMN_STUDYID = "studyID";
+        public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_GPSLAT = "gpslat";
         public static final String COLUMN_GPSLNG = "gpslng";
         public static final String COLUMN_GPSTIME = "gpstime";
         public static final String COLUMN_GPSACC = "gpsacc";
         public static final String COLUMN_DEVICEID = "deviceid";
+        public static final String COLUMN_DEVICETAGID = "tagId";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCED_DATE = "synced_date";
+        public static final String COLUMN_APPVER = "appver";
 
     }
 }

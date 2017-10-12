@@ -1,14 +1,10 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
@@ -24,13 +20,11 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
-import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
@@ -41,7 +35,7 @@ public class RandomizationActivity extends AppCompatActivity
 
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
-    @BindView(R.id.sitenumber)
+    /*@BindView(R.id.sitenumber)
     EditText sitenumber;
     @BindView(R.id.mrnumber)
     EditText mrnumber;
@@ -62,7 +56,7 @@ public class RandomizationActivity extends AppCompatActivity
     @BindView(R.id.r0502)
     EditText r0502;
     @BindView(R.id.r0503)
-    EditText r0503;
+    EditText r0503;*/
     @BindView(R.id.r06)
     DatePickerInputEditText r06;
     @BindView(R.id.r07)
@@ -145,7 +139,7 @@ public class RandomizationActivity extends AppCompatActivity
     @OnClick(R.id.btnNext)
     void onBtnNextClick() {
 
-        if (ValidateForm()) {
+        /*if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -162,7 +156,9 @@ public class RandomizationActivity extends AppCompatActivity
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
+
+        startActivity(new Intent(this, BaselineActvity.class));
 
     }
 
@@ -190,7 +186,7 @@ public class RandomizationActivity extends AppCompatActivity
     }
 
     private boolean UpdateDB() {
-        DatabaseHelper db = new DatabaseHelper(this);
+        /*DatabaseHelper db = new DatabaseHelper(this);
 
         long updcount = db.addForm(AppMain.fc);
 
@@ -205,68 +201,18 @@ public class RandomizationActivity extends AppCompatActivity
 
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }
+        }*/
         return true;
     }
 
 
-    public void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-
-//        String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
-            String dt = GPSPref.getString("Time", "0");
-
-            if (lat == "0" && lang == "0") {
-                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            AppMain.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
-            AppMain.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
-            AppMain.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
-//            AppMain.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            AppMain.fc.setGpsTime(date); // Timestamp is converted to date above
-
-            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
 
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-
-        AppMain.fc = new FormsContract();
-
-        AppMain.fc.setUserName(AppMain.username);
-        AppMain.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        AppMain.fc.setTagId(sharedPref.getString("tagName", ""));
-        AppMain.fc.setFormDate((DateFormat.format("dd-MM-yyyy HH:mm", new Date())).toString());
-        AppMain.fc.setSitenumber(sitenumber.getText().toString());
-        AppMain.fc.setMrnumber(mrnumber.getText().toString());
-
         JSONObject sa = new JSONObject();
 
-        sa.put("r01", r01.getText().toString());
-        sa.put("r02", r0201.isChecked() ? "1" : r0202.isChecked() ? "2" : "0");
-        sa.put("r03", r03.getText().toString());
-        sa.put("r04", r04.getText().toString());
-        sa.put("r0501", r0501.getText().toString());
-        sa.put("r0502", r0502.getText().toString());
-        sa.put("r0503", r0503.getText().toString());
+
         sa.put("r06", r06.getText().toString());
         sa.put("r07", r07.getText().toString());
         sa.put("r08", r08.getText().toString());
@@ -283,97 +229,6 @@ public class RandomizationActivity extends AppCompatActivity
 
     public boolean ValidateForm() {
 
-        // =================== site number ====================
-        if (sitenumber.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.siteNumber), Toast.LENGTH_SHORT).show();
-            sitenumber.setError("This data is required");
-            Log.d(TAG, " sitenumber :empty ");
-            return false;
-        } else {
-            sitenumber.setError(null);
-        }
-
-        // =================== mr-number ====================
-        if (mrnumber.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mrnumber), Toast.LENGTH_SHORT).show();
-            mrnumber.setError("This data is required");
-            Log.d(TAG, " mrnumber :empty ");
-            return false;
-        } else {
-            mrnumber.setError(null);
-        }
-
-        // =================== Q1 ====================
-        if (r01.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r01), Toast.LENGTH_SHORT).show();
-            r01.setError("This data is required");
-            Log.d(TAG, " r01 :empty ");
-            return false;
-        } else {
-            r01.setError(null);
-        }
-
-        // =================== Q2====================
-        if (r02.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r02), Toast.LENGTH_SHORT).show();
-            r0202.setError("This Data is required");
-            Log.d(TAG, " r02 : not selected ");
-            return false;
-        } else {
-            r0202.setError(null);
-        }
-
-        // =================== Q3====================
-        if (r03.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r03), Toast.LENGTH_SHORT).show();
-            r03.setError("This data is required");
-            Log.d(TAG, " r03 :empty ");
-            return false;
-        } else {
-            r03.setError(null);
-        }
-
-        // =================== Q4====================
-        if (r04.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r04), Toast.LENGTH_SHORT).show();
-            r04.setError("This data is required");
-            Log.d(TAG, " r04 :empty ");
-            return false;
-        } else {
-            r04.setError(null);
-        }
-
-        // =================== Q5 ====================
-
-        if ((r0501.getText().toString().isEmpty()) && (r0502.getText().toString().isEmpty()) && (r0503.getText().toString().isEmpty())) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r05), Toast.LENGTH_SHORT).show();
-            r0501.setError("This data is required");
-            Log.d(TAG, " r05 :empty ");
-            return false;
-        } else {
-            r0501.setError(null);
-        }
-
-
-     /*   if (r0502.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r05) + getString(R.string.r0502), Toast.LENGTH_SHORT).show();
-            r0502.setError("This data is required");
-            Log.d(TAG, " r0502 :empty ");
-            return false;
-        } else {
-            r0502.setError(null);
-        }
-
-
-        if (r0503.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r05) + getString(R.string.r0503), Toast.LENGTH_SHORT).show();
-            r0503.setError("This data is required");
-            Log.d(TAG, " r0503 :empty ");
-            return false;
-        } else {
-            r0503.setError(null);
-        }
-*/
 
         // =================== Q6====================
         if (r06.getText().toString().isEmpty()) {
