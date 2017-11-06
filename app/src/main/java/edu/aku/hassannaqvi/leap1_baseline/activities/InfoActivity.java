@@ -46,8 +46,8 @@ public class InfoActivity extends AppCompatActivity
     EditText studyNumber;
     @BindView(R.id.r13)
     DatePickerInputEditText r13;
-    @BindView(R.id.hospitalID)
-    EditText hospitalID;
+    /*@BindView(R.id.hospitalID)
+    EditText hospitalID;*/
     @BindView(R.id.r01)
     EditText r01;
     @BindView(R.id.r02)
@@ -217,14 +217,14 @@ public class InfoActivity extends AppCompatActivity
             r13.setError(null);
         }
 
-        if (hospitalID.getText().toString().isEmpty()) {
+        /*if (hospitalID.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.b03), Toast.LENGTH_SHORT).show();
             hospitalID.setError("This data is required");
             Log.i(TAG, "hospitalID: This data is required ");
             return false;
         } else {
             hospitalID.setError(null);
-        }
+        }*/
 
         if (r01.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r01), Toast.LENGTH_SHORT).show();

@@ -16,7 +16,7 @@ import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 
 public class FormsContract {
 
-    private final String projectName = "LEAP1 - Baseline";
+    private String projectName = "LEAP1 - Baseline";
     private String appVer = AppMain.versionName + "." + AppMain.versionCode;
     private String userName = "";
     private String ID = "";
@@ -31,6 +31,7 @@ public class FormsContract {
     private String sSF = "";
     private String sAQ = "";
     private String studyID = "";
+    private String MstudyID = "";
     private String gpsLat = "";
     private String gpsLng = "";
     private String gpsTime = "";
@@ -43,6 +44,7 @@ public class FormsContract {
     }
 
     public FormsContract sync(JSONObject jsonObject) throws JSONException {
+        this.projectName = jsonObject.getString(singleForm.COLUMN_PROJECT_NAME);
         this.ID = jsonObject.getString(singleForm.COLUMN_ID);
         this.UID = jsonObject.getString(singleForm.COLUMN_UID);
         this.formDate = jsonObject.getString(singleForm.COLUMN_FORMDATE);
@@ -51,6 +53,7 @@ public class FormsContract {
         this.tagId = jsonObject.getString(singleForm.COLUMN_DEVICETAGID);
         this.appVer = jsonObject.getString(singleForm.COLUMN_APPVER);
         this.studyID = jsonObject.getString(singleForm.COLUMN_STUDYID);
+        this.MstudyID = jsonObject.getString(singleForm.COLUMN_MSTUDYID);
         this.formType = jsonObject.getString(singleForm.COLUMN_FORMTYPE);
         this.sInfo = jsonObject.getString(singleForm.COLUMN_INFO);
         this.sRandomization = jsonObject.getString(singleForm.COLUMN_RANDOMIZATION);
@@ -67,10 +70,6 @@ public class FormsContract {
 
 
         return this;
-    }
-
-    public void setAppVer(String appVer) {
-        this.appVer = appVer;
     }
 
     public String getFormType() {
@@ -122,10 +121,25 @@ public class FormsContract {
     }
 
     public String getProjectName() {
-
         return projectName;
     }
 
+    public String getAppVer() {
+
+        return appVer;
+    }
+
+    public void setAppVer(String appVer) {
+        this.appVer = appVer;
+    }
+
+    public String getMstudyID() {
+        return MstudyID;
+    }
+
+    public void setMstudyID(String mstudyID) {
+        MstudyID = mstudyID;
+    }
 
     public String getTagId() {
 
@@ -243,6 +257,7 @@ public class FormsContract {
     }
 
     public FormsContract hydrate(Cursor cursor) {
+        this.projectName = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_PROJECT_NAME));
         this.ID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_ID));
         this.UID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_UID));
         this.formDate = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_FORMDATE));
@@ -251,7 +266,10 @@ public class FormsContract {
         this.tagId = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_DEVICETAGID));
         this.appVer = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_APPVER));
         this.studyID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_STUDYID));
+        this.MstudyID = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_MSTUDYID));
         this.formType = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_FORMTYPE));
+
+
         this.sInfo = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_INFO));
         this.sRandomization = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_RANDOMIZATION));
         this.sBaseline = cursor.getString(cursor.getColumnIndex(singleForm.COLUMN_BASELINE));
@@ -281,6 +299,7 @@ public class FormsContract {
         json.put(singleForm.COLUMN_NAME_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
         json.put(singleForm.COLUMN_DEVICETAGID, this.tagId == null ? JSONObject.NULL : this.tagId);
         json.put(singleForm.COLUMN_STUDYID, this.studyID == null ? JSONObject.NULL : this.studyID);
+        json.put(singleForm.COLUMN_MSTUDYID, this.MstudyID == null ? JSONObject.NULL : this.MstudyID);
         json.put(singleForm.COLUMN_APPVER, this.appVer == null ? JSONObject.NULL : this.appVer);
         json.put(singleForm.COLUMN_FORMTYPE, this.formType == null ? JSONObject.NULL : this.formType);
         json.put(singleForm.COLUMN_INFO, this.sInfo == null ? JSONObject.NULL : this.sInfo);
@@ -338,6 +357,7 @@ public class FormsContract {
         public static final String COLUMN_SF = "ssf";
         public static final String COLUMN_AQ = "saq";
         public static final String COLUMN_STUDYID = "studyID";
+        public static final String COLUMN_MSTUDYID = "mstudyID";
         public static final String COLUMN_ISTATUS = "istatus";
         public static final String COLUMN_GPSLAT = "gpslat";
         public static final String COLUMN_GPSLNG = "gpslng";

@@ -279,7 +279,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
         setGPS();
 
-        AppMain.fc.setsA(String.valueOf(sa));
+        //AppMain.fc.setsA(String.valueOf(sa));
 
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
