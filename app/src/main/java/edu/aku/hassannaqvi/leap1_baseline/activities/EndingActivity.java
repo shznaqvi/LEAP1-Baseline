@@ -3,16 +3,20 @@ package edu.aku.hassannaqvi.leap1_baseline.activities;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
+import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 
 public class EndingActivity extends Activity {
 
@@ -21,17 +25,14 @@ public class EndingActivity extends Activity {
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
 
-    /*@BindView(R.id.iStatus)
+    @BindView(R.id.iStatus)
     RadioGroup iStatus;
-    @BindView(R.id.mna7a)
-    RadioButton mna7a;
-    @BindView(R.id.mna7b)
-    RadioButton mna7b;
-    @BindView(R.id.mna7c)
-    RadioButton mna7c;
-    @BindView(R.id.mna7d)
-    RadioButton mna7d;
-*/
+    @BindView(R.id.iStatus01)
+    RadioButton iStatus01;
+    @BindView(R.id.iStatus02)
+    RadioButton iStatus02;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class EndingActivity extends Activity {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            //if (UpdateDB()) {
+            if (UpdateDB()) {
             finish();
             Toast.makeText(this, "Closing Form!", Toast.LENGTH_SHORT).show();
             Intent endSec = new Intent(this, MainActivity.class);
@@ -60,11 +61,11 @@ public class EndingActivity extends Activity {
         } else {
             Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
         }
-        //}
+        }
     }
 
     private boolean UpdateDB() {
-        /*DatabaseHelper db = new DatabaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
         int updcount = db.updateEnd();
 
@@ -72,15 +73,19 @@ public class EndingActivity extends Activity {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
             return true;
         } else {
-            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();*/
-        return false;
-        //}
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
     }
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
 
-        JSONObject sa = new JSONObject();
+        AppMain.fc.setiStatus(iStatus01.isChecked() ? "1" : iStatus02.isChecked() ? "2" : "0");
+
+
+        Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
 
 
 
@@ -89,14 +94,14 @@ public class EndingActivity extends Activity {
     private boolean formValidation() {
         Toast.makeText(this, "Validating Closing Section", Toast.LENGTH_SHORT).show();
 
-        /*if (mna7.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.mna7), Toast.LENGTH_LONG).show();
-            mna7d.setError("This data is Required!");
-            Log.i(TAG, "mnd9: This data is Required!");
+        if (iStatus.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(not selected): " + getResources().getResourceTypeName(R.string.Status), Toast.LENGTH_LONG).show();
+            iStatus01.setError("This data is Required!");
+            Log.i(TAG, "iStatus01: This data is Required!");
             return false;
         } else {
-            mna7d.setError(null);
-        }*/
+            iStatus01.setError(null);
+        }
         return true;
     }
 }

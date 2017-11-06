@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
+import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 
@@ -654,22 +655,18 @@ public class BaselineActvity extends AppCompatActivity
 
 
     private boolean UpdateDB() {
-        /*DatabaseHelper db = new DatabaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
-        long updcount = db.addForm(AppMain.fc);
+        int updcount = db.updateSBaseLine();
 
-        AppMain.fc.setID(String.valueOf(updcount));
-
-        if (updcount != 0) {
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            AppMain.fc.setUID(
-                    (AppMain.fc.getDeviceID() + AppMain.fc.getID()));
-            db.updateFormID();
+            return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }*/
-        return true;
+            return false;
+        }
+
     }
 
     private void SaveDraft() throws JSONException {
@@ -754,7 +751,7 @@ public class BaselineActvity extends AppCompatActivity
         sa.put("b270202r", b270202r.getText().toString());
 
 
-        AppMain.fc.setsA(String.valueOf(sa));
+        AppMain.fc.setsBaseline(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }

@@ -177,7 +177,7 @@ public class MainActivity extends Activity {
         AppMain.fc = null;
 
         // Spinner Drop down elements
-        tehsils = new HashMap<>();
+        /*tehsils = new HashMap<>();
         final List<String> Tname = new ArrayList<>();
         Collection<TehsilsContract> Tc = db.getAllTehsil();
         Log.d(TAG, "onCreate: " + Tc.size());
@@ -215,7 +215,7 @@ public class MainActivity extends Activity {
 
             }
         });
-
+*/
         mN02.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

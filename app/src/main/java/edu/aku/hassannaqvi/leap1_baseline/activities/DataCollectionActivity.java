@@ -21,6 +21,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
+import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 
 public class DataCollectionActivity extends AppCompatActivity
 {
@@ -499,7 +501,7 @@ public class DataCollectionActivity extends AppCompatActivity
             if (UpdateDB()) {
                 finish();
                 Toast.makeText(this, "Starting Form Ending Section", Toast.LENGTH_SHORT).show();
-                Intent endSec = new Intent(this, MainActivity.class);
+                Intent endSec = new Intent(this, EndingActivity.class);
                 startActivity(endSec);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -508,24 +510,18 @@ public class DataCollectionActivity extends AppCompatActivity
     }
 
     private boolean UpdateDB() {
-        /*DatabaseHelper db = new DatabaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
-        long updcount = db.addForm(MainApp.fc);
+        int updcount = db.updateSAQ();
 
-        MainApp.fc.set_ID(String.valueOf(updcount));
-
-        if (updcount != 0) {
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            MainApp.fc.set_UID(
-                    (MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
-            db.updateFormID();
-
+            return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }*/
+            return false;
+        }
 
-        return true;
 
     }
 
@@ -585,7 +581,7 @@ public class DataCollectionActivity extends AppCompatActivity
 
         setGPS();
 
-        //MainApp.fc.setsA(String.valueOf(sa));
+        AppMain.fc.setsAQ(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }

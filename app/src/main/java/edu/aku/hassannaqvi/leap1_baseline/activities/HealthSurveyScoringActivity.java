@@ -181,26 +181,26 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
     @OnClick(R.id.btnNext)
     void onBtnNextClick() {
-//        if (ValidateForm()) {
-//            try {
-//                SaveDraft();
-//            } catch (JSONException e) {
-//                e.printStackTrace();
-//            }
-//            if (UpdateDB()) {
-//                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
-//
-//                finish();
-//
-//
-//                startActivity(new Intent(this, MainActivity.class));
-//
-//            } else {
-//                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
-//            }
-//        }
+        if (ValidateForm()) {
+            try {
+                SaveDraft();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            if (UpdateDB()) {
+                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
 
-        startActivity(new Intent(this, DataCollectionActivity.class));
+                finish();
+
+                startActivity(new Intent(this, DataCollectionActivity.class));
+                startActivity(new Intent(this, MainActivity.class));
+
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+
 
     }
 
@@ -226,24 +226,20 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     }
 
     private boolean UpdateDB() {
+
+
         DatabaseHelper db = new DatabaseHelper(this);
 
-        /*long updcount = db.addForm(AppMain.fc);
+        int updcount = db.updateSSF();
 
-        AppMain.fc.set_ID(String.valueOf(updcount));
-
-        if (updcount != 0) {
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            AppMain.fc.set_UID(
-                    (AppMain.fc.getDeviceID() + AppMain.fc.get_ID()));
-            db.updateFormID();
-
+            return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
         }
-*/
-        return true;
+
     }
 
     private void SaveDraft() throws JSONException {
@@ -260,7 +256,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         AppMain.fc.setFormDate((DateFormat.format("dd-MM-yyyy HH:mm", new Date())).toString());
         //MainApp.fc.setTagId(sharedPref.getString("tagName", ""));
 */
-        AppMain.fc.setStudyID(studyID.getText().toString());
+        //      AppMain.fc.setStudyID(studyID.getText().toString());
 
         JSONObject sa = new JSONObject();
         sa.put("sf01", sf01a.isChecked() ? "1" : sf01b.isChecked() ? "2" : sf01c.isChecked() ? "3" : sf01d.isChecked() ? "4" : sf01e.isChecked() ? "5" : "0");
@@ -279,7 +275,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
         setGPS();
 
-        //AppMain.fc.setsA(String.valueOf(sa));
+        AppMain.fc.setsSF(String.valueOf(sa));
 
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();

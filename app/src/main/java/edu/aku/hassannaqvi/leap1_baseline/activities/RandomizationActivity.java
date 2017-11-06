@@ -26,6 +26,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
+import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 import static android.content.ContentValues.TAG;
@@ -139,7 +140,7 @@ public class RandomizationActivity extends AppCompatActivity
     @OnClick(R.id.btnNext)
     void onBtnNextClick() {
 
-        /*if (ValidateForm()) {
+        if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -150,15 +151,15 @@ public class RandomizationActivity extends AppCompatActivity
 
                 finish();
 
-                Intent EndingActivity = new Intent(this, EndingActivity.class);
+                Intent EndingActivity = new Intent(this, BaselineActvity.class);
                 startActivity(EndingActivity);
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }*/
+        }
 
-        startActivity(new Intent(this, BaselineActvity.class));
+
 
     }
 
@@ -186,23 +187,19 @@ public class RandomizationActivity extends AppCompatActivity
     }
 
     private boolean UpdateDB() {
-        /*DatabaseHelper db = new DatabaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
-        long updcount = db.addForm(AppMain.fc);
+        int updcount = db.updateSRandomization();
 
-        AppMain.fc.setID(String.valueOf(updcount));
-
-        if (updcount != 0) {
+        if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-
-            AppMain.fc.setUID(
-                    (AppMain.fc.getDeviceID() + AppMain.fc.getID()));
-            db.updateFormID();
-
+            return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }*/
-        return true;
+            return false;
+        }
+
+
     }
 
 
@@ -222,7 +219,7 @@ public class RandomizationActivity extends AppCompatActivity
         sa.put("r11", r1101.isChecked() ? "1" : r1102.isChecked() ? "2" : "0");
         sa.put("r12", r1201.isChecked() ? "1" : r1202.isChecked() ? "2" : "0");
 
-        AppMain.fc.setsA(String.valueOf(sa));
+        AppMain.fc.setsRandomization(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }

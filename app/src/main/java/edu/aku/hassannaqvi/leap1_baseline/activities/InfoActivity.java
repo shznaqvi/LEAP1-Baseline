@@ -1,10 +1,10 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.EditText;
@@ -19,7 +19,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 import butterknife.BindView;
@@ -28,9 +27,9 @@ import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
-import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
+import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 
-public class InfoActivity extends AppCompatActivity
+public class InfoActivity extends Activity
 {
     private static final String TAG = InfoActivity.class.getSimpleName();
 
@@ -42,10 +41,10 @@ public class InfoActivity extends AppCompatActivity
     EditText sitenumber;
     @BindView(R.id.mrnumber)
     EditText mrnumber;
-    @BindView(R.id.studyNumber)
-    EditText studyNumber;
-    @BindView(R.id.r13)
-    DatePickerInputEditText r13;
+    @BindView(R.id.mStudyID)
+    EditText mStudyID;
+    /*@BindView(R.id.r13)
+    DatePickerInputEditText r13;*/
     /*@BindView(R.id.hospitalID)
     EditText hospitalID;*/
     @BindView(R.id.r01)
@@ -78,9 +77,9 @@ public class InfoActivity extends AppCompatActivity
         setContentView(R.layout.activity_info);
         ButterKnife.bind(this);
 
-        String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
+        /*String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
         r13.setManager(getSupportFragmentManager());
-        r13.setMaxDate(dateToday);
+        r13.setMaxDate(dateToday);*/
 
     }
 
@@ -132,22 +131,22 @@ public class InfoActivity extends AppCompatActivity
 
 
     private boolean UpdateDB() {
-        /*DatabaseHelper db = new DatabaseHelper(this);
+        DatabaseHelper db = new DatabaseHelper(this);
 
-        long updcount = db.addForm(MainApp.fc);
+        long updcount = db.addForm(AppMain.fc);
 
-        MainApp.fc.set_ID(String.valueOf(updcount));
+        AppMain.fc.setID(String.valueOf(updcount));
 
         if (updcount != 0) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
 
-            MainApp.fc.set_UID(
-                    (MainApp.fc.getDeviceID() + MainApp.fc.get_ID()));
+            AppMain.fc.setUID(
+                    (AppMain.fc.getDeviceID() + AppMain.fc.getID()));
             db.updateFormID();
 
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
-        }*/
+        }
 
         return true;
 
@@ -160,19 +159,29 @@ public class InfoActivity extends AppCompatActivity
 
         AppMain.fc = new FormsContract();
 
-        AppMain.fc.setTagId(sharedPref.getString("tagName", null));
+        AppMain.fc.setTagID(sharedPref.getString("tagName", null));
         AppMain.fc.setDeviceID(AppMain.deviceId);
         AppMain.fc.setUserName(AppMain.username);
         AppMain.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
         AppMain.fc.setFormType(AppMain.formType);
-
+        AppMain.fc.setSiteNum(sitenumber.getText().toString());
+        AppMain.fc.setMrNum(mrnumber.getText().toString());
+        AppMain.fc.setmStudyID(mStudyID.getText().toString());
+        AppMain.fc.setParticipantName(r01.getText().toString());
 
         JSONObject sa = new JSONObject();
+
+        sa.put("r02", r0201.isChecked() ? "A" : r0202.isChecked() ? "B" : "0");
+        sa.put("r03", r03.getText().toString());
+        sa.put("r04", r04.getText().toString());
+        sa.put("r0501", r0501.getText().toString());
+        sa.put("r0502", r0502.getText().toString());
+        sa.put("r0503", r0503.getText().toString());
 
 
         setGPS();
 
-        //MainApp.fc.setsA(String.valueOf(sa));
+        AppMain.fc.setsInfo(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
@@ -199,23 +208,23 @@ public class InfoActivity extends AppCompatActivity
             mrnumber.setError(null);
         }
 
-        if (studyNumber.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r14), Toast.LENGTH_SHORT).show();
-            studyNumber.setError("This data is required");
+        if (mStudyID.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR (Empty)" + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
+            mStudyID.setError("This data is required");
             Log.i(TAG, "studyNumber: This data is required");
             return false;
         } else {
-            studyNumber.setError(null);
+            mStudyID.setError(null);
         }
 
-        if (r13.getText().toString().isEmpty()) {
+        /*if (r13.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r13), Toast.LENGTH_SHORT).show();
             r13.setError("This data is required");
             Log.i(TAG, "r13: This data is required ");
             return false;
         } else {
             r13.setError(null);
-        }
+        }*/
 
         /*if (hospitalID.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.b03), Toast.LENGTH_SHORT).show();

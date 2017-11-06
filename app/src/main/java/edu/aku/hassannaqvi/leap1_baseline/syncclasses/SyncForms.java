@@ -58,7 +58,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
     protected String doInBackground(Void... params) {
 
         try {
-            String url = AppMain.PROJECT_URI + FormsContract.singleForm.URI;
+            String url = AppMain.PROJECT_URI + FormsContract.formsTable.URI;
             Log.d(TAG, "doInBackground: URL " + url);
             return downloadUrl(url);
         } catch (IOException e) {
