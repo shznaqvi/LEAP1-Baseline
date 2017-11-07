@@ -65,6 +65,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="1dp"
+            android:enabled="false"
             android:gravity="right"
             android:hint="@string/studyID"
             android:inputType="number"
@@ -74,7 +75,7 @@
 
         </EditText>
 
-        <TextView
+        <!--<TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -90,7 +91,7 @@
             android:hint="@string/b01"
             android:inputType="number"
             android:maxLength="13" />
-
+-->
         <!-- <TextView
              android:layout_width="match_parent"
              android:layout_height="wrap_content"
@@ -1047,8 +1048,8 @@
             android:layout_marginTop="1dp"
             android:gravity="right"
             android:hint="@string/b1901"
-            android:inputType="number"
-            android:maxLength="4" />
+            android:inputType="numberDecimal"
+            android:maxLength="5"/>
 
         <TextView
             android:layout_width="match_parent"

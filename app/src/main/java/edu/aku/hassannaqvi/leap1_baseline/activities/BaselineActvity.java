@@ -36,9 +36,9 @@ public class BaselineActvity extends AppCompatActivity
     private static final String TAG = BaselineActvity.class.getSimpleName();
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
-    /*@BindView(R.id.studyID)
+    @BindView(R.id.studyID)
     EditText studyID;
-    @BindView(R.id.b01)
+    /*@BindView(R.id.b01)
     EditText b01;*/
     /*  @BindView(R.id.b02)
       EditText b02;
@@ -369,6 +369,7 @@ public class BaselineActvity extends AppCompatActivity
         String maxDate43Weeks = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTimeInMillis() + (AppMain.MILLISECONDS_IN_43_WEEKS));
 
 
+        studyID.setText(AppMain.fc.getmStudyID());
         b17.setManager(getSupportFragmentManager());
         b20.setManager(getSupportFragmentManager());
         b17.setMaxDate(dateToday);
@@ -607,7 +608,7 @@ public class BaselineActvity extends AppCompatActivity
     @OnClick(R.id.btnNext)
     void onBtnNextClick() {
 
-        /*if (ValidateForm()) {
+        if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -618,16 +619,23 @@ public class BaselineActvity extends AppCompatActivity
 
                 finish();
 
+                if (AppMain.sf == 1) {
 
-                startActivity(new Intent(this, MainActivity.class));
+                    startActivity(new Intent(this, HealthSurveyScoringActivity.class));
+                } else if (AppMain.aq == 1) {
+                    startActivity(new Intent(this, DataCollectionActivity.class));
+                } else {
+                    Intent endSec = new Intent(this, EndingActivity.class);
+                    endSec.putExtra("check", true);
+                    startActivity(endSec);
+                }
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
-*/
 
-        startActivity(new Intent(this, HealthSurveyScoringActivity.class));
+
     }
 
 
@@ -636,7 +644,7 @@ public class BaselineActvity extends AppCompatActivity
 
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 
-        if (ValidateForm()) {
+        /*if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -650,7 +658,9 @@ public class BaselineActvity extends AppCompatActivity
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
+
+        AppMain.endActivity(this, this);
     }
 
 
@@ -750,6 +760,8 @@ public class BaselineActvity extends AppCompatActivity
         sa.put("b2702", b270201.isChecked() ? "1" : b270202.isChecked() ? "2" : "0");
         sa.put("b270202r", b270202r.getText().toString());
 
+        AppMain.sf = b2701.indexOfChild(findViewById(b2701.getCheckedRadioButtonId())) + 1;
+        AppMain.aq = b2702.indexOfChild(findViewById(b2702.getCheckedRadioButtonId())) + 1;
 
         AppMain.fc.setsBaseline(String.valueOf(sa));
 
@@ -763,6 +775,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b09), Toast.LENGTH_SHORT).show();
             b0988.setError("This data is Required!");
             Log.i(TAG, "b09: This Data is Required!");
+            b0988.setFocusable(true);
+            b0988.setFocusableInTouchMode(true);
+            b0988.requestFocus();
             return false;
         } else {
             b0988.setError(null);
@@ -772,6 +787,7 @@ public class BaselineActvity extends AppCompatActivity
         if (b0988.isChecked() && b0988x.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b09) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b0988x.setError("This data is Required!");
+            b0988x.requestFocus();
             Log.i(TAG, "b0988x: This Data is Required!");
             return false;
         } else {
@@ -783,6 +799,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b10), Toast.LENGTH_SHORT).show();
             b1088.setError("This data is Required!");
             Log.i(TAG, "b10: This Data is Required!");
+            b1088.setFocusable(true);
+            b1088.setFocusableInTouchMode(true);
+            b1088.requestFocus();
             return false;
         } else {
             b1088.setError(null);
@@ -793,6 +812,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b10) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b1088x.setError("This data is Required!");
             Log.i(TAG, "b1088x: This Data is Required!");
+            b1088x.requestFocus();
             return false;
         } else {
             b1088x.setError(null);
@@ -803,6 +823,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b11), Toast.LENGTH_SHORT).show();
             b1188.setError("This data is Required!");
             Log.i(TAG, "b11: This Data is Required!");
+            b1188.setFocusable(true);
+            b1188.setFocusableInTouchMode(true);
+            b1188.requestFocus();
             return false;
         } else {
             b1188.setError(null);
@@ -812,7 +835,8 @@ public class BaselineActvity extends AppCompatActivity
         if (b1188.isChecked() && b1188x.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b11) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b1188x.setError("This data is Required!");
-            Log.i(TAG, "b0988x: This Data is Required!");
+            Log.i(TAG, "b1188x: This Data is Required!");
+            b1188x.requestFocus();
             return false;
         } else {
             b1188x.setError(null);
@@ -823,6 +847,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b12), Toast.LENGTH_SHORT).show();
             b1288.setError("This data is Required!");
             Log.i(TAG, "b12: This Data is Required!");
+            b1288.setFocusable(true);
+            b1288.setFocusableInTouchMode(true);
+            b1288.requestFocus();
             return false;
         } else {
             b1288.setError(null);
@@ -833,6 +860,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b12) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b1288x.setError("This data is Required!");
             Log.i(TAG, "b1288x: This Data is Required!");
+            b1288x.requestFocus();
             return false;
         } else {
             b1288x.setError(null);
@@ -843,6 +871,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b13), Toast.LENGTH_SHORT).show();
             b1388.setError("This data is Required!");
             Log.i(TAG, "b13: This Data is Required!");
+            b1388.setFocusable(true);
+            b1388.setFocusableInTouchMode(true);
+            b1388.requestFocus();
             return false;
         } else {
             b1388.setError(null);
@@ -853,6 +884,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b13) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b1388x.setError("This data is Required!");
             Log.i(TAG, "b1388x: This Data is Required!");
+            b1388x.requestFocus();
             return false;
         } else {
             b1388x.setError(null);
@@ -863,6 +895,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b14), Toast.LENGTH_SHORT).show();
             b1488.setError("This data is Required!");
             Log.i(TAG, "b14: This Data is Required!");
+            b1488.setFocusable(true);
+            b1488.setFocusableInTouchMode(true);
+            b1488.requestFocus();
             return false;
         } else {
             b1488.setError(null);
@@ -873,6 +908,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b14) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b1488x.setError("This data is Required!");
             Log.i(TAG, "b1488x: This Data is Required!");
+            b1488x.requestFocus();
             return false;
         } else {
             b1488x.setError(null);
@@ -883,6 +919,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b15), Toast.LENGTH_SHORT).show();
             b15.setError("This data is required");
             Log.d(TAG, " b15 : This data is required ");
+            b15.requestFocus();
             return false;
         } else {
             b15.setError(null);
@@ -892,6 +929,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b15), Toast.LENGTH_SHORT).show();
             b15.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "b15: Invalid data is 0");
+            b15.requestFocus();
             return false;
         } else {
             b15.setError(null);
@@ -901,6 +939,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b16), Toast.LENGTH_SHORT).show();
             b1688.setError("This data is Required!");
             Log.i(TAG, "b16: This Data is Required!");
+            b16.requestFocus();
             return false;
         } else {
             b1688.setError(null);
@@ -911,6 +950,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b16) + " - " + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b1688x.setError("This data is Required!");
             Log.i(TAG, "b1688x: This Data is Required!");
+            b1688x.requestFocus();
             return false;
         } else {
             b1688x.setError(null);
@@ -921,6 +961,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.b17), Toast.LENGTH_SHORT).show();
             b17.setError("This data is Required!");
             Log.i(TAG, "b17: This data is Required!");
+            b17.requestFocus();
             return false;
         } else {
             b17.setError(null);
@@ -931,6 +972,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
             b18.setError("This data is Required!");
             Log.i(TAG, "b18: This data is Required!");
+            b18.requestFocus();
             return false;
         } else {
             b18.setError(null);
@@ -939,6 +981,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
             b18.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "b18: Invalid data is 0");
+            b18.requestFocus();
             return false;
         } else {
             b18.setError(null);
@@ -947,6 +990,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
             b18.setError("Invalid: Range is 30.0 - 150.0 ");
             Log.i(TAG, "b18: Invalid Range is 30.0 - 150.0 kg");
+            b18.requestFocus();
             return false;
         } else {
             b18.setError(null);
@@ -957,6 +1001,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
             b19.setError("This data is Required!");
             Log.i(TAG, "b19: This data is Required!");
+            b19.requestFocus();
             return false;
         } else {
             b19.setError(null);
@@ -965,6 +1010,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
             b19.setError("Invalid: Data cannot be Zero");
             Log.i(TAG, "b19: Invalid data is 0");
+            b19.requestFocus();
             return false;
         } else {
             b19.setError(null);
@@ -973,6 +1019,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
             b19.setError("Invalid: Range is 137-160 cm");
             Log.i(TAG, "b19: Invalid Range is 137-160 cm");
+            b19.requestFocus();
             return false;
         } else {
             b19.setError(null);
@@ -983,6 +1030,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b20), Toast.LENGTH_SHORT).show();
             b20.setError("This data is Required!");
             Log.i(TAG, "b20: This Data is Required!");
+            b20.requestFocus();
             return false;
         } else {
             b20.setError(null);
@@ -993,6 +1041,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b21), Toast.LENGTH_SHORT).show();
             b21.setError("This data is Required!");
             Log.i(TAG, "b21: This Data is Required!");
+            b21.requestFocus();
             return false;
         } else {
             b21.setError(null);
@@ -1004,6 +1053,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
             b2201.setError("This data is Required!");
             Log.i(TAG, "b2201: This data is Required!");
+            b2201.requestFocus();
             return false;
         } else {
             b2201.setError(null);
@@ -1012,6 +1062,7 @@ public class BaselineActvity extends AppCompatActivity
                 Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
                 b2201.setError("Invalid: Range 50 - 150");
                 Log.i(TAG, "b2202: Invalid Range 50 - 150");
+                b2201.requestFocus();
                 return false;
             } else {
                 b2201.setError(null);
@@ -1024,6 +1075,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(empty): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
             b2202.setError("This data is Required!");
             Log.i(TAG, "b2202: This data is Required!");
+            b2202.requestFocus();
             return false;
         } else {
             b2202.setError(null);
@@ -1032,6 +1084,7 @@ public class BaselineActvity extends AppCompatActivity
                 Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
                 b2202.setError("Invalid: Range 50 - 150");
                 Log.i(TAG, "b2202: Invalid Range 50 - 150");
+                b2202.requestFocus();
                 return false;
             } else {
                 b2202.setError(null);
@@ -1043,6 +1096,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b23), Toast.LENGTH_SHORT).show();
             b2302.setError("This data is Required!");
             Log.i(TAG, "b23: This Data is Required!");
+            b2302.requestFocus();
             return false;
         } else {
             b2302.setError(null);
@@ -1053,6 +1107,9 @@ public class BaselineActvity extends AppCompatActivity
                 Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2301), Toast.LENGTH_SHORT).show();
                 b23t102.setError("This data is Required!");
                 Log.i(TAG, "b23t1: This Data is Required!");
+                b23t102.setFocusable(true);
+                b23t102.setFocusableInTouchMode(true);
+                b23t102.requestFocus();
                 return false;
             } else {
                 b23t102.setError(null);
@@ -1062,6 +1119,9 @@ public class BaselineActvity extends AppCompatActivity
                 Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2302), Toast.LENGTH_SHORT).show();
                 b23t202.setError("This data is Required!");
                 Log.i(TAG, "b23t2: This Data is Required!");
+                b23t202.setFocusable(true);
+                b23t202.setFocusableInTouchMode(true);
+                b23t202.requestFocus();
                 return false;
             } else {
                 b23t202.setError(null);
@@ -1073,6 +1133,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2401), Toast.LENGTH_SHORT).show();
             b240102.setError("This data is Required!");
             Log.i(TAG, "b2401: This Data is Required!");
+            b240102.setFocusable(true);
+            b240102.setFocusableInTouchMode(true);
+            b240102.requestFocus();
             return false;
         } else {
             b240102.setError(null);
@@ -1086,6 +1149,7 @@ public class BaselineActvity extends AppCompatActivity
                 Toast.makeText(this, "ERROR(empty): " + getString(R.string.b25), Toast.LENGTH_LONG).show();
                 b2516.setError("This data is Required!");    // Set Error on last check box
                 Log.i(TAG, "b2516: This data is Required!");
+                b2516.requestFocus();
                 return false;
             } else {
                 b2516.setError(null);
@@ -1097,6 +1161,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other), Toast.LENGTH_SHORT).show();
             b248802.setError("This data is Required!");
             Log.i(TAG, "b2488: This Data is Required!");
+            b248802.setFocusable(true);
+            b248802.setFocusableInTouchMode(true);
+            b248802.requestFocus();
             return false;
         } else {
             b248802.setError(null);
@@ -1107,6 +1174,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other) + " - " + getString(R.string.b248801r), Toast.LENGTH_SHORT).show();
             b248801r.setError("This data is Required!");
             Log.i(TAG, "b2403r: This Data is Required!");
+            b248801r.requestFocus();
             return false;
         } else {
             b248801r.setError(null);
@@ -1118,6 +1186,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601), Toast.LENGTH_SHORT).show();
             b260102.setError("This data is Required!");
             Log.i(TAG, "b2601: This Data is Required!");
+            b260102.setFocusable(true);
+            b260102.setFocusableInTouchMode(true);
+            b260102.requestFocus();
             return false;
         } else {
             b260102.setError(null);
@@ -1128,6 +1199,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
             b260102r.setError("This data is Required!");
             Log.i(TAG, "b2601r: This Data is Required!");
+            b260102.setFocusable(true);
+            b260102.setFocusableInTouchMode(true);
+            b260102.requestFocus();
             return false;
         } else {
             b260102r.setError(null);
@@ -1138,6 +1212,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602), Toast.LENGTH_SHORT).show();
             b260202.setError("This data is Required!");
             Log.i(TAG, "b2602: This Data is Required!");
+            b260202.setFocusable(true);
+            b260202.setFocusableInTouchMode(true);
+            b260202.requestFocus();
             return false;
         } else {
             b260202.setError(null);
@@ -1148,6 +1225,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
             b260202r.setError("This data is Required!");
             Log.i(TAG, "b2602r: This Data is Required!");
+            b260202r.requestFocus();
             return false;
         } else {
             b260202r.setError(null);
@@ -1158,6 +1236,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603), Toast.LENGTH_SHORT).show();
             b260302.setError("This data is Required!");
             Log.i(TAG, "b2603: This Data is Required!");
+            b260302.setFocusable(true);
+            b260302.setFocusableInTouchMode(true);
+            b260302.requestFocus();
             return false;
         } else {
             b260302.setError(null);
@@ -1168,6 +1249,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
             b260302r.setError("This data is Required!");
             Log.i(TAG, "b2603r: This Data is Required!");
+            b260302.setFocusable(true);
+            b260302.setFocusableInTouchMode(true);
+            b260302.requestFocus();
             return false;
         } else {
             b260302r.setError(null);
@@ -1178,6 +1262,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701), Toast.LENGTH_SHORT).show();
             b270102.setError("This data is Required!");
             Log.i(TAG, "b2701: This Data is Required!");
+            b270102.setFocusable(true);
+            b270102.setFocusableInTouchMode(true);
+            b270102.requestFocus();
             return false;
         } else {
             b270102.setError(null);
@@ -1188,6 +1275,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
             b270102r.setError("This data is Required!");
             Log.i(TAG, "b2701r: This Data is Required!");
+            b270102r.requestFocus();
             return false;
         } else {
             b270102r.setError(null);
@@ -1198,6 +1286,9 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702), Toast.LENGTH_SHORT).show();
             b270202.setError("This data is Required!");
             Log.i(TAG, "b2702: This Data is Required!");
+            b270202.setFocusable(true);
+            b270202.setFocusableInTouchMode(true);
+            b270202.requestFocus();
             return false;
         } else {
             b270202.setError(null);
@@ -1208,6 +1299,7 @@ public class BaselineActvity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
             b270202r.setError("This data is Required!");
             Log.i(TAG, "b2702r: This Data is Required!");
+            b270202r.requestFocus();
             return false;
         } else {
             b270202r.setError(null);

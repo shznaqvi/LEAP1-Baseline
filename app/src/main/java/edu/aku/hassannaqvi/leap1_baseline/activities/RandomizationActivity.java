@@ -20,8 +20,10 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.List;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
@@ -31,37 +33,21 @@ import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 import static android.content.ContentValues.TAG;
 
-public class RandomizationActivity extends AppCompatActivity
+public class RandomizationActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
 {
 
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
-    /*@BindView(R.id.sitenumber)
-    EditText sitenumber;
-    @BindView(R.id.mrnumber)
-    EditText mrnumber;
-    @BindView(R.id.r01)
-    EditText r01;
-    @BindView(R.id.r02)
-    RadioGroup r02;
-    @BindView(R.id.r0201)
-    RadioButton r0201;
-    @BindView(R.id.r0202)
-    RadioButton r0202;
-    @BindView(R.id.r03)
-    EditText r03;
-    @BindView(R.id.r04)
-    EditText r04;
-    @BindView(R.id.r0501)
-    EditText r0501;
-    @BindView(R.id.r0502)
-    EditText r0502;
-    @BindView(R.id.r0503)
-    EditText r0503;*/
+    @BindView(R.id.textView2)
+    TextView textView2;
     @BindView(R.id.r06)
     DatePickerInputEditText r06;
     @BindView(R.id.r07)
     EditText r07;
+    @BindView(R.id.fldGrpr08)
+    LinearLayout fldGrpr08;
+    @BindView(R.id.txtr08)
+    TextView txtr08;
     @BindView(R.id.r08)
     EditText r08;
     @BindView(R.id.r0901)
@@ -88,16 +74,70 @@ public class RandomizationActivity extends AppCompatActivity
     RadioButton r1202;
     @BindView(R.id.r16)
     EditText r16;
+    @BindView(R.id.mStudyID)
+    EditText mStudyID;
+    @BindView(R.id.r02)
+    RadioGroup r02;
+    @BindView(R.id.r0201)
+    RadioButton r0201;
+    @BindView(R.id.r0202)
+    RadioButton r0202;
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
-    @BindView(R.id.txtr08)
-    TextView txtr08;
-    @BindView(R.id.fldGrpr08)
-    LinearLayout fldGrpr08;
+    @BindView(R.id.fldGrpeligibility)
+    LinearLayout fldGrpeligibility;
 
+    @BindViews({R.id.r07, R.id.r0901, R.id.r0902})
+    List<EditText> listEditText;
+
+
+    @BindViews({R.id.r10, R.id.r11, R.id.r12})
+    List<RadioGroup> ListRadioGroup;
+    @BindViews({R.id.r1001, R.id.r1102, R.id.r1202})
+    List<RadioButton> ListEligibilityRadio;
+    TextWatcher myTextWatcher = new TextWatcher()
+    {
+        @Override
+        public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+        }
+
+        @Override
+        public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+            if (!r07.getText().toString().isEmpty()) {
+
+                if (Integer.valueOf(r07.getText().toString()) >= 70 && Integer.valueOf(r07.getText().toString()) <= 110) {
+                    fldGrpr08.setVisibility(View.VISIBLE);
+                } else if (Integer.valueOf(r07.getText().toString()) < 70 || Integer.valueOf(r07.getText().toString()) > 110) {
+                    fldGrpr08.setVisibility(View.GONE);
+                    r08.setText(null);
+                }
+
+                if (!r0901.getText().toString().isEmpty()) {
+                    if (isEligible() && Integer.valueOf(r07.getText().toString()) >= 70
+                            && Integer.valueOf(r07.getText().toString()) <= 115
+                            && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
+                        fldGrpeligibility.setVisibility(View.VISIBLE);
+                    } else {
+                        fldGrpeligibility.setVisibility(View.GONE);
+                    }
+
+                }
+
+            }
+        }
+
+        @Override
+        public void afterTextChanged(Editable s) {
+
+        }
+    };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_randomization);
         ButterKnife.bind(this);
@@ -106,8 +146,15 @@ public class RandomizationActivity extends AppCompatActivity
         r06.setManager(getSupportFragmentManager());
         r06.setMaxDate(maxDate18Years);
 
+        for (RadioGroup rg : ListRadioGroup) {
+            rg.setOnCheckedChangeListener(this);
+        }
 
-        r07.addTextChangedListener(new TextWatcher()
+        r07.addTextChangedListener(myTextWatcher);
+        r0901.addTextChangedListener(myTextWatcher);
+
+
+        /*r07.addTextChangedListener(new TextWatcher()
         {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -118,9 +165,9 @@ public class RandomizationActivity extends AppCompatActivity
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
                 if (!r07.getText().toString().isEmpty()) {
-                    if (Integer.valueOf(r07.getText().toString()) >= 110 && Integer.valueOf(r07.getText().toString()) < 115) {
+                    if (Integer.valueOf(r07.getText().toString()) >= 70 && Integer.valueOf(r07.getText().toString()) <= 110) {
                         fldGrpr08.setVisibility(View.VISIBLE);
-                    } else if (Integer.valueOf(r07.getText().toString()) < 110) {
+                    } else if (Integer.valueOf(r07.getText().toString()) < 70 || Integer.valueOf(r07.getText().toString()) > 110) {
                         fldGrpr08.setVisibility(View.GONE);
                         r08.setText(null);
                     }
@@ -134,7 +181,7 @@ public class RandomizationActivity extends AppCompatActivity
             }
         });
 
-
+*/
     }
 
     @OnClick(R.id.btnNext)
@@ -151,8 +198,18 @@ public class RandomizationActivity extends AppCompatActivity
 
                 finish();
 
-                Intent EndingActivity = new Intent(this, BaselineActvity.class);
-                startActivity(EndingActivity);
+
+                if (isEligible() && Integer.valueOf(r07.getText().toString()) >= 70
+                        || Integer.valueOf(r07.getText().toString()) <= 115
+                        && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
+                    Intent EndingActivity = new Intent(this, BaselineActvity.class);
+                    startActivity(EndingActivity);
+                } else {
+                    Intent endSec = new Intent(this, EndingActivity.class);
+                    endSec.putExtra("check", true);
+                    startActivity(endSec);
+                }
+
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -160,15 +217,13 @@ public class RandomizationActivity extends AppCompatActivity
         }
 
 
-
     }
-
 
     @OnClick(R.id.btnEnd)
     void onBtnEndClick() {
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 
-        if (ValidateForm()) {
+        /*if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -183,7 +238,11 @@ public class RandomizationActivity extends AppCompatActivity
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
+
+        AppMain.endActivity(this, this);
+
+
     }
 
     private boolean UpdateDB() {
@@ -202,14 +261,15 @@ public class RandomizationActivity extends AppCompatActivity
 
     }
 
-
-
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
 
+        AppMain.fc.setmStudyID(mStudyID.getText().toString());
+
         JSONObject sa = new JSONObject();
 
-
+        sa.put("studyID", mStudyID.getText().toString());
+        sa.put("r02", r0201.isChecked() ? "A" : r0202.isChecked() ? "B" : "0");
         sa.put("r06", r06.getText().toString());
         sa.put("r07", r07.getText().toString());
         sa.put("r08", r08.getText().toString());
@@ -218,6 +278,7 @@ public class RandomizationActivity extends AppCompatActivity
         sa.put("r10", r1001.isChecked() ? "1" : r1002.isChecked() ? "2" : "0");
         sa.put("r11", r1101.isChecked() ? "1" : r1102.isChecked() ? "2" : "0");
         sa.put("r12", r1201.isChecked() ? "1" : r1202.isChecked() ? "2" : "0");
+
 
         AppMain.fc.setsRandomization(String.valueOf(sa));
 
@@ -232,6 +293,7 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r06), Toast.LENGTH_SHORT).show();
             r06.setError("This data is required");
             Log.d(TAG, " r06 :empty ");
+            r06.requestFocus();
             return false;
         } else {
             r06.setError(null);
@@ -241,37 +303,41 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r07), Toast.LENGTH_SHORT).show();
             r07.setError("This data is required");
             Log.d(TAG, " r07 :empty ");
+            r07.requestFocus();
             return false;
         } else {
             r07.setError(null);
         }
 
-        if ((Integer.valueOf(r07.getText().toString().isEmpty() ? "0" : r07.getText().toString()) < 70)
-                || (Integer.valueOf(r07.getText().toString().isEmpty() ? "0" : r07.getText().toString()) > 115)) {
+        if ((Integer.valueOf(r07.getText().toString().isEmpty() ? "0" : r07.getText().toString()) < 40)
+                || (Integer.valueOf(r07.getText().toString().isEmpty() ? "0" : r07.getText().toString()) > 180)) {
             Toast.makeText(this, "ERROR: " + getString(R.string.r07), Toast.LENGTH_LONG).show();
-            r07.setError("Range is 70 g/L - 110 g/L ");
-            Log.d(TAG, "r07: Range is 70 g/L - 110 g/L days");
+            r07.setError("Range is 40 g/L - 180 g/L ");
+            Log.d(TAG, "r07: Range is 40 g/L - 180 g/L days");
+            r07.requestFocus();
             return false;
         } else {
             r07.setError(null);
         }
 
 
-        if (Integer.valueOf(r07.getText().toString()) >= 110 && Integer.valueOf(r07.getText().toString()) < 115) {
+        if (Integer.valueOf(r07.getText().toString()) >= 70 && Integer.valueOf(r07.getText().toString()) <= 110) {
             // =================== Q8 ====================
             if (r08.getText().toString().isEmpty()) {
                 Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r08), Toast.LENGTH_SHORT).show();
                 r08.setError("This data is required");
                 Log.d(TAG, " r08 :empty ");
+                r08.requestFocus();
                 return false;
             } else {
                 r08.setError(null);
             }
 
-            if (Integer.valueOf(r08.getText().toString()) < 0 || Integer.valueOf(r08.getText().toString()) > 15) {
+            if (Integer.valueOf(r08.getText().toString()) < 0 || Integer.valueOf(r08.getText().toString()) > 20) {
                 Toast.makeText(this, "ERROR: " + getString(R.string.r08), Toast.LENGTH_LONG).show();
-                r08.setError("Range is 0 - 15 ug/L");
-                Log.d(TAG, "r08: Range is 0 - 15 ug/L");
+                r08.setError("Range is 0 - 20 ug/L");
+                Log.d(TAG, "r08: Range is 0 - 20 ug/L");
+                r08.requestFocus();
                 return false;
             } else {
                 r08.setError(null);
@@ -284,26 +350,28 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r09) + getString(R.string.r0901), Toast.LENGTH_SHORT).show();
             r0901.setError("This data is required");
             Log.d(TAG, "r0901 :empty  ");
+            r0901.requestFocus();
             return false;
         } else {
             r0901.setError(null);
         }
 
-        if ((Integer.valueOf(r0901.getText().toString()) < 12) || (Integer.valueOf(r0901.getText().toString()) > 26)) {
-            if (Integer.valueOf(r0901.getText().toString()) == 0) {
-                r0901.setError(null);
-            } else {
-                Toast.makeText(this, "ERROR: " + getString(R.string.r09) + getString(R.string.r0901), Toast.LENGTH_LONG).show();
-                r0901.setError("Range is 12-26 weeks");
-                Log.d(TAG, "r0901: Range is 12-26 weeks");
-                return false;
-            }
+        if (Integer.valueOf(r0901.getText().toString()) < 4 || Integer.valueOf(r0901.getText().toString()) > 40) {
+            Toast.makeText(this, "ERROR: " + getString(R.string.r09) + getString(R.string.r0901), Toast.LENGTH_LONG).show();
+            r0901.setError("Range is 4-40 weeks");
+            Log.d(TAG, "r0901: Range is 4-40 weeks");
+            r0901.requestFocus();
+            return false;
+        } else {
+            r0901.setError(null);
         }
+
 
         if (r0902.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r09) + getString(R.string.r0902), Toast.LENGTH_SHORT).show();
             r0902.setError("This data is required");
             Log.d(TAG, "r0902 :empty  ");
+            r0902.requestFocus();
             return false;
         } else {
             r0902.setError(null);
@@ -313,6 +381,7 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR: " + getString(R.string.r09) + getString(R.string.r0902), Toast.LENGTH_LONG).show();
             r0902.setError("Range is 0-6 days");
             Log.d(TAG, "r0902: Range is 0-6 days");
+            r0902.requestFocus();
             return false;
         } else {
             r0902.setError(null);
@@ -324,6 +393,9 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r10), Toast.LENGTH_SHORT).show();
             r1002.setError("This Data is required");
             Log.d(TAG, " r10 : not selected ");
+            r1002.setFocusable(true);
+            r1002.setFocusableInTouchMode(true);
+            r1002.requestFocus();
             return false;
         } else {
             r1002.setError(null);
@@ -334,6 +406,9 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r11), Toast.LENGTH_SHORT).show();
             r1102.setError("This Data is required");
             Log.d(TAG, " r11 : not selected ");
+            r1102.setFocusable(true);
+            r1102.setFocusableInTouchMode(true);
+            r1102.requestFocus();
             return false;
         } else {
             r1102.setError(null);
@@ -344,6 +419,9 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r12), Toast.LENGTH_SHORT).show();
             r1202.setError("This Data is required");
             Log.d(TAG, " r12 : not selected ");
+            r1202.setFocusable(true);
+            r1202.setFocusableInTouchMode(true);
+            r1202.requestFocus();
             return false;
         } else {
             r1202.setError(null);
@@ -354,14 +432,72 @@ public class RandomizationActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r16), Toast.LENGTH_SHORT).show();
             r16.setError("This data is required");
             Log.d(TAG, " r16 :empty ");
+            r16.requestFocus();
             return false;
         } else {
             r16.setError(null);
+        }
+
+        if (isEligible() && Integer.valueOf(r07.getText().toString()) >= 70
+                && Integer.valueOf(r07.getText().toString()) <= 115
+                && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
+            if (mStudyID.getText().toString().isEmpty()) {
+                Toast.makeText(this, "ERROR (Empty)" + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
+                mStudyID.setError("This data is required");
+                Log.i(TAG, "studyNumber: This data is required");
+                mStudyID.requestFocus();
+                return false;
+            } else {
+                mStudyID.setError(null);
+            }
+
+            if (r02.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r02), Toast.LENGTH_SHORT).show();
+                r0201.setError("This data is required");
+                Log.i(TAG, "r02: This data is required ");
+                r0201.setFocusable(true);
+                r0201.setFocusableInTouchMode(true);
+                r0201.requestFocus();
+                return false;
+            } else {
+                r0201.setError(null);
+            }
         }
 
 
         return true;
     }
 
+    public boolean isEligible() {
+
+        int i = 0;
+        for (RadioButton rg : ListEligibilityRadio) {
+            if (rg.isChecked()) {
+                i++;
+            }
+
+        }
+
+
+        // Show answer here
+        return i == ListEligibilityRadio.size();
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+        if (isEligible()) {
+            fldGrpeligibility.setVisibility(View.VISIBLE);
+        } else {
+            fldGrpeligibility.setVisibility(View.GONE);
+            mStudyID.setText(null);
+            r02.clearCheck();
+        }
+
+
+    }
+
 
 }
+
+

@@ -1,6 +1,9 @@
+
 package edu.aku.hassannaqvi.leap1_baseline.core;
 
-//all required import files
+/**
+ * Created by hassan.naqvi on 11/30/2016.
+ */
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -210,13 +213,13 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
 
                     tvmessage.setBackgroundColor(Color.parseColor("#2ecc71"));
                     if (c4 != null) {
-                        tvmessage.setText("Queru Executed successfully.Number of rows returned :" + c4.getCount());
+                        tvmessage.setText("Query Executed successfully.Number of rows returned :" + c4.getCount());
                         if (c4.getCount() > 0) {
                             indexInfo.maincursor = c4;
                             refreshTable(1);
                         }
                     } else {
-                        tvmessage.setText("Queru Executed successfully");
+                        tvmessage.setText("Query Executed successfully");
                         refreshTable(1);
                     }
 
@@ -1205,3 +1208,4 @@ public class AndroidDatabaseManager extends Activity implements OnItemClickListe
     }
 
 }
+

@@ -1,7 +1,11 @@
 package edu.aku.hassannaqvi.leap1_baseline.core;
 
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Application;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.location.Location;
@@ -19,6 +23,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Map;
 
+import edu.aku.hassannaqvi.leap1_baseline.activities.EndingActivity;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 
 
@@ -81,6 +86,8 @@ public class AppMain extends Application {
     public static long installedOn;
     public static Integer versionCode;
     public static String versionName;
+    public static int sf = 0;
+    public static int aq = 0;
     protected LocationManager locationManager;
     Location location;
 
@@ -96,6 +103,34 @@ public class AppMain extends Application {
             e.printStackTrace();
         }
         return calendar;
+    }
+
+    public static void endActivity(final Context context, final Activity activity) {
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                context);
+        alertDialogBuilder
+                .setMessage("Do you want to Exit??")
+                .setCancelable(false)
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener()
+                        {
+                            public void onClick(DialogInterface dialog,
+                                                int id) {
+                                activity.finish();
+                                Intent end_intent = new Intent(context, EndingActivity.class);
+                                end_intent.putExtra("check", false);
+                                context.startActivity(end_intent);
+                            }
+                        });
+        alertDialogBuilder.setNegativeButton("No",
+                new DialogInterface.OnClickListener()
+                {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alert = alertDialogBuilder.create();
+        alert.show();
     }
 
     @Override

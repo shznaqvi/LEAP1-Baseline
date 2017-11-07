@@ -1,11 +1,8 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -177,6 +174,8 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_health_survey_scoring);
         ButterKnife.bind(this);
+        studyID.setText(AppMain.fc.getmStudyID());
+        studyID.setEnabled(false);
     }
 
     @OnClick(R.id.btnNext)
@@ -192,8 +191,16 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
                 finish();
 
-                startActivity(new Intent(this, DataCollectionActivity.class));
-                startActivity(new Intent(this, MainActivity.class));
+
+                if (AppMain.aq == 1) {
+                    startActivity(new Intent(this, DataCollectionActivity.class));
+                } else {
+                    Intent endSec = new Intent(this, EndingActivity.class);
+                    endSec.putExtra("check", true);
+                    startActivity(endSec);
+                }
+
+
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -208,7 +215,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     void onBtnEndClick() {
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 
-        if (ValidateForm()) {
+        /*if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -222,7 +229,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
+
+        AppMain.endActivity(this, this);
     }
 
     private boolean UpdateDB() {
@@ -245,18 +254,6 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
 
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
-
-       /* AppMain.fc = new FormsContract();
-
-        AppMain.fc.setUsername(AppMain.username);
-        AppMain.fc.setDevicetagID(sharedPref.getString("tagName", null));
-        AppMain.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        AppMain.fc.setFormDate((DateFormat.format("dd-MM-yyyy HH:mm", new Date())).toString());
-        //MainApp.fc.setTagId(sharedPref.getString("tagName", ""));
-*/
-        //      AppMain.fc.setStudyID(studyID.getText().toString());
 
         JSONObject sa = new JSONObject();
         sa.put("sf01", sf01a.isChecked() ? "1" : sf01b.isChecked() ? "2" : sf01c.isChecked() ? "3" : sf01d.isChecked() ? "4" : sf01e.isChecked() ? "5" : "0");
@@ -273,8 +270,6 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         sa.put("sf07", sf07a.isChecked() ? "1" : sf07b.isChecked() ? "2" : sf07c.isChecked() ? "3" : sf07d.isChecked() ? "4" : sf07e.isChecked() ? "5" : "0");
 
 
-        setGPS();
-
         AppMain.fc.setsSF(String.valueOf(sa));
 
 
@@ -282,38 +277,6 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     }
 
 
-    public void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
-
-//        String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
-            String dt = GPSPref.getString("Time", "0");
-
-            if (lat == "0" && lang == "0") {
-                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-            AppMain.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
-            AppMain.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
-            AppMain.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
-//            AppMain.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            //AppMain.fc.setGpsDT(date); // Timestamp is converted to date above
-
-            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
 
     public boolean ValidateForm() {
 
@@ -322,6 +285,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf01), Toast.LENGTH_SHORT).show();
             sf01e.setError("this data is required");
             Log.d(TAG, "sf01 : not selected ");
+            sf01e.setFocusable(true);
+            sf01e.setFocusableInTouchMode(true);
+            sf01e.requestFocus();
             return false;
         } else {
             sf01e.setError(null);
@@ -332,6 +298,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf02a), Toast.LENGTH_SHORT).show();
             sf02ac.setError("this data is required");
             Log.d(TAG, "sf02a : not selected ");
+            sf02ac.setFocusable(true);
+            sf02ac.setFocusableInTouchMode(true);
+            sf02ac.requestFocus();
             return false;
         } else {
             sf02ac.setError(null);
@@ -342,6 +311,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf02b), Toast.LENGTH_SHORT).show();
             sf02bc.setError("this data is required");
             Log.d(TAG, "sf02b : not selected ");
+            sf02bc.setFocusable(true);
+            sf02bc.setFocusableInTouchMode(true);
+            sf02bc.requestFocus();
             return false;
         } else {
             sf02bc.setError(null);
@@ -352,6 +324,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf03a), Toast.LENGTH_SHORT).show();
             sf03ae.setError("this data is required");
             Log.d(TAG, "sf03a : not selected ");
+            sf03ae.setFocusable(true);
+            sf03ae.setFocusableInTouchMode(true);
+            sf03ae.requestFocus();
             return false;
         } else {
             sf03ae.setError(null);
@@ -362,6 +337,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf03b), Toast.LENGTH_SHORT).show();
             sf03be.setError("this data is required");
             Log.d(TAG, "sf03b : not selected ");
+            sf03be.setFocusable(true);
+            sf03be.setFocusableInTouchMode(true);
+            sf03be.requestFocus();
             return false;
         } else {
             sf03be.setError(null);
@@ -372,6 +350,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf04a), Toast.LENGTH_SHORT).show();
             sf04ae.setError("this data is required");
             Log.d(TAG, "sf04a : not selected ");
+            sf04ae.setFocusable(true);
+            sf04ae.setFocusableInTouchMode(true);
+            sf04ae.requestFocus();
             return false;
         } else {
             sf04ae.setError(null);
@@ -383,6 +364,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf04b), Toast.LENGTH_SHORT).show();
             sf04be.setError("this data is required");
             Log.d(TAG, "sf04b : not selected ");
+            sf04be.setFocusable(true);
+            sf04be.setFocusableInTouchMode(true);
+            sf04be.requestFocus();
             return false;
         } else {
             sf04be.setError(null);
@@ -393,6 +377,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf05), Toast.LENGTH_SHORT).show();
             sf05e.setError("this data is required");
             Log.d(TAG, "sf05 : not selected ");
+            sf05e.setFocusable(true);
+            sf05e.setFocusableInTouchMode(true);
+            sf05e.requestFocus();
             return false;
         } else {
             sf05e.setError(null);
@@ -403,6 +390,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf06a), Toast.LENGTH_SHORT).show();
             sf06ae.setError("this data is required");
             Log.d(TAG, "sf06a : not selected ");
+            sf06ae.setFocusable(true);
+            sf06ae.setFocusableInTouchMode(true);
+            sf06ae.requestFocus();
             return false;
         } else {
             sf06ae.setError(null);
@@ -413,6 +403,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf06b), Toast.LENGTH_SHORT).show();
             sf06be.setError("this data is required");
             Log.d(TAG, "sf06b : not selected ");
+            sf06be.setFocusable(true);
+            sf06be.setFocusableInTouchMode(true);
+            sf06be.requestFocus();
             return false;
         } else {
             sf06be.setError(null);
@@ -423,6 +416,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf06c), Toast.LENGTH_SHORT).show();
             sf06ce.setError("this data is required");
             Log.d(TAG, "sf06c : not selected ");
+            sf06ce.setFocusable(true);
+            sf06ce.setFocusableInTouchMode(true);
+            sf06ce.requestFocus();
             return false;
         } else {
             sf06ce.setError(null);
@@ -433,6 +429,9 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.sf07), Toast.LENGTH_SHORT).show();
             sf07e.setError("this data is required");
             Log.d(TAG, "sf07 : not selected ");
+            sf07e.setFocusable(true);
+            sf07e.setFocusableInTouchMode(true);
+            sf07e.requestFocus();
             return false;
         } else {
             sf07e.setError(null);

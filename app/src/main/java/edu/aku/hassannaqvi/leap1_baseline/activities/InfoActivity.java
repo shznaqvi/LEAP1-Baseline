@@ -9,8 +9,6 @@ import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -41,20 +39,8 @@ public class InfoActivity extends Activity
     EditText sitenumber;
     @BindView(R.id.mrnumber)
     EditText mrnumber;
-    @BindView(R.id.mStudyID)
-    EditText mStudyID;
-    /*@BindView(R.id.r13)
-    DatePickerInputEditText r13;*/
-    /*@BindView(R.id.hospitalID)
-    EditText hospitalID;*/
     @BindView(R.id.r01)
     EditText r01;
-    @BindView(R.id.r02)
-    RadioGroup r02;
-    @BindView(R.id.r0201)
-    RadioButton r0201;
-    @BindView(R.id.r0202)
-    RadioButton r0202;
     @BindView(R.id.r03)
     EditText r03;
     @BindView(R.id.textView)
@@ -69,6 +55,7 @@ public class InfoActivity extends Activity
     EditText r0503;
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
+
 
 
     @Override
@@ -166,12 +153,12 @@ public class InfoActivity extends Activity
         AppMain.fc.setFormType(AppMain.formType);
         AppMain.fc.setSiteNum(sitenumber.getText().toString());
         AppMain.fc.setMrNum(mrnumber.getText().toString());
-        AppMain.fc.setmStudyID(mStudyID.getText().toString());
+
         AppMain.fc.setParticipantName(r01.getText().toString());
 
         JSONObject sa = new JSONObject();
 
-        sa.put("r02", r0201.isChecked() ? "A" : r0202.isChecked() ? "B" : "0");
+
         sa.put("r03", r03.getText().toString());
         sa.put("r04", r04.getText().toString());
         sa.put("r0501", r0501.getText().toString());
@@ -192,6 +179,7 @@ public class InfoActivity extends Activity
         if (sitenumber.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.siteNumber), Toast.LENGTH_SHORT).show();
             sitenumber.setError("This data is Required!");
+            sitenumber.requestFocus();
             Log.i(TAG, "sitenumber: This Data is Required!");
             return false;
         } else {
@@ -203,19 +191,13 @@ public class InfoActivity extends Activity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mrnumber), Toast.LENGTH_SHORT).show();
             mrnumber.setError("Thia data is required");
             Log.d(TAG, "mrnumber: This data is required ");
+            mrnumber.requestFocus();
             return false;
         } else {
             mrnumber.setError(null);
         }
 
-        if (mStudyID.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR (Empty)" + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
-            mStudyID.setError("This data is required");
-            Log.i(TAG, "studyNumber: This data is required");
-            return false;
-        } else {
-            mStudyID.setError(null);
-        }
+
 
         /*if (r13.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r13), Toast.LENGTH_SHORT).show();
@@ -239,24 +221,19 @@ public class InfoActivity extends Activity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r01), Toast.LENGTH_SHORT).show();
             r01.setError("This data is required");
             Log.i(TAG, "r01: This data is required");
+            r01.requestFocus();
             return false;
         } else {
             r01.setError(null);
         }
 
-        if (r02.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r02), Toast.LENGTH_SHORT).show();
-            r0201.setError("This data is required");
-            Log.i(TAG, "AQ07: This data is required ");
-            return false;
-        } else {
-            r0201.setError(null);
-        }
+
 
         if (r03.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r03), Toast.LENGTH_SHORT).show();
             r03.setError("This data is required");
             Log.i(TAG, "r03: this data is required");
+            r03.requestFocus();
             return false;
         } else {
             r03.setError(null);
@@ -266,6 +243,7 @@ public class InfoActivity extends Activity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r04), Toast.LENGTH_SHORT).show();
             r04.setError("This data is required");
             Log.i(TAG, "r04: this data is required ");
+            r04.requestFocus();
             return false;
         } else {
             r04.setError(null);
@@ -275,6 +253,7 @@ public class InfoActivity extends Activity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r0501), Toast.LENGTH_SHORT).show();
             r0501.setError("this data is required");
             Log.i(TAG, "r0501: This data is required ");
+            r0501.requestFocus();
             return false;
         } else {
             r0501.setError(null);
@@ -302,12 +281,12 @@ public class InfoActivity extends Activity
 
             String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
 
-           /* MainApp.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
-            MainApp.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
-            MainApp.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
-//            AppMain.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            MainApp.fc.setGpsDT(date); // Timestamp is converted to date above
-*/
+            AppMain.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
+            AppMain.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
+            AppMain.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
+            AppMain.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
+            //AppMain.fc.setG(date); // Timestamp is converted to date above
+
             Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
 
         } catch (Exception e) {

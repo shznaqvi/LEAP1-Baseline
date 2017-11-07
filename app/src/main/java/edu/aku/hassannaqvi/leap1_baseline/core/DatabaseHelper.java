@@ -122,7 +122,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // Create a new map of values, where column names are the keys
         ContentValues values = new ContentValues();
         values.put(formsTable.COLUMN_PROJECTNAME, fc.getProjectName());
-        values.put(formsTable.COLUMN_ID, fc.getID());
         values.put(formsTable.COLUMN_UID, fc.getUID());
         values.put(formsTable.COLUMN_USERNAME, fc.getUserName());
         values.put(formsTable.COLUMN_FORMDATE, fc.getFormDate());
@@ -395,6 +394,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(formsTable.COLUMN_SBASELINE, AppMain.fc.getsBaseline());
+        values.put(formsTable.COLUMN_MSTUDYID, AppMain.fc.getmStudyID());
 
 
 // Which row to update, based on the ID
@@ -488,7 +488,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         // New value for one column
         ContentValues values = new ContentValues();
-//        values.put(singleForm.COLUMN_MNA7, AppMain.fc.getiStatus());
+        values.put(formsTable.COLUMN_ISTATUS, AppMain.fc.getiStatus());
 
 
         // Which row to update, based on the ID

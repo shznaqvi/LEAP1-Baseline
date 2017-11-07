@@ -26,7 +26,7 @@
             android:layout_margin="5dp"
             android:background="@color/colorMainHeading"
             android:gravity="center"
-            android:text="@string/randomization"
+            android:text="IDENTIFCATION"
             android:textSize="30sp"/>
 
         <View
@@ -34,18 +34,7 @@
             android:layout_height="2dp"
             android:background="@color/colorPrimary"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="5dp"
-            android:layout_marginTop="16dp"
-            android:background="@color/colorHeading"
-            android:text="Identification"
-            android:textAlignment="center"
-            android:textColor="@android:color/black"
-            android:textSize="30sp"
-            android:textStyle="bold"
-            tools:typeface="serif"/>
+
 
         <TextView
             android:layout_width="match_parent"
@@ -86,23 +75,6 @@
             android:inputType="number"
             android:maxLength="10"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="right"
-            android:text="@string/studyID"/>
-
-
-        <EditText
-            android:id="@+id/mStudyID"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:gravity="right"
-            android:hint="@string/studyID"
-            android:inputType="number"
-            android:maxLength="10"/>
 
         <!--<TextView
             android:layout_width="match_parent"
@@ -156,38 +128,6 @@
             android:gravity="right"
             android:hint="@string/r01"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="right"
-            android:text="@string/r02"/>
-
-        <RadioGroup
-            android:id="@+id/r02"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <RadioButton
-                android:id="@+id/r0201"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/r0201"/>
-
-            <RadioButton
-                android:id="@+id/r0202"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="1dp"
-                android:layout_weight="1"
-                android:gravity="right"
-                android:text="@string/r0202"/>
-
-        </RadioGroup>
 
         <TextView
             android:layout_width="match_parent"
@@ -270,16 +210,6 @@
             android:paddingTop="32dp"
             android:visibility="visible">
 
-            <Button
-                android:id="@+id/btnNext"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="4dp"
-                android:layout_weight="1"
-                android:onClick="submitSecA"
-                android:text="@string/nextSection"
-                android:textColor="@color/colorTextBtnContinue"
-                android:textSize="24sp"/>
 
             <Button
                 android:id="@+id/btnEnd"
@@ -291,7 +221,19 @@
                 android:text="@string/endForm"
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="24sp"
-                android:textStyle="bold"/>
+                android:textStyle="bold"
+                android:visibility="gone"/>
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="4dp"
+                android:layout_weight="1"
+                android:onClick="submitSecA"
+                android:text="@string/nextSection"
+                android:textColor="@color/colorTextBtnContinue"
+                android:textSize="24sp"/>
 
         </LinearLayout>
 

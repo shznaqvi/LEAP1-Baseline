@@ -1,11 +1,8 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -462,6 +459,9 @@ public class DataCollectionActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_collection);
         ButterKnife.bind(this);
+
+        studyID.setText(AppMain.fc.getmStudyID());
+        studyID.setEnabled(false);
     }
 
     @OnClick(R.id.btnNext)
@@ -473,13 +473,14 @@ public class DataCollectionActivity extends AppCompatActivity
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
 
                 finish();
 
 
-                startActivity(new Intent(this, MainActivity.class));
-
+                Toast.makeText(this, "Starting Form Ending Section", Toast.LENGTH_SHORT).show();
+                Intent endSec = new Intent(this, EndingActivity.class);
+                endSec.putExtra("check", true);
+                startActivity(endSec);
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
@@ -492,7 +493,7 @@ public class DataCollectionActivity extends AppCompatActivity
 
         Toast.makeText(this, "Processing This Section", Toast.LENGTH_SHORT).show();
 
-        if (ValidateForm()) {
+        /*if (ValidateForm()) {
             try {
                 SaveDraft();
             } catch (JSONException e) {
@@ -506,7 +507,9 @@ public class DataCollectionActivity extends AppCompatActivity
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
-        }
+        }*/
+
+        AppMain.endActivity(this, this);
     }
 
     private boolean UpdateDB() {
@@ -528,19 +531,7 @@ public class DataCollectionActivity extends AppCompatActivity
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
 
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
 
-       /* MainApp.fc = new FormsContract();
-
-        MainApp.fc.setUsername(MainApp.username);
-        MainApp.fc.setDevicetagID(sharedPref.getString("tagName", null));
-        MainApp.fc.setDeviceID(Settings.Secure.getString(getApplicationContext().getContentResolver(),
-                Settings.Secure.ANDROID_ID));
-        MainApp.fc.setFormDate((DateFormat.format("dd-MM-yyyy HH:mm", new Date())).toString());
-        //MainApp.fc.setTagId(sharedPref.getString("tagName", ""));
-
-        MainApp.fc.setStudyID(studyID.getText().toString());
-*/
         JSONObject sa = new JSONObject();
 
         sa.put("aQ01", aQ01a.isChecked() ? "1" : aQ01b.isChecked() ? "2" : aQ01c.isChecked() ? "3" : aQ01d.isChecked() ? "4" : aQ01e.isChecked() ? "5" : "0");
@@ -579,8 +570,6 @@ public class DataCollectionActivity extends AppCompatActivity
         sa.put("aQ34", aQ34a.isChecked() ? "1" : aQ34b.isChecked() ? "2" : aQ34c.isChecked() ? "3" : aQ34d.isChecked() ? "4" : aQ34e.isChecked() ? "5" : "0");
         sa.put("aQ35", aQ35a.isChecked() ? "1" : aQ35b.isChecked() ? "2" : aQ35c.isChecked() ? "3" : aQ35d.isChecked() ? "4" : aQ35e.isChecked() ? "5" : "0");
 
-        setGPS();
-
         AppMain.fc.setsAQ(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
@@ -593,6 +582,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.AQ01), Toast.LENGTH_SHORT).show();
             aQ01e.setError("This data is Required!");
             Log.i(TAG, "aQ01: This Data is Required!");
+            aQ01e.setFocusable(true);
+            aQ01e.setFocusableInTouchMode(true);
+            aQ01e.requestFocus();
             return false;
         } else {
             aQ01e.setError(null);
@@ -603,6 +595,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.AQ02), Toast.LENGTH_SHORT).show();
             aQ02e.setError("Thia data is required");
             Log.d(TAG, "AQ02: This data is required ");
+            aQ02e.setFocusable(true);
+            aQ02e.setFocusableInTouchMode(true);
+            aQ02e.requestFocus();
             return false;
         } else {
             aQ02e.setError(null);
@@ -612,6 +607,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ03), Toast.LENGTH_SHORT).show();
             aQ03f.setError("This data is required");
             Log.i(TAG, "AQ03: This data is required");
+            aQ03f.setFocusable(true);
+            aQ03f.setFocusableInTouchMode(true);
+            aQ03f.requestFocus();
             return false;
         } else {
             aQ03f.setError(null);
@@ -621,6 +619,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ04), Toast.LENGTH_SHORT).show();
             aQ04d.setError("This data is required");
             Log.i(TAG, "AQ04: This data is required ");
+            aQ04d.setFocusable(true);
+            aQ04d.setFocusableInTouchMode(true);
+            aQ04d.requestFocus();
             return false;
         } else {
             aQ04d.setError(null);
@@ -630,6 +631,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ05), Toast.LENGTH_SHORT).show();
             aQ05e.setError("This data is required");
             Log.i(TAG, "AQ05: This data is required ");
+            aQ05e.setFocusable(true);
+            aQ05e.setFocusableInTouchMode(true);
+            aQ05e.requestFocus();
             return false;
         } else {
             aQ05e.setError(null);
@@ -639,6 +643,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ06), Toast.LENGTH_SHORT).show();
             aQ06d.setError("This data is required");
             Log.i(TAG, "AQ06: This data is required");
+            aQ06d.setFocusable(true);
+            aQ06d.setFocusableInTouchMode(true);
+            aQ06d.requestFocus();
             return false;
         } else {
             aQ06d.setError(null);
@@ -648,6 +655,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ07), Toast.LENGTH_SHORT).show();
             aQ07e.setError("This data is required");
             Log.i(TAG, "AQ07: This data is required ");
+            aQ07e.setFocusable(true);
+            aQ07e.setFocusableInTouchMode(true);
+            aQ07e.requestFocus();
             return false;
         } else {
             aQ07e.setError(null);
@@ -657,6 +667,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ08), Toast.LENGTH_SHORT).show();
             aQ08e.setError("This data is required");
             Log.i(TAG, "AQ08: this data is required");
+            aQ08e.setFocusable(true);
+            aQ08e.setFocusableInTouchMode(true);
+            aQ08e.requestFocus();
             return false;
         } else {
             aQ08e.setError(null);
@@ -666,6 +679,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ09), Toast.LENGTH_SHORT).show();
             aQ09d.setError("This data is required");
             Log.i(TAG, "AQ09: this data is required ");
+            aQ09d.setFocusable(true);
+            aQ09d.setFocusableInTouchMode(true);
+            aQ09d.requestFocus();
             return false;
         } else {
             aQ09d.setError(null);
@@ -675,6 +691,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ10), Toast.LENGTH_SHORT).show();
             aQ10e.setError("this data is required");
             Log.i(TAG, "AQ10: This data is required ");
+            aQ10e.setFocusable(true);
+            aQ10e.setFocusableInTouchMode(true);
+            aQ10e.requestFocus();
             return false;
         } else {
             aQ10e.setError(null);
@@ -684,6 +703,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ11), Toast.LENGTH_SHORT).show();
             aQ11d.setError("This data is required");
             Log.i(TAG, "AQ11: this data is required ");
+            aQ11d.setFocusable(true);
+            aQ11d.setFocusableInTouchMode(true);
+            aQ11d.requestFocus();
             return false;
         } else {
             aQ11d.setError(null);
@@ -693,6 +715,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ12), Toast.LENGTH_SHORT).show();
             aQ12e.setError("This data is required");
             Log.i(TAG, "AQ12: this data is required ");
+            aQ12e.setFocusable(true);
+            aQ12e.setFocusableInTouchMode(true);
+            aQ12e.requestFocus();
             return false;
         } else {
             aQ12e.setError(null);
@@ -702,6 +727,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ13), Toast.LENGTH_SHORT).show();
             aQ13e.setError("This data is required");
             Log.i(TAG, "AQ13: this data is required ");
+            aQ13e.setFocusable(true);
+            aQ13e.setFocusableInTouchMode(true);
+            aQ13e.requestFocus();
             return false;
         } else {
             aQ13e.setError(null);
@@ -711,6 +739,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ14), Toast.LENGTH_SHORT).show();
             aQ14e.setError("this data is required");
             Log.i(TAG, "AQ14: this data is required ");
+            aQ14e.setFocusable(true);
+            aQ14e.setFocusableInTouchMode(true);
+            aQ14e.requestFocus();
             return false;
         } else {
             aQ14e.setError(null);
@@ -720,6 +751,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ15), Toast.LENGTH_SHORT).show();
             aQ15f.setError("this data is requied");
             Log.i(TAG, "AQ15: this data is required ");
+            aQ15f.setFocusable(true);
+            aQ15f.setFocusableInTouchMode(true);
+            aQ15f.requestFocus();
             return false;
         } else {
             aQ15f.setError(null);
@@ -729,6 +763,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ16), Toast.LENGTH_SHORT).show();
             aQ16e.setError("This data is required");
             Log.i(TAG, "AQ16: This data is required ");
+            aQ16e.setFocusable(true);
+            aQ16e.setFocusableInTouchMode(true);
+            aQ16e.requestFocus();
             return false;
         } else {
             aQ16e.setError(null);
@@ -738,6 +775,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ17), Toast.LENGTH_SHORT).show();
             aQ17e.setError("This data is required");
             Log.i(TAG, "AQ17: This data is required ");
+            aQ17e.setFocusable(true);
+            aQ17e.setFocusableInTouchMode(true);
+            aQ17e.requestFocus();
             return false;
         } else {
             aQ17e.setError(null);
@@ -747,6 +787,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ18), Toast.LENGTH_SHORT).show();
             aQ18e.setError("This data is required");
             Log.i(TAG, "AQ18:This data is required ");
+            aQ18e.setFocusable(true);
+            aQ18e.setFocusableInTouchMode(true);
+            aQ18e.requestFocus();
             return false;
         } else {
             aQ18e.setError(null);
@@ -756,6 +799,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ19), Toast.LENGTH_SHORT).show();
             aQ19e.setError("This data is required");
             Log.i(TAG, "AQ19: This data is required ");
+            aQ19e.setFocusable(true);
+            aQ19e.setFocusableInTouchMode(true);
+            aQ19e.requestFocus();
             return false;
         } else {
             aQ19e.setError(null);
@@ -765,6 +811,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ20), Toast.LENGTH_SHORT).show();
             aQ20e.setError("This data is required");
             Log.i(TAG, "AQ20:This data is required ");
+            aQ20e.setFocusable(true);
+            aQ20e.setFocusableInTouchMode(true);
+            aQ20e.requestFocus();
             return false;
         } else {
             aQ20e.setError(null);
@@ -774,6 +823,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ21), Toast.LENGTH_SHORT).show();
             aQ21e.setError("This data is required");
             Log.i(TAG, "AQ21: This data is required");
+            aQ21e.setFocusable(true);
+            aQ21e.setFocusableInTouchMode(true);
+            aQ21e.requestFocus();
             return false;
         } else {
             aQ21e.setError(null);
@@ -783,6 +835,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.AQ22), Toast.LENGTH_SHORT).show();
             aQ22d.setError("This data is requied");
             Log.i(TAG, "AQ22: This data is required");
+            aQ22d.setFocusable(true);
+            aQ22d.setFocusableInTouchMode(true);
+            aQ22d.requestFocus();
             return false;
         } else {
             aQ22d.setError(null);
@@ -792,6 +847,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ23), Toast.LENGTH_SHORT).show();
             aQ23e.setError("This data is required");
             Log.i(TAG, "AQ23: This data is required ");
+            aQ23e.setFocusable(true);
+            aQ23e.setFocusableInTouchMode(true);
+            aQ23e.requestFocus();
             return false;
         } else {
             aQ23e.setError(null);
@@ -801,6 +859,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ24), Toast.LENGTH_SHORT).show();
             aQ24e.setError("This data is required");
             Log.i(TAG, "AQ24:This data is required ");
+            aQ24e.setFocusable(true);
+            aQ24e.setFocusableInTouchMode(true);
+            aQ24e.requestFocus();
             return false;
         } else {
             aQ24e.setError(null);
@@ -810,6 +871,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ25), Toast.LENGTH_SHORT).show();
             aQ25e.setError("This data is required");
             Log.i(TAG, "AQ25: This data is required ");
+            aQ25e.setFocusable(true);
+            aQ25e.setFocusableInTouchMode(true);
+            aQ25e.requestFocus();
             return false;
         } else {
             aQ25e.setError(null);
@@ -819,6 +883,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ26), Toast.LENGTH_SHORT).show();
             aQ26e.setError("This data is required");
             Log.i(TAG, "AQ26: This data is required");
+            aQ26e.setFocusable(true);
+            aQ26e.setFocusableInTouchMode(true);
+            aQ26e.requestFocus();
             return false;
         } else {
             aQ26e.setError(null);
@@ -828,6 +895,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (empty)" + getString(R.string.AQ27), Toast.LENGTH_SHORT).show();
             aQ27e.setError("This data is required");
             Log.i(TAG, "AQ27: This data is required ");
+            aQ27e.setFocusable(true);
+            aQ27e.setFocusableInTouchMode(true);
+            aQ27e.requestFocus();
             return false;
         } else {
             aQ27e.setError(null);
@@ -837,6 +907,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ28), Toast.LENGTH_SHORT).show();
             aQ28f.setError("This data is required");
             Log.i(TAG, "AQ28: This data is required");
+            aQ28f.setFocusable(true);
+            aQ28f.setFocusableInTouchMode(true);
+            aQ28f.requestFocus();
             return false;
         } else {
             aQ28f.setError(null);
@@ -846,6 +919,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ29), Toast.LENGTH_SHORT).show();
             aQ29e.setError("This data is required");
             Log.i(TAG, "AQ29: This data is required ");
+            aQ29e.setFocusable(true);
+            aQ29e.setFocusableInTouchMode(true);
+            aQ29e.requestFocus();
             return false;
         } else {
             aQ29e.setError(null);
@@ -855,6 +931,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ30), Toast.LENGTH_SHORT).show();
             aQ30e.setError("This data is required");
             Log.i(TAG, "AQ30: This data is required ");
+            aQ30e.setFocusable(true);
+            aQ30e.setFocusableInTouchMode(true);
+            aQ30e.requestFocus();
             return false;
         } else {
             aQ30e.setError(null);
@@ -864,6 +943,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ31), Toast.LENGTH_SHORT).show();
             aQ31e.setError("This data is required");
             Log.i(TAG, "AQ31: This data is required");
+            aQ31e.setFocusable(true);
+            aQ31e.setFocusableInTouchMode(true);
+            aQ31e.requestFocus();
             return false;
         } else {
             aQ31e.setError(null);
@@ -873,6 +955,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ32), Toast.LENGTH_SHORT).show();
             aQ32f.setError("This data is required");
             Log.i(TAG, "AQ32: This data is required");
+            aQ32f.setFocusable(true);
+            aQ32f.setFocusableInTouchMode(true);
+            aQ32f.requestFocus();
             return false;
         } else {
             aQ32f.setError(null);
@@ -882,6 +967,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ33), Toast.LENGTH_SHORT).show();
             aQ33f.setError("This data is required");
             Log.i(TAG, "AQ33:This data is required ");
+            aQ33f.setFocusable(true);
+            aQ33f.setFocusableInTouchMode(true);
+            aQ33f.requestFocus();
             return false;
         } else {
             aQ33f.setError(null);
@@ -891,6 +979,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ34), Toast.LENGTH_SHORT).show();
             aQ34e.setError("This data is required");
             Log.i(TAG, "AQ34: This data is required");
+            aQ34e.setFocusable(true);
+            aQ34e.setFocusableInTouchMode(true);
+            aQ34e.requestFocus();
             return false;
         } else {
             aQ34e.setError(null);
@@ -900,6 +991,9 @@ public class DataCollectionActivity extends AppCompatActivity
             Toast.makeText(this, "ERROR (Empty)" + getString(R.string.AQ35), Toast.LENGTH_SHORT).show();
             aQ35e.setError("This data is required");
             Log.i(TAG, "AQ35: This data is required ");
+            aQ35e.setFocusable(true);
+            aQ35e.setFocusableInTouchMode(true);
+            aQ35e.requestFocus();
             return false;
         } else {
             aQ35e.setError(null);
@@ -907,37 +1001,6 @@ public class DataCollectionActivity extends AppCompatActivity
         return true;
     }
 
-    public void setGPS() {
-        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
 
-//        String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-        try {
-            String lat = GPSPref.getString("Latitude", "0");
-            String lang = GPSPref.getString("Longitude", "0");
-            String acc = GPSPref.getString("Accuracy", "0");
-            String dt = GPSPref.getString("Time", "0");
-
-            if (lat == "0" && lang == "0") {
-                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-            }
-
-            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
-
-           /* MainApp.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
-            MainApp.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
-            MainApp.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
-//            AppMain.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
-            MainApp.fc.setGpsDT(date); // Timestamp is converted to date above
-*/
-            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
-
-        } catch (Exception e) {
-            Log.e(TAG, "setGPS: " + e.getMessage());
-        }
-
-    }
 
 }

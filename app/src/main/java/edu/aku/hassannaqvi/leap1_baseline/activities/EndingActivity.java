@@ -39,7 +39,20 @@ public class EndingActivity extends Activity {
         setContentView(R.layout.activity_ending);
         ButterKnife.bind(this);
 
-        //mna7a.setEnabled(getIntent().getBooleanExtra("complete", true));
+
+        Boolean check = getIntent().getExtras().getBoolean("check");
+
+        if (check) {
+            iStatus01.setEnabled(true);
+            iStatus02.setEnabled(false);
+
+        } else {
+            //fldGrpmn0823Reason.setVisibility(View.GONE);
+            iStatus01.setEnabled(false);
+            iStatus02.setEnabled(true);
+
+
+        }
 
     }
 
@@ -54,6 +67,8 @@ public class EndingActivity extends Activity {
             }
             if (UpdateDB()) {
             finish();
+                AppMain.sf = 0;
+                AppMain.aq = 0;
             Toast.makeText(this, "Closing Form!", Toast.LENGTH_SHORT).show();
             Intent endSec = new Intent(this, MainActivity.class);
             //AppMain.mnb1 = "TEST";
