@@ -497,6 +497,12 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
     }
 
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "You Can't go back", Toast.LENGTH_LONG).show();
+    }
+
+
 
 }
 
