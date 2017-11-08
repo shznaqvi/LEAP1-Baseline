@@ -59,7 +59,9 @@
             android:gravity="right"
             android:hint="@string/studyID"
             android:inputType="number"
-            android:maxLength="10"/>
+            android:maxLength="10"
+            android:textColorHighlight="@color/colorPrimaryDark"
+            tools:text="123345"/>
 
         <TextView
             android:layout_width="match_parent"
@@ -184,14 +186,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/sf02ba"/>
+                android:text="@string/sf02bb"/>
 
             <RadioButton
                 android:id="@+id/sf02bc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="1dp"
-                android:text="@string/sf02ba"/>
+                android:text="@string/sf02bc"/>
 
         </RadioGroup>
 
