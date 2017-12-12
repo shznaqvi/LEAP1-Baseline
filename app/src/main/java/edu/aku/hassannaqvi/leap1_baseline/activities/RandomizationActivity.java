@@ -199,9 +199,9 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
                 finish();
 
 
-                if (isEligible() && Integer.valueOf(r07.getText().toString()) >= 70
-                        || Integer.valueOf(r07.getText().toString()) <= 115
-                        && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
+                if (isEligible() && (Integer.valueOf(r07.getText().toString()) >= 70
+                        && Integer.valueOf(r07.getText().toString()) <= 115)
+                        && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26)) {
                     Intent EndingActivity = new Intent(this, BaselineActvity.class);
                     startActivity(EndingActivity);
                 } else {
@@ -486,7 +486,9 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
 
-        if (isEligible()) {
+        if (isEligible() && ((Integer.valueOf(r07.getText().toString()) >= 70
+                && Integer.valueOf(r07.getText().toString()) <= 115)
+                && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26))) {
             fldGrpeligibility.setVisibility(View.VISIBLE);
         } else {
             fldGrpeligibility.setVisibility(View.GONE);
