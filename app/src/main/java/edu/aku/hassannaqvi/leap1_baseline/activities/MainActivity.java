@@ -46,6 +46,7 @@ import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUCs;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUsers;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetVillages;
 import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncForms;
+import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncNutrition;
 
 public class MainActivity extends Activity {
 
@@ -364,6 +365,8 @@ public class MainActivity extends Activity {
         if (networkInfo != null && networkInfo.isConnected()) {
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
             new SyncForms(this).execute();
+            Toast.makeText(getApplicationContext(), "Syncing Nutritions", Toast.LENGTH_SHORT).show();
+            new SyncNutrition(this).execute();
 
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);

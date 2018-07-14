@@ -23,6 +23,8 @@ import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract.HFacilityTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.LHWsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.LHWsContract.LHWTable;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract.NutritionTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.PSUsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.PSUsContract.singleChild;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.SourceNGOContract;
@@ -76,8 +78,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             formsTable.COLUMN_SYNCED + " TEXT," +
             formsTable.COLUMN_SYNCED_DATE + " TEXT"
             + " );";
+    final String SQL_CREATE_NUTRITION = "CREATE TABLE " + NutritionTable.TABLE_NAME + " (" +
+            NutritionTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            NutritionTable.COLUMN_PROJECTNAME + " TEXT," +
+            NutritionTable.COLUMN_UID + " TEXT," +
+            NutritionTable.COLUMN_UUID + " TEXT," +
+            NutritionTable.COLUMN_FORMDATE + " TEXT," +
+            NutritionTable.COLUMN_DEVICEID + " TEXT," +
+            NutritionTable.COLUMN_DEVICETAGID + " TEXT," +
+            NutritionTable.COLUMN_USER + " TEXT," +
+            NutritionTable.COLUMN_APP_VER + " TEXT," +
+            NutritionTable.COLUMN_LFITEM + " TEXT," +
+            NutritionTable.COLUMN_SYNCED + " TEXT," +
+            NutritionTable.COLUMN_SYNCEDDATE + " TEXT " +
+
+            ");";
+
     private static final String SQL_DELETE_FORMS = "DROP TABLE IF EXISTS " + formsTable.TABLE_NAME;
     private static final String SQL_DELETE_USERS = "DROP TABLE IF EXISTS " + singleUser.TABLE_NAME;
+    private static final String SQL_DELETE_NUTRITION = "DROP TABLE IF EXISTS " + NutritionTable.TABLE_NAME;
     private static final String SQL_DELETE_PSUS = "DROP TABLE IF EXISTS " + singleChild.TABLE_NAME;
     public static String DB_FORM_ID;
     public static String DB_IMS_ID;
@@ -103,6 +122,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_FORMS);
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_H_FACILIY_TABLE);
+        db.execSQL(SQL_CREATE_NUTRITION);
 
     }
 
@@ -110,6 +130,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_USERS);
+        db.execSQL(SQL_DELETE_NUTRITION);
         db.execSQL(HFacilityTable.TABLE_NAME);
         onCreate(db);
     }
@@ -172,7 +193,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+    public int updateNutritionID() {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(NutritionTable.COLUMN_UID, AppMain.nc.get_UID());
+
+// Which row to update, based on the ID
+        String selection = NutritionTable.COLUMN__ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.nc.get_ID())};
+
+        int count = db.update(NutritionTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
     public void updateForms(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -191,8 +228,57 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 where,
                 whereArgs);
     }
+    public void updateNutrition(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(NutritionTable.COLUMN_SYNCED, true);
+        values.put(NutritionTable.COLUMN_SYNCEDDATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = NutritionTable.COLUMN__ID + " LIKE ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                NutritionTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+
+    public Long addNutrition(NutritionContract mc, int type) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(NutritionTable.COLUMN_LFITEM, mc.getlfitem());
 
 
+            values.put(NutritionTable.COLUMN_PROJECTNAME, mc.getProjectName());
+            values.put(NutritionTable.COLUMN_UID, mc.get_UID());
+            values.put(NutritionTable.COLUMN_UUID, mc.get_UUID());
+            values.put(NutritionTable.COLUMN_FORMDATE, mc.getFormDate());
+            values.put(NutritionTable.COLUMN_DEVICEID, mc.getDeviceId());
+            values.put(NutritionTable.COLUMN_DEVICETAGID, mc.getDevicetagID());
+            values.put(NutritionTable.COLUMN_USER, mc.getUser());
+            values.put(NutritionTable.COLUMN_APP_VER, mc.getApp_ver());
+            values.put(NutritionTable.COLUMN_SYNCED, mc.getSynced());
+            values.put(NutritionTable.COLUMN_SYNCEDDATE, mc.getSyncedDate());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+
+            newRowId = db.insert(
+                    NutritionTable.TABLE_NAME,
+                    NutritionTable.COLUMN_NAME_NULLABLE,
+                    values);
+
+
+        return newRowId;
+    }
     public Collection<FormsContract> getAllForms() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -310,6 +396,58 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
                 allFC.add(fc.hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+
+    public Collection<NutritionContract> getUnsyncedNutrition() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                NutritionTable.COLUMN__ID,
+                NutritionTable.COLUMN_UID,
+                NutritionTable.COLUMN_UUID,
+                NutritionTable.COLUMN_FORMDATE,
+                NutritionTable.COLUMN_DEVICEID,
+                NutritionTable.COLUMN_DEVICETAGID,
+                NutritionTable.COLUMN_USER,
+                NutritionTable.COLUMN_APP_VER,
+                NutritionTable.COLUMN_LFITEM,
+
+                NutritionTable.COLUMN_SYNCED,
+                NutritionTable.COLUMN_SYNCEDDATE,
+
+        };
+        String whereClause = NutritionTable.COLUMN_SYNCED + " is null OR " + NutritionTable.COLUMN_SYNCED + " = '' ";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                NutritionTable.COLUMN__ID + " ASC";
+
+        Collection<NutritionContract> allFC = new ArrayList<NutritionContract>();
+        try {
+            c = db.query(
+                    NutritionTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                NutritionContract fc = new NutritionContract();
+                allFC.add(fc.Hydrate(c, 0));
             }
         } finally {
             if (c != null) {

@@ -22,6 +22,7 @@
     <string name="baseline">BASELINE</string>
     <string name="sf">SF-12v2 HEALTH SURVEY SCORING DEMONSTRATION</string>
     <string name="aq">AQOL-8D Data Collection Copy</string>
+    <string name="mddw">MINIMUM DIETARY DIVERSITY FOR WOMEN </string>
     <string name="sectionA">اہلیت کی تفصیلات</string>
     <string name="siteNumber">Site Number .جگہ کا نمبر</string>
     <string name="studyID">Mother’s Study ID ماں کی اسٹیڈی آئی ڈی</string>
@@ -453,6 +454,39 @@
     <string name="AQ35d">عموماً </string>
     <string name="AQ35e"> ہر وقت</string>
 
+    <string name="food1">Grains, White Roots and Tubers, and Plantains</string>
+    <string name="food2">Pulses (Beans, Peas, and Lentils)</string>
+    <string name="food3">Nuts and Seeds</string>
+    <string name="food4">Dairy</string>
+    <string name="food5">Meat, Poultry, and Fish</string>
+    <string name="food6">Eggs </string>
+    <string name="food7">Dark Green Leafy Vegetables</string>
+    <string name="food8">Other Vitamin A-rich Fruits and Vegetables</string>
+    <string name="food9">Other Vegetables</string>
+    <string name="food10">Other Fruits</string>
+    <string name="nofood">ان میں سے کچھ بھی نہیں کھایا</string>
+
+    <string name="_1"> ناشتہ سے پہلے </string>
+    <string name="_2"> ناشتہ </string>
+    <string name="_3"> ناشتہ اور دوپہر کے کھانے کے درمیان </string>
+    <string name="_4"> دوپہر کا کھانا </string>
+    <string name="_5"> دوپہر اور رات کے کھانے کے درمیان </string>
+    <string name="_6"> رات کا کھانا </string>
+    <string name="_7"> رات کے کھانے اور سونے کے درمیان  </string>
+
+    <string name="nw5heading"> سیکشن ڈبلیو5: خواتین کے مختلف اقسام کے کھانوں کا استعمال </string>
+    <string name="nw501info"> خاتون سے پوچھیں کہ کل صبح جاگنے سے لے کررات کو سونے تک کیا  کچھ کھایا </string>
+    <string name="nw501info1"> فوڈ گروپ جاننے کے لیے دئیے گئے کتابچہ کو دیکھیں اور کھائے گئے کھانوں کا اندراج مندرجہ ذیل ٹیبل  میں کری   </string>
+    <string name="nw501a">مثلاً جو،جوار،دلیا،چاول ،شلجم ،گندم،شکرقندی،کچے کیلے، بیھ،اروی،آلو  وغیرہ </string>
+    <string name="nw501b"> تمام قسم کی لوبیا ،چنا ،مٹر  ،ارد کی دال ،اور تمام دوسری دالیں </string>
+    <string name="nw501c">مونگ پھلی،بادام،کاجو،پستہ،اخروٹ،خربوزے کے بیج، تل،سورج مکھی کے بیج  اور کدو کے بیج وغیرہ</string>
+    <string name="nw501d"> کم اور مکمل چکنائی والا دودھ،دودھ ،دہی،پنیر،خشک دودھ اور دودھ  کی تمام قسمیں </string>
+    <string name="nw501e">گائے ،بھنس ،بکری،بھیڑ،دنبہ،مرغی،بطخ،کبوتر،مرغابی کا گوشت،مچھلی اور دوسرے تمام حلال جانوروں کا گوشت ،پوٹا،کلیجی،اوجھڑی،دل،گردہ،ڈبے میں محفوظ مچھلی،جینھگے،کیٹرا،خشک /برف میں رکھی ہوئی مچھلی</string>
+    <string name="nw501f"> مرغی اور بطخ کے انڈے </string>
+    <string name="nw501g">گہرے ہرے پتوں والی سبزیاں مثلاً میتھی   ،پالک، کریلا، بھنڈی، کدو ،بروکولی ،ہری مرچ ، سلاد پتہ ، گوبی ساگ ،ہرا کدو وغیرہ</string>
+    <string name="nw501h"> وٹامن اے سے بھرپور پھل اور سبزیاں مثلاً خوبانی ،خربوزہ، تربوز، پپیتا،آملوک،گاجر وغیرہ</string>
+    <string name="nw501i"> دوسری سبزیاں مثلاًٹماٹر ،مکئی،پھول گوبی ،بند گوبی ،تورئی،سلاد پتے ،پیاز،اجوائن،ہرا مٹر، بیگن، کھیرا وغیرہ  </string>
+    <string name="nw501j">سیب،انگور،پپیتا،خوبانی،چکوترا،امرود،ناشپاتی،کیلا،انناس،جامن،لیموں،انار،تربوز،آلوبخارہ ،نارنگی،آم،آڑو وغیرہ </string>
 
     <!-- Strings related to login -->
     <string name="prompt_email">Email</string>

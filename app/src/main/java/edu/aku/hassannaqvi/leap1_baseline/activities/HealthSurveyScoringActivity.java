@@ -195,12 +195,13 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
                 if (AppMain.aq == 1) {
                     startActivity(new Intent(this, DataCollectionActivity.class));
                 } else {
+                    /*
                     Intent endSec = new Intent(this, EndingActivity.class);
                     endSec.putExtra("check", true);
+                    startActivity(endSec);*/
+                    Intent endSec = new Intent(this, MDDWActivity.class);
                     startActivity(endSec);
                 }
-
-
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
