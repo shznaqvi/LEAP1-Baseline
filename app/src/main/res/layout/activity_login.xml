@@ -2,6 +2,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tool="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/background_grad"
     android:gravity="center_horizontal"
     android:orientation="vertical"
@@ -65,7 +66,7 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:padding="4px"
-                android:text="dmu@aku"
+                tools:text="dmu@aku"
                 android:textAlignment="center"/>
 
             <EditText
@@ -79,7 +80,7 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                android:text="aku?dmu"
+                tools:text="aku?dmu"
                 android:textAlignment="center"/>
 
 

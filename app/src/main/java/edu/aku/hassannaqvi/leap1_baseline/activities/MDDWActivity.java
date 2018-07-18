@@ -22,7 +22,6 @@ import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 public class MDDWActivity extends AppCompatActivity {
     ActivityMddwBinding bi;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
