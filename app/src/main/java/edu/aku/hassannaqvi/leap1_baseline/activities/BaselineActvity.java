@@ -27,6 +27,7 @@ import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
+import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 
@@ -242,8 +243,18 @@ public class BaselineActvity extends AppCompatActivity
     EditText b19;
     @BindView(R.id.b20)
     DatePickerInputEditText b20;
-    @BindView(R.id.b21)
-    EditText b21;
+   /* @BindView(R.id.b21)
+    EditText b21;*/
+    @BindView(R.id.b21hb)
+    EditText b21hb;
+    @BindView(R.id.b21sf)
+    EditText b21sf;
+    @BindView(R.id.b21crp)
+    EditText b21crp;
+    @BindView(R.id.b21rbc)
+    EditText b21rbc;
+    @BindView(R.id.b21tsi)
+    EditText b21tsi;
     @BindView(R.id.b2201)
     EditText b2201;
     @BindView(R.id.b2202)
@@ -308,6 +319,14 @@ public class BaselineActvity extends AppCompatActivity
     CheckBox b2515;
     @BindView(R.id.b2516)
     CheckBox b2516;
+    @BindView(R.id.b2517)
+    CheckBox b2517;
+    @BindView(R.id.b2518)
+    CheckBox b2518;
+    @BindView(R.id.b2519)
+    CheckBox b2519;
+    @BindView(R.id.b2520)
+    CheckBox b2520;
     @BindView(R.id.b2488)
     RadioGroup b2488;
     @BindView(R.id.b248801)
@@ -402,6 +421,10 @@ public class BaselineActvity extends AppCompatActivity
                     b2514.setChecked(false);
                     b2515.setChecked(false);
                     b2516.setChecked(false);
+                    b2517.setChecked(false);
+                    b2518.setChecked(false);
+                    b2519.setChecked(false);
+                    b2520.setChecked(false);
                 }
             }
         });
@@ -726,7 +749,13 @@ public class BaselineActvity extends AppCompatActivity
         sa.put("b18", b18.getText().toString());
         sa.put("b19", b19.getText().toString());
         sa.put("b20", b20.getText().toString());
-        sa.put("b21", b21.getText().toString());
+//        sa.put("b21", b21.getText().toString());
+        sa.put("b21hb", b21hb.getText().toString());
+        sa.put("b21sf", b21sf.getText().toString());
+        sa.put("b21crp", b21crp.getText().toString());
+        sa.put("b21rbc", b21rbc.getText().toString());
+        sa.put("b21tsi", b21tsi.getText().toString());
+
         sa.put("b2201", b2201.getText().toString());
         sa.put("b2202", b2202.getText().toString());
         sa.put("b23", b2301.isChecked() ? "1" : b2302.isChecked() ? "2" : "0");
@@ -753,6 +782,10 @@ public class BaselineActvity extends AppCompatActivity
         sa.put("b2514", b2514.isChecked() ? "14" : "0");
         sa.put("b2515", b2515.isChecked() ? "15" : "0");
         sa.put("b2516", b2516.isChecked() ? "16" : "0");
+        sa.put("b2517", b2517.isChecked() ? "17" : "0");
+        sa.put("b2518", b2518.isChecked() ? "18" : "0");
+        sa.put("b2519", b2519.isChecked() ? "19" : "0");
+        sa.put("b2520", b2520.isChecked() ? "20" : "0");
         sa.put("b2601", b260101.isChecked() ? "1" : b260102.isChecked() ? "2" : "0");
         sa.put("b260102r", b260102r.getText().toString());
         sa.put("b2602", b260201.isChecked() ? "1" : b260202.isChecked() ? "2" : "0");
@@ -774,6 +807,395 @@ public class BaselineActvity extends AppCompatActivity
 
     public boolean ValidateForm() {
 
+
+        // =================== b18 ====================
+        if (b17.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b17), Toast.LENGTH_SHORT).show();
+            b17.setError("This data is Required!");
+            Log.i(TAG, "b17: This data is Required!");
+            b17.requestFocus();
+            return false;
+        } else {
+            b17.setError(null);
+        }
+
+        // =================== b18 ====================
+        if (b18.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
+            b18.setError("This data is Required!");
+            Log.i(TAG, "b18: This data is Required!");
+            b18.requestFocus();
+            return false;
+        } else {
+            b18.setError(null);
+        }
+        if (Double.parseDouble(b18.getText().toString()) == 0) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
+            b18.setError("Invalid: Data cannot be Zero");
+            Log.i(TAG, "b18: Invalid data is 0");
+            b18.requestFocus();
+            return false;
+        } else {
+            b18.setError(null);
+        }
+        if (Double.parseDouble(b18.getText().toString()) < 30.0 || Double.parseDouble(b18.getText().toString()) > 150.0) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
+            b18.setError("Invalid: Range is 30.0 - 150.0 ");
+            Log.i(TAG, "b18: Invalid Range is 30.0 - 150.0 kg");
+            b18.requestFocus();
+            return false;
+        } else {
+            b18.setError(null);
+        }
+
+        // =================== b19 ====================
+        if (b19.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
+            b19.setError("This data is Required!");
+            Log.i(TAG, "b19: This data is Required!");
+            b19.requestFocus();
+            return false;
+        } else {
+            b19.setError(null);
+        }
+        if (Double.parseDouble(b19.getText().toString()) == 0) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
+            b19.setError("Invalid: Data cannot be Zero");
+            Log.i(TAG, "b19: Invalid data is 0");
+            b19.requestFocus();
+            return false;
+        } else {
+            b19.setError(null);
+        }
+        if (Double.parseDouble(b19.getText().toString()) < 137 || Double.parseDouble(b19.getText().toString()) > 160) {
+            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
+            b19.setError("Invalid: Range is 137-160 cm");
+            Log.i(TAG, "b19: Invalid Range is 137-160 cm");
+            b19.requestFocus();
+            return false;
+        } else {
+            b19.setError(null);
+        }
+
+        //==================== b20====================
+        if (b20.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b20), Toast.LENGTH_SHORT).show();
+            b20.setError("This data is Required!");
+            Log.i(TAG, "b20: This Data is Required!");
+            b20.requestFocus();
+            return false;
+        } else {
+            b20.setError(null);
+        }
+
+        //==================== b21====================
+    /*    if (b21.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b21), Toast.LENGTH_SHORT).show();
+            b21.setError("This data is Required!");
+            Log.i(TAG, "b21: This Data is Required!");
+            b21.requestFocus();
+            return false;
+        } else {
+            b21.setError(null);
+        }*/
+        if (!validatorClass.EmptyTextBox(this,b21hb,getString(R.string.b21hb))) {
+            return false;
+        }
+        if (!b21hb.getText().toString().matches("\\d+(\\.\\d+)*")) {
+            Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
+            b21hb.requestFocus();
+            b21hb.setError("Please enter correct decimal value!");
+            return false;
+        } else {
+            b21hb.clearFocus();
+            b21hb.setError(null);
+            if (!validatorClass.RangeTextBox(this, b21hb, 4.0, 18.0, getString(R.string.b21hb),  " g/L")) {
+                return false;
+            }
+
+        }
+        if (!validatorClass.EmptyTextBox(this,b21sf,getString(R.string.b21sf))) {
+            return false;
+        }
+        if (!b21sf.getText().toString().matches("\\d+(\\.\\d+)*")) {
+            Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
+            b21sf.requestFocus();
+            b21sf.setError("Please enter correct decimal value!");
+            return false;
+        } else {
+            b21sf.clearFocus();
+            b21sf.setError(null);
+            if (!validatorClass.RangeTextBox(this, b21sf, 0.0, 20.0, getString(R.string.b21sf),  " ng/mL")) {
+                return false;
+            }
+
+        }
+        if (!validatorClass.EmptyTextBox(this,b21crp,getString(R.string.b21crp))) {
+            return false;
+        }
+        if (!validatorClass.EmptyTextBox(this,b21rbc,getString(R.string.b21rbc))) {
+            return false;
+        }
+        if (!validatorClass.EmptyTextBox(this,b21tsi,getString(R.string.b21tsi))) {
+            return false;
+        }
+        //==================== b2201====================
+
+        if (b2201.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
+            b2201.setError("This data is Required!");
+            Log.i(TAG, "b2201: This data is Required!");
+            b2201.requestFocus();
+            return false;
+        } else {
+            b2201.setError(null);
+
+            if (Integer.parseInt(b2201.getText().toString()) < 50 || Integer.parseInt(b2201.getText().toString()) > 150) {
+                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
+                b2201.setError("Invalid: Range 50 - 150");
+                Log.i(TAG, "b2202: Invalid Range 50 - 150");
+                b2201.requestFocus();
+                return false;
+            } else {
+                b2201.setError(null);
+            }
+        }
+
+        //==================== b2202====================
+
+        if (b2202.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
+            b2202.setError("This data is Required!");
+            Log.i(TAG, "b2202: This data is Required!");
+            b2202.requestFocus();
+            return false;
+        } else {
+            b2202.setError(null);
+
+            if (Integer.parseInt(b2202.getText().toString()) < 50 || Integer.parseInt(b2202.getText().toString()) > 150) {
+                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
+                b2202.setError("Invalid: Range 50 - 150");
+                Log.i(TAG, "b2202: Invalid Range 50 - 150");
+                b2202.requestFocus();
+                return false;
+            } else {
+                b2202.setError(null);
+            }
+        }
+
+        //=================b23================
+        if (b23.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b23), Toast.LENGTH_SHORT).show();
+            b2302.setError("This data is Required!");
+            Log.i(TAG, "b23: This Data is Required!");
+            b2302.requestFocus();
+            return false;
+        } else {
+            b2302.setError(null);
+        }
+
+        if (b2301.isChecked()) {
+            if (b23t1.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2301), Toast.LENGTH_SHORT).show();
+                b23t102.setError("This data is Required!");
+                Log.i(TAG, "b23t1: This Data is Required!");
+                b23t102.setFocusable(true);
+                b23t102.setFocusableInTouchMode(true);
+                b23t102.requestFocus();
+                return false;
+            } else {
+                b23t102.setError(null);
+            }
+
+            if (b23t2.getCheckedRadioButtonId() == -1) {
+                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2302), Toast.LENGTH_SHORT).show();
+                b23t202.setError("This data is Required!");
+                Log.i(TAG, "b23t2: This Data is Required!");
+                b23t202.setFocusable(true);
+                b23t202.setFocusableInTouchMode(true);
+                b23t202.requestFocus();
+                return false;
+            } else {
+                b23t202.setError(null);
+            }
+        }
+
+        //=================== b2401==============
+        if (b2401.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2401), Toast.LENGTH_SHORT).show();
+            b240102.setError("This data is Required!");
+            Log.i(TAG, "b2401: This Data is Required!");
+            b240102.setFocusable(true);
+            b240102.setFocusableInTouchMode(true);
+            b240102.requestFocus();
+            return false;
+        } else {
+            b240102.setError(null);
+        }
+
+        if (b240101.isChecked()) {
+            // ====================== b23 ===================
+            if (!(b2501.isChecked() || b2502.isChecked() || b2503.isChecked() || b2504.isChecked()
+                    || b2505.isChecked() || b2506.isChecked() || b2507.isChecked() || b2508.isChecked() || b2509.isChecked() || b2510.isChecked() || b2511.isChecked()
+                    || b2512.isChecked() || b2513.isChecked() || b2514.isChecked() || b2515.isChecked() || b2516.isChecked() || b2517.isChecked() || b2518.isChecked() || b2519.isChecked() || b2520.isChecked())) {
+                Toast.makeText(this, "ERROR(empty): " + getString(R.string.b25), Toast.LENGTH_LONG).show();
+                b2520.setError("This data is Required!");    // Set Error on last check box
+                Log.i(TAG, "b2520: This data is Required!");
+                b2520.requestFocus();
+                return false;
+            } else {
+                b2520.setError(null);
+            }
+        }
+
+        //=================== b2488==============
+        if (b2488.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other), Toast.LENGTH_SHORT).show();
+            b248802.setError("This data is Required!");
+            Log.i(TAG, "b2488: This Data is Required!");
+            b248802.setFocusable(true);
+            b248802.setFocusableInTouchMode(true);
+            b248802.requestFocus();
+            return false;
+        } else {
+            b248802.setError(null);
+        }
+
+        //=================== b22other ==============
+        if (b248801.isChecked() && b248801r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other) + " - " + getString(R.string.b248801r), Toast.LENGTH_SHORT).show();
+            b248801r.setError("This data is Required!");
+            Log.i(TAG, "b2403r: This Data is Required!");
+            b248801r.requestFocus();
+            return false;
+        } else {
+            b248801r.setError(null);
+        }
+
+
+        //=================== b2601==============
+        if (b2601.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601), Toast.LENGTH_SHORT).show();
+            b260102.setError("This data is Required!");
+            Log.i(TAG, "b2601: This Data is Required!");
+            b260102.setFocusable(true);
+            b260102.setFocusableInTouchMode(true);
+            b260102.requestFocus();
+            return false;
+        } else {
+            b260102.setError(null);
+        }
+
+        //=================== b2601 reason ==============
+        if (b260102.isChecked() && b260102r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
+            b260102r.setError("This data is Required!");
+            Log.i(TAG, "b2601r: This Data is Required!");
+            b260102.setFocusable(true);
+            b260102.setFocusableInTouchMode(true);
+            b260102.requestFocus();
+            return false;
+        } else {
+            b260102r.setError(null);
+        }
+
+        //=================== b2602 ==============
+        if (b2602.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602), Toast.LENGTH_SHORT).show();
+            b260202.setError("This data is Required!");
+            Log.i(TAG, "b2602: This Data is Required!");
+            b260202.setFocusable(true);
+            b260202.setFocusableInTouchMode(true);
+            b260202.requestFocus();
+            return false;
+        } else {
+            b260202.setError(null);
+        }
+
+        //=================== b2602 reason ==============
+        if (b260202.isChecked() && b260202r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
+            b260202r.setError("This data is Required!");
+            Log.i(TAG, "b2602r: This Data is Required!");
+            b260202r.requestFocus();
+            return false;
+        } else {
+            b260202r.setError(null);
+        }
+
+        //=================== b2603 ==============
+        if (b2603.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603), Toast.LENGTH_SHORT).show();
+            b260302.setError("This data is Required!");
+            Log.i(TAG, "b2603: This Data is Required!");
+            b260302.setFocusable(true);
+            b260302.setFocusableInTouchMode(true);
+            b260302.requestFocus();
+            return false;
+        } else {
+            b260302.setError(null);
+        }
+
+        //=================== b2603 reason ==============
+        if (b260302.isChecked() && b260302r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
+            b260302r.setError("This data is Required!");
+            Log.i(TAG, "b2603r: This Data is Required!");
+            b260302.setFocusable(true);
+            b260302.setFocusableInTouchMode(true);
+            b260302.requestFocus();
+            return false;
+        } else {
+            b260302r.setError(null);
+        }
+
+        //=================== b2701  ==============
+        if (b2701.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701), Toast.LENGTH_SHORT).show();
+            b270102.setError("This data is Required!");
+            Log.i(TAG, "b2701: This Data is Required!");
+            b270102.setFocusable(true);
+            b270102.setFocusableInTouchMode(true);
+            b270102.requestFocus();
+            return false;
+        } else {
+            b270102.setError(null);
+        }
+
+        //=================== b2701 reason ==============
+        if (b270102.isChecked() && b270102r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
+            b270102r.setError("This data is Required!");
+            Log.i(TAG, "b2701r: This Data is Required!");
+            b270102r.requestFocus();
+            return false;
+        } else {
+            b270102r.setError(null);
+        }
+
+        //=================== b2702==============
+        if (b2702.getCheckedRadioButtonId() == -1) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702), Toast.LENGTH_SHORT).show();
+            b270202.setError("This data is Required!");
+            Log.i(TAG, "b2702: This Data is Required!");
+            b270202.setFocusable(true);
+            b270202.setFocusableInTouchMode(true);
+            b270202.requestFocus();
+            return false;
+        } else {
+            b270202.setError(null);
+        }
+
+        //=================== b2702 reason ==============
+        if (b270202.isChecked() && b270202r.getText().toString().isEmpty()) {
+            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
+            b270202r.setError("This data is Required!");
+            Log.i(TAG, "b2702r: This Data is Required!");
+            b270202r.requestFocus();
+            return false;
+        } else {
+            b270202r.setError(null);
+        }
         //=================== b09 ==============
         if (b09.getCheckedRadioButtonId() == -1) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b09), Toast.LENGTH_SHORT).show();
@@ -958,355 +1380,6 @@ public class BaselineActvity extends AppCompatActivity
             return false;
         } else {
             b1688x.setError(null);
-        }
-
-        // =================== b18 ====================
-        if (b17.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b17), Toast.LENGTH_SHORT).show();
-            b17.setError("This data is Required!");
-            Log.i(TAG, "b17: This data is Required!");
-            b17.requestFocus();
-            return false;
-        } else {
-            b17.setError(null);
-        }
-
-        // =================== b18 ====================
-        if (b18.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
-            b18.setError("This data is Required!");
-            Log.i(TAG, "b18: This data is Required!");
-            b18.requestFocus();
-            return false;
-        } else {
-            b18.setError(null);
-        }
-        if (Double.parseDouble(b18.getText().toString()) == 0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
-            b18.setError("Invalid: Data cannot be Zero");
-            Log.i(TAG, "b18: Invalid data is 0");
-            b18.requestFocus();
-            return false;
-        } else {
-            b18.setError(null);
-        }
-        if (Double.parseDouble(b18.getText().toString()) < 30.0 || Double.parseDouble(b18.getText().toString()) > 150.0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b18), Toast.LENGTH_SHORT).show();
-            b18.setError("Invalid: Range is 30.0 - 150.0 ");
-            Log.i(TAG, "b18: Invalid Range is 30.0 - 150.0 kg");
-            b18.requestFocus();
-            return false;
-        } else {
-            b18.setError(null);
-        }
-
-        // =================== b19 ====================
-        if (b19.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
-            b19.setError("This data is Required!");
-            Log.i(TAG, "b19: This data is Required!");
-            b19.requestFocus();
-            return false;
-        } else {
-            b19.setError(null);
-        }
-        if (Double.parseDouble(b19.getText().toString()) == 0) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
-            b19.setError("Invalid: Data cannot be Zero");
-            Log.i(TAG, "b19: Invalid data is 0");
-            b19.requestFocus();
-            return false;
-        } else {
-            b19.setError(null);
-        }
-        if (Double.parseDouble(b19.getText().toString()) < 137 || Double.parseDouble(b19.getText().toString()) > 160) {
-            Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b19), Toast.LENGTH_SHORT).show();
-            b19.setError("Invalid: Range is 137-160 cm");
-            Log.i(TAG, "b19: Invalid Range is 137-160 cm");
-            b19.requestFocus();
-            return false;
-        } else {
-            b19.setError(null);
-        }
-
-        //==================== b20====================
-        if (b20.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b20), Toast.LENGTH_SHORT).show();
-            b20.setError("This data is Required!");
-            Log.i(TAG, "b20: This Data is Required!");
-            b20.requestFocus();
-            return false;
-        } else {
-            b20.setError(null);
-        }
-
-        //==================== b21====================
-        if (b21.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b21), Toast.LENGTH_SHORT).show();
-            b21.setError("This data is Required!");
-            Log.i(TAG, "b21: This Data is Required!");
-            b21.requestFocus();
-            return false;
-        } else {
-            b21.setError(null);
-        }
-
-        //==================== b2201====================
-
-        if (b2201.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
-            b2201.setError("This data is Required!");
-            Log.i(TAG, "b2201: This data is Required!");
-            b2201.requestFocus();
-            return false;
-        } else {
-            b2201.setError(null);
-
-            if (Integer.parseInt(b2201.getText().toString()) < 50 || Integer.parseInt(b2201.getText().toString()) > 150) {
-                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
-                b2201.setError("Invalid: Range 50 - 150");
-                Log.i(TAG, "b2202: Invalid Range 50 - 150");
-                b2201.requestFocus();
-                return false;
-            } else {
-                b2201.setError(null);
-            }
-        }
-
-        //==================== b2202====================
-
-        if (b2202.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(empty): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
-            b2202.setError("This data is Required!");
-            Log.i(TAG, "b2202: This data is Required!");
-            b2202.requestFocus();
-            return false;
-        } else {
-            b2202.setError(null);
-
-            if (Integer.parseInt(b2202.getText().toString()) < 50 || Integer.parseInt(b2202.getText().toString()) > 150) {
-                Toast.makeText(this, "ERROR(invalid): " + getString(R.string.b22), Toast.LENGTH_SHORT).show();
-                b2202.setError("Invalid: Range 50 - 150");
-                Log.i(TAG, "b2202: Invalid Range 50 - 150");
-                b2202.requestFocus();
-                return false;
-            } else {
-                b2202.setError(null);
-            }
-        }
-
-        //=================b23================
-        if (b23.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b23), Toast.LENGTH_SHORT).show();
-            b2302.setError("This data is Required!");
-            Log.i(TAG, "b23: This Data is Required!");
-            b2302.requestFocus();
-            return false;
-        } else {
-            b2302.setError(null);
-        }
-
-        if (b2301.isChecked()) {
-            if (b23t1.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2301), Toast.LENGTH_SHORT).show();
-                b23t102.setError("This data is Required!");
-                Log.i(TAG, "b23t1: This Data is Required!");
-                b23t102.setFocusable(true);
-                b23t102.setFocusableInTouchMode(true);
-                b23t102.requestFocus();
-                return false;
-            } else {
-                b23t102.setError(null);
-            }
-
-            if (b23t2.getCheckedRadioButtonId() == -1) {
-                Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2302), Toast.LENGTH_SHORT).show();
-                b23t202.setError("This data is Required!");
-                Log.i(TAG, "b23t2: This Data is Required!");
-                b23t202.setFocusable(true);
-                b23t202.setFocusableInTouchMode(true);
-                b23t202.requestFocus();
-                return false;
-            } else {
-                b23t202.setError(null);
-            }
-        }
-
-        //=================== b2401==============
-        if (b2401.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2401), Toast.LENGTH_SHORT).show();
-            b240102.setError("This data is Required!");
-            Log.i(TAG, "b2401: This Data is Required!");
-            b240102.setFocusable(true);
-            b240102.setFocusableInTouchMode(true);
-            b240102.requestFocus();
-            return false;
-        } else {
-            b240102.setError(null);
-        }
-
-        if (b240101.isChecked()) {
-            // ====================== b23 ===================
-            if (!(b2501.isChecked() || b2502.isChecked() || b2503.isChecked() || b2504.isChecked()
-                    || b2505.isChecked() || b2506.isChecked() || b2507.isChecked() || b2508.isChecked() || b2509.isChecked() || b2510.isChecked() || b2511.isChecked()
-                    || b2512.isChecked() || b2513.isChecked() || b2514.isChecked() || b2515.isChecked() || b2516.isChecked())) {
-                Toast.makeText(this, "ERROR(empty): " + getString(R.string.b25), Toast.LENGTH_LONG).show();
-                b2516.setError("This data is Required!");    // Set Error on last check box
-                Log.i(TAG, "b2516: This data is Required!");
-                b2516.requestFocus();
-                return false;
-            } else {
-                b2516.setError(null);
-            }
-        }
-
-        //=================== b2488==============
-        if (b2488.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other), Toast.LENGTH_SHORT).show();
-            b248802.setError("This data is Required!");
-            Log.i(TAG, "b2488: This Data is Required!");
-            b248802.setFocusable(true);
-            b248802.setFocusableInTouchMode(true);
-            b248802.requestFocus();
-            return false;
-        } else {
-            b248802.setError(null);
-        }
-
-        //=================== b22other ==============
-        if (b248801.isChecked() && b248801r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.other) + " - " + getString(R.string.b248801r), Toast.LENGTH_SHORT).show();
-            b248801r.setError("This data is Required!");
-            Log.i(TAG, "b2403r: This Data is Required!");
-            b248801r.requestFocus();
-            return false;
-        } else {
-            b248801r.setError(null);
-        }
-
-
-        //=================== b2601==============
-        if (b2601.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601), Toast.LENGTH_SHORT).show();
-            b260102.setError("This data is Required!");
-            Log.i(TAG, "b2601: This Data is Required!");
-            b260102.setFocusable(true);
-            b260102.setFocusableInTouchMode(true);
-            b260102.requestFocus();
-            return false;
-        } else {
-            b260102.setError(null);
-        }
-
-        //=================== b2601 reason ==============
-        if (b260102.isChecked() && b260102r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2601) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
-            b260102r.setError("This data is Required!");
-            Log.i(TAG, "b2601r: This Data is Required!");
-            b260102.setFocusable(true);
-            b260102.setFocusableInTouchMode(true);
-            b260102.requestFocus();
-            return false;
-        } else {
-            b260102r.setError(null);
-        }
-
-        //=================== b2602 ==============
-        if (b2602.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602), Toast.LENGTH_SHORT).show();
-            b260202.setError("This data is Required!");
-            Log.i(TAG, "b2602: This Data is Required!");
-            b260202.setFocusable(true);
-            b260202.setFocusableInTouchMode(true);
-            b260202.requestFocus();
-            return false;
-        } else {
-            b260202.setError(null);
-        }
-
-        //=================== b2602 reason ==============
-        if (b260202.isChecked() && b260202r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2602) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
-            b260202r.setError("This data is Required!");
-            Log.i(TAG, "b2602r: This Data is Required!");
-            b260202r.requestFocus();
-            return false;
-        } else {
-            b260202r.setError(null);
-        }
-
-        //=================== b2603 ==============
-        if (b2603.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603), Toast.LENGTH_SHORT).show();
-            b260302.setError("This data is Required!");
-            Log.i(TAG, "b2603: This Data is Required!");
-            b260302.setFocusable(true);
-            b260302.setFocusableInTouchMode(true);
-            b260302.requestFocus();
-            return false;
-        } else {
-            b260302.setError(null);
-        }
-
-        //=================== b2603 reason ==============
-        if (b260302.isChecked() && b260302r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2603) + " - " + getString(R.string.b26r), Toast.LENGTH_SHORT).show();
-            b260302r.setError("This data is Required!");
-            Log.i(TAG, "b2603r: This Data is Required!");
-            b260302.setFocusable(true);
-            b260302.setFocusableInTouchMode(true);
-            b260302.requestFocus();
-            return false;
-        } else {
-            b260302r.setError(null);
-        }
-
-        //=================== b2701  ==============
-        if (b2701.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701), Toast.LENGTH_SHORT).show();
-            b270102.setError("This data is Required!");
-            Log.i(TAG, "b2701: This Data is Required!");
-            b270102.setFocusable(true);
-            b270102.setFocusableInTouchMode(true);
-            b270102.requestFocus();
-            return false;
-        } else {
-            b270102.setError(null);
-        }
-
-        //=================== b2701 reason ==============
-        if (b270102.isChecked() && b270102r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2701) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
-            b270102r.setError("This data is Required!");
-            Log.i(TAG, "b2701r: This Data is Required!");
-            b270102r.requestFocus();
-            return false;
-        } else {
-            b270102r.setError(null);
-        }
-
-        //=================== b2702==============
-        if (b2702.getCheckedRadioButtonId() == -1) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702), Toast.LENGTH_SHORT).show();
-            b270202.setError("This data is Required!");
-            Log.i(TAG, "b2702: This Data is Required!");
-            b270202.setFocusable(true);
-            b270202.setFocusableInTouchMode(true);
-            b270202.requestFocus();
-            return false;
-        } else {
-            b270202.setError(null);
-        }
-
-        //=================== b2702 reason ==============
-        if (b270202.isChecked() && b270202r.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.b2702) + " - " + getString(R.string.b27r), Toast.LENGTH_SHORT).show();
-            b270202r.setError("This data is Required!");
-            Log.i(TAG, "b2702r: This Data is Required!");
-            b270202r.requestFocus();
-            return false;
-        } else {
-            b270202r.setError(null);
         }
 
         return true;

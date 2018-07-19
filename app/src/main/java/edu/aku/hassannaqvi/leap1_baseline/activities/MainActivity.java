@@ -301,29 +301,29 @@ public class MainActivity extends Activity {
     }
 
     public void openA(View v) {
-/*        Intent iA = new Intent(this, SectionHActivity.class);
-        startActivity(iA);*/
+        Intent iA = new Intent(this, RandomizationActivity.class);
+        startActivity(iA);
     }
 
     public void openB(View v) {
-       /* Intent iB = new Intent(this, SectionBActivity.class);
-        startActivity(iB);*/
+        Intent iB = new Intent(this, BaselineActvity.class);
+        startActivity(iB);
     }
 
-    /*public void openC(View v) {
-        Intent iC = new Intent(this, SectionCActivity.class);
+    public void openC(View v) {
+        Intent iC = new Intent(this, HealthSurveyScoringActivity.class);
         startActivity(iC);
     }
 
     public void openD(View v) {
-        Intent iD = new Intent(this, SectionDActivity.class);
+        Intent iD = new Intent(this, DataCollectionActivity.class);
         startActivity(iD);
     }
 
     public void openE(View v) {
-        Intent iD = new Intent(this, SectionEActivity.class);
-        startActivity(iD);
-*/    //}
+       /* Intent iD = new Intent(this, SectionEActivity.class);
+        startActivity(iD);*/
+ }
 
     public void openF(View v) {
        /* Intent iD = new Intent(this, SectionFActivity.class);

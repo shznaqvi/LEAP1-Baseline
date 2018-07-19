@@ -264,7 +264,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         sa.put("sf03b", sf03ba.isChecked() ? "1" : sf03bb.isChecked() ? "2" : sf03bc.isChecked() ? "3" : sf03bd.isChecked() ? "4" : sf03be.isChecked() ? "5" : "0");
         sa.put("sf04a", sf04aa.isChecked() ? "1" : sf04ab.isChecked() ? "2" : sf04ac.isChecked() ? "3" : sf04ad.isChecked() ? "4" : sf04ae.isChecked() ? "5" : "0");
         sa.put("sf04b", sf04ba.isChecked() ? "1" : sf04bb.isChecked() ? "2" : sf04bc.isChecked() ? "3" : sf04bd.isChecked() ? "4" : sf04be.isChecked() ? "5" : "0");
-        sa.put("sf05", sf05a.isChecked() ? "1" : sf05b.isChecked() ? "2" : sf05c.isChecked() ? "3" : sf05d.isChecked() ? "4" : sf05e.isChecked() ? "5" : "0");
+        sa.put("sf05", sf05a.isChecked() ? "5" : sf05b.isChecked() ? "4" : sf05c.isChecked() ? "3" : sf05d.isChecked() ? "2" : sf05e.isChecked() ? "1" : "0");
         sa.put("sf06a", sf06aa.isChecked() ? "1" : sf06ab.isChecked() ? "2" : sf06ac.isChecked() ? "3" : sf06ad.isChecked() ? "4" : sf06ae.isChecked() ? "5" : "0");
         sa.put("sf06b", sf06ba.isChecked() ? "1" : sf06bb.isChecked() ? "2" : sf06bc.isChecked() ? "3" : sf06bd.isChecked() ? "4" : sf06be.isChecked() ? "5" : "0");
         sa.put("sf06c", sf06ca.isChecked() ? "1" : sf06cb.isChecked() ? "2" : sf06cc.isChecked() ? "3" : sf06cd.isChecked() ? "4" : sf06ce.isChecked() ? "5" : "0");

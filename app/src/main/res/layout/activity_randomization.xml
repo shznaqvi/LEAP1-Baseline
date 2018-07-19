@@ -81,8 +81,8 @@
             android:layout_marginTop="1dp"
             android:gravity="right"
             android:hint="@string/r0701"
-            android:inputType="number"
-            android:maxLength="3"/>
+            android:inputType="numberDecimal"
+            android:maxLength="5"/>
 
         <LinearLayout
             android:id="@+id/fldGrpr08"
@@ -105,8 +105,8 @@
                 android:layout_marginTop="1dp"
                 android:gravity="right"
                 android:hint="@string/r0801"
-                android:inputType="number"
-                android:maxLength="3"/>
+                android:inputType="numberDecimal"
+                android:maxLength="5"/>
 
         </LinearLayout>
 

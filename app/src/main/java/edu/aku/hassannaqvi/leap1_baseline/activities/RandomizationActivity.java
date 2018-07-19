@@ -29,6 +29,7 @@ import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
+import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 import static android.content.ContentValues.TAG;
@@ -105,7 +106,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
         @Override
         public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-
+/*
             if (!r07.getText().toString().isEmpty()) {
 
                 if (Integer.valueOf(r07.getText().toString()) >= 70 && Integer.valueOf(r07.getText().toString()) <= 110) {
@@ -124,6 +125,30 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
                         fldGrpeligibility.setVisibility(View.GONE);
                     }
 
+                }   old range logic!!!
+
+            }*/
+
+// Below is the working with the new hb range.
+            if (!r07.getText().toString().isEmpty()) {
+                if (r07.getText().toString().matches("\\d+(\\.\\d+)*")) {
+                    if (Double.valueOf(r07.getText().toString()) >= 7.0 && Double.valueOf(r07.getText().toString()) <= 11.5) {
+                        fldGrpr08.setVisibility(View.VISIBLE);
+                    } else if (Double.valueOf(r07.getText().toString()) < 7.0 || Double.valueOf(r07.getText().toString()) > 11.5) {
+                        fldGrpr08.setVisibility(View.GONE);
+                        r08.setText(null);
+                    }
+
+                if (!r0901.getText().toString().isEmpty()) {
+                    if (isEligible() && Double.valueOf(r07.getText().toString()) >= 7.0
+                            && Double.valueOf(r07.getText().toString()) <= 11.5
+                            && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
+                        fldGrpeligibility.setVisibility(View.VISIBLE);
+                    } else {
+                        fldGrpeligibility.setVisibility(View.GONE);
+                    }
+
+                }
                 }
 
             }
@@ -198,12 +223,34 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
                 finish();
 
-
+/*
                 if (isEligible() && (Integer.valueOf(r07.getText().toString()) >= 70
                         && Integer.valueOf(r07.getText().toString()) <= 115)
                         && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26)) {
                     Intent EndingActivity = new Intent(this, BaselineActvity.class);
                     startActivity(EndingActivity);
+                } else {
+                    Intent endSec = new Intent(this, EndingActivity.class);
+                    endSec.putExtra("check", true);
+                    startActivity(endSec);
+                }
+                old implementation with integer hb range
+                */
+
+// below is the implementation with the new hb range with decimal
+                if (isEligible() && (Double.valueOf(r07.getText().toString()) >= 7.0
+                        && Double.valueOf(r07.getText().toString()) <= 11.5)
+                        && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26)) {
+
+                    if ((Double.valueOf(r07.getText().toString())>= 11.0 && Double.valueOf(r07.getText().toString())<=11.5) && Double.valueOf(r08.getText().toString())< 15.0){
+                        Intent EndingActivity = new Intent(this, BaselineActvity.class);
+                        startActivity(EndingActivity);
+                    }else {
+                        Intent endSec = new Intent(this, EndingActivity.class);
+                        endSec.putExtra("check", true);
+                        startActivity(endSec);
+                    }
+
                 } else {
                     Intent endSec = new Intent(this, EndingActivity.class);
                     endSec.putExtra("check", true);
@@ -299,16 +346,23 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
             r06.setError(null);
         }
         // =================== Q7 ====================
-        if (r07.getText().toString().isEmpty()) {
-            Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r07), Toast.LENGTH_SHORT).show();
-            r07.setError("This data is required");
-            Log.d(TAG, " r07 :empty ");
+        if (!validatorClass.EmptyTextBox(this,r07,getString(R.string.r07))) {
+            return false;
+        }
+        if (!r07.getText().toString().matches("\\d+(\\.\\d+)*")) {
+            Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
             r07.requestFocus();
+            r07.setError("Please enter correct decimal value!");
             return false;
         } else {
+            r07.clearFocus();
             r07.setError(null);
-        }
+            if (!validatorClass.RangeTextBox(this, r07, 4.0, 18.0, getString(R.string.r07),  " g/L")) {
+                return false;
+            }
 
+        }
+        /*
         if ((Integer.valueOf(r07.getText().toString().isEmpty() ? "0" : r07.getText().toString()) < 40)
                 || (Integer.valueOf(r07.getText().toString().isEmpty() ? "0" : r07.getText().toString()) > 180)) {
             Toast.makeText(this, "ERROR: " + getString(R.string.r07), Toast.LENGTH_LONG).show();
@@ -319,11 +373,12 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
         } else {
             r07.setError(null);
         }
+*/
 
-
-        if (Integer.valueOf(r07.getText().toString()) >= 70 && Integer.valueOf(r07.getText().toString()) <= 110) {
+//        if (Integer.valueOf(r07.getText().toString()) >= 70 && Integer.valueOf(r07.getText().toString()) <= 110) {
+        if (Double.valueOf(r07.getText().toString()) >= 7.0 && Double.valueOf(r07.getText().toString()) <= 11.5) {
             // =================== Q8 ====================
-            if (r08.getText().toString().isEmpty()) {
+          /*  if (r08.getText().toString().isEmpty()) {
                 Toast.makeText(this, "ERROR(Empty)" + getString(R.string.r08), Toast.LENGTH_SHORT).show();
                 r08.setError("This data is required");
                 Log.d(TAG, " r08 :empty ");
@@ -342,6 +397,24 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
             } else {
                 r08.setError(null);
             }
+            */
+            if (!validatorClass.EmptyTextBox(this,r08,getString(R.string.r08))) {
+                return false;
+            }
+            if (!r08.getText().toString().matches("\\d+(\\.\\d+)*")) {
+                Toast.makeText(this, "Please enter correct decimal value!", Toast.LENGTH_SHORT).show();
+                r08.requestFocus();
+                r08.setError("Please enter correct decimal value!");
+                return false;
+            } else {
+                r08.clearFocus();
+                r08.setError(null);
+                if (!validatorClass.RangeTextBox(this, r08, 0.0, 20.0, getString(R.string.r08),  " ng/mL")) {
+                    return false;
+                }
+
+            }
+
         }
 
 
@@ -437,9 +510,23 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
         } else {
             r16.setError(null);
         }
-
+/*
         if (isEligible() && Integer.valueOf(r07.getText().toString()) >= 70
                 && Integer.valueOf(r07.getText().toString()) <= 115
+                && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
+            if (mStudyID.getText().toString().isEmpty()) {
+                Toast.makeText(this, "ERROR (Empty)" + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
+                mStudyID.setError("This data is required");
+                Log.i(TAG, "studyNumber: This data is required");
+                mStudyID.requestFocus();
+                return false;
+            } else {
+                mStudyID.setError(null);
+            }
+*/
+
+        if (isEligible() && Double.valueOf(r07.getText().toString()) >= 7.0
+                && Double.valueOf(r07.getText().toString()) <= 11.5
                 && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
             if (mStudyID.getText().toString().isEmpty()) {
                 Toast.makeText(this, "ERROR (Empty)" + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
@@ -485,7 +572,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-
+/*
         if (isEligible() && ((Integer.valueOf(r07.getText().toString()) >= 70
                 && Integer.valueOf(r07.getText().toString()) <= 115)
                 && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26))) {
@@ -495,6 +582,21 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
             mStudyID.setText(null);
             r02.clearCheck();
         }
+        */
+if (!r07.getText().toString().isEmpty() && !r0901.getText().toString().isEmpty()){
+    if (r07.getText().toString().matches("\\d+(\\.\\d+)*")) {
+        if (isEligible() && ((Double.valueOf(r07.getText().toString()) >= 7.0
+                && Double.valueOf(r07.getText().toString()) <= 11.5)
+                && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26))) {
+            fldGrpeligibility.setVisibility(View.VISIBLE);
+        } else {
+            fldGrpeligibility.setVisibility(View.GONE);
+            mStudyID.setText(null);
+            r02.clearCheck();
+        }
+    }
+}
+
 
 
     }

@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 /**
  * Created by ali.azaz on 12/04/17.
+ * Edited by ramsha.saeed on 21/05/18
  */
 
 public abstract class validatorClass {
@@ -164,7 +165,7 @@ public abstract class validatorClass {
         if (flag) {
             cbx.setError(null);
             //Changed According to J2ME Lint
-            return !cbx.isChecked()|| EmptyTextBox(context,txt,msg);
+           return !cbx.isChecked()|| EmptyTextBox(context,txt,msg);
         } else {
             Toast.makeText(context, "ERROR(empty): " + msg, Toast.LENGTH_LONG).show();
             cbx.setError("This data is Required!");    // Set Error on last radio button
