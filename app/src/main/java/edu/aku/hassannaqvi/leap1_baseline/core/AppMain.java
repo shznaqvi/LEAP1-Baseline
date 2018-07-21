@@ -68,6 +68,7 @@ public class AppMain extends Application {
 
     public static Boolean admin = false;
     public static int mna3 = -1;
+    public static int site = -1;
     public static String mnb1 = "TEST";
     public static int chCount = 0;
     public static int chTotal = 0;

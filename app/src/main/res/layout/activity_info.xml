@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:id="@+id/activity_section_a"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingBottom="@dimen/activity_vertical_margin"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            tools:context="edu.aku.hassannaqvi.leap1_baseline.activities.InfoActivity">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_section_a"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    tools:context="edu.aku.hassannaqvi.leap1_baseline.activities.InfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/colorPrimary" />
 
         <TextView
             android:id="@+id/textView2"
@@ -27,13 +27,38 @@
             android:background="@color/colorMainHeading"
             android:gravity="center"
             android:text="IDENTIFCATION"
-            android:textSize="30sp"/>
+            android:textSize="30sp" />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
-            android:background="@color/colorPrimary"/>
+            android:background="@color/colorPrimary" />
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/siteNumber" />
+
+            <EditText
+                android:id="@+id/sitenumber"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:hint="@string/siteNumber"
+                android:inputType="number"
+                android:maxLength="5">
+                <requestFocus />
+            </EditText>
+        </LinearLayout>
 
 
         <TextView
@@ -41,29 +66,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="right"
-            android:text="@string/siteNumber"/>
-
-        <EditText
-            android:id="@+id/sitenumber"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="1dp"
-            android:gravity="right"
-            android:hint="@string/siteNumber"
-            android:inputType="number"
-            android:maxLength="5">
-
-            <requestFocus/>
-
-        </EditText>
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:gravity="right"
-            android:text="@string/mrnumber"/>
+            android:text="@string/mrnumber" />
 
         <EditText
             android:id="@+id/mrnumber"
@@ -73,7 +76,7 @@
             android:gravity="right"
             android:hint="@string/mrnumber"
             android:inputType="number"
-            android:maxLength="10"/>
+            android:maxLength="10" />
 
 
         <!--<TextView
@@ -117,7 +120,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="right"
-            android:text="@string/r01"/>
+            android:text="@string/r01" />
 
         <EditText
             android:id="@+id/r01"
@@ -126,7 +129,7 @@
             android:layout_marginTop="1dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:gravity="right"
-            android:hint="@string/r01"/>
+            android:hint="@string/r01" />
 
 
         <TextView
@@ -134,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="right"
-            android:text="@string/r03"/>
+            android:text="@string/r03" />
 
         <EditText
 
@@ -144,7 +147,7 @@
             android:layout_marginTop="1dp"
             android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
             android:gravity="right"
-            android:hint="@string/r03"/>
+            android:hint="@string/r03" />
 
         <TextView
             android:id="@+id/textView"
@@ -152,7 +155,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="right"
-            android:text="@string/r04"/>
+            android:text="@string/r04" />
 
         <EditText
 
@@ -162,14 +165,14 @@
             android:layout_marginTop="1dp"
             android:digits="@string/digits"
             android:gravity="right"
-            android:hint="@string/r04"/>
+            android:hint="@string/r04" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="right"
-            android:text="@string/r05"/>
+            android:text="@string/r05" />
 
         <EditText
             android:id="@+id/r0501"
@@ -179,7 +182,7 @@
             android:gravity="right"
             android:hint="@string/r0501"
             android:inputType="number"
-            android:maxLength="11"/>
+            android:maxLength="11" />
 
         <EditText
             android:id="@+id/r0502"
@@ -189,7 +192,7 @@
             android:gravity="right"
             android:hint="@string/r0502"
             android:inputType="number"
-            android:maxLength="11"/>
+            android:maxLength="11" />
 
         <EditText
             android:id="@+id/r0503"
@@ -199,7 +202,7 @@
             android:gravity="right"
             android:hint="@string/r0503"
             android:inputType="number"
-            android:maxLength="11"/>
+            android:maxLength="11" />
 
 
         <LinearLayout
@@ -222,7 +225,7 @@
                 android:textColor="@android:color/holo_red_light"
                 android:textSize="24sp"
                 android:textStyle="bold"
-                android:visibility="gone"/>
+                android:visibility="gone" />
 
             <Button
                 android:id="@+id/btnNext"
@@ -233,7 +236,7 @@
                 android:onClick="submitSecA"
                 android:text="@string/nextSection"
                 android:textColor="@color/colorTextBtnContinue"
-                android:textSize="24sp"/>
+                android:textSize="24sp" />
 
         </LinearLayout>
 

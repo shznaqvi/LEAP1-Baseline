@@ -29,11 +29,14 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.ScrollView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -96,11 +99,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
     /*@BindView(R.id.spUC)
     Spinner spUC;
     */
+    @BindView(R.id.spSite)
+    Spinner spSite;
 
     SharedPreferences sharedPref;
     SharedPreferences.Editor editor;
 
     String DirectoryName;
+    ArrayList<String> siteList;
 
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
@@ -112,7 +118,10 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-
+siteList = new ArrayList<>();
+siteList.add(0,"SELECT SITE");
+siteList.add(1,"AKU");
+siteList.add(2,"Kharadar");
 
 //        Get data from wrapper app
         Bundle b = getIntent().getExtras();
@@ -228,7 +237,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             Log.i("Key - Value:", ucList.get(i).getTownId() + " - " + ucList.get(i).getUCId() + " - " + ucList.get(i).getUCName() + " - " + ucList.get(i).getID());
 
         }*/
-        valuesnlabels = new HashMap<String, String>();
+     /*   valuesnlabels = new HashMap<String, String>();
         valuesnlabels.put("11", "K. Abdullah");
         valuesnlabels.put("12", "Quetta");
         valuesnlabels.put("13", "Pishin");
@@ -242,27 +251,29 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         valuesnlabels.put("42", "Larkhana");
         valuesnlabels.put("91", "Rawalpindi");
         valuesnlabels.put("92", "Lahore");
-        valuesnlabels.put("93", "Multan");
+        valuesnlabels.put("93", "Multan"); */
+
 
 
         // Creating adapter for spinner
         ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getApplicationContext(),
-                android.R.layout.simple_spinner_item, lables);
+                android.R.layout.simple_spinner_item, siteList);
 
         // Drop down layout style - list view with radio button
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
         // attaching data adapter to spinner
-        //spUC.setAdapter(dataAdapter);
-        //spUC.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        //spUC.setOnItemSelectedListener(this);
-        //spUC.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            /*@Override
+        spSite.setAdapter(dataAdapter);
+        spSite.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+//      spSite.setOnItemSelectedListener(this);
+        spSite.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                AppMain.mna3 = Integer.valueOf(values.get(position));
+//                AppMain.mna3 = Integer.valueOf(values.get(position));
+                AppMain.site = position;
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-                Toast.makeText(LoginActivity.this, values.get(position), Toast.LENGTH_SHORT).show();
+//                Toast.makeText(LoginActivity.this, values.get(position), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -270,7 +281,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
 
             }
         });
-*/
 
 
 //        DB backup
@@ -498,6 +508,7 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         startActivity(im);
     }
 
+
     private interface ProfileQuery {
         String[] PROJECTION = {
                 ContactsContract.CommonDataKinds.Email.ADDRESS,
@@ -558,9 +569,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
                     AppMain.username = mEmail;
                     AppMain.admin = mEmail.contains("@");
 
-                    finish();
-                    Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
-                    startActivity(iLogin);
+                    if (spSite.getSelectedItemPosition() != 0 ){
+                        finish();
+                        Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
+                        startActivity(iLogin);
+                    }else {
+                        spSite.setFocusable(true);
+                        Toast.makeText(getApplicationContext(),"Please Select a site to enter!!",Toast.LENGTH_LONG).show();
+                    }
 
                 } else {
                     mPasswordView.setError(getString(R.string.error_incorrect_password));
@@ -594,7 +610,6 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
             }
 
         }
-
 
         @Override
         protected void onCancelled() {

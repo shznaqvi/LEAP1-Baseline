@@ -84,6 +84,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             NutritionTable.COLUMN_UID + " TEXT," +
             NutritionTable.COLUMN_UUID + " TEXT," +
             NutritionTable.COLUMN_FORMDATE + " TEXT," +
+            NutritionTable.COLUMN_SITENUM + " TEXT," +
+            NutritionTable.COLUMN_MRNUM + " TEXT," +
+            NutritionTable.COLUMN_MSTUDYID + " TEXT," +
             NutritionTable.COLUMN_DEVICEID + " TEXT," +
             NutritionTable.COLUMN_DEVICETAGID + " TEXT," +
             NutritionTable.COLUMN_USER + " TEXT," +
@@ -193,6 +196,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+
     public int updateNutritionID() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -210,6 +214,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+
     public void updateForms(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -228,6 +233,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 where,
                 whereArgs);
     }
+
     public void updateNutrition(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -256,29 +262,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(NutritionTable.COLUMN_LFITEM, mc.getlfitem());
 
-
-            values.put(NutritionTable.COLUMN_PROJECTNAME, mc.getProjectName());
-            values.put(NutritionTable.COLUMN_UID, mc.get_UID());
-            values.put(NutritionTable.COLUMN_UUID, mc.get_UUID());
-            values.put(NutritionTable.COLUMN_FORMDATE, mc.getFormDate());
-            values.put(NutritionTable.COLUMN_DEVICEID, mc.getDeviceId());
-            values.put(NutritionTable.COLUMN_DEVICETAGID, mc.getDevicetagID());
-            values.put(NutritionTable.COLUMN_USER, mc.getUser());
-            values.put(NutritionTable.COLUMN_APP_VER, mc.getApp_ver());
-            values.put(NutritionTable.COLUMN_SYNCED, mc.getSynced());
-            values.put(NutritionTable.COLUMN_SYNCEDDATE, mc.getSyncedDate());
+        values.put(NutritionTable.COLUMN_PROJECTNAME, mc.getProjectName());
+        values.put(NutritionTable.COLUMN_UID, mc.get_UID());
+        values.put(NutritionTable.COLUMN_UUID, mc.get_UUID());
+        values.put(NutritionTable.COLUMN_FORMDATE, mc.getFormDate());
+        values.put(NutritionTable.COLUMN_SITENUM, mc.getSiteNum());
+        values.put(NutritionTable.COLUMN_MRNUM, mc.getMrNum());
+        values.put(NutritionTable.COLUMN_MSTUDYID, mc.getmStudyID());
+        values.put(NutritionTable.COLUMN_DEVICEID, mc.getDeviceId());
+        values.put(NutritionTable.COLUMN_DEVICETAGID, mc.getDevicetagID());
+        values.put(NutritionTable.COLUMN_USER, mc.getUser());
+        values.put(NutritionTable.COLUMN_APP_VER, mc.getApp_ver());
+        values.put(NutritionTable.COLUMN_SYNCED, mc.getSynced());
+        values.put(NutritionTable.COLUMN_SYNCEDDATE, mc.getSyncedDate());
 
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
 
-            newRowId = db.insert(
-                    NutritionTable.TABLE_NAME,
-                    NutritionTable.COLUMN_NAME_NULLABLE,
-                    values);
+        newRowId = db.insert(
+                NutritionTable.TABLE_NAME,
+                NutritionTable.COLUMN_NAME_NULLABLE,
+                values);
 
 
         return newRowId;
     }
+
     public Collection<FormsContract> getAllForms() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -419,9 +428,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 NutritionTable.COLUMN_DEVICEID,
                 NutritionTable.COLUMN_DEVICETAGID,
                 NutritionTable.COLUMN_USER,
+                NutritionTable.COLUMN_MRNUM,
+                NutritionTable.COLUMN_MSTUDYID,
+                NutritionTable.COLUMN_SITENUM,
                 NutritionTable.COLUMN_APP_VER,
                 NutritionTable.COLUMN_LFITEM,
-
                 NutritionTable.COLUMN_SYNCED,
                 NutritionTable.COLUMN_SYNCEDDATE,
 

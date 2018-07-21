@@ -27,8 +27,7 @@ import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 
-public class InfoActivity extends Activity
-{
+public class InfoActivity extends Activity {
     private static final String TAG = InfoActivity.class.getSimpleName();
 
     @BindView(R.id.activity_section_a)
@@ -57,13 +56,12 @@ public class InfoActivity extends Activity
     LinearLayout fldGrpbtn;
 
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_info);
         ButterKnife.bind(this);
-
+        sitenumber.setText(String.valueOf(AppMain.site));
         /*String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
         r13.setManager(getSupportFragmentManager());
         r13.setMaxDate(dateToday);*/
@@ -92,7 +90,6 @@ public class InfoActivity extends Activity
             }
         }
     }
-
 
     @OnClick(R.id.btnEnd)
     void onBtnEndClick() {
@@ -158,18 +155,13 @@ public class InfoActivity extends Activity
 
         JSONObject sa = new JSONObject();
 
-
         sa.put("r03", r03.getText().toString());
         sa.put("r04", r04.getText().toString());
         sa.put("r0501", r0501.getText().toString());
         sa.put("r0502", r0502.getText().toString());
         sa.put("r0503", r0503.getText().toString());
-
-
         setGPS();
-
         AppMain.fc.setsInfo(String.valueOf(sa));
-
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
@@ -189,7 +181,7 @@ public class InfoActivity extends Activity
 
         if (mrnumber.getText().toString().isEmpty()) {
             Toast.makeText(this, "ERROR(Empty)" + getString(R.string.mrnumber), Toast.LENGTH_SHORT).show();
-            mrnumber.setError("Thia data is required");
+            mrnumber.setError("This data is required");
             Log.d(TAG, "mrnumber: This data is required ");
             mrnumber.requestFocus();
             return false;
@@ -226,7 +218,6 @@ public class InfoActivity extends Activity
         } else {
             r01.setError(null);
         }
-
 
 
         if (r03.getText().toString().isEmpty()) {

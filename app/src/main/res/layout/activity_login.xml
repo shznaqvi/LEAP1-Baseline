@@ -82,21 +82,15 @@
                 android:maxLines="1"
                 tools:text="aku?dmu"
                 android:textAlignment="center"/>
-
-
-            <!--<Spinner
-                android:id="@+id/spUC"
+            <Spinner
+                android:id="@+id/spSite"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
+                android:layout_marginBottom="14dp"
                 android:gravity="center"
-                android:hint="@string/hFacility"
                 android:popupBackground="#3d3d3d"
-
-
                 />
--->
-
             <Button
                 android:id="@+id/email_sign_in_button"
                 style="?android:textAppearanceSmall"

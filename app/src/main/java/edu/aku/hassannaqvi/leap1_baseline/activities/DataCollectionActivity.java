@@ -30,6 +30,8 @@ public class DataCollectionActivity extends AppCompatActivity
     ScrollView activitySectionA;
     @BindView(R.id.studyID)
     EditText studyID;
+    @BindView(R.id.sitenumber)
+    EditText sitenumber;
     @BindView(R.id.aQ01)
     RadioGroup aQ01;
     @BindView(R.id.aQ01a)
@@ -462,6 +464,7 @@ public class DataCollectionActivity extends AppCompatActivity
 
         studyID.setText(AppMain.fc.getmStudyID());
         studyID.setEnabled(false);
+        sitenumber.setText(String.valueOf(AppMain.site));
     }
 
     @OnClick(R.id.btnNext)
@@ -475,8 +478,6 @@ public class DataCollectionActivity extends AppCompatActivity
             if (UpdateDB()) {
 
                 finish();
-
-
                 Toast.makeText(this, "Starting Form Ending Section", Toast.LENGTH_SHORT).show();/*
                 Intent endSec = new Intent(this, EndingActivity.class);
                 endSec.putExtra("check", true);

@@ -32,6 +32,8 @@ public class FormsContract {
     private String sInfo = "";
     private String sRandomization = "";
     private String sBaseline = "";
+   /* private String sfup = "";
+    private String sfetal = "";*/
     private String sSF = "";
     private String sAQ = "";
 

@@ -30,6 +30,8 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     ScrollView activitySectionA;
     @BindView(R.id.studyID)
     EditText studyID;
+    @BindView(R.id.sitenumber)
+    EditText sitenumber;
     @BindView(R.id.sf01)
     RadioGroup sf01;
     @BindView(R.id.sf01a)
@@ -176,6 +178,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         ButterKnife.bind(this);
         studyID.setText(AppMain.fc.getmStudyID());
         studyID.setEnabled(false);
+        sitenumber.setText(String.valueOf(AppMain.site));
     }
 
     @OnClick(R.id.btnNext)

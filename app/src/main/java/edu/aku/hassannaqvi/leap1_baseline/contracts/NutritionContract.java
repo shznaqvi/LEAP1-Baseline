@@ -22,6 +22,9 @@ public class NutritionContract {
     private String user = "";
     private String app_ver = "";
     private String lfitem = "";
+    private String siteNum = "";
+    private String mrNum = "";
+    private String mStudyID = "";
     private String synced = "";
     private String syncedDate = "";
 
@@ -125,6 +128,29 @@ public class NutritionContract {
         this.lfitem = lfitem;
     }
 
+    public String getSiteNum() {
+        return siteNum;
+    }
+
+    public void setSiteNum(String siteNum) {
+        this.siteNum = siteNum;
+    }
+
+    public String getMrNum() {
+        return mrNum;
+    }
+
+    public void setMrNum(String mrNum) {
+        this.mrNum = mrNum;
+    }
+
+    public String getmStudyID() {
+        return mStudyID;
+    }
+
+    public void setmStudyID(String mStudyID) {
+        this.mStudyID = mStudyID;
+    }
 
     public NutritionContract Sync(JSONObject jsonObject) throws JSONException {
 
@@ -134,6 +160,9 @@ public class NutritionContract {
         this.formDate = jsonObject.getString(NutritionTable.COLUMN_FORMDATE);
         this.deviceId = jsonObject.getString(NutritionTable.COLUMN_DEVICEID);
         this.devicetagID = jsonObject.getString(NutritionTable.COLUMN_DEVICETAGID);
+        this.siteNum = jsonObject.getString(NutritionTable.COLUMN_SITENUM);
+        this.mrNum = jsonObject.getString(NutritionTable.COLUMN_MRNUM);
+        this.mStudyID = jsonObject.getString(NutritionTable.COLUMN_MSTUDYID);
         this.user = jsonObject.getString(NutritionTable.COLUMN_USER);
         this.app_ver = jsonObject.getString(NutritionTable.COLUMN_APP_VER);
         this.lfitem = jsonObject.getString(NutritionTable.COLUMN_LFITEM);
@@ -155,6 +184,9 @@ public class NutritionContract {
             this.formDate = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_FORMDATE));
             this.deviceId = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_DEVICEID));
             this.devicetagID = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_DEVICETAGID));
+            this.siteNum = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_SITENUM));
+            this.mrNum = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_MRNUM));
+            this.mStudyID = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_MSTUDYID));
             this.user = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_USER));
             this.app_ver = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_APP_VER));
             this.synced = cursor.getString(cursor.getColumnIndex(NutritionTable.COLUMN_SYNCED));
@@ -175,6 +207,9 @@ public class NutritionContract {
         json.put(NutritionTable.COLUMN_UID, this._UID == null ? JSONObject.NULL : this._UID);
         json.put(NutritionTable.COLUMN_UUID, this._UUID == null ? JSONObject.NULL : this._UUID);
         json.put(NutritionTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
+        json.put(NutritionTable.COLUMN_SITENUM, this.siteNum == null ? JSONObject.NULL : this.siteNum);
+        json.put(NutritionTable.COLUMN_MSTUDYID, this.mStudyID == null ? JSONObject.NULL : this.mStudyID);
+        json.put(NutritionTable.COLUMN_MRNUM, this.mrNum == null ? JSONObject.NULL : this.mrNum);
         json.put(NutritionTable.COLUMN_DEVICEID, this.deviceId == null ? JSONObject.NULL : this.deviceId);
         json.put(NutritionTable.COLUMN_DEVICETAGID, this.devicetagID == null ? JSONObject.NULL : this.devicetagID);
         json.put(NutritionTable.COLUMN_USER, this.user == null ? JSONObject.NULL : this.user);
@@ -206,7 +241,9 @@ public class NutritionContract {
         public static final String COLUMN_DEVICETAGID = "devicetagid";
         public static final String COLUMN_USER = "user";
         public static final String COLUMN_APP_VER = "app_ver";
-
+        public static final String COLUMN_SITENUM = "sitenum";
+        public static final String COLUMN_MRNUM = "mrnum";
+        public static final String COLUMN_MSTUDYID = "mstudyid";
         public static final String COLUMN_LFITEM = "lfitem";
         public static final String COLUMN_SYNCED = "synced";
         public static final String COLUMN_SYNCEDDATE = "synceddate";
