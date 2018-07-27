@@ -569,7 +569,7 @@ public class DataCollectionActivity extends AppCompatActivity
         sa.put("aQ30", aQ30a.isChecked() ? "1" : aQ30b.isChecked() ? "2" : aQ30c.isChecked() ? "3" : aQ30d.isChecked() ? "4" : aQ30e.isChecked() ? "5" : "0");
         sa.put("aQ31", aQ31a.isChecked() ? "1" : aQ31b.isChecked() ? "2" : aQ31c.isChecked() ? "3" : aQ31d.isChecked() ? "4" : aQ31e.isChecked() ? "5" : "0");
         sa.put("aQ32", aQ32a.isChecked() ? "1" : aQ32b.isChecked() ? "2" : aQ32c.isChecked() ? "3" : aQ32d.isChecked() ? "4" : aQ32e.isChecked() ? "5" : "0");
-        sa.put("aQ33", aQ33a.isChecked() ? "1" : aQ33b.isChecked() ? "2" : aQ33c.isChecked() ? "3" : aQ33d.isChecked() ? "4" : aQ33e.isChecked() ? "5" : aQ33f.isChecked() ? "5" : "0");
+        sa.put("aQ33", aQ33a.isChecked() ? "1" : aQ33b.isChecked() ? "2" : aQ33c.isChecked() ? "3" : aQ33d.isChecked() ? "4" : aQ33e.isChecked() ? "5" : aQ33f.isChecked() ? "6" : "0");
         sa.put("aQ34", aQ34a.isChecked() ? "1" : aQ34b.isChecked() ? "2" : aQ34c.isChecked() ? "3" : aQ34d.isChecked() ? "4" : aQ34e.isChecked() ? "5" : "0");
         sa.put("aQ35", aQ35a.isChecked() ? "1" : aQ35b.isChecked() ? "2" : aQ35c.isChecked() ? "3" : aQ35d.isChecked() ? "4" : aQ35e.isChecked() ? "5" : "0");
 

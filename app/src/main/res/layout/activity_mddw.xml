@@ -58,8 +58,6 @@ tools:context="edu.aku.hassannaqvi.leap1_baseline.activities.MDDWActivity">
         android:textAlignment="center"
         android:textColor="@color/black"/>
 
-
-
     <TextView
         android:id="@+id/textName"
         android:layout_width="match_parent"
@@ -68,8 +66,6 @@ tools:context="edu.aku.hassannaqvi.leap1_baseline.activities.MDDWActivity">
         android:gravity="center"
         android:visibility="gone"
         android:textColor="@color/colorPrimaryDark" />
-
-
     <TextView
         android:id="@+id/nw501"
         android:layout_width="match_parent"

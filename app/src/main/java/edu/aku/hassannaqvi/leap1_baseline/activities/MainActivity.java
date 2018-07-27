@@ -11,9 +11,12 @@ import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -47,8 +50,12 @@ import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUsers;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetVillages;
 import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncForms;
 import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncNutrition;
+import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 
-public class MainActivity extends Activity {
+import static edu.aku.hassannaqvi.leap1_baseline.core.AppMain.Fup30day;
+import static edu.aku.hassannaqvi.leap1_baseline.core.AppMain.Fupantenatal;
+
+public class MainActivity extends AppCompatActivity {
 
     public static String TAG = MainActivity.class.getSimpleName();
     public List<String> lhwName;
@@ -72,7 +79,10 @@ public class MainActivity extends Activity {
     SharedPreferences.Editor editor;
     AlertDialog.Builder builder;
     String m_Text = "";
+    String mStudyIdText = "";
     private String rSumText = "";
+    static String ACTIVITY_TYPE_KEY = "fuptype";
+    static String ACTIVITY_TYPE_ID_KEY = "fuptypeId";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -300,6 +310,50 @@ public class MainActivity extends Activity {
 
     }
 
+    public void openantinatal(View v) {
+        studyIdPrompt(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
+
+    }
+
+    private void studyIdPrompt(String fup_type, int fup_typeID) {
+        final Intent iA = new Intent(getApplicationContext(), FollowupActivity.class);
+        iA.putExtra(ACTIVITY_TYPE_KEY, fup_type);
+        iA.putExtra(ACTIVITY_TYPE_ID_KEY, fup_typeID);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Mother Study ID");
+        View viewInflated = LayoutInflater.from(this).inflate(R.layout.text_input_mstudyid, (ViewGroup) findViewById(R.id.activity_main), false);
+
+        final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+        builder.setView(viewInflated);
+
+        builder.setPositiveButton(android.R.string.search_go, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                mStudyIdText = input.getText().toString();
+                if (mStudyIdText.isEmpty()) {
+                    if (!validatorClass.EmptyTextBox(getApplicationContext(), input, "Please enter study id")) {
+                    }
+                } else {
+                    dialog.dismiss();
+                    startActivity(iA);
+                }
+            }
+        });
+        builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
+            }
+        });
+
+        builder.show();
+    }
+
+    public void open30day(View v) {
+        studyIdPrompt(" 30 Day Visit (Follow Up)", Fup30day);
+    }
+
     public void openA(View v) {
         Intent iA = new Intent(this, RandomizationActivity.class);
         startActivity(iA);
@@ -323,7 +377,7 @@ public class MainActivity extends Activity {
     public void openE(View v) {
        /* Intent iD = new Intent(this, SectionEActivity.class);
         startActivity(iD);*/
- }
+    }
 
     public void openF(View v) {
        /* Intent iD = new Intent(this, SectionFActivity.class);

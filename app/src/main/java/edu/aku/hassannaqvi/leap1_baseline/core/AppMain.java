@@ -45,6 +45,9 @@ public class AppMain extends Application {
     */
     public static final Integer MONTHS_LIMIT = 11;
     public static final Integer DAYS_LIMIT = 29;
+    public static final Integer Fupdefault = 0;
+    public static final Integer Fup30day = 1;
+    public static final Integer Fupantenatal = 2;
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWENTY_MINUTES = 1000 * 60 * 20;
