@@ -110,7 +110,7 @@
                 </View>
 
                 <EditText
-                    android:id="@+id/r0902"
+                    android:id="@+id/f02d"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -361,14 +361,14 @@
                 </RadioGroup>
 
                 <EditText
-                    android:id="@+id/f04b01x"
+                    android:id="@+id/f04bx"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:gravity="right"
                     android:hint="@string/f0488"
-                    android:text='@{f04b01.checked ? f04b01x.getText.toString : ""}'
+                    android:text='@{f04b01.checked ? f04bx.getText.toString : ""}'
                     android:visibility='@{f04b01.checked ? View.VISIBLE : View.GONE}' />
             </LinearLayout>
                 <TextView
@@ -442,13 +442,13 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/f0601"
+                        android:id="@+id/f06sf"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/f060101"
+                            android:id="@+id/f06sfa"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -457,7 +457,7 @@
                             android:text="@string/yes" />
 
                         <RadioButton
-                            android:id="@+id/f060102"
+                            android:id="@+id/f06sfb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -468,15 +468,15 @@
                     </RadioGroup>
 
                     <EditText
-                        android:id="@+id/f060102r"
+                        android:id="@+id/f06sfx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMnoPQRSTUVWXYZ"
                         android:gravity="right"
                         android:hint="@string/f06bx"
-                        android:text='@{f060102.checked ? f060102r.getText.toString : ""}'
-                        android:visibility='@{f060102.checked ? View.VISIBLE : View.GONE}' />
+                        android:text='@{f06sfb.checked ? f06sfx.getText.toString : ""}'
+                        android:visibility='@{f06sfb.checked ? View.VISIBLE : View.GONE}' />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -489,13 +489,13 @@
                         android:textSize="20sp" />
 
                     <RadioGroup
-                        android:id="@+id/f0602"
+                        android:id="@+id/f06aq"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal">
 
                         <RadioButton
-                            android:id="@+id/f060201"
+                            android:id="@+id/f06aqa"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -504,7 +504,7 @@
                             android:text="@string/yes" />
 
                         <RadioButton
-                            android:id="@+id/f060202"
+                            android:id="@+id/f06aqb"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="1dp"
@@ -515,7 +515,7 @@
                     </RadioGroup>
 
                     <EditText
-                        android:id="@+id/f060202r"
+                        android:id="@+id/f06aqx"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="16dp"
@@ -524,8 +524,8 @@
                         android:gravity="right"
                         android:hint="@string/f06bx"
                         android:maxLength="30"
-                        android:text='@{f060202.checked ? f060202r.getText.toString : ""}'
-                        android:visibility='@{f060202.checked ? View.VISIBLE : View.GONE}' />
+                        android:text='@{f06aqa.checked ? f06aqx.getText.toString : ""}'
+                        android:visibility='@{f06aqb.checked ? View.VISIBLE : View.GONE}' />
 
                 </LinearLayout>
 
@@ -587,7 +587,7 @@
                 </RadioGroup>
 
                 <EditText
-                    android:id="@+id/f07bx"
+                    android:id="@+id/f07x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
@@ -595,7 +595,7 @@
                     android:gravity="right"
                     android:hint="@string/f06bx"
                     android:maxLength="30"
-                    android:text='@{f07b.checked ? f07bx.getText.toString : ""}'
+                    android:text='@{f07b.checked ? f07x.getText.toString : ""}'
                     android:visibility='@{f07b.checked ? View.VISIBLE : View.GONE}' />
 
                 <TextView
@@ -1144,7 +1144,11 @@
                         android:layout_marginTop="16dp"
                         android:gravity="right"
                         android:text="@string/f0901sup" />
-
+                    <LinearLayout
+                        android:id="@+id/fldGrpf0901check"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
                     <CheckBox
                         android:id="@+id/f0901sup01"
                         android:layout_width="match_parent"
@@ -1291,12 +1295,12 @@
                         android:layout_marginTop="1dp"
                         android:text="@string/f0901sup19" />
 
-                    <CheckBox
+                  <!--  <CheckBox
                         android:id="@+id/f0901sup20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
-                        android:text="@string/f0901sup20" />
+                        android:text="@string/f0901sup20" />-->
 
                     <CheckBox
                         android:id="@+id/f0901sup88"
@@ -1304,7 +1308,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="1dp"
                         android:text="@string/f0901sup88" />
-
+                </LinearLayout>
                     <EditText
                         android:id="@+id/f0901sup88x"
                         android:layout_width="match_parent"
@@ -1702,14 +1706,14 @@
                 </RadioGroup>
 
                 <EditText
-                    android:id="@+id/f0911ax"
+                    android:id="@+id/f0911x"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="1dp"
                     android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                     android:gravity="right"
                     android:hint="@string/f0488"
-                    android:text='@{f0911a.checked ? f0911ax.getText.toString : ""}'
+                    android:text='@{f0911a.checked ? f0911x.getText.toString : ""}'
                     android:visibility='@{f0911a.checked ? View.VISIBLE : View.GONE}' />
             </LinearLayout>
 

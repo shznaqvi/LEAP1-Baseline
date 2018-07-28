@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:textDirection="ltr">
+    android:textDirection="ltr"
+    android:orientation="vertical">
 
     <android.support.design.widget.TextInputLayout
         android:layout_width="match_parent"
@@ -16,4 +17,18 @@
             android:inputType="number"
             android:maxLength="4" />
     </android.support.design.widget.TextInputLayout>
-</FrameLayout>
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <AutoCompleteTextView
+            android:id="@+id/inputmrno"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:digits="0123456789-"
+            android:hint="XXX-XX-XX"
+            android:maxLength="9" />
+    </android.support.design.widget.TextInputLayout>
+</LinearLayout>

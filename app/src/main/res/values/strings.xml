@@ -608,17 +608,17 @@
     <string name="f0901sup07">Meiji Mamilac (3.1 mg elemental iron/1 cup) </string>
     <string name="f0901sup08">Enfamama A+ (6mg elemental iron/240 ml) </string>
     <string name="f0901sup09">Sytron Syrup (27.5 mg elemental iron/ 5 ml)</string>
-    <string name="f0901sup10">Fefol-Vit (47 mg elemental iron) </string>
-    <string name="f0901sup11">Fefol (47 mg elemental iron) </string>
-    <string name="f0901sup12">Surbex Z </string>
-    <string name="f0901sup13">Surbex T </string>
-    <string name="f0901sup14">Optilet M</string>
-    <string name="f0901sup15">Vital B </string>
-    <string name="f0901sup16">Vital M </string>
-    <string name="f0901sup17">Ensure </string>
-    <string name="f0901sup18">CaC-1000 Plus </string>
-    <string name="f0901sup19">Tab- Ostenate  </string>
-    <string name="f0901sup20">Tab- Ostenate D </string>
+    <!--<string name="f0901sup10">Fefol-Vit (47 mg elemental iron) </string>-->
+    <string name="f0901sup10">Fefol (47 mg elemental iron) </string>
+    <string name="f0901sup11">Surbex Z </string>
+    <string name="f0901sup12">Surbex T </string>
+    <string name="f0901sup13">Optilet M</string>
+    <string name="f0901sup14">Vital B </string>
+    <string name="f0901sup15">Vital M </string>
+    <string name="f0901sup16">Ensure </string>
+    <string name="f0901sup17">CaC-1000 Plus </string>
+    <string name="f0901sup18">Tab- Ostenate  </string>
+    <string name="f0901sup19">Tab- Ostenate D </string>
     <string name="f0901sup88">other </string>
 
 

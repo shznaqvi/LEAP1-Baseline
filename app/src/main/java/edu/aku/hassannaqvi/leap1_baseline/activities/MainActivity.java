@@ -12,7 +12,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +38,7 @@ import java.util.Map;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.LHWsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.TehsilsContract;
@@ -80,9 +83,11 @@ public class MainActivity extends AppCompatActivity {
     AlertDialog.Builder builder;
     String m_Text = "";
     String mStudyIdText = "";
+    String mrnoText = "";
     private String rSumText = "";
     static String ACTIVITY_TYPE_KEY = "fuptype";
     static String ACTIVITY_TYPE_ID_KEY = "fuptypeId";
+    int length = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -315,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void studyIdPrompt(String fup_type, int fup_typeID) {
+    private void studyIdPrompt(String fup_type, final int fup_typeID) {
         final Intent iA = new Intent(getApplicationContext(), FollowupActivity.class);
         iA.putExtra(ACTIVITY_TYPE_KEY, fup_type);
         iA.putExtra(ACTIVITY_TYPE_ID_KEY, fup_typeID);
@@ -324,6 +329,52 @@ public class MainActivity extends AppCompatActivity {
         View viewInflated = LayoutInflater.from(this).inflate(R.layout.text_input_mstudyid, (ViewGroup) findViewById(R.id.activity_main), false);
 
         final EditText input = (EditText) viewInflated.findViewById(R.id.input);
+        final EditText inputmrno = (EditText) viewInflated.findViewById(R.id.inputmrno);
+        inputmrno.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                inputmrno.setInputType(InputType.TYPE_CLASS_NUMBER);
+                length = charSequence.toString().length();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+//                clearFields();
+
+
+                if (!inputmrno.getText().toString().isEmpty() && inputmrno.getText().toString().length() == 3) {
+                    if (inputmrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 4) {
+                            inputmrno.setText(inputmrno.getText().toString() + "-");
+                            inputmrno.setSelection(inputmrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+                if (!inputmrno.getText().toString().isEmpty() && inputmrno.getText().toString().length() == 6) {
+                    if (inputmrno.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 7) {
+                            inputmrno.setText(inputmrno.getText().toString() + "-");
+                            inputmrno.setSelection(inputmrno.getText().length());
+                            //binding.nh108.setInputType(InputType.TYPE_TEXT_FLAG_CAP_CHARACTERS);
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
+
         builder.setView(viewInflated);
 
         builder.setPositiveButton(android.R.string.search_go, new DialogInterface.OnClickListener() {
@@ -331,13 +382,32 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 mStudyIdText = input.getText().toString();
-                if (mStudyIdText.isEmpty()) {
+                mrnoText = inputmrno.getText().toString();
+                if (mStudyIdText.isEmpty() ) {
                     if (!validatorClass.EmptyTextBox(getApplicationContext(), input, "Please enter study id")) {
+                        return;
+                    }
+                    if (!validatorClass.EmptyTextBox(getApplicationContext(),inputmrno,"Please enter MR no")){
+                        return;
                     }
                 } else {
+                    insertFup(mStudyIdText,mrnoText,fup_typeID);
                     dialog.dismiss();
                     startActivity(iA);
                 }
+            }
+
+            private void insertFup(String mstudyId, String mrno, int fupID) {
+                AppMain.fc = new FormsContract();
+                AppMain.fc.setTagID(sharedPref.getString("tagName", null));
+                AppMain.fc.setDeviceID(AppMain.deviceId);
+                AppMain.fc.setUserName(AppMain.username);
+                AppMain.fc.setFormDate(new SimpleDateFormat("dd-MM-yy HH:mm").format(new Date().getTime()));
+                AppMain.fc.setFormType(AppMain.formType);
+                AppMain.fc.setSfuptype(String.valueOf(fupID));
+                AppMain.fc.setSiteNum(String.valueOf(AppMain.site));
+                AppMain.fc.setMrNum(mrno);
+                AppMain.fc.setmStudyID(mstudyId);
             }
         });
         builder.setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {

@@ -69,6 +69,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             formsTable.COLUMN_SBASELINE + " TEXT," +
             formsTable.COLUMN_SSF + " TEXT," +
             formsTable.COLUMN_SAQ + " TEXT," +
+            formsTable.COLUMN_SFUP + " TEXT," +
+            formsTable.COLUMN_SFUP_TYPE + " TEXT," +
+            formsTable.COLUMN_SFETAL + " TEXT," +
             formsTable.COLUMN_DEVICEID + " TEXT," +
             formsTable.COLUMN_TAGID + " TEXT," +
             formsTable.COLUMN_GPSLAT + " TEXT," +
@@ -160,6 +163,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(formsTable.COLUMN_SBASELINE, fc.getsBaseline());
         values.put(formsTable.COLUMN_SSF, fc.getsSF());
         values.put(formsTable.COLUMN_SAQ, fc.getsAQ());
+        values.put(formsTable.COLUMN_SFUP, fc.getSfup());
+        values.put(formsTable.COLUMN_SFUP_TYPE, fc.getSfuptype());
+        values.put(formsTable.COLUMN_SFETAL, fc.getSfetal());
         values.put(formsTable.COLUMN_DEVICEID, fc.getDeviceID());
         values.put(formsTable.COLUMN_TAGID, fc.getTagID());
         values.put(formsTable.COLUMN_GPSLAT, fc.getGpsLat());
@@ -307,6 +313,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SBASELINE,
                 formsTable.COLUMN_SSF,
                 formsTable.COLUMN_SAQ,
+                formsTable.COLUMN_SFUP,
+                formsTable.COLUMN_SFUP_TYPE,
+                formsTable.COLUMN_SFETAL,
                 formsTable.COLUMN_DEVICEID,
                 formsTable.COLUMN_TAGID,
                 formsTable.COLUMN_GPSLAT,
@@ -372,6 +381,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SBASELINE,
                 formsTable.COLUMN_SSF,
                 formsTable.COLUMN_SAQ,
+                formsTable.COLUMN_SFUP,
+                formsTable.COLUMN_SFUP_TYPE,
+                formsTable.COLUMN_SFETAL,
                 formsTable.COLUMN_DEVICEID,
                 formsTable.COLUMN_TAGID,
                 formsTable.COLUMN_GPSLAT,
@@ -600,6 +612,40 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(formsTable.COLUMN_SAQ, AppMain.fc.getsAQ());
+
+// Which row to update, based on the ID
+        String selection = formsTable.COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
+
+        int count = db.update(formsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateSFUP() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(formsTable.COLUMN_SFUP, AppMain.fc.getSfup());
+
+// Which row to update, based on the ID
+        String selection = formsTable.COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
+
+        int count = db.update(formsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateSFETAL() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(formsTable.COLUMN_SFETAL, AppMain.fc.getSfetal());
 
 // Which row to update, based on the ID
         String selection = formsTable.COLUMN_ID + " = ?";

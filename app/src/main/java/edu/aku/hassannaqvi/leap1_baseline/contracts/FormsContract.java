@@ -32,8 +32,9 @@ public class FormsContract {
     private String sInfo = "";
     private String sRandomization = "";
     private String sBaseline = "";
-   /* private String sfup = "";
-    private String sfetal = "";*/
+    private String sfup = "";
+    private String sfuptype = "";
+    private String sfetal = "";
     private String sSF = "";
     private String sAQ = "";
 
@@ -249,6 +250,30 @@ public class FormsContract {
         this.synced_date = synced_date;
     }
 
+    public String getSfup() {
+        return sfup;
+    }
+
+    public void setSfup(String sfup) {
+        this.sfup = sfup;
+    }
+
+    public String getSfuptype() {
+        return sfuptype;
+    }
+
+    public void setSfuptype(String sfuptype) {
+        this.sfuptype = sfuptype;
+    }
+
+    public String getSfetal() {
+        return sfetal;
+    }
+
+    public void setSfetal(String sfetal) {
+        this.sfetal = sfetal;
+    }
+
     public FormsContract sync(JSONObject jsonObject) throws JSONException {
 
         this.ID = jsonObject.getString(formsTable.COLUMN_ID);
@@ -266,6 +291,9 @@ public class FormsContract {
         this.sBaseline = jsonObject.getString(formsTable.COLUMN_SBASELINE);
         this.sSF = jsonObject.getString(formsTable.COLUMN_SSF);
         this.sAQ = jsonObject.getString(formsTable.COLUMN_SAQ);
+        this.sfup = jsonObject.getString(formsTable.COLUMN_SFUP);
+        this.sfuptype = jsonObject.getString(formsTable.COLUMN_SFUP_TYPE);
+        this.sfetal = jsonObject.getString(formsTable.COLUMN_SFETAL);
         this.deviceID = jsonObject.getString(formsTable.COLUMN_DEVICEID);
         this.tagID = jsonObject.getString(formsTable.COLUMN_TAGID);
         this.gpsLat = jsonObject.getString(formsTable.COLUMN_GPSLAT);
@@ -296,6 +324,9 @@ public class FormsContract {
         this.sBaseline = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SBASELINE));
         this.sSF = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SSF));
         this.sAQ = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SAQ));
+        this.sfup = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SFUP));
+        this.sfuptype = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SFUP_TYPE));
+        this.sfetal = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SFETAL));
         this.deviceID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_DEVICEID));
         this.tagID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_TAGID));
         this.gpsLat = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_GPSLAT));
@@ -328,6 +359,9 @@ public class FormsContract {
         json.put(formsTable.COLUMN_SBASELINE, this.sBaseline == null ? JSONObject.NULL : this.sBaseline);
         json.put(formsTable.COLUMN_SSF, this.sSF == null ? JSONObject.NULL : this.sSF);
         json.put(formsTable.COLUMN_SAQ, this.sAQ == null ? JSONObject.NULL : this.sAQ);
+        json.put(formsTable.COLUMN_SFUP, this.sfup == null ? JSONObject.NULL : this.sfup);
+        json.put(formsTable.COLUMN_SFUP_TYPE, this.sfuptype == null ? JSONObject.NULL : this.sfuptype);
+        json.put(formsTable.COLUMN_SFETAL, this.sfetal == null ? JSONObject.NULL : this.sfetal);
         json.put(formsTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
         json.put(formsTable.COLUMN_TAGID, this.tagID == null ? JSONObject.NULL : this.tagID);
         json.put(formsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
@@ -384,6 +418,9 @@ public class FormsContract {
         public static final String COLUMN_SBASELINE = "sbaseline";
         public static final String COLUMN_SSF = "ssf";
         public static final String COLUMN_SAQ = "saq";
+        public static final String COLUMN_SFUP = "sfup";
+        public static final String COLUMN_SFUP_TYPE = "sfuptype";
+        public static final String COLUMN_SFETAL = "sfetal";
         public static final String COLUMN_DEVICEID = "deviceid";
         public static final String COLUMN_TAGID = "tagid";
         public static final String COLUMN_GPSLAT = "gpslat";
