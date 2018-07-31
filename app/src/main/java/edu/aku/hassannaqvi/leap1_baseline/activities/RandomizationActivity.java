@@ -27,15 +27,18 @@ import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.MotherListContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 import io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText;
 
 import static android.content.ContentValues.TAG;
+import static edu.aku.hassannaqvi.leap1_baseline.activities.InfoActivity.MOTHERMR_KEY;
+import static edu.aku.hassannaqvi.leap1_baseline.activities.InfoActivity.MOTHERNAME_KEY;
+import static edu.aku.hassannaqvi.leap1_baseline.core.AppMain.mlc;
 
-public class RandomizationActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener
-{
+public class RandomizationActivity extends AppCompatActivity implements RadioGroup.OnCheckedChangeListener {
 
     @BindView(R.id.activity_section_a)
     ScrollView activitySectionA;
@@ -90,14 +93,14 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
     @BindViews({R.id.r07, R.id.r0901, R.id.r0902})
     List<EditText> listEditText;
-
+int mrno = 0;
+String mothername ="";
 
     @BindViews({R.id.r10, R.id.r11, R.id.r12})
     List<RadioGroup> ListRadioGroup;
     @BindViews({R.id.r1001, R.id.r1102, R.id.r1202})
     List<RadioButton> ListEligibilityRadio;
-    TextWatcher myTextWatcher = new TextWatcher()
-    {
+    TextWatcher myTextWatcher = new TextWatcher() {
         @Override
         public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
@@ -139,16 +142,16 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
                         r08.setText(null);
                     }
 
-                if (!r0901.getText().toString().isEmpty()) {
-                    if (isEligible() && Double.valueOf(r07.getText().toString()) >= 7.0
-                            && Double.valueOf(r07.getText().toString()) <= 11.5
-                            && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
-                        fldGrpeligibility.setVisibility(View.VISIBLE);
-                    } else {
-                        fldGrpeligibility.setVisibility(View.GONE);
-                    }
+                    if (!r0901.getText().toString().isEmpty()) {
+                        if (isEligible() && Double.valueOf(r07.getText().toString()) >= 7.0
+                                && Double.valueOf(r07.getText().toString()) <= 11.5
+                                && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
+                            fldGrpeligibility.setVisibility(View.VISIBLE);
+                        } else {
+                            fldGrpeligibility.setVisibility(View.GONE);
+                        }
 
-                }
+                    }
                 }
 
             }
@@ -177,7 +180,18 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
         r07.addTextChangedListener(myTextWatcher);
         r0901.addTextChangedListener(myTextWatcher);
+Intent intent = getIntent();
 
+        if (intent.hasExtra(MOTHERNAME_KEY) && intent.hasExtra(MOTHERMR_KEY)) {
+            Bundle bundle = intent.getExtras();
+            mothername = bundle.getString(MOTHERNAME_KEY);
+            mrno = bundle.getInt(MOTHERMR_KEY);
+        } else {
+
+            // Do something else
+            Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
+
+        }
 
         /*r07.addTextChangedListener(new TextWatcher()
         {
@@ -242,10 +256,10 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
                         && Double.valueOf(r07.getText().toString()) <= 11.5)
                         && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26)) {
 
-                    if ((Double.valueOf(r07.getText().toString())>= 11.0 && Double.valueOf(r07.getText().toString())<=11.5) && Double.valueOf(r08.getText().toString())< 15.0){
+                    if ((Double.valueOf(r07.getText().toString()) >= 11.0 && Double.valueOf(r07.getText().toString()) <= 11.5) && Double.valueOf(r08.getText().toString()) < 15.0) {
                         Intent EndingActivity = new Intent(this, BaselineActvity.class);
                         startActivity(EndingActivity);
-                    }else {
+                    } else {
                         Intent endSec = new Intent(this, EndingActivity.class);
                         endSec.putExtra("check", true);
                         startActivity(endSec);
@@ -296,10 +310,19 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
         DatabaseHelper db = new DatabaseHelper(this);
 
         int updcount = db.updateSRandomization();
-
         if (updcount == 1) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
-            return true;
+            long id = db.addMotherList(mlc);
+            if (updcount != 0) {
+                AppMain.mlc.set_ID(String.valueOf(id));
+
+                AppMain.mlc.set_UID(
+                        (AppMain.fc.getDeviceID() + AppMain.mlc.get_ID()));
+                db.updateMotherListID();
+            }else {
+                Toast.makeText(this, "Mother List not updated... ERROR!", Toast.LENGTH_SHORT).show();
+            }
+       return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
@@ -310,9 +333,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
-
         AppMain.fc.setmStudyID(mStudyID.getText().toString());
-
         JSONObject sa = new JSONObject();
 
         sa.put("studyID", mStudyID.getText().toString());
@@ -328,7 +349,11 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
 
         AppMain.fc.setsRandomization(String.valueOf(sa));
-
+        AppMain.mlc = new MotherListContract();
+        AppMain.mlc.set_UUID(AppMain.fc.getUID());
+        AppMain.mlc.setmrno(String.valueOf(mrno));
+        AppMain.mlc.setstudyid(mStudyID.getText().toString());
+        AppMain.mlc.setmothername(mothername);
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
@@ -346,7 +371,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
             r06.setError(null);
         }
         // =================== Q7 ====================
-        if (!validatorClass.EmptyTextBox(this,r07,getString(R.string.r07))) {
+        if (!validatorClass.EmptyTextBox(this, r07, getString(R.string.r07))) {
             return false;
         }
         if (!r07.getText().toString().matches("\\d+(\\.\\d+)*")) {
@@ -357,7 +382,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
         } else {
             r07.clearFocus();
             r07.setError(null);
-            if (!validatorClass.RangeTextBox(this, r07, 4.0, 18.0, getString(R.string.r07),  " g/L")) {
+            if (!validatorClass.RangeTextBox(this, r07, 4.0, 18.0, getString(R.string.r07), " g/L")) {
                 return false;
             }
 
@@ -398,7 +423,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
                 r08.setError(null);
             }
             */
-            if (!validatorClass.EmptyTextBox(this,r08,getString(R.string.r08))) {
+            if (!validatorClass.EmptyTextBox(this, r08, getString(R.string.r08))) {
                 return false;
             }
             if (!r08.getText().toString().matches("\\d+(\\.\\d+)*")) {
@@ -409,7 +434,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
             } else {
                 r08.clearFocus();
                 r08.setError(null);
-                if (!validatorClass.RangeTextBox(this, r08, 0.0, 20.0, getString(R.string.r08),  " ng/mL")) {
+                if (!validatorClass.RangeTextBox(this, r08, 0.0, 20.0, getString(R.string.r08), " ng/mL")) {
                     return false;
                 }
 
@@ -583,20 +608,19 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
             r02.clearCheck();
         }
         */
-if (!r07.getText().toString().isEmpty() && !r0901.getText().toString().isEmpty()){
-    if (r07.getText().toString().matches("\\d+(\\.\\d+)*")) {
-        if (isEligible() && ((Double.valueOf(r07.getText().toString()) >= 7.0
-                && Double.valueOf(r07.getText().toString()) <= 11.5)
-                && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26))) {
-            fldGrpeligibility.setVisibility(View.VISIBLE);
-        } else {
-            fldGrpeligibility.setVisibility(View.GONE);
-            mStudyID.setText(null);
-            r02.clearCheck();
+        if (!r07.getText().toString().isEmpty() && !r0901.getText().toString().isEmpty()) {
+            if (r07.getText().toString().matches("\\d+(\\.\\d+)*")) {
+                if (isEligible() && ((Double.valueOf(r07.getText().toString()) >= 7.0
+                        && Double.valueOf(r07.getText().toString()) <= 11.5)
+                        && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26))) {
+                    fldGrpeligibility.setVisibility(View.VISIBLE);
+                } else {
+                    fldGrpeligibility.setVisibility(View.GONE);
+                    mStudyID.setText(null);
+                    r02.clearCheck();
+                }
+            }
         }
-    }
-}
-
 
 
     }
@@ -605,7 +629,6 @@ if (!r07.getText().toString().isEmpty() && !r0901.getText().toString().isEmpty()
     public void onBackPressed() {
         Toast.makeText(getApplicationContext(), "You Can't go back", Toast.LENGTH_LONG).show();
     }
-
 
 
 }

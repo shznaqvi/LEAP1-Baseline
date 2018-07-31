@@ -76,11 +76,18 @@ public class FollowupActivity extends AppCompatActivity {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
 
                 finish();
-
-
-                Intent secNext = new Intent(this, EndingActivity.class);
-                secNext.putExtra("complete", true);
-                startActivity(secNext);
+                if(bi.f04b01.isChecked()){
+                    Intent secNext = new Intent(this, FetalAbnormalityActivity.class);
+                    startActivity(secNext);
+                } else if (AppMain.sf == 1) {
+                    startActivity(new Intent(this, HealthSurveyScoringActivity.class));
+                } else if (AppMain.aq == 1) {
+                    startActivity(new Intent(this, DataCollectionActivity.class));
+                } else {
+                    Intent endSec = new Intent(this, EndingActivity.class);
+                    endSec.putExtra("check", true);
+                    startActivity(endSec);
+                }
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
@@ -343,6 +350,8 @@ public class FollowupActivity extends AppCompatActivity {
         fup.put("f11x",bi.f11x.getText().toString());
 
         AppMain.fc.setSfup(String.valueOf(fup));
+        AppMain.sf = bi.f06sfa.isChecked()? 1:0;
+        AppMain.aq = bi.f06aqa.isChecked()? 1:0;
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 

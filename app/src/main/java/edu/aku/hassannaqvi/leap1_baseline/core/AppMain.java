@@ -25,6 +25,7 @@ import java.util.Map;
 
 import edu.aku.hassannaqvi.leap1_baseline.activities.EndingActivity;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.MotherListContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract;
 
 
@@ -40,14 +41,16 @@ public class AppMain extends Application {
     public static final String PROJECT_URI = "http://" + AppMain._IP + ":" + AppMain._PORT + "/leap1/api";
     public static int nuCount = 1;
     public static NutritionContract nc;
+
     /*
         public static final String _IP = "43.245.131.159"; // Test server
     */
     public static final Integer MONTHS_LIMIT = 11;
     public static final Integer DAYS_LIMIT = 29;
-    public static final Integer Fupdefault = 0;
-    public static final Integer Fup30day = 1;
-    public static final Integer Fupantenatal = 2;
+    public static final int Fupdefault = 0;
+    public static final int Fup30day = 1;
+    public static final int Fupantenatal = 2;
+    public static int SELECTED_FUP_TYPE = Fupdefault;
     private static final long MINIMUM_DISTANCE_CHANGE_FOR_UPDATES = 1; // in Meters
     private static final long MINIMUM_TIME_BETWEEN_UPDATES = 1000; // in Milliseconds
     private static final int TWENTY_MINUTES = 1000 * 60 * 20;
@@ -77,6 +80,7 @@ public class AppMain extends Application {
     public static int chTotal = 0;
     public static boolean scanned = false;
     public static FormsContract fc;
+    public static MotherListContract mlc;
     public static SharedPreferences sharedPref;
     public static String enrollDate;
     //    Ali

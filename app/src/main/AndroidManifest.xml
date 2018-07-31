@@ -88,6 +88,8 @@
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme1"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".activities.IdentificationActivity" />
+        <activity android:name=".activities.FetalAbnormalityActivity"></activity>
     </application>
 
 </manifest>

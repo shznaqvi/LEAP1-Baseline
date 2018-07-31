@@ -54,7 +54,8 @@ public class InfoActivity extends Activity {
     EditText r0503;
     @BindView(R.id.fldGrpbtn)
     LinearLayout fldGrpbtn;
-
+    static String MOTHERNAME_KEY = "mothername";
+    static String MOTHERMR_KEY = "mothermr";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,9 +82,7 @@ public class InfoActivity extends Activity {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
 
                 finish();
-
-
-                startActivity(new Intent(this, RandomizationActivity.class));
+                startActivity(new Intent(this, RandomizationActivity.class).putExtra(MOTHERNAME_KEY,r01.getText().toString()).putExtra(MOTHERMR_KEY,mrnumber.getText().toString()));
 
             } else {
                 Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();

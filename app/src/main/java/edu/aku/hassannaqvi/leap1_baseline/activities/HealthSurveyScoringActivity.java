@@ -198,11 +198,13 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
                 if (AppMain.aq == 1) {
                     startActivity(new Intent(this, DataCollectionActivity.class));
                 } else {
-                    /*
-                    Intent endSec = new Intent(this, EndingActivity.class);
-                    endSec.putExtra("check", true);
-                    startActivity(endSec);*/
-                    Intent endSec = new Intent(this, MDDWActivity.class);
+                    Intent endSec;
+                   /* if(AppMain.formType.equals("fup")){
+                       endSec = new Intent(this, EndingActivity.class);
+                        endSec.putExtra("check", true);
+                    }else{*/
+                        endSec = new Intent(this, MDDWActivity.class);
+//                    }
                     startActivity(endSec);
                 }
 

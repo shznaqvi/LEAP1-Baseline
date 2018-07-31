@@ -316,8 +316,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openantinatal(View v) {
-        studyIdPrompt(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
+//        studyIdPrompt(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
+        AppMain.formType = "fup";
+        AppMain.SELECTED_FUP_TYPE = Fupantenatal;
+        openIdentificationActivity(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
 
+    }
+
+    private void openIdentificationActivity(String fuptitle, int fuptype) {
+        startActivity(new Intent(MainActivity.this, IdentificationActivity.class).putExtra(ACTIVITY_TYPE_KEY,fuptitle).putExtra(ACTIVITY_TYPE_ID_KEY,fuptype));
     }
 
     private void studyIdPrompt(String fup_type, final int fup_typeID) {
@@ -421,7 +428,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void open30day(View v) {
-        studyIdPrompt(" 30 Day Visit (Follow Up)", Fup30day);
+//        studyIdPrompt(" 30 Day Visit (Follow Up)", Fup30day);
+        AppMain.SELECTED_FUP_TYPE = Fup30day;
+        AppMain.formType = "fup";
+        openIdentificationActivity(" 30 Day Visit (Follow Up)", Fup30day);
     }
 
     public void openA(View v) {

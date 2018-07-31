@@ -23,6 +23,8 @@ import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract.HFacilityTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.LHWsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.LHWsContract.LHWTable;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.MotherListContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.MotherListContract.MotherListTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract.NutritionTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.PSUsContract;
@@ -99,10 +101,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             NutritionTable.COLUMN_SYNCEDDATE + " TEXT " +
 
             ");";
+    final String SQL_CREATE_MOTHERlIST = "CREATE TABLE " + MotherListTable.TABLE_NAME + " (" +
+            MotherListTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            MotherListTable.COLUMN__UID + " TEXT,"+
+            MotherListTable.COLUMN__UUID + " TEXT,"+
+            MotherListTable.COLUMN_MRNO + " TEXT,"+
+            MotherListTable.COLUMN_STUDYID + " TEXT,"+
+            MotherListTable.COLUMN_MOTHERNAME + " TEXT,"+
+            ");";
 
     private static final String SQL_DELETE_FORMS = "DROP TABLE IF EXISTS " + formsTable.TABLE_NAME;
     private static final String SQL_DELETE_USERS = "DROP TABLE IF EXISTS " + singleUser.TABLE_NAME;
     private static final String SQL_DELETE_NUTRITION = "DROP TABLE IF EXISTS " + NutritionTable.TABLE_NAME;
+    private static final String SQL_DELETE_MOTHERLIST = "DROP TABLE IF EXISTS " + MotherListTable.TABLE_NAME;
     private static final String SQL_DELETE_PSUS = "DROP TABLE IF EXISTS " + singleChild.TABLE_NAME;
     public static String DB_FORM_ID;
     public static String DB_IMS_ID;
@@ -129,6 +140,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_H_FACILIY_TABLE);
         db.execSQL(SQL_CREATE_NUTRITION);
+        db.execSQL(SQL_CREATE_MOTHERlIST);
 
     }
 
@@ -137,6 +149,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_FORMS);
         db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_NUTRITION);
+        db.execSQL(SQL_DELETE_MOTHERLIST);
         db.execSQL(HFacilityTable.TABLE_NAME);
         onCreate(db);
     }
@@ -184,6 +197,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         DB_FORM_ID = String.valueOf(newRowId);
         return newRowId;
     }
+    public Long addMotherList(MotherListContract mlc) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(MotherListTable.COLUMN__UID, mlc.get_UID());
+        values.put(MotherListTable.COLUMN__UUID, mlc.get_UUID());
+        values.put(MotherListTable.COLUMN_MRNO, mlc.getmrno());
+        values.put(MotherListTable.COLUMN_STUDYID, mlc.getstudyid());
+        values.put(MotherListTable.COLUMN_MOTHERNAME, mlc.getmothername());
+
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                formsTable.TABLE_NAME,
+                formsTable.COLUMN_NAME_NULLABLE,
+                values);
+        DB_FORM_ID = String.valueOf(newRowId);
+        return newRowId;
+    }
 
     public int updateFormID() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -197,6 +233,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
 
         int count = db.update(formsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateMotherListID() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(MotherListTable.COLUMN__UID, AppMain.mlc.get_UID());
+
+// Which row to update, based on the ID
+        String selection = MotherListTable.COLUMN__ID + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(AppMain.mlc.get_ID())};
+
+        int count = db.update(MotherListTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -1341,4 +1394,28 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             return alc;
         }
     }
+    public boolean isMotherFound(String mrno, String studyid) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        int count = 0;
+        try {
+            String query = "SELECT * FROM " + MotherListTable.TABLE_NAME + " WHERE " + MotherListTable.COLUMN_MRNO + " = ? AND " + MotherListTable.COLUMN_STUDYID + " =? ";
+            cursor = db.rawQuery(
+                    query,
+                    new String[]{String.valueOf(mrno), String.valueOf(studyid)}
+            );
+
+            count = cursor.getCount();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return count > 0;
+    }
+
 }

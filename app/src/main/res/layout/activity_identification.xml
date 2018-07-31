@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+tools:context="edu.aku.hassannaqvi.leap1_baseline.activities.IdentificationActivity">
+<data>
+    <import type="android.view.View" />
+    <variable
+        name="callback"
+        type="edu.aku.hassannaqvi.leap1_baseline.activities.IdentificationActivity" />
+</data>
+
+<LinearLayout
+android:layout_width="match_parent"
+android:layout_height="wrap_content"
+android:orientation="vertical">
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@color/colorPrimary" />
+
+<TextView
+    android:id="@+id/textView2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="5dp"
+    android:background="@color/colorMainHeading"
+    android:gravity="center"
+    android:text="@string/identification"
+    android:textSize="30sp" />
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="2dp"
+    android:background="@color/colorPrimary" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1"
+                android:text="@string/mrno"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                 />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_weight="1.5"
+                android:text="@string/mstudyid"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textColor="@android:color/white" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <EditText
+                android:id="@+id/mrno"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_weight="1"
+                android:digits="0123456789-"
+                android:hint="XXX-XX-XX"
+                android:inputType="number"
+                android:maxLength="9" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.5"
+                android:orientation="horizontal">
+
+                <EditText
+                    android:id="@+id/studyID"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="0dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_weight="1.5"
+                    android:digits="0123456789"
+                    android:hint="@string/mstudyid"
+                    android:inputType="number"
+                    android:maxLength="4" />
+
+                <Button
+                    android:id="@+id/btnCheckMrno"
+                    style="@style/Widget.AppCompat.Button.Colored"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_margin="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_bg"
+                    android:elevation="5dp"
+                    android:onClick="@{() -> callback.btnCheckFup()}"
+                    android:text="CHECK"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+<TextView
+    android:id="@+id/errwindow"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/holo_red_light"
+    android:hint="This is error window"
+    android:visibility="visible"
+    android:padding="5dp"
+    android:layout_margin="10dp"
+    android:gravity="center"
+    android:textColor="@color/colorPrimary"
+    />
+
+    <!--  = = = = =  END OF FORM FIELDS  = = = = = -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginTop="80dp"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnNext"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:onClick="@{() -> callback.BtnContinue()}"
+            android:text="@string/nextSection"
+            android:visibility="gone"
+            android:textColor="@color/colorTextBtnContinue"
+            android:textSize="24sp"/>
+
+      <!--  <Button
+            android:id="@+id/btnEnd"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="4dp"
+            android:layout_weight="1"
+            android:onClick="@{() -> callback.BtnEnd()}"
+            android:text="@string/endForm"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="24sp"
+            android:textStyle="bold"/>-->
+
+
+
+
+    </LinearLayout>
+
+</LinearLayout>
+</layout>

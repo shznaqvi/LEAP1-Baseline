@@ -21,6 +21,10 @@
 
     <string name="Main"> Should we treat iron deficiency anaemia of pregnancy with Lactoferrin?    کیا حمل کے دوران فولاد کی کمی کو لیکٹوفرین سے علاج کے ذریعے ٹھیک کیا جانا چاہیے؟رینڈ مائزکنڑول ٹرائل</string>
     <string name="fheading">FOLLOW UP</string>
+    <string name="fetalheading">FETAL ABNORMALITY FORM</string>
+    <string name="identification">IDENTIFICATION</string>
+    <string name="mstudyid">Study ID</string>
+    <string name="mrno">Mr#</string>
     <string name="randomization">RANDOMIZATION WORKSHEET</string>
     <string name="baseline">BASELINE</string>
     <string name="additionalinfo">ADDITIONAL INFORMATION</string>
@@ -622,10 +626,31 @@
     <string name="f0901sup88">other </string>
 
 
+    <string name="fetsub1">Enter details of the fetal scan performed  at 18-20 weeks  ا ۱۸ سے ۲۰ ہفتے کے دوران کیے جانے والے فیٹل اسکین کی معلومات لکھیئے</string>
+    <string name="fetsub2">Section 1: Abnormalities observed in ultrasound examination الٹراساونڈ میں موجود نظر آ نے والی ایبنارملٹی </string>
+    <string name="fetsub3">In which of the following areas were the abnormalities seen?ذیل میں درج  کن حصّوں میں ایبنارملٹی دیکھی گئی؟ </string>
+    <string name="fet01">Head سر</string>
+    <string name="fet02">Brain دماغ</string>
+    <string name="fet03">Face  منہ</string>
+    <string name="fet04">Neck گردن   </string>
+    <string name="fet05">Spine ریڑھ کی ہڈی </string>
+    <string name="fet06">Heart دل</string>
+    <string name="fet07">Anterior abdominal wall انٹیریر ابڈومینل وال</string>
+    <string name="fet08">Gastrointestinal معدہ اور آنت </string>
+    <string name="fet09">Bladder مثانہ</string>
+    <string name="fet10">Limbs اعضاء</string>
+    <string name="fet11">Lungs/Pleura پھیپھڑے</string>
+    <string name="fet12">Kidneys گردے</string>
+    <string name="fet13">Genitalia جنسی اعضاء </string>
+    <string name="fet14">Chromosomal abnormality (following amniocentesis or CVS) کروموسوم کی ابنارملیٹی</string>
+    <string name="fet15">Two vessels cord(single umbilical artery)ٹو ویسل کورڈ  </string>
+    <string name="fet16">Other دیگر</string>
+    <string name="fet17">Detailed Information تفصیلات </string>
+    <string name="fet18">Diagnosis: تشخیص</string>
+
 
     <string name="f11">Did you experience any pregnancy related or other illness in the last month? کیا آپ کو گزشتہ ماہ میں حمل سے متعلق یا کوئی اور بیماری پیش آئی؟ </string>
     <string name="f11x">If yes please specify: اگر ہاں تو براہ  مہربانی وضاحت کریں</string>
-
 
 
     <!-- Strings related to login -->

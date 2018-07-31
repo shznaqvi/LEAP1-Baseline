@@ -69,6 +69,8 @@ public class EndingActivity extends Activity {
             finish();
                 AppMain.sf = 0;
                 AppMain.aq = 0;
+                AppMain.SELECTED_FUP_TYPE = AppMain.Fupdefault;
+                AppMain.formType= "";
             Toast.makeText(this, "Closing Form!", Toast.LENGTH_SHORT).show();
             Intent endSec = new Intent(this, MainActivity.class);
             //AppMain.mnb1 = "TEST";

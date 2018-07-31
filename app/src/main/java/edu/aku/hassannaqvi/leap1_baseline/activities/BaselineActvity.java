@@ -643,7 +643,6 @@ public class BaselineActvity extends AppCompatActivity
                 finish();
 
                 if (AppMain.sf == 1) {
-
                     startActivity(new Intent(this, HealthSurveyScoringActivity.class));
                 } else if (AppMain.aq == 1) {
                     startActivity(new Intent(this, DataCollectionActivity.class));
