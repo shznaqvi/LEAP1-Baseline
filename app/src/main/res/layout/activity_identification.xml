@@ -12,7 +12,8 @@ tools:context="edu.aku.hassannaqvi.leap1_baseline.activities.IdentificationActiv
 <LinearLayout
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
-android:orientation="vertical">
+android:orientation="vertical"
+    android:layoutDirection="ltr">
 
 <View
     android:layout_width="match_parent"
@@ -43,7 +44,9 @@ android:orientation="vertical">
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layoutDirection="ltr"
+            >
 
             <TextView
                 android:layout_width="0dp"
@@ -68,7 +71,8 @@ android:orientation="vertical">
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layoutDirection="ltr">
 
             <EditText
                 android:id="@+id/mrno"
@@ -86,7 +90,9 @@ android:orientation="vertical">
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1.5"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                android:layoutDirection="ltr"
+                >
 
                 <EditText
                     android:id="@+id/studyID"
@@ -128,7 +134,7 @@ android:orientation="vertical">
     android:layout_height="wrap_content"
     android:background="@android:color/holo_red_light"
     android:hint="This is error window"
-    android:visibility="visible"
+    android:visibility="gone"
     android:padding="5dp"
     android:layout_margin="10dp"
     android:gravity="center"
@@ -141,7 +147,8 @@ android:orientation="vertical">
         android:layout_height="wrap_content"
         android:layout_gravity="end"
         android:layout_marginTop="80dp"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:layoutDirection="ltr">
         <Button
             android:id="@+id/btnNext"
             android:layout_width="0dp"

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import org.json.JSONException;
@@ -16,6 +17,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
+import edu.aku.hassannaqvi.leap1_baseline.ClearClass;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
@@ -51,6 +53,28 @@ public class FollowupActivity extends AppCompatActivity {
             bi.fldGrp03.setVisibility(View.VISIBLE);
             bi.fldGrp06.setVisibility(View.VISIBLE);
         }
+        bi.f0910.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.f0910a){
+                    bi.f0910op.setVisibility(View.VISIBLE);
+                }else{
+                    bi.f0910op.setVisibility(View.GONE);
+                    bi.f0910op.clearCheck();
+                }
+            }
+        });
+        bi.f0901.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if(i == R.id.f0901a){
+                    bi.fldGrpf0901.setVisibility(View.VISIBLE);
+                }else {
+                    bi.fldGrpf0901.setVisibility(View.GONE);
+                    ClearClass.ClearCheckBoxes(bi.fldGrpf0901check,bi.f0901sup88x);
+                }
+            }
+        });
     }
 
     private void settingDateManager() {

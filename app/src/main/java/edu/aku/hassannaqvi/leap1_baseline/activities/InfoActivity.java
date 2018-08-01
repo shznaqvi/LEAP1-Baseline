@@ -5,6 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.format.DateFormat;
 import android.util.Log;
 import android.widget.EditText;
@@ -56,6 +59,7 @@ public class InfoActivity extends Activity {
     LinearLayout fldGrpbtn;
     static String MOTHERNAME_KEY = "mothername";
     static String MOTHERMR_KEY = "mothermr";
+    int length = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +70,44 @@ public class InfoActivity extends Activity {
         /*String dateToday = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTime());
         r13.setManager(getSupportFragmentManager());
         r13.setMaxDate(dateToday);*/
+        mrnumber.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                mrnumber.setInputType(InputType.TYPE_CLASS_NUMBER);
+                length = charSequence.toString().length();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (!mrnumber.getText().toString().isEmpty() && mrnumber.getText().toString().length() == 3) {
+                    if (mrnumber.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 4) {
+                            mrnumber.setText(mrnumber.getText().toString() + "-");
+                            mrnumber.setSelection(mrnumber.getText().length());
+                        }
+
+                    }
+                }
+                if (!mrnumber.getText().toString().isEmpty() && mrnumber.getText().toString().length() == 6) {
+                    if (mrnumber.getText().toString().substring(0, 3).matches("[0-9]+")) {
+                        if (length < 7) {
+                            mrnumber.setText(mrnumber.getText().toString() + "-");
+                            mrnumber.setSelection(mrnumber.getText().length());
+                        }
+
+                    }
+                }
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+
+            }
+        });
 
     }
 

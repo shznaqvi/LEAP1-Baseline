@@ -76,7 +76,8 @@
             android:gravity="right"
             android:hint="@string/mrnumber"
             android:inputType="number"
-            android:maxLength="10" />
+            android:digits="0123456789-"
+            android:maxLength="9" />
 
 
         <!--<TextView

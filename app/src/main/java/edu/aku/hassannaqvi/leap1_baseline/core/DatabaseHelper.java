@@ -107,7 +107,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             MotherListTable.COLUMN__UUID + " TEXT,"+
             MotherListTable.COLUMN_MRNO + " TEXT,"+
             MotherListTable.COLUMN_STUDYID + " TEXT,"+
-            MotherListTable.COLUMN_MOTHERNAME + " TEXT,"+
+            MotherListTable.COLUMN_MOTHERNAME + " TEXT"+
             ");";
 
     private static final String SQL_DELETE_FORMS = "DROP TABLE IF EXISTS " + formsTable.TABLE_NAME;
@@ -787,6 +787,35 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } catch (Exception e) {
         }
     }
+    public void syncMotherList(JSONArray motherlist) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(MotherListTable.TABLE_NAME, null, null);
+
+        try {
+            JSONArray jsonArray = motherlist;
+            for (int i = 0; i < jsonArray.length(); i++) {
+
+                JSONObject jsonObjectch = jsonArray.getJSONObject(i);
+
+                MotherListContract mlc = new MotherListContract();
+                mlc.Sync(jsonObjectch);
+                ContentValues values = new ContentValues();
+//                values.put(MotherListTable.COLUMN__ID, mlc.get_ID());
+                values.put(MotherListTable.COLUMN__UID, mlc.get_UID());
+                values.put(MotherListTable.COLUMN__UUID, mlc.get_UUID());
+                values.put(MotherListTable.COLUMN_MRNO, mlc.getmrno());
+                values.put(MotherListTable.COLUMN_STUDYID, mlc.getstudyid());
+                values.put(MotherListTable.COLUMN_MOTHERNAME, mlc.getmothername());
+
+                db.insert(MotherListTable.TABLE_NAME, null, values);
+            }
+        } catch (Exception e) {
+            Log.d(TAG, "sync motherlist(e): " + e);
+        } finally {
+            db.close();
+        }
+    }
+
 
     public ArrayList<UsersContract> getAllUsers() {
         SQLiteDatabase db = this.getReadableDatabase();
