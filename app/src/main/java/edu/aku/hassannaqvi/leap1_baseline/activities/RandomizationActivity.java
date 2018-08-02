@@ -95,6 +95,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
     List<EditText> listEditText;
 int mrno = 0;
 String mothername ="";
+    DatabaseHelper db ;
 
     @BindViews({R.id.r10, R.id.r11, R.id.r12})
     List<RadioGroup> ListRadioGroup;
@@ -169,7 +170,7 @@ String mothername ="";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_randomization);
         ButterKnife.bind(this);
-
+db =  new DatabaseHelper(this);
         String maxDate18Years = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTimeInMillis() - ((AppMain.MILLISECONDS_IN_18YEAR) + (AppMain.MILLISECONDS_IN_DAY)));
         r06.setManager(getSupportFragmentManager());
         r06.setMaxDate(maxDate18Years);
@@ -346,7 +347,6 @@ Intent intent = getIntent();
         sa.put("r10", r1001.isChecked() ? "1" : r1002.isChecked() ? "2" : "0");
         sa.put("r11", r1101.isChecked() ? "1" : r1102.isChecked() ? "2" : "0");
         sa.put("r12", r1201.isChecked() ? "1" : r1202.isChecked() ? "2" : "0");
-
 
         AppMain.fc.setsRandomization(String.valueOf(sa));
         AppMain.mlc = new MotherListContract();
@@ -553,15 +553,20 @@ Intent intent = getIntent();
         if (isEligible() && Double.valueOf(r07.getText().toString()) >= 7.0
                 && Double.valueOf(r07.getText().toString()) <= 11.5
                 && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
-            if (mStudyID.getText().toString().isEmpty()) {
-                Toast.makeText(this, "ERROR (Empty)" + getString(R.string.studyID), Toast.LENGTH_SHORT).show();
-                mStudyID.setError("This data is required");
-                Log.i(TAG, "studyNumber: This data is required");
-                mStudyID.requestFocus();
+            if (!validatorClass.EmptyTextBox(this,mStudyID,getString(R.string.studyID))) {
                 return false;
-            } else {
-                mStudyID.setError(null);
             }
+            if (db.checkMotherDublicate(mStudyID.getText().toString())) {
+                Toast.makeText(this, "ERROR (dublicate)" + getString(R.string.mstudyid), Toast.LENGTH_SHORT).show();
+                mStudyID.setError("This study id already exist");
+                Log.i(TAG, "mStudyID: This data is required ");
+                mStudyID.setFocusable(true);
+                mStudyID.setFocusableInTouchMode(true);
+                mStudyID.requestFocus();
+            }else{
+
+            }
+
 
             if (r02.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r02), Toast.LENGTH_SHORT).show();

@@ -403,8 +403,8 @@ public class FormsContract {
         public static final String URI = "/syncblforms.php";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECTNAME = "projectname";
-        public static final String COLUMN_ID = "id ";
-        public static final String COLUMN_UID = "uid ";
+        public static final String COLUMN_ID = "id";
+        public static final String COLUMN_UID = "uid";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_FORMTYPE = "formtype";

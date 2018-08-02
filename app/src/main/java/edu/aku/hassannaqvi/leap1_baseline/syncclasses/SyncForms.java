@@ -161,9 +161,7 @@ public class SyncForms extends AsyncTask<Void, Void, String> {
                     DataOutputStream wr = new DataOutputStream(conn.getOutputStream());
 
                     for (FormsContract fc : forms) {
-
                         jsonSync.put(fc.toJSONObject());
-
                     }
                     wr.writeBytes(jsonSync.toString().replace("\uFEFF", "") + "\n");
                     //longInfo(jsonSync.toString().replace("\uFEFF", "") + "\n");

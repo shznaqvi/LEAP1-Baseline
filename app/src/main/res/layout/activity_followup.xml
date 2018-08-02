@@ -299,29 +299,17 @@
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
 
-                <RadioGroup
+                <EditText
                     android:id="@+id/f04a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <RadioButton
-                        android:id="@+id/f04a01"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/yes" />
-
-                    <RadioButton
-                        android:id="@+id/f04a02"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:gravity="right"
-                        android:text="@string/no" />
-
-                </RadioGroup>
+                    android:layout_marginTop="1dp"
+                    android:layout_weight="1"
+                    android:gravity="right"
+                    android:digits="1234567890"
+                    android:hint="@string/f04a"
+                    android:inputType="number"
+                    android:maxLength="2" />
 
                 <TextView
                     android:layout_width="match_parent"

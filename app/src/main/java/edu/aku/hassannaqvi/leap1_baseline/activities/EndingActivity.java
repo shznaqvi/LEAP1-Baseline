@@ -67,6 +67,8 @@ public class EndingActivity extends Activity {
             }
             if (UpdateDB()) {
             finish();
+                AppMain.FetalCount = 1;
+
                 AppMain.sf = 0;
                 AppMain.aq = 0;
                 AppMain.SELECTED_FUP_TYPE = AppMain.Fupdefault;

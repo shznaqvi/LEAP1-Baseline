@@ -17,6 +17,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 
+import edu.aku.hassannaqvi.leap1_baseline.contracts.FetalContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.FetalContract.FetalTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract.formsTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract;
@@ -109,11 +111,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             MotherListTable.COLUMN_STUDYID + " TEXT,"+
             MotherListTable.COLUMN_MOTHERNAME + " TEXT"+
             ");";
-
+    private static final String SQL_CREATE_FETAL = "CREATE TABLE "
+            +FetalTable.TABLE_NAME + "("
+            +FetalTable._ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            + FetalTable.COLUMN_PROJECTNAME + " TEXT,"
+            + FetalTable.COLUMN__UID + " TEXT," +
+            FetalTable.COLUMN__UUID + " TEXT," +
+            FetalTable.COLUMN_USER + " TEXT," +
+            FetalTable.COLUMN_STUDYID + " TEXT," +
+            FetalTable.COLUMN_MRNO + " TEXT," +
+            FetalTable.COLUMN_SITE + " TEXT," +
+            FetalTable.COLUMN_FORMDATE + " TEXT," +
+            FetalTable.COLUMN_FORMTYPE + " TEXT," +
+            FetalTable.COLUMN_FUPTYPE + " TEXT," +
+            FetalTable.COLUMN_FETAB + " TEXT," +
+            FetalTable.COLUMN_DEVICEID + " TEXT," +
+            FetalTable.COLUMN_DEVICETAGID + " TEXT," +
+            FetalTable.COLUMN_SYNCED + " TEXT," +
+            FetalTable.COLUMN_APP_VERSION + " TEXT," +
+            FetalTable.COLUMN_SYNCED_DATE + " TEXT"
+            + " );";
     private static final String SQL_DELETE_FORMS = "DROP TABLE IF EXISTS " + formsTable.TABLE_NAME;
     private static final String SQL_DELETE_USERS = "DROP TABLE IF EXISTS " + singleUser.TABLE_NAME;
     private static final String SQL_DELETE_NUTRITION = "DROP TABLE IF EXISTS " + NutritionTable.TABLE_NAME;
     private static final String SQL_DELETE_MOTHERLIST = "DROP TABLE IF EXISTS " + MotherListTable.TABLE_NAME;
+
+    private static final String SQL_DELETE_FETAL ="DROP TABLE IF EXISTS " + FetalTable.TABLE_NAME;
     private static final String SQL_DELETE_PSUS = "DROP TABLE IF EXISTS " + singleChild.TABLE_NAME;
     public static String DB_FORM_ID;
     public static String DB_IMS_ID;
@@ -140,6 +163,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_H_FACILIY_TABLE);
         db.execSQL(SQL_CREATE_NUTRITION);
+        db.execSQL(SQL_CREATE_FETAL);
         db.execSQL(SQL_CREATE_MOTHERlIST);
 
     }
@@ -150,6 +174,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_NUTRITION);
         db.execSQL(SQL_DELETE_MOTHERLIST);
+        db.execSQL(SQL_DELETE_FETAL);
         db.execSQL(HFacilityTable.TABLE_NAME);
         onCreate(db);
     }
@@ -197,6 +222,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         DB_FORM_ID = String.valueOf(newRowId);
         return newRowId;
     }
+    public Long addFetal(FetalContract fet) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(FetalTable.COLUMN_PROJECTNAME, fet.getProjectName());
+        values.put(FetalTable.COLUMN__UID, fet.get_UID());
+        values.put(FetalTable.COLUMN__UUID, fet.get_UUID());
+        values.put(FetalTable.COLUMN_USER, fet.getUser());
+        values.put(FetalTable.COLUMN_STUDYID, fet.getstudyid());
+        values.put(FetalTable.COLUMN_MRNO, fet.getmrno());
+        values.put(FetalTable.COLUMN_SITE, fet.getsite());
+        values.put(FetalTable.COLUMN_FORMDATE, fet.getFormDate());
+        values.put(FetalTable.COLUMN_FORMTYPE, fet.getFormType());
+        values.put(FetalTable.COLUMN_FUPTYPE, fet.getfupType());
+        values.put(FetalTable.COLUMN_FETAB, fet.getfetab());
+        values.put(FetalTable.COLUMN_DEVICEID, fet.getDeviceID());
+        values.put(FetalTable.COLUMN_DEVICETAGID, fet.getDevicetagID());
+        values.put(FetalTable.COLUMN_SYNCED, fet.getSynced());
+        values.put(FetalTable.COLUMN_SYNCED_DATE, fet.getSynced_date());
+        values.put(FetalTable.COLUMN_APP_VERSION, fet.getApp_version());
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                FetalTable.TABLE_NAME,
+                FetalTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
+
     public Long addMotherList(MotherListContract mlc) {
 
         // Gets the data repository in write mode
@@ -256,6 +314,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return count;
     }
 
+    public int updateFetalID() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FetalTable.COLUMN__UID, AppMain.fet.get_UID());
+
+// Which row to update, based on the ID
+        String selection = FetalTable.COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.fet.get_ID())};
+
+        int count = db.update(FetalTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+
     public int updateNutritionID() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -288,6 +364,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
         int count = db.update(
                 formsTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+    public void updateSyncedFetal(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FetalTable.COLUMN_SYNCED, true);
+        values.put(FetalTable.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = FetalTable.COLUMN_ID + " = ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                FetalTable.TABLE_NAME,
                 values,
                 where,
                 whereArgs);
@@ -481,6 +575,65 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
+    public Collection<FetalContract> getUnsyncedFetal() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                FetalTable.COLUMN_ID,
+                FetalTable.COLUMN__UID,
+                FetalTable.COLUMN__UUID,
+                FetalTable.COLUMN_USER,
+                FetalTable.COLUMN_STUDYID,
+                FetalTable.COLUMN_MRNO,
+                FetalTable.COLUMN_SITE,
+                FetalTable.COLUMN_FORMDATE,
+                FetalTable.COLUMN_FORMTYPE,
+                FetalTable.COLUMN_FUPTYPE,
+                FetalTable.COLUMN_FETAB,
+                FetalTable.COLUMN_DEVICEID,
+                FetalTable.COLUMN_DEVICETAGID,
+                FetalTable.COLUMN_SYNCED,
+                FetalTable.COLUMN_SYNCED_DATE,
+                FetalTable.COLUMN_APP_VERSION
+
+        };
+       /* String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " = '' AND "
+                + FormsTable.COLUMN_FORMTYPE + " =?";*/
+        String whereClause = FetalTable.COLUMN_SYNCED + " is null OR " + FetalTable.COLUMN_SYNCED + "='' AND " + FetalTable.COLUMN_FORMTYPE + " =?";
+        String[] whereArgs = new String[]{"2"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                FetalTable.COLUMN_ID + " ASC";
+
+        Collection<FetalContract> allFC = new ArrayList<FetalContract>();
+        try {
+            c = db.query(
+                    FetalTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                FetalContract fc = new FetalContract();
+                allFC.add(fc.Hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+
 
     public Collection<NutritionContract> getUnsyncedNutrition() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -639,7 +792,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
+    public int updateFETAB() {
+        SQLiteDatabase db = this.getReadableDatabase();
 
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(FetalTable.COLUMN_FETAB, AppMain.fet.getfetab());
+
+// Which row to update, based on the ID
+        String selection = FetalTable.COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.fet.get_ID())};
+
+        int count = db.update(FetalTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
     public int updateSSF() {
         SQLiteDatabase db = this.getReadableDatabase();
 
@@ -693,23 +862,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
-    public int updateSFETAL() {
-        SQLiteDatabase db = this.getReadableDatabase();
 
-// New value for one column
-        ContentValues values = new ContentValues();
-        values.put(formsTable.COLUMN_SFETAL, AppMain.fc.getSfetal());
-
-// Which row to update, based on the ID
-        String selection = formsTable.COLUMN_ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(formsTable.TABLE_NAME,
-                values,
-                selection,
-                selectionArgs);
-        return count;
-    }
 
     public int updateStudyID() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -1433,6 +1586,29 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             cursor = db.rawQuery(
                     query,
                     new String[]{String.valueOf(mrno), String.valueOf(studyid)}
+            );
+
+            count = cursor.getCount();
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return count > 0;
+    }
+    public boolean checkMotherDublicate(String studyid) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        int count = 0;
+        try {
+            String query = "SELECT * FROM " + MotherListTable.TABLE_NAME + " WHERE " + MotherListTable.COLUMN_STUDYID + " =? ";
+            cursor = db.rawQuery(
+                    query,
+                    new String[]{String.valueOf(studyid)}
             );
 
             count = cursor.getCount();

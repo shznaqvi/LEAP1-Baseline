@@ -37,6 +37,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import edu.aku.hassannaqvi.leap1_baseline.NetworkUtils;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract;
@@ -51,6 +52,7 @@ import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetTehsil;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUCs;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUsers;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetVillages;
+import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncAllData;
 import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncForms;
 import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncNutrition;
 import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
@@ -501,7 +503,18 @@ public class MainActivity extends AppCompatActivity {
             new SyncForms(this).execute();
             Toast.makeText(getApplicationContext(), "Syncing Nutritions", Toast.LENGTH_SHORT).show();
             new SyncNutrition(this).execute();
+            // TODO : Syncing Baseline Form to server
+           /* Toast.makeText(getApplicationContext(), "Syncing Baseline Form", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Baseline",
+                    "updateForms",
+                    FormsContract.class,
+                    NetworkUtils.buildUrl(FormsContract.formsTable.URI.replace(".php", "blforms.php")),
+                    db.getUnsyncedForms7(), this.findViewById(R.id.syncStatus)
+            ).execute();
 
+*/
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = syncPref.edit();
@@ -521,6 +534,7 @@ public class MainActivity extends AppCompatActivity {
 
             syncData sync = new syncData(this);
             sync.execute();
+
         }
     }
 

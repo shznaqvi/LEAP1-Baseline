@@ -1,16 +1,17 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.FetalContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import edu.aku.hassannaqvi.leap1_baseline.databinding.ActivityFetalAbnormalityBinding;
@@ -24,6 +25,7 @@ ActivityFetalAbnormalityBinding bi;
         bi = DataBindingUtil.setContentView(this,R.layout.activity_fetal_abnormality);
         bi.setCallback(this);
         this.setTitle(getResources().getString(R.string.fetalheading));
+        bi.count.setText("Fetus: " + AppMain.FetalCount + " out of " + AppMain.TotalFetalCount);
 
     }
 
@@ -47,7 +49,13 @@ ActivityFetalAbnormalityBinding bi;
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
 
                 finish();
-               if (AppMain.sf == 1) {
+
+
+                if (AppMain.FetalCount < AppMain.TotalFetalCount) {
+                    Intent intent = new Intent(this, FetalAbnormalityActivity.class);
+                    AppMain.FetalCount++;
+                    startActivity(intent);
+                } else if (AppMain.sf == 1) {
                     startActivity(new Intent(this, HealthSurveyScoringActivity.class));
                 } else if (AppMain.aq == 1) {
                     startActivity(new Intent(this, DataCollectionActivity.class));
@@ -127,6 +135,22 @@ ActivityFetalAbnormalityBinding bi;
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+
+        AppMain.fet = new FetalContract();
+
+        AppMain.fet.setDevicetagID(sharedPref.getString("tagName", null));
+        AppMain.fet.setUser(AppMain.username);
+        AppMain.fet.set_UUID(AppMain.fc.getUID());
+        AppMain.fet.setstudyid(AppMain.fc.getmStudyID());
+        AppMain.fet.setmrno(AppMain.fc.getMrNum());
+        AppMain.fet.setsite(AppMain.fc.getSiteNum());
+        AppMain.fet.setFormType(AppMain.fc.getFormType());
+        AppMain.fet.setfupType(AppMain.fc.getSfuptype());
+        AppMain.fet.setFormDate(AppMain.fc.getFormDate());
+        AppMain.fet.setDeviceID(AppMain.fc.getDeviceID());
+        AppMain.fet.setApp_version(AppMain.versionName + "." + AppMain.versionCode);
+
         JSONObject fetal = new JSONObject();
         fetal.put("fet01",bi.fet01a.isChecked() ? "1" : bi.fet01b.isChecked() ? "2":"0");
         fetal.put("fet02",bi.fet02a.isChecked() ? "1" : bi.fet02b.isChecked() ? "2":"0");
@@ -147,11 +171,12 @@ ActivityFetalAbnormalityBinding bi;
         fetal.put("fet16x",bi.fet16ax.getText().toString());
         fetal.put("fet17",bi.fet17.getText().toString());
 
-        AppMain.fc.setSfetal(String.valueOf(fetal));
+        AppMain.fet.setfetab(String.valueOf(fetal));
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 
     private boolean UpdateDB() {
+/*
         DatabaseHelper db = new DatabaseHelper(this);
         int updcount = db.updateSFETAL();
 
@@ -162,7 +187,25 @@ ActivityFetalAbnormalityBinding bi;
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
+*/
+        DatabaseHelper db = new DatabaseHelper(this);
 
+        long updcount = db.addFetal(AppMain.fet);
+
+        AppMain.fet.set_ID(String.valueOf(updcount));
+
+        if (updcount > 0) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
+            AppMain.fet.set_UID(
+                    (AppMain.fc.getDeviceID() + AppMain.fet.get_ID()));
+            db.updateFetalID();
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+        }
+
+        return true;
+    }
     }
 
 }
