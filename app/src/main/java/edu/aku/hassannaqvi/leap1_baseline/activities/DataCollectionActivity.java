@@ -579,7 +579,7 @@ public class DataCollectionActivity extends AppCompatActivity
         sa.put("aQ34", aQ34a.isChecked() ? "1" : aQ34b.isChecked() ? "2" : aQ34c.isChecked() ? "3" : aQ34d.isChecked() ? "4" : aQ34e.isChecked() ? "5" : "0");
         sa.put("aQ35", aQ35a.isChecked() ? "1" : aQ35b.isChecked() ? "2" : aQ35c.isChecked() ? "3" : aQ35d.isChecked() ? "4" : aQ35e.isChecked() ? "5" : "0");
 
-        AppMain.fc.setsAQ(String.valueOf(sa));
+        AppMain.sur.setaq(String.valueOf(sa));
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }

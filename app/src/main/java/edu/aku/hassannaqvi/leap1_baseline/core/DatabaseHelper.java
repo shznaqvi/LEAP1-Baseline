@@ -33,6 +33,8 @@ import edu.aku.hassannaqvi.leap1_baseline.contracts.PSUsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.PSUsContract.singleChild;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.SourceNGOContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.SourceNGOContract.SourceTable;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.SurveyContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.SurveyContract.SurveyTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.TehsilsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.TehsilsContract.TehsilTable;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.UCsContract;
@@ -71,11 +73,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             formsTable.COLUMN_SINFO + " TEXT," +
             formsTable.COLUMN_SRANDOMIZATION + " TEXT," +
             formsTable.COLUMN_SBASELINE + " TEXT," +
-            formsTable.COLUMN_SSF + " TEXT," +
-            formsTable.COLUMN_SAQ + " TEXT," +
             formsTable.COLUMN_SFUP + " TEXT," +
             formsTable.COLUMN_SFUP_TYPE + " TEXT," +
-            formsTable.COLUMN_SFETAL + " TEXT," +
             formsTable.COLUMN_DEVICEID + " TEXT," +
             formsTable.COLUMN_TAGID + " TEXT," +
             formsTable.COLUMN_GPSLAT + " TEXT," +
@@ -100,8 +99,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             NutritionTable.COLUMN_APP_VER + " TEXT," +
             NutritionTable.COLUMN_LFITEM + " TEXT," +
             NutritionTable.COLUMN_SYNCED + " TEXT," +
-            NutritionTable.COLUMN_SYNCEDDATE + " TEXT " +
-
+            NutritionTable.COLUMN_SYNCEDDATE + " TEXT" +
             ");";
     final String SQL_CREATE_MOTHERlIST = "CREATE TABLE " + MotherListTable.TABLE_NAME + " (" +
             MotherListTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
@@ -110,6 +108,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             MotherListTable.COLUMN_MRNO + " TEXT,"+
             MotherListTable.COLUMN_STUDYID + " TEXT,"+
             MotherListTable.COLUMN_MOTHERNAME + " TEXT"+
+            ");";
+    final String SQL_CREATE_SURVEY = "CREATE TABLE " + SurveyTable.TABLE_NAME + " (" +
+            SurveyTable.COLUMN__ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
+            SurveyTable.COLUMN__UID  + " TEXT,"+
+            SurveyTable.COLUMN__UUID + " TEXT,"+
+            SurveyTable.COLUMN_FORMDATE + " TEXT,"+
+            SurveyTable.COLUMN_FORMTYPE + " TEXT,"+
+            SurveyTable.COLUMN_FUPTYPE + " TEXT,"+
+            SurveyTable.COLUMN_USER + " TEXT,"+
+            SurveyTable.COLUMN_SITENUM + " TEXT,"+
+            SurveyTable.COLUMN_MRNUM + " TEXT,"+
+            SurveyTable.COLUMN_MSTUDYID + " TEXT,"+
+            SurveyTable.COLUMN_SF + " TEXT,"+
+            SurveyTable.COLUMN_AQ + " TEXT,"+
+            SurveyTable.COLUMN_DEVICEID  + " TEXT,"+
+            SurveyTable.COLUMN_DEVICETAGID  + " TEXT,"+
+            SurveyTable.COLUMN_SYNCED  + " TEXT,"+
+            SurveyTable.COLUMN_SYNCED_DATE  + " TEXT,"+
+            SurveyTable.COLUMN_APPVERSION + " TEXT"+
             ");";
     private static final String SQL_CREATE_FETAL = "CREATE TABLE "
             +FetalTable.TABLE_NAME + "("
@@ -137,6 +154,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String SQL_DELETE_MOTHERLIST = "DROP TABLE IF EXISTS " + MotherListTable.TABLE_NAME;
 
     private static final String SQL_DELETE_FETAL ="DROP TABLE IF EXISTS " + FetalTable.TABLE_NAME;
+    private static final String SQL_DELETE_SURVEY ="DROP TABLE IF EXISTS " + SurveyTable.TABLE_NAME;
     private static final String SQL_DELETE_PSUS = "DROP TABLE IF EXISTS " + singleChild.TABLE_NAME;
     public static String DB_FORM_ID;
     public static String DB_IMS_ID;
@@ -163,6 +181,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_CREATE_USERS);
         db.execSQL(SQL_CREATE_H_FACILIY_TABLE);
         db.execSQL(SQL_CREATE_NUTRITION);
+        db.execSQL(SQL_CREATE_SURVEY);
         db.execSQL(SQL_CREATE_FETAL);
         db.execSQL(SQL_CREATE_MOTHERlIST);
 
@@ -174,6 +193,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL(SQL_DELETE_USERS);
         db.execSQL(SQL_DELETE_NUTRITION);
         db.execSQL(SQL_DELETE_MOTHERLIST);
+        db.execSQL(SQL_DELETE_SURVEY);
         db.execSQL(SQL_DELETE_FETAL);
         db.execSQL(HFacilityTable.TABLE_NAME);
         onCreate(db);
@@ -199,11 +219,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(formsTable.COLUMN_SINFO, fc.getsInfo());
         values.put(formsTable.COLUMN_SRANDOMIZATION, fc.getsRandomization());
         values.put(formsTable.COLUMN_SBASELINE, fc.getsBaseline());
-        values.put(formsTable.COLUMN_SSF, fc.getsSF());
-        values.put(formsTable.COLUMN_SAQ, fc.getsAQ());
         values.put(formsTable.COLUMN_SFUP, fc.getSfup());
         values.put(formsTable.COLUMN_SFUP_TYPE, fc.getSfuptype());
-        values.put(formsTable.COLUMN_SFETAL, fc.getSfetal());
         values.put(formsTable.COLUMN_DEVICEID, fc.getDeviceID());
         values.put(formsTable.COLUMN_TAGID, fc.getTagID());
         values.put(formsTable.COLUMN_GPSLAT, fc.getGpsLat());
@@ -254,6 +271,39 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 values);
         return newRowId;
     }
+    public Long addSurvey(SurveyContract sc) {
+
+        // Gets the data repository in write mode
+        SQLiteDatabase db = this.getWritableDatabase();
+
+// Create a new map of values, where column names are the keys
+        ContentValues values = new ContentValues();
+        values.put(SurveyTable.COLUMN__UID, sc.get_UID());
+        values.put(SurveyTable.COLUMN__UUID, sc.get_UUID());
+        values.put(SurveyTable.COLUMN_FORMDATE, sc.getformDate());
+        values.put(SurveyTable.COLUMN_FORMTYPE, sc.getformType());
+        values.put(SurveyTable.COLUMN_FUPTYPE, sc.getfupType());
+        values.put(SurveyTable.COLUMN_USER, sc.getuser());
+        values.put(SurveyTable.COLUMN_SITENUM, sc.getsiteNum());
+        values.put(SurveyTable.COLUMN_MRNUM, sc.getmrNum());
+        values.put(SurveyTable.COLUMN_MSTUDYID, sc.getmStudyID());
+        values.put(SurveyTable.COLUMN_SF, sc.getsf());
+        values.put(SurveyTable.COLUMN_AQ, sc.getaq());
+        values.put(SurveyTable.COLUMN_DEVICEID, sc.getdeviceID());
+        values.put(SurveyTable.COLUMN_DEVICETAGID, sc.getdevicetagID());
+        values.put(SurveyTable.COLUMN_SYNCED, sc.getsynced());
+        values.put(SurveyTable.COLUMN_SYNCED_DATE, sc.getsynced_date());
+        values.put(SurveyTable.COLUMN_APPVERSION, sc.getappVersion());
+
+
+        // Insert the new row, returning the primary key value of the new row
+        long newRowId;
+        newRowId = db.insert(
+                SurveyTable.TABLE_NAME,
+                SurveyTable.COLUMN_NAME_NULLABLE,
+                values);
+        return newRowId;
+    }
 
     public Long addMotherList(MotherListContract mlc) {
 
@@ -272,8 +322,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         // Insert the new row, returning the primary key value of the new row
         long newRowId;
         newRowId = db.insert(
-                formsTable.TABLE_NAME,
-                formsTable.COLUMN_NAME_NULLABLE,
+                MotherListTable.TABLE_NAME,
+                MotherListTable.COLUMN_NAME_NULLABLE,
                 values);
         DB_FORM_ID = String.valueOf(newRowId);
         return newRowId;
@@ -326,6 +376,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] selectionArgs = {String.valueOf(AppMain.fet.get_ID())};
 
         int count = db.update(FetalTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateSurveyID() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(SurveyTable.COLUMN__UID, AppMain.sur.get_UID());
+
+// Which row to update, based on the ID
+        String selection = SurveyTable.COLUMN__ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.sur.get_ID())};
+
+        int count = db.update(SurveyTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -458,11 +525,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SINFO,
                 formsTable.COLUMN_SRANDOMIZATION,
                 formsTable.COLUMN_SBASELINE,
-                formsTable.COLUMN_SSF,
-                formsTable.COLUMN_SAQ,
                 formsTable.COLUMN_SFUP,
                 formsTable.COLUMN_SFUP_TYPE,
-                formsTable.COLUMN_SFETAL,
                 formsTable.COLUMN_DEVICEID,
                 formsTable.COLUMN_TAGID,
                 formsTable.COLUMN_GPSLAT,
@@ -507,6 +571,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
+    public Collection<SurveyContract> getAllSurvey() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+                SurveyTable.COLUMN__ID,
+                SurveyTable.COLUMN__UID,
+                SurveyTable.COLUMN__UUID,
+                SurveyTable.COLUMN_FORMDATE,
+                SurveyTable.COLUMN_FORMTYPE,
+                SurveyTable.COLUMN_FUPTYPE,
+                SurveyTable.COLUMN_USER,
+                SurveyTable.COLUMN_SITENUM,
+                SurveyTable.COLUMN_MRNUM,
+                SurveyTable.COLUMN_MSTUDYID,
+                SurveyTable.COLUMN_SF,
+                SurveyTable.COLUMN_AQ,
+                SurveyTable.COLUMN_DEVICEID,
+                SurveyTable.COLUMN_DEVICETAGID,
+                SurveyTable.COLUMN_SYNCED,
+                SurveyTable.COLUMN_SYNCED_DATE,
+                SurveyTable.COLUMN_APPVERSION,
+
+        };
+        String whereClause = null;
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                SurveyTable.COLUMN__ID + " ASC";
+
+        Collection<SurveyContract> allFC = new ArrayList<SurveyContract>();
+        try {
+            c = db.query(
+                    SurveyTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                SurveyContract fc = new SurveyContract();
+                allFC.add(fc.Hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
 
     public Collection<FormsContract> getUnsyncedForms() {
         SQLiteDatabase db = this.getReadableDatabase();
@@ -526,11 +646,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SINFO,
                 formsTable.COLUMN_SRANDOMIZATION,
                 formsTable.COLUMN_SBASELINE,
-                formsTable.COLUMN_SSF,
-                formsTable.COLUMN_SAQ,
                 formsTable.COLUMN_SFUP,
                 formsTable.COLUMN_SFUP_TYPE,
-                formsTable.COLUMN_SFETAL,
                 formsTable.COLUMN_DEVICEID,
                 formsTable.COLUMN_TAGID,
                 formsTable.COLUMN_GPSLAT,
@@ -539,7 +656,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_GPSACC,
                 formsTable.COLUMN_SYNCED,
                 formsTable.COLUMN_SYNCED_DATE,
-
                 formsTable.COLUMN_APPVER
         };
         String whereClause = formsTable.COLUMN_SYNCED + " is null OR " + formsTable.COLUMN_SYNCED + " = ''";
@@ -564,6 +680,62 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             while (c.moveToNext()) {
                 FormsContract fc = new FormsContract();
                 allFC.add(fc.hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+    public Collection<SurveyContract> getUnsyncedSurvey() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                SurveyTable.COLUMN__ID,
+                SurveyTable.COLUMN__UID,
+                SurveyTable.COLUMN__UUID,
+                SurveyTable.COLUMN_FORMDATE,
+                SurveyTable.COLUMN_FORMTYPE,
+                SurveyTable.COLUMN_FUPTYPE,
+                SurveyTable.COLUMN_USER,
+                SurveyTable.COLUMN_SITENUM,
+                SurveyTable.COLUMN_MRNUM,
+                SurveyTable.COLUMN_MSTUDYID,
+                SurveyTable.COLUMN_SF,
+                SurveyTable.COLUMN_AQ,
+                SurveyTable.COLUMN_DEVICEID,
+                SurveyTable.COLUMN_DEVICETAGID,
+                SurveyTable.COLUMN_SYNCED,
+                SurveyTable.COLUMN_SYNCED_DATE,
+                SurveyTable.COLUMN_APPVERSION,
+        };
+        String whereClause = SurveyTable.COLUMN_SYNCED + " is null OR " + SurveyTable.COLUMN_SYNCED + " = ''";
+        String[] whereArgs = null;
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                SurveyTable.COLUMN__ID + " ASC";
+
+        Collection<SurveyContract> allFC = new ArrayList<SurveyContract>();
+        try {
+            c = db.query(
+                    SurveyTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                SurveyContract fc = new SurveyContract();
+                allFC.add(fc.Hydrate(c));
             }
         } finally {
             if (c != null) {
@@ -809,19 +981,17 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 selectionArgs);
         return count;
     }
-    public int updateSSF() {
+    public int updateSF() {
         SQLiteDatabase db = this.getReadableDatabase();
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(formsTable.COLUMN_SSF, AppMain.fc.getsSF());
+        values.put(SurveyTable.COLUMN_SF, AppMain.sur.getsf());
+        // Which row to update, based on the ID
+        String selection = SurveyTable.COLUMN__ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.sur.get_ID())};
 
-
-// Which row to update, based on the ID
-        String selection = formsTable.COLUMN_ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
-
-        int count = db.update(formsTable.TABLE_NAME,
+        int count = db.update(SurveyTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);
@@ -833,13 +1003,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 // New value for one column
         ContentValues values = new ContentValues();
-        values.put(formsTable.COLUMN_SAQ, AppMain.fc.getsAQ());
+        values.put(SurveyTable.COLUMN_AQ, AppMain.sur.getaq());
 
 // Which row to update, based on the ID
-        String selection = formsTable.COLUMN_ID + " = ?";
-        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
+        String selection = SurveyTable.COLUMN__ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.sur.get_ID())};
 
-        int count = db.update(formsTable.TABLE_NAME,
+        int count = db.update(SurveyTable.TABLE_NAME,
                 values,
                 selection,
                 selectionArgs);

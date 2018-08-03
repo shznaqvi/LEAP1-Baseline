@@ -1299,7 +1299,7 @@
                         android:layout_marginTop="1dp"
                         android:digits="abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ"
                         android:gravity="right"
-                        android:hint="@string/f0488"
+                        android:hint="@string/f0901sup88"
                         android:text='@{f0901sup88.checked ? f0901sup88x.getText.toString : ""}'
                         android:visibility='@{f0901sup88.checked ? View.VISIBLE : View.GONE}' />
                 </LinearLayout>

@@ -93,9 +93,9 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
     @BindViews({R.id.r07, R.id.r0901, R.id.r0902})
     List<EditText> listEditText;
-int mrno = 0;
-String mothername ="";
-    DatabaseHelper db ;
+    String mrno = "";
+    String mothername = "";
+    DatabaseHelper db;
 
     @BindViews({R.id.r10, R.id.r11, R.id.r12})
     List<RadioGroup> ListRadioGroup;
@@ -170,7 +170,7 @@ String mothername ="";
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_randomization);
         ButterKnife.bind(this);
-db =  new DatabaseHelper(this);
+        db = new DatabaseHelper(this);
         String maxDate18Years = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTimeInMillis() - ((AppMain.MILLISECONDS_IN_18YEAR) + (AppMain.MILLISECONDS_IN_DAY)));
         r06.setManager(getSupportFragmentManager());
         r06.setMaxDate(maxDate18Years);
@@ -181,12 +181,12 @@ db =  new DatabaseHelper(this);
 
         r07.addTextChangedListener(myTextWatcher);
         r0901.addTextChangedListener(myTextWatcher);
-Intent intent = getIntent();
+        Intent intent = getIntent();
 
         if (intent.hasExtra(MOTHERNAME_KEY) && intent.hasExtra(MOTHERMR_KEY)) {
             Bundle bundle = intent.getExtras();
             mothername = bundle.getString(MOTHERNAME_KEY);
-            mrno = bundle.getInt(MOTHERMR_KEY);
+            mrno = bundle.getString(MOTHERMR_KEY);
         } else {
 
             // Do something else
@@ -320,10 +320,10 @@ Intent intent = getIntent();
                 AppMain.mlc.set_UID(
                         (AppMain.fc.getDeviceID() + AppMain.mlc.get_ID()));
                 db.updateMotherListID();
-            }else {
+            } else {
                 Toast.makeText(this, "Mother List not updated... ERROR!", Toast.LENGTH_SHORT).show();
             }
-       return true;
+            return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
@@ -553,7 +553,7 @@ Intent intent = getIntent();
         if (isEligible() && Double.valueOf(r07.getText().toString()) >= 7.0
                 && Double.valueOf(r07.getText().toString()) <= 11.5
                 && Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26) {
-            if (!validatorClass.EmptyTextBox(this,mStudyID,getString(R.string.studyID))) {
+            if (!validatorClass.EmptyTextBox(this, mStudyID, getString(R.string.studyID))) {
                 return false;
             }
             if (db.checkMotherDublicate(mStudyID.getText().toString())) {
@@ -563,8 +563,9 @@ Intent intent = getIntent();
                 mStudyID.setFocusable(true);
                 mStudyID.setFocusableInTouchMode(true);
                 mStudyID.requestFocus();
-            }else{
-
+                return false;
+            } else {
+                mStudyID.setError(null);
             }
 
 

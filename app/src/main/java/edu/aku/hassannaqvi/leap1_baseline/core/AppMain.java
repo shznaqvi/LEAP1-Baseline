@@ -28,6 +28,7 @@ import edu.aku.hassannaqvi.leap1_baseline.contracts.FetalContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.MotherListContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.SurveyContract;
 
 
 /**
@@ -43,6 +44,7 @@ public class AppMain extends Application {
     public static int nuCount = 1;
     public static NutritionContract nc;
     public static FetalContract fet;
+    public static SurveyContract sur;
     public static int FetalCount = 1;
     public static int TotalFetalCount = 0;
     /*
@@ -74,6 +76,8 @@ public class AppMain extends Application {
 
     public static String deviceId;
     public static String formType;
+    public static int TYPE_BASELINE = 1;
+    public static int TYPE_FUP = 2;
 
     public static Boolean admin = false;
     public static int mna3 = -1;

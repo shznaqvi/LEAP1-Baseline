@@ -18,6 +18,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.FetalContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.SurveyContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 
@@ -242,7 +244,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
     private boolean UpdateDB() {
 
-
+/*
         DatabaseHelper db = new DatabaseHelper(this);
 
         int updcount = db.updateSSF();
@@ -253,13 +255,39 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
-        }
+        }*/
+        DatabaseHelper db = new DatabaseHelper(this);
 
+        long updcount = db.addSurvey(AppMain.sur);
+
+        AppMain.sur.set_ID(String.valueOf(updcount));
+
+        if (updcount > 0) {
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+
+            AppMain.sur.set_UID(
+                    (AppMain.fc.getDeviceID() + AppMain.sur.get_ID()));
+            db.updateSurveyID();
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+        }
+        return true;
     }
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
-
+        AppMain.sur = new SurveyContract();
+        AppMain.sur.setdevicetagID(AppMain.fc.getTagID());
+        AppMain.sur.setuser(AppMain.username);
+        AppMain.sur.set_UUID(AppMain.fc.getUID());
+        AppMain.sur.setmStudyID(AppMain.fc.getmStudyID());
+        AppMain.sur.setmrNum(AppMain.fc.getMrNum());
+        AppMain.sur.setsiteNum(AppMain.fc.getSiteNum());
+        AppMain.sur.setformType(AppMain.formType);
+        AppMain.sur.setfupType(AppMain.fc.getSfuptype());
+        AppMain.sur.setformDate(AppMain.fc.getFormDate());
+        AppMain.sur.setdeviceID(AppMain.fc.getDeviceID());
+        AppMain.sur.setappVersion(AppMain.fc.getAppVer());
 
         JSONObject sa = new JSONObject();
         sa.put("sf01", sf01a.isChecked() ? "1" : sf01b.isChecked() ? "2" : sf01c.isChecked() ? "3" : sf01d.isChecked() ? "4" : sf01e.isChecked() ? "5" : "0");
@@ -276,7 +304,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
         sa.put("sf07", sf07a.isChecked() ? "1" : sf07b.isChecked() ? "2" : sf07c.isChecked() ? "3" : sf07d.isChecked() ? "4" : sf07e.isChecked() ? "5" : "0");
 
 
-        AppMain.fc.setsSF(String.valueOf(sa));
+        AppMain.sur.setsf(String.valueOf(sa));
 
 
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
@@ -445,6 +473,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
 
         return true;
     }
+
 
 
     @Override

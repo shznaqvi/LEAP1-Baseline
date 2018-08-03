@@ -18,17 +18,17 @@ import edu.aku.hassannaqvi.leap1_baseline.databinding.ActivityFetalAbnormalityBi
 import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 
 public class FetalAbnormalityActivity extends AppCompatActivity {
-ActivityFetalAbnormalityBinding bi;
+    ActivityFetalAbnormalityBinding bi;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this,R.layout.activity_fetal_abnormality);
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_fetal_abnormality);
         bi.setCallback(this);
         this.setTitle(getResources().getString(R.string.fetalheading));
         bi.count.setText("Fetus: " + AppMain.FetalCount + " out of " + AppMain.TotalFetalCount);
 
     }
-
 
 
     public void BtnEnd() {
@@ -118,7 +118,7 @@ ActivityFetalAbnormalityBinding bi;
         if (!validatorClass.EmptyRadioButton(this, bi.fet15, bi.fet15a, getString(R.string.fet15))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.fet16, bi.fet16a,bi.fet16ax, getString(R.string.fet16))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.fet16, bi.fet16a, bi.fet16ax, getString(R.string.fet16))) {
             return false;
         }
 
@@ -135,11 +135,11 @@ ActivityFetalAbnormalityBinding bi;
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
-        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+//        SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
 
         AppMain.fet = new FetalContract();
 
-        AppMain.fet.setDevicetagID(sharedPref.getString("tagName", null));
+        AppMain.fet.setDevicetagID(AppMain.fc.getTagID());
         AppMain.fet.setUser(AppMain.username);
         AppMain.fet.set_UUID(AppMain.fc.getUID());
         AppMain.fet.setstudyid(AppMain.fc.getmStudyID());
@@ -149,27 +149,27 @@ ActivityFetalAbnormalityBinding bi;
         AppMain.fet.setfupType(AppMain.fc.getSfuptype());
         AppMain.fet.setFormDate(AppMain.fc.getFormDate());
         AppMain.fet.setDeviceID(AppMain.fc.getDeviceID());
-        AppMain.fet.setApp_version(AppMain.versionName + "." + AppMain.versionCode);
+        AppMain.fet.setApp_version(AppMain.fc.getAppVer());
 
         JSONObject fetal = new JSONObject();
-        fetal.put("fet01",bi.fet01a.isChecked() ? "1" : bi.fet01b.isChecked() ? "2":"0");
-        fetal.put("fet02",bi.fet02a.isChecked() ? "1" : bi.fet02b.isChecked() ? "2":"0");
-        fetal.put("fet03",bi.fet03a.isChecked() ? "1" : bi.fet03b.isChecked() ? "2":"0");
-        fetal.put("fet04",bi.fet04a.isChecked() ? "1" : bi.fet04b.isChecked() ? "2":"0");
-        fetal.put("fet05",bi.fet05a.isChecked() ? "1" : bi.fet05b.isChecked() ? "2":"0");
-        fetal.put("fet06",bi.fet06a.isChecked() ? "1" : bi.fet06b.isChecked() ? "2":"0");
-        fetal.put("fet07",bi.fet07a.isChecked() ? "1" : bi.fet07b.isChecked() ? "2":"0");
-        fetal.put("fet08",bi.fet08a.isChecked() ? "1" : bi.fet08b.isChecked() ? "2":"0");
-        fetal.put("fet09",bi.fet09a.isChecked() ? "1" : bi.fet09b.isChecked() ? "2":"0");
-        fetal.put("fet10",bi.fet10a.isChecked() ? "1" : bi.fet10b.isChecked() ? "2":"0");
-        fetal.put("fet11",bi.fet11a.isChecked() ? "1" : bi.fet11b.isChecked() ? "2":"0");
-        fetal.put("fet12",bi.fet12a.isChecked() ? "1" : bi.fet12b.isChecked() ? "2":"0");
-        fetal.put("fet13",bi.fet13a.isChecked() ? "1" : bi.fet13b.isChecked() ? "2":"0");
-        fetal.put("fet14",bi.fet14a.isChecked() ? "1" : bi.fet14b.isChecked() ? "2":"0");
-        fetal.put("fet15",bi.fet15a.isChecked() ? "1" : bi.fet15b.isChecked() ? "2":"0");
-        fetal.put("fet16",bi.fet16a.isChecked() ? "1" : bi.fet16b.isChecked() ? "2":"0");
-        fetal.put("fet16x",bi.fet16ax.getText().toString());
-        fetal.put("fet17",bi.fet17.getText().toString());
+        fetal.put("fet01", bi.fet01a.isChecked() ? "1" : bi.fet01b.isChecked() ? "2" : "0");
+        fetal.put("fet02", bi.fet02a.isChecked() ? "1" : bi.fet02b.isChecked() ? "2" : "0");
+        fetal.put("fet03", bi.fet03a.isChecked() ? "1" : bi.fet03b.isChecked() ? "2" : "0");
+        fetal.put("fet04", bi.fet04a.isChecked() ? "1" : bi.fet04b.isChecked() ? "2" : "0");
+        fetal.put("fet05", bi.fet05a.isChecked() ? "1" : bi.fet05b.isChecked() ? "2" : "0");
+        fetal.put("fet06", bi.fet06a.isChecked() ? "1" : bi.fet06b.isChecked() ? "2" : "0");
+        fetal.put("fet07", bi.fet07a.isChecked() ? "1" : bi.fet07b.isChecked() ? "2" : "0");
+        fetal.put("fet08", bi.fet08a.isChecked() ? "1" : bi.fet08b.isChecked() ? "2" : "0");
+        fetal.put("fet09", bi.fet09a.isChecked() ? "1" : bi.fet09b.isChecked() ? "2" : "0");
+        fetal.put("fet10", bi.fet10a.isChecked() ? "1" : bi.fet10b.isChecked() ? "2" : "0");
+        fetal.put("fet11", bi.fet11a.isChecked() ? "1" : bi.fet11b.isChecked() ? "2" : "0");
+        fetal.put("fet12", bi.fet12a.isChecked() ? "1" : bi.fet12b.isChecked() ? "2" : "0");
+        fetal.put("fet13", bi.fet13a.isChecked() ? "1" : bi.fet13b.isChecked() ? "2" : "0");
+        fetal.put("fet14", bi.fet14a.isChecked() ? "1" : bi.fet14b.isChecked() ? "2" : "0");
+        fetal.put("fet15", bi.fet15a.isChecked() ? "1" : bi.fet15b.isChecked() ? "2" : "0");
+        fetal.put("fet16", bi.fet16a.isChecked() ? "1" : bi.fet16b.isChecked() ? "2" : "0");
+        fetal.put("fet16x", bi.fet16ax.getText().toString());
+        fetal.put("fet17", bi.fet17.getText().toString());
 
         AppMain.fet.setfetab(String.valueOf(fetal));
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
@@ -206,6 +206,5 @@ ActivityFetalAbnormalityBinding bi;
 
         return true;
     }
-    }
-
 }
+

@@ -319,7 +319,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void openantinatal(View v) {
 //        studyIdPrompt(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
-        AppMain.formType = "fup";
+        AppMain.formType = String.valueOf(AppMain.TYPE_FUP);
         AppMain.SELECTED_FUP_TYPE = Fupantenatal;
         openIdentificationActivity(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
 
@@ -432,7 +432,7 @@ public class MainActivity extends AppCompatActivity {
     public void open30day(View v) {
 //        studyIdPrompt(" 30 Day Visit (Follow Up)", Fup30day);
         AppMain.SELECTED_FUP_TYPE = Fup30day;
-        AppMain.formType = "fup";
+        AppMain.formType = String.valueOf(AppMain.TYPE_FUP);
         openIdentificationActivity(" 30 Day Visit (Follow Up)", Fup30day);
     }
 

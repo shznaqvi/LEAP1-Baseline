@@ -69,9 +69,11 @@ public class FollowupActivity extends AppCompatActivity {
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
                 if(i == R.id.f0901a){
                     bi.fldGrpf0901.setVisibility(View.VISIBLE);
+                    ClearClass.ClearAllFields(bi.fldGrpf0901check,true);
+
                 }else {
                     bi.fldGrpf0901.setVisibility(View.GONE);
-                    ClearClass.ClearCheckBoxes(bi.fldGrpf0901check,bi.f0901sup88x);
+                    ClearClass.ClearAllFields(bi.fldGrpf0901check,false);
                 }
             }
         });

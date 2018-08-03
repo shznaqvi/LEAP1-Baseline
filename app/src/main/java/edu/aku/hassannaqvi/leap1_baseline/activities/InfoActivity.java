@@ -183,7 +183,7 @@ public class InfoActivity extends Activity {
         SharedPreferences sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
 
         AppMain.fc = new FormsContract();
-
+        AppMain.formType = String.valueOf(AppMain.TYPE_BASELINE);
         AppMain.fc.setTagID(sharedPref.getString("tagName", null));
         AppMain.fc.setDeviceID(AppMain.deviceId);
         AppMain.fc.setUserName(AppMain.username);
