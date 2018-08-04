@@ -22,6 +22,7 @@ import edu.aku.hassannaqvi.leap1_baseline.contracts.FetalContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.SurveyContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
+import worker8.com.github.radiogroupplus.RadioGroupPlus;
 
 public class HealthSurveyScoringActivity extends AppCompatActivity
 {
@@ -35,7 +36,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sitenumber)
     EditText sitenumber;
     @BindView(R.id.sf01)
-    RadioGroup sf01;
+    RadioGroupPlus sf01;
     @BindView(R.id.sf01a)
     RadioButton sf01a;
     @BindView(R.id.sf01b)
@@ -47,7 +48,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf01e)
     RadioButton sf01e;
     @BindView(R.id.sf02a)
-    RadioGroup sf02a;
+    RadioGroupPlus sf02a;
     @BindView(R.id.sf02aa)
     RadioButton sf02aa;
     @BindView(R.id.sf02ab)
@@ -55,7 +56,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf02ac)
     RadioButton sf02ac;
     @BindView(R.id.sf02b)
-    RadioGroup sf02b;
+    RadioGroupPlus sf02b;
     @BindView(R.id.sf02ba)
     RadioButton sf02ba;
     @BindView(R.id.sf02bb)
@@ -63,7 +64,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf02bc)
     RadioButton sf02bc;
     @BindView(R.id.sf03a)
-    RadioGroup sf03a;
+    RadioGroupPlus sf03a;
     @BindView(R.id.sf03aa)
     RadioButton sf03aa;
     @BindView(R.id.sf03ab)
@@ -75,7 +76,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf03ae)
     RadioButton sf03ae;
     @BindView(R.id.sf03b)
-    RadioGroup sf03b;
+    RadioGroupPlus sf03b;
     @BindView(R.id.sf03ba)
     RadioButton sf03ba;
     @BindView(R.id.sf03bb)
@@ -87,7 +88,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf03be)
     RadioButton sf03be;
     @BindView(R.id.sf04a)
-    RadioGroup sf04a;
+    RadioGroupPlus sf04a;
     @BindView(R.id.sf04aa)
     RadioButton sf04aa;
     @BindView(R.id.sf04ab)
@@ -99,7 +100,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf04ae)
     RadioButton sf04ae;
     @BindView(R.id.sf04b)
-    RadioGroup sf04b;
+    RadioGroupPlus sf04b;
     @BindView(R.id.sf04ba)
     RadioButton sf04ba;
     @BindView(R.id.sf04bb)
@@ -111,7 +112,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf04be)
     RadioButton sf04be;
     @BindView(R.id.sf05)
-    RadioGroup sf05;
+    RadioGroupPlus sf05;
     @BindView(R.id.sf05a)
     RadioButton sf05a;
     @BindView(R.id.sf05b)
@@ -123,7 +124,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf05e)
     RadioButton sf05e;
     @BindView(R.id.sf06a)
-    RadioGroup sf06a;
+    RadioGroupPlus sf06a;
     @BindView(R.id.sf06aa)
     RadioButton sf06aa;
     @BindView(R.id.sf06ab)
@@ -135,7 +136,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf06ae)
     RadioButton sf06ae;
     @BindView(R.id.sf06b)
-    RadioGroup sf06b;
+    RadioGroupPlus sf06b;
     @BindView(R.id.sf06ba)
     RadioButton sf06ba;
     @BindView(R.id.sf06bb)
@@ -147,7 +148,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf06be)
     RadioButton sf06be;
     @BindView(R.id.sf06c)
-    RadioGroup sf06c;
+    RadioGroupPlus sf06c;
     @BindView(R.id.sf06ca)
     RadioButton sf06ca;
     @BindView(R.id.sf06cb)
@@ -159,7 +160,7 @@ public class HealthSurveyScoringActivity extends AppCompatActivity
     @BindView(R.id.sf06ce)
     RadioButton sf06ce;
     @BindView(R.id.sf07)
-    RadioGroup sf07;
+    RadioGroupPlus sf07;
     @BindView(R.id.sf07a)
     RadioButton sf07a;
     @BindView(R.id.sf07b)
