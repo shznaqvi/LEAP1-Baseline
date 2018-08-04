@@ -205,6 +205,7 @@
     <string name="r14">Study Number    اسٹیڈی نمبر </string>
     <string name="r15">Name of Staff Randomizing this patient عملہ کا نام جس نے مریض کو ترتیب دیا </string>
     <string name="r16">معالج کا نام جس نے اہلیت کو تصدیق کیا Name of Clinician confirming Eligibility</string>
+    <string name="enrolmntdt">Date of enrolment اندراج کی تاریخ</string>
 
     <!--SF-->
 

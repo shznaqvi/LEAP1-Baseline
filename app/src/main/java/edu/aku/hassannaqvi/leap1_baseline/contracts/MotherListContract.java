@@ -18,9 +18,9 @@ public class MotherListContract {
     }
 
     public MotherListContract Sync(JSONObject jsonObject) throws JSONException {
-        this._ID= jsonObject.getString(MotherListTable.COLUMN__ID);
+//        this._ID= jsonObject.getString(MotherListTable.COLUMN__ID);
         this._UID= jsonObject.getString(MotherListTable.COLUMN__UID);
-        this._UUID= jsonObject.getString(MotherListTable.COLUMN__UUID);
+//        this._UUID= jsonObject.getString(MotherListTable.COLUMN__UUID);
         this.mrno= jsonObject.getString(MotherListTable.COLUMN_MRNO);
         this.studyid= jsonObject.getString(MotherListTable.COLUMN_STUDYID);
         this.mothername= jsonObject.getString(MotherListTable.COLUMN_MOTHERNAME);
@@ -95,8 +95,6 @@ public class MotherListContract {
         json.put(MotherListTable.COLUMN_MRNO, this.mrno == null ? JSONObject.NULL : this.mrno);
         json.put(MotherListTable.COLUMN_STUDYID, this.studyid == null ? JSONObject.NULL : this.studyid);
         json.put(MotherListTable.COLUMN_MOTHERNAME, this.mothername == null ? JSONObject.NULL : this.mothername);
-
-
         return json;
     }
 
@@ -114,7 +112,7 @@ public class MotherListContract {
 
 
 
-        public static String _URL = "motherlist.php";
+        public static String _URL = "/motherlist.php";
 
     }
 

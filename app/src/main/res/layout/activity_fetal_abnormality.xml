@@ -224,7 +224,7 @@
                     android:layout_marginTop="16dp"
                     android:background="@color/colorSubHeading"
                     android:gravity="right"
-                    android:text="@string/fet04"
+                    android:text="@string/fet05"
                     android:textColor="@color/colorPrimaryDark"
                     android:textSize="20sp" />
 

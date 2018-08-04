@@ -58,6 +58,7 @@ import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
+import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetMotherList;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUsers;
 
 
@@ -359,6 +360,10 @@ siteList.add(2,"Kharadar");
         if (networkInfo != null && networkInfo.isConnected()) {
             Toast.makeText(getApplicationContext(), "Syncing Users", Toast.LENGTH_SHORT).show();
             new GetUsers(this).execute();
+            GetMotherList ml = new GetMotherList(this);
+            Toast.makeText(this, "Syncing mother list", Toast.LENGTH_SHORT).show();
+            ml.execute();
+
 
         } else {
             Toast.makeText(this, "No network connection available.", Toast.LENGTH_SHORT).show();

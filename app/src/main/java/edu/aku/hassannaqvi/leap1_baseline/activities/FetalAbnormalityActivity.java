@@ -27,9 +27,7 @@ public class FetalAbnormalityActivity extends AppCompatActivity {
         bi.setCallback(this);
         this.setTitle(getResources().getString(R.string.fetalheading));
         bi.count.setText("Fetus: " + AppMain.FetalCount + " out of " + AppMain.TotalFetalCount);
-
     }
-
 
     public void BtnEnd() {
         Toast.makeText(this, "Not Processing This Section", Toast.LENGTH_SHORT).show();
@@ -60,8 +58,9 @@ public class FetalAbnormalityActivity extends AppCompatActivity {
                 } else if (AppMain.aq == 1) {
                     startActivity(new Intent(this, DataCollectionActivity.class));
                 } else {
-                    Intent endSec = new Intent(this, EndingActivity.class);
-                    endSec.putExtra("check", true);
+                    //                    Intent endSec = new Intent(this, EndingActivity.class);
+                    Intent endSec = new Intent(this, MDDWActivity.class);
+//                    endSec.putExtra("check", true);
                     startActivity(endSec);
                 }
 

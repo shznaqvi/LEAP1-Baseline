@@ -249,6 +249,6 @@ public class NutritionContract {
         public static final String COLUMN_SYNCEDDATE = "synceddate";
 
 
-        public static String _URL = "nutritions.php";
+        public static String _URL = "nutrition.php";
     }
 }

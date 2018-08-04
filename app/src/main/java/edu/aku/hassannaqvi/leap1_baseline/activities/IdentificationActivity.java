@@ -1,5 +1,6 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
@@ -9,6 +10,8 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
 import android.text.TextWatcher;
+import android.text.format.DateFormat;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -40,6 +43,7 @@ ActivityIdentificationBinding bi;
     static String MRNO_KEY = "mrno";
     static String STUDY_ID_KEY = "studyid";
     DatabaseHelper db;
+    private static final String TAG = IdentificationActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,7 +52,7 @@ ActivityIdentificationBinding bi;
        bi.setCallback(this);
        db = new DatabaseHelper(this);
        setupView();
-        sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
+       sharedPref = getSharedPreferences("tagName", MODE_PRIVATE);
 
     }
 
@@ -112,8 +116,8 @@ ActivityIdentificationBinding bi;
         if (!bi.mrno.getText().toString().trim().isEmpty() && !bi.studyID.getText().toString().trim().isEmpty()) {
             clearError();
             if (AppMain.SELECTED_FUP_TYPE == AppMain.Fup30day){
-
-
+                clearError();
+                bi.btnNext.setVisibility(View.VISIBLE);
             }else if(AppMain.SELECTED_FUP_TYPE == AppMain.Fupantenatal) {
                 if (db.isMotherFound(bi.mrno.getText().toString(), bi.studyID.getText().toString())) {
                     clearError();
@@ -154,6 +158,7 @@ ActivityIdentificationBinding bi;
         AppMain.fc.setSiteNum(String.valueOf(AppMain.site));
         AppMain.fc.setMrNum(bi.mrno.getText().toString());
         AppMain.fc.setmStudyID(bi.studyID.getText().toString());
+        setGPS();
     }
 
     private boolean UpdateDB() {
@@ -210,6 +215,39 @@ ActivityIdentificationBinding bi;
 
 
     }
+    public void setGPS() {
+        SharedPreferences GPSPref = getSharedPreferences("GPSCoordinates", Context.MODE_PRIVATE);
+
+//        String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
+
+        try {
+            String lat = GPSPref.getString("Latitude", "0");
+            String lang = GPSPref.getString("Longitude", "0");
+            String acc = GPSPref.getString("Accuracy", "0");
+            String dt = GPSPref.getString("Time", "0");
+
+            if (lat == "0" && lang == "0") {
+                Toast.makeText(this, "Could not obtained GPS points", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
+            }
+
+            String date = DateFormat.format("dd-MM-yyyy HH:mm", Long.parseLong(GPSPref.getString("Time", "0"))).toString();
+
+            AppMain.fc.setGpsLat(GPSPref.getString("Latitude", "0"));
+            AppMain.fc.setGpsLng(GPSPref.getString("Longitude", "0"));
+            AppMain.fc.setGpsAcc(GPSPref.getString("Accuracy", "0"));
+            AppMain.fc.setGpsTime(GPSPref.getString(date, "0")); // Timestamp is converted to date above
+            //AppMain.fc.setG(date); // Timestamp is converted to date above
+
+            Toast.makeText(this, "GPS set", Toast.LENGTH_SHORT).show();
+
+        } catch (Exception e) {
+            Log.e(TAG, "setGPS: " + e.getMessage());
+        }
+
+    }
+
 
 
 }

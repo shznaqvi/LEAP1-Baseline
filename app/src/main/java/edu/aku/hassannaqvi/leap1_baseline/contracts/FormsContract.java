@@ -27,6 +27,7 @@ public class FormsContract {
     private String siteNum = "";
     private String mrNum = "";
     private String mStudyID = "";
+    private String enrolmentdt = "";
     private String participantName = "";
 
     private String sInfo = "";
@@ -231,6 +232,14 @@ public class FormsContract {
         this.synced_date = synced_date;
     }
 
+    public String getenrolmentdt() {
+        return enrolmentdt;
+    }
+
+    public void setenrolmentdt(String enrolmentdt) {
+        this.enrolmentdt = enrolmentdt;
+    }
+
     public String getSfup() {
         return sfup;
     }
@@ -258,6 +267,7 @@ public class FormsContract {
         this.siteNum = jsonObject.getString(formsTable.COLUMN_SITENUM);
         this.mrNum = jsonObject.getString(formsTable.COLUMN_MRNUM);
         this.mStudyID = jsonObject.getString(formsTable.COLUMN_MSTUDYID);
+        this.enrolmentdt = jsonObject.getString(formsTable.COLUMN_ENROLDATE);
         this.participantName = jsonObject.getString(formsTable.COLUMN_PARTICIPANT_NAME);
         this.sInfo = jsonObject.getString(formsTable.COLUMN_SINFO);
         this.sRandomization = jsonObject.getString(formsTable.COLUMN_SRANDOMIZATION);
@@ -288,6 +298,7 @@ public class FormsContract {
         this.siteNum = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SITENUM));
         this.mrNum = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_MRNUM));
         this.mStudyID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_MSTUDYID));
+        this.enrolmentdt = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_ENROLDATE));
         this.participantName = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_PARTICIPANT_NAME));
         this.sInfo = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SINFO));
         this.sRandomization = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SRANDOMIZATION));
@@ -310,23 +321,36 @@ public class FormsContract {
 
         JSONObject json = new JSONObject();
 
-        json.put(formsTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
         json.put(formsTable.COLUMN_ID, this.ID == null ? JSONObject.NULL : this.ID);
+        json.put(formsTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
+        json.put(formsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
+        json.put(formsTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
         json.put(formsTable.COLUMN_UID, this.UID == null ? JSONObject.NULL : this.UID);
         json.put(formsTable.COLUMN_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
-        json.put(formsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(formsTable.COLUMN_FORMTYPE, this.formType == null ? JSONObject.NULL : this.formType);
         json.put(formsTable.COLUMN_ISTATUS, this.iStatus == null ? JSONObject.NULL : this.iStatus);
         json.put(formsTable.COLUMN_SITENUM, this.siteNum == null ? JSONObject.NULL : this.siteNum);
         json.put(formsTable.COLUMN_MRNUM, this.mrNum == null ? JSONObject.NULL : this.mrNum);
         json.put(formsTable.COLUMN_MSTUDYID, this.mStudyID == null ? JSONObject.NULL : this.mStudyID);
+        json.put(formsTable.COLUMN_ENROLDATE, this.enrolmentdt == null ? JSONObject.NULL : this.enrolmentdt);
         json.put(formsTable.COLUMN_PARTICIPANT_NAME, this.participantName == null ? JSONObject.NULL : this.participantName);
-        json.put(formsTable.COLUMN_SINFO, this.sInfo == null ? JSONObject.NULL : this.sInfo);
-        json.put(formsTable.COLUMN_SRANDOMIZATION, this.sRandomization == null ? JSONObject.NULL : this.sRandomization);
-        json.put(formsTable.COLUMN_SBASELINE, this.sBaseline == null ? JSONObject.NULL : this.sBaseline);
-        json.put(formsTable.COLUMN_SFUP, this.sfup == null ? JSONObject.NULL : this.sfup);
+        if (!this.sInfo.equals("")) {
+
+            json.put(formsTable.COLUMN_SINFO, this.sInfo.equals("") ? JSONObject.NULL : new JSONObject(this.sInfo));
+        }
+        if (!this.sRandomization.equals("")) {
+
+            json.put(formsTable.COLUMN_SRANDOMIZATION, this.sRandomization.equals("") ? JSONObject.NULL : new JSONObject(this.sRandomization));
+        }
+        if (!this.sBaseline.equals("")) {
+
+            json.put(formsTable.COLUMN_SBASELINE, this.sBaseline.equals("") ? JSONObject.NULL : new JSONObject(this.sBaseline));
+        }
+        if (!this.sfup.equals("")) {
+
+            json.put(formsTable.COLUMN_SFUP, this.sfup.equals("") ? JSONObject.NULL : new JSONObject(this.sfup));
+        }
         json.put(formsTable.COLUMN_SFUP_TYPE, this.sfuptype == null ? JSONObject.NULL : this.sfuptype);
-        json.put(formsTable.COLUMN_DEVICEID, this.deviceID == null ? JSONObject.NULL : this.deviceID);
         json.put(formsTable.COLUMN_TAGID, this.tagID == null ? JSONObject.NULL : this.tagID);
         json.put(formsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
         json.put(formsTable.COLUMN_GPSLNG, this.gpsLng == null ? JSONObject.NULL : this.gpsLng);
@@ -364,7 +388,7 @@ public class FormsContract {
     {
 
         public static final String TABLE_NAME = "forms";
-        public static final String URI = "/syncblforms.php";
+        public static final String URI = "forms.php";
         public static final String COLUMN_NAME_NULLABLE = "NULLHACK";
         public static final String COLUMN_PROJECTNAME = "projectname";
         public static final String COLUMN_ID = "id";
@@ -376,6 +400,7 @@ public class FormsContract {
         public static final String COLUMN_SITENUM = "sitenum";
         public static final String COLUMN_MRNUM = "mrnum";
         public static final String COLUMN_MSTUDYID = "mstudyid";
+        public static final String COLUMN_ENROLDATE = "enrolmentdt";
         public static final String COLUMN_PARTICIPANT_NAME = "participantname";
         public static final String COLUMN_SINFO = "sinfo";
         public static final String COLUMN_SRANDOMIZATION = "srandomization";

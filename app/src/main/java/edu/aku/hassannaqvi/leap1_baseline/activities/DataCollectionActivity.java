@@ -18,11 +18,11 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.SurveyContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 
-public class DataCollectionActivity extends AppCompatActivity
-{
+public class DataCollectionActivity extends AppCompatActivity {
 
     private static final String TAG = DataCollectionActivity.class.getSimpleName();
 
@@ -523,23 +523,44 @@ public class DataCollectionActivity extends AppCompatActivity
 
     private boolean UpdateDB() {
         DatabaseHelper db = new DatabaseHelper(this);
+        long updcount;
+        if (AppMain.sf == 0) {
+            updcount = db.addSurvey(AppMain.sur);
+            AppMain.sur.set_ID(String.valueOf(updcount));
+        } else {
+            updcount = db.updateSAQ();
 
-        int updcount = db.updateSAQ();
-
-        if (updcount == 1) {
+        }
+        if (updcount > 0) {
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            if (AppMain.sf == 0) {
+                AppMain.sur.set_UID(
+                        (AppMain.fc.getDeviceID() + AppMain.sur.get_ID()));
+                db.updateSurveyID();
+            }
             return true;
         } else {
             Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
             return false;
         }
-
-
     }
 
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
-
+        if (AppMain.sf == 0) {
+            AppMain.sur = new SurveyContract();
+            AppMain.sur.setdevicetagID(AppMain.fc.getTagID());
+            AppMain.sur.setuser(AppMain.username);
+            AppMain.sur.set_UUID(AppMain.fc.getUID());
+            AppMain.sur.setmStudyID(AppMain.fc.getmStudyID());
+            AppMain.sur.setmrNum(AppMain.fc.getMrNum());
+            AppMain.sur.setsiteNum(AppMain.fc.getSiteNum());
+            AppMain.sur.setformType(AppMain.formType);
+            AppMain.sur.setfupType(AppMain.fc.getSfuptype());
+            AppMain.sur.setformDate(AppMain.fc.getFormDate());
+            AppMain.sur.setdeviceID(AppMain.fc.getDeviceID());
+            AppMain.sur.setappVersion(AppMain.fc.getAppVer());
+        }
 
         JSONObject sa = new JSONObject();
 

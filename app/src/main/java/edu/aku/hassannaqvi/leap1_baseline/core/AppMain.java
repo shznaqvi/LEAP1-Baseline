@@ -76,8 +76,8 @@ public class AppMain extends Application {
 
     public static String deviceId;
     public static String formType;
-    public static int TYPE_BASELINE = 1;
-    public static int TYPE_FUP = 2;
+    public static final int TYPE_BASELINE = 1;
+    public static final int TYPE_FUP = 2;
 
     public static Boolean admin = false;
     public static int mna3 = -1;
@@ -105,6 +105,7 @@ public class AppMain extends Application {
     public static String versionName;
     public static int sf = 0;
     public static int aq = 0;
+    public static int fetal = 0;
     protected LocationManager locationManager;
     Location location;
 

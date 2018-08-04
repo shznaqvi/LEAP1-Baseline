@@ -69,6 +69,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             formsTable.COLUMN_SITENUM + " TEXT," +
             formsTable.COLUMN_MRNUM + " TEXT," +
             formsTable.COLUMN_MSTUDYID + " TEXT," +
+            formsTable.COLUMN_ENROLDATE + " TEXT," +
             formsTable.COLUMN_PARTICIPANT_NAME + " TEXT," +
             formsTable.COLUMN_SINFO + " TEXT," +
             formsTable.COLUMN_SRANDOMIZATION + " TEXT," +
@@ -81,6 +82,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             formsTable.COLUMN_GPSLNG + " TEXT," +
             formsTable.COLUMN_GPSTIME + " TEXT," +
             formsTable.COLUMN_GPSACC + " TEXT," +
+            formsTable.COLUMN_APPVER + " TEXT," +
             formsTable.COLUMN_SYNCED + " TEXT," +
             formsTable.COLUMN_SYNCED_DATE + " TEXT"
             + " );";
@@ -215,6 +217,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(formsTable.COLUMN_SITENUM, fc.getSiteNum());
         values.put(formsTable.COLUMN_MRNUM, fc.getMrNum());
         values.put(formsTable.COLUMN_MSTUDYID, fc.getmStudyID());
+        values.put(formsTable.COLUMN_ENROLDATE, fc.getenrolmentdt());
         values.put(formsTable.COLUMN_PARTICIPANT_NAME, fc.getParticipantName());
         values.put(formsTable.COLUMN_SINFO, fc.getsInfo());
         values.put(formsTable.COLUMN_SRANDOMIZATION, fc.getsRandomization());
@@ -227,6 +230,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(formsTable.COLUMN_GPSLNG, fc.getGpsLng());
         values.put(formsTable.COLUMN_GPSTIME, fc.getGpsTime());
         values.put(formsTable.COLUMN_GPSACC, fc.getGpsAcc());
+        values.put(formsTable.COLUMN_APPVER, fc.getAppVer());
         values.put(formsTable.COLUMN_SYNCED, fc.getSynced());
         values.put(formsTable.COLUMN_SYNCED_DATE, fc.getSynced_date());
 
@@ -435,7 +439,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 where,
                 whereArgs);
     }
-    public void updateSyncedFetal(String id) {
+    public void updateSurvey(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(SurveyTable.COLUMN_SYNCED, true);
+        values.put(SurveyTable.COLUMN_SYNCED_DATE, new Date().toString());
+
+// Which row to update, based on the title
+        String where = SurveyTable.COLUMN__ID + " LIKE ?";
+        String[] whereArgs = {id};
+
+        int count = db.update(
+                SurveyTable.TABLE_NAME,
+                values,
+                where,
+                whereArgs);
+    }
+    public void updateFetal(String id) {
         SQLiteDatabase db = this.getReadableDatabase();
 
 // New value for one column
@@ -521,6 +543,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SITENUM,
                 formsTable.COLUMN_MRNUM,
                 formsTable.COLUMN_MSTUDYID,
+                formsTable.COLUMN_ENROLDATE,
                 formsTable.COLUMN_PARTICIPANT_NAME,
                 formsTable.COLUMN_SINFO,
                 formsTable.COLUMN_SRANDOMIZATION,
@@ -628,7 +651,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         return allFC;
     }
 
-    public Collection<FormsContract> getUnsyncedForms() {
+    public Collection<FormsContract> getUnsyncedForms(int formType) {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
         String[] columns = {
@@ -642,6 +665,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SITENUM,
                 formsTable.COLUMN_MRNUM,
                 formsTable.COLUMN_MSTUDYID,
+                formsTable.COLUMN_ENROLDATE,
                 formsTable.COLUMN_PARTICIPANT_NAME,
                 formsTable.COLUMN_SINFO,
                 formsTable.COLUMN_SRANDOMIZATION,
@@ -658,8 +682,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SYNCED_DATE,
                 formsTable.COLUMN_APPVER
         };
-        String whereClause = formsTable.COLUMN_SYNCED + " is null OR " + formsTable.COLUMN_SYNCED + " = ''";
-        String[] whereArgs = null;
+        String whereClause = formsTable.COLUMN_SYNCED + " is null OR " + formsTable.COLUMN_SYNCED + " = '' AND "+formsTable.COLUMN_FORMTYPE+ " = ? AND "+formsTable.COLUMN_ISTATUS+" =?";
+        String[] whereArgs = new String[]{String.valueOf(formType), "1"};
         String groupBy = null;
         String having = null;
 
@@ -691,6 +715,71 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
         return allFC;
     }
+    public Collection<FormsContract> getUnsyncedFups(int formType, int fupType) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor c = null;
+        String[] columns = {
+
+                formsTable.COLUMN_ID,
+                formsTable.COLUMN_UID,
+                formsTable.COLUMN_USERNAME,
+                formsTable.COLUMN_FORMDATE,
+                formsTable.COLUMN_FORMTYPE,
+                formsTable.COLUMN_ISTATUS,
+                formsTable.COLUMN_SITENUM,
+                formsTable.COLUMN_MRNUM,
+                formsTable.COLUMN_MSTUDYID,
+                formsTable.COLUMN_ENROLDATE,
+                formsTable.COLUMN_PARTICIPANT_NAME,
+                formsTable.COLUMN_SINFO,
+                formsTable.COLUMN_SRANDOMIZATION,
+                formsTable.COLUMN_SBASELINE,
+                formsTable.COLUMN_SFUP,
+                formsTable.COLUMN_SFUP_TYPE,
+                formsTable.COLUMN_DEVICEID,
+                formsTable.COLUMN_TAGID,
+                formsTable.COLUMN_GPSLAT,
+                formsTable.COLUMN_GPSLNG,
+                formsTable.COLUMN_GPSTIME,
+                formsTable.COLUMN_GPSACC,
+                formsTable.COLUMN_SYNCED,
+                formsTable.COLUMN_SYNCED_DATE,
+                formsTable.COLUMN_APPVER
+        };
+        String whereClause = formsTable.COLUMN_SYNCED + " is null OR " + formsTable.COLUMN_SYNCED + " = '' AND "+formsTable.COLUMN_FORMTYPE+ " = ? AND "+formsTable.COLUMN_SFUP_TYPE+" = ? AND "+formsTable.COLUMN_ISTATUS+" =?";
+        String[] whereArgs = new String[]{String.valueOf(formType),String.valueOf(fupType), "1"};
+        String groupBy = null;
+        String having = null;
+
+        String orderBy =
+                formsTable.COLUMN_ID + " ASC";
+
+        Collection<FormsContract> allFC = new ArrayList<FormsContract>();
+        try {
+            c = db.query(
+                    formsTable.TABLE_NAME,  // The table to query
+                    columns,                   // The columns to return
+                    whereClause,               // The columns for the WHERE clause
+                    whereArgs,                 // The values for the WHERE clause
+                    groupBy,                   // don't group the rows
+                    having,                    // don't filter by row groups
+                    orderBy                    // The sort order
+            );
+            while (c.moveToNext()) {
+                FormsContract fc = new FormsContract();
+                allFC.add(fc.hydrate(c));
+            }
+        } finally {
+            if (c != null) {
+                c.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
+        return allFC;
+    }
+
     public Collection<SurveyContract> getUnsyncedSurvey() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor c = null;
@@ -772,8 +861,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         };
        /* String whereClause = FormsTable.COLUMN_SYNCED + " is null OR " + FormsTable.COLUMN_SYNCED + " = '' AND "
                 + FormsTable.COLUMN_FORMTYPE + " =?";*/
-        String whereClause = FetalTable.COLUMN_SYNCED + " is null OR " + FetalTable.COLUMN_SYNCED + "='' AND " + FetalTable.COLUMN_FORMTYPE + " =?";
-        String[] whereArgs = new String[]{"2"};
+        String whereClause = FetalTable.COLUMN_SYNCED + " is null OR " + FetalTable.COLUMN_SYNCED + "='' ";
+        String[] whereArgs = null;
         String groupBy = null;
         String having = null;
 
@@ -1111,6 +1200,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
     public void syncMotherList(JSONArray motherlist) {
+
         SQLiteDatabase db = this.getWritableDatabase();
         db.delete(MotherListTable.TABLE_NAME, null, null);
 

@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import butterknife.BindView;
@@ -80,6 +81,8 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
     EditText r16;
     @BindView(R.id.mStudyID)
     EditText mStudyID;
+    @BindView(R.id.enrolmentdt)
+    DatePickerInputEditText enrolmentdt;
     @BindView(R.id.r02)
     RadioGroup r02;
     @BindView(R.id.r0201)
@@ -174,6 +177,9 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
         String maxDate18Years = new SimpleDateFormat("dd/MM/yyyy").format(Calendar.getInstance().getTimeInMillis() - ((AppMain.MILLISECONDS_IN_18YEAR) + (AppMain.MILLISECONDS_IN_DAY)));
         r06.setManager(getSupportFragmentManager());
         r06.setMaxDate(maxDate18Years);
+        String maxDate = new SimpleDateFormat("dd/MM/yyyy").format(new Date().getTime());
+        enrolmentdt.setManager(getSupportFragmentManager());
+        enrolmentdt.setMaxDate(maxDate);
 
         for (RadioGroup rg : ListRadioGroup) {
             rg.setOnCheckedChangeListener(this);
@@ -335,6 +341,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
         AppMain.fc.setmStudyID(mStudyID.getText().toString());
+        AppMain.fc.setenrolmentdt(enrolmentdt.getText().toString());
         JSONObject sa = new JSONObject();
 
         sa.put("studyID", mStudyID.getText().toString());
@@ -567,7 +574,9 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
             } else {
                 mStudyID.setError(null);
             }
-
+            if (!validatorClass.EmptyTextBox(this, enrolmentdt, getString(R.string.enrolmntdt))) {
+                return false;
+            }
 
             if (r02.getCheckedRadioButtonId() == -1) {
                 Toast.makeText(this, "ERROR (Empty)" + getString(R.string.r02), Toast.LENGTH_SHORT).show();
