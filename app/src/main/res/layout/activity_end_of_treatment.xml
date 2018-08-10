@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="edu.aku.hassannaqvi.leap1_baseline.activities.EndOfTreatmentActivity" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:background="@color/colorMainHeading"
+                android:gravity="center"
+                android:text="End Of Treatment"
+                android:textSize="30sp" />
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/eot01" />
+
+
+            <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                android:id="@+id/eot01a"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/eot01a"
+                app:dateFormat="dd/MM/yyyy"/>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot02" />
+
+                <RadioGroup
+                    android:id="@+id/eot02"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioButton
+                        android:id="@+id/eot02a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eot02a" />
+
+                    <RadioButton
+                        android:id="@+id/eot02b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/eot02b" />
+
+
+                </RadioGroup>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot03" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorSubHeading"
+                    android:text="@string/eot03a" />
+
+                <EditText
+                    android:id="@+id/eot03a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="g/dL"
+                    android:inputType="numberDecimal"
+                    android:maxLength="4" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/fldgrpeot04"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot04" />
+
+                <CheckBox
+                    android:id="@+id/eot04a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot0401" />
+
+                <LinearLayout
+                    android:id="@+id/eot0401"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:visibility='@{eot04a.checked? View.VISIBLE : View.GONE}'>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorSubHeading"
+                        android:text="@string/eot0401a" />
+
+                    <EditText
+                        android:text='@{eot04a.checked? eot0401a.getText.toString : ""}'
+                        android:id="@+id/eot0401a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/eot0401a"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/colorSubHeading"
+                        android:text="@string/eot0401b" />
+
+
+                    <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                        android:text='@{eot04a.checked? eot0401a.getText.toString : ""}'
+                        android:id="@+id/eot0401b"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="@string/eot0401b" />
+
+                </LinearLayout>
+
+                <CheckBox
+                    android:id="@+id/eot0402"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot0402" />
+
+                <EditText
+                    android:text='@{eot0402.checked ? eot0402a.getText.toString : "" }'
+                    android:id="@+id/eot0402a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/eot0402"
+                    android:inputType="text"
+                    android:visibility='@{eot0402.checked? View.VISIBLE : View.GONE}' />
+
+                <CheckBox
+                    android:id="@+id/eot0403"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot0403" />
+
+                <EditText
+                    android:text='@{eot0403.checked ? eot0403a.getText.toString : "" }'
+                    android:id="@+id/eot0403a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/eot0402"
+                    android:inputType="text"
+                    android:visibility='@{eot0403.checked? View.VISIBLE : View.GONE}' />
+
+                <CheckBox
+                    android:id="@+id/eot0404"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot0404" />
+
+                <LinearLayout
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginTop="2dp"
+                    android:visibility="gone"
+                    android:id="@+id/fldgrpeot0404"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RadioGroup
+                        android:id="@+id/eot0404a"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        >
+
+                        <RadioButton
+                            android:id="@+id/eot040401a"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/eot0404a" />
+
+                        <RadioButton
+                            android:id="@+id/eot040401b"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="@string/eot0404b" />
+
+
+                    </RadioGroup>
+                </LinearLayout>
+
+
+                <CheckBox
+                    android:id="@+id/eot0405"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot0405" />
+
+                <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
+                    android:text='@{eot0405.checked ? eot0405a.getText.toString : "" }'
+                    android:id="@+id/eot0405a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/eot0405"
+                    android:visibility='@{eot0405.checked? View.VISIBLE : View.GONE}' />
+
+                <CheckBox
+                    android:id="@+id/eot0406"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/eot0406" />
+
+                <EditText
+                    android:id="@+id/eot0406a"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/eot0406"
+                    android:text='@{eot0406.checked? eot0406a.getText.toString : "" }'
+                    android:visibility='@{eot0406.checked? View.VISIBLE : View.GONE}' />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="80dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/btnNext"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> callback.BtnContinue()}"
+                    android:text="@string/nextSection"
+                    android:textColor="@color/colorTextBtnContinue"
+                    android:textSize="24sp" />
+
+                <Button
+                    android:id="@+id/btnEnd"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:onClick="@{() -> callback.BtnEnd()}"
+                    android:text="@string/endForm"
+                    android:textColor="@android:color/holo_red_light"
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</layout>
