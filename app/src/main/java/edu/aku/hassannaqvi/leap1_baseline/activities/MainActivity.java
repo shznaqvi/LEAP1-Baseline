@@ -39,15 +39,19 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import edu.aku.hassannaqvi.leap1_baseline.NetworkUtils;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.FetalContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.HFacilitiesContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.LHWsContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.SurveyContract;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.TehsilsContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetHFacilities;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetLHWs;
+import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetMotherList;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetTehsil;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUCs;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUsers;
@@ -499,22 +503,73 @@ public class MainActivity extends AppCompatActivity {
                 getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
         if (networkInfo != null && networkInfo.isConnected()) {
+            /*
             Toast.makeText(getApplicationContext(), "Syncing Forms", Toast.LENGTH_SHORT).show();
             new SyncForms(this).execute();
             Toast.makeText(getApplicationContext(), "Syncing Nutritions", Toast.LENGTH_SHORT).show();
             new SyncNutrition(this).execute();
+            */
             // TODO : Syncing Baseline Form to server
-           /* Toast.makeText(getApplicationContext(), "Syncing Baseline Form", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Syncing Baseline Form", Toast.LENGTH_SHORT).show();
             new SyncAllData(
                     this,
                     "Baseline",
                     "updateForms",
                     FormsContract.class,
-                    NetworkUtils.buildUrl(FormsContract.formsTable.URI.replace(".php", "blforms.php")),
-                    db.getUnsyncedForms7(), this.findViewById(R.id.syncStatus)
+                    NetworkUtils.buildUrl(FormsContract.formsTable.URI.replace(".php", "bl.php")),
+                    db.getUnsyncedForms(AppMain.TYPE_BASELINE), this.findViewById(R.id.syncStatus)
+            ).execute();
+            // TODO : Syncing 30 day Fup Form to server
+            Toast.makeText(getApplicationContext(), "Syncing 30 Day Followup", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "30Day",
+                    "updateForms",
+                    FormsContract.class,
+                    NetworkUtils.buildUrl(FormsContract.formsTable.URI.replace(".php", "30day.php")),
+                    db.getUnsyncedFups(AppMain.TYPE_FUP,AppMain.Fup30day), this.findViewById(R.id.syncStatus)
+            ).execute();
+            // TODO : Syncing Antenatal Fup Form to server
+            Toast.makeText(getApplicationContext(), "Syncing Antenatal Followup", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Antenatal",
+                    "updateForms",
+                    FormsContract.class,
+                    NetworkUtils.buildUrl(FormsContract.formsTable.URI.replace(".php", "antenatal.php")),
+                    db.getUnsyncedFups(AppMain.TYPE_FUP,AppMain.Fupantenatal), this.findViewById(R.id.syncStatus)
+            ).execute();
+            // TODO : Syncing Survey Form to server
+            Toast.makeText(getApplicationContext(), "Syncing Survey Forms", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Survey",
+                    "updateSurvey",
+                    SurveyContract.class,
+                    NetworkUtils.buildUrl(SurveyContract.SurveyTable._URL),
+                    db.getUnsyncedSurvey(), this.findViewById(R.id.syncStatus)
+            ).execute();
+            // TODO : Syncing Nutrition Form to server
+            Toast.makeText(getApplicationContext(), "Syncing Nutrition Forms", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Nutrition",
+                    "updateNutrition",
+                    NutritionContract.class,
+                    NetworkUtils.buildUrl(NutritionContract.NutritionTable._URL),
+                    db.getUnsyncedNutrition(), this.findViewById(R.id.syncStatus)
+            ).execute();
+            // TODO : Syncing Fetal Form to server
+            Toast.makeText(getApplicationContext(), "Syncing Fetal Forms", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "Fetal",
+                    "updateFetal",
+                    FetalContract.class,
+                    NetworkUtils.buildUrl(FetalContract.FetalTable._URL),
+                    db.getUnsyncedFetal(), this.findViewById(R.id.syncStatus)
             ).execute();
 
-*/
 
             SharedPreferences syncPref = getSharedPreferences("SyncInfo", Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = syncPref.edit();
@@ -560,10 +615,14 @@ public class MainActivity extends AppCompatActivity {
 
                 @Override
                 public void run() {
+
+                    GetMotherList ml = new GetMotherList(mContext);
+                    Toast.makeText(mContext, "Syncing mother list", Toast.LENGTH_SHORT).show();
+                    ml.execute();
                     GetUsers us = new GetUsers(mContext);
                     Toast.makeText(mContext, "Syncing Users", Toast.LENGTH_SHORT).show();
                     us.execute();
-
+                    /*
                     GetTehsil gt = new GetTehsil(mContext);
                     Toast.makeText(mContext, "Syncing Tehsils", Toast.LENGTH_SHORT).show();
                     gt.execute();
@@ -583,6 +642,7 @@ public class MainActivity extends AppCompatActivity {
                     GetLHWs gp = new GetLHWs(mContext);
                     Toast.makeText(mContext, "Syncing LHWs", Toast.LENGTH_SHORT).show();
                     gp.execute();
+*/
 
                     SharedPreferences syncPref = getSharedPreferences("SyncInfo(DOWN)", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = syncPref.edit();

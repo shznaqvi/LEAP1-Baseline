@@ -262,6 +262,7 @@ public class MDDWActivity extends AppCompatActivity {
         AppMain.nc.setApp_ver(AppMain.fc.getAppVer());
         AppMain.nc.set_UUID(AppMain.fc.getUID());
         AppMain.nc.setSiteNum(String.valueOf(AppMain.site));
+        AppMain.nc.setMrNum(AppMain.fc.getMrNum());
         AppMain.nc.setmStudyID(AppMain.fc.getmStudyID());
         JSONObject lfitem = new JSONObject();
 

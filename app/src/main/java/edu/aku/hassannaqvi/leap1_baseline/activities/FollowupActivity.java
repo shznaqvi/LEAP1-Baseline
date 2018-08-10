@@ -53,12 +53,28 @@ public class FollowupActivity extends AppCompatActivity {
             bi.fldGrp03.setVisibility(View.VISIBLE);
             bi.fldGrp06.setVisibility(View.VISIBLE);
         }
+        bi.f07.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup radioGroup, int i) {
+                if (i == R.id.f07b) {
+                    bi.fldGrp07.setVisibility(View.VISIBLE);
+
+                } else {
+                    bi.fldGrp07.setVisibility(View.GONE);
+                    bi.f0701.clearCheck();
+                    bi.f0702.clearCheck();
+                    bi.f0788.clearCheck();
+                    bi.f0788ax.setText(null);
+
+                }
+            }
+        });
         bi.f0910.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.f0910a){
+                if (i == R.id.f0910a) {
                     bi.f0910op.setVisibility(View.VISIBLE);
-                }else{
+                } else {
                     bi.f0910op.setVisibility(View.GONE);
                     bi.f0910op.clearCheck();
                 }
@@ -67,13 +83,13 @@ public class FollowupActivity extends AppCompatActivity {
         bi.f0901.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if(i == R.id.f0901a){
+                if (i == R.id.f0901a) {
                     bi.fldGrpf0901.setVisibility(View.VISIBLE);
-                    ClearClass.ClearAllFields(bi.fldGrpf0901check,true);
+                    ClearClass.ClearAllFields(bi.fldGrpf0901check, true);
 
-                }else {
+                } else {
                     bi.fldGrpf0901.setVisibility(View.GONE);
-                    ClearClass.ClearAllFields(bi.fldGrpf0901check,false);
+                    ClearClass.ClearAllFields(bi.fldGrpf0901check, false);
                 }
             }
         });
@@ -102,7 +118,7 @@ public class FollowupActivity extends AppCompatActivity {
                 Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
 
                 finish();
-                if(bi.f04b01.isChecked()){
+                if (AppMain.fetal == 1) {
                     Intent secNext = new Intent(this, FetalAbnormalityActivity.class);
                     startActivity(secNext);
                 } else if (AppMain.sf == 1) {
@@ -110,8 +126,9 @@ public class FollowupActivity extends AppCompatActivity {
                 } else if (AppMain.aq == 1) {
                     startActivity(new Intent(this, DataCollectionActivity.class));
                 } else {
-                    Intent endSec = new Intent(this, EndingActivity.class);
-                    endSec.putExtra("check", true);
+//                    Intent endSec = new Intent(this, EndingActivity.class);
+                    Intent endSec = new Intent(this, MDDWActivity.class);
+//                    endSec.putExtra("check", true);
                     startActivity(endSec);
                 }
 
@@ -188,7 +205,7 @@ public class FollowupActivity extends AppCompatActivity {
         if (!validatorClass.EmptyTextBox(this, bi.f04a, getString(R.string.f04a))) {
             return false;
         }
-        if (!validatorClass.RangeTextBox(this,bi.f04a,1,4,getString(R.string.f04a)," number")) {
+        if (!validatorClass.RangeTextBox(this, bi.f04a, 1, 4, getString(R.string.f04a), " number")) {
             return false;
         }
         if (!validatorClass.EmptyRadioButton(this, bi.f04b, bi.f04b01, bi.f04bx, getString(R.string.f04b))) {
@@ -216,18 +233,21 @@ public class FollowupActivity extends AppCompatActivity {
                 return false;
             }
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.f07, bi.f07b, bi.f07x, getString(R.string.f07))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.f07, bi.f07b, getString(R.string.f07))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.f0701, bi.f0701a, getString(R.string.f0701))) {
-            return false;
+        if (bi.f07b.isChecked()) {
+            if (!validatorClass.EmptyRadioButton(this, bi.f0701, bi.f0701a, getString(R.string.f0701))) {
+                return false;
+            }
+            if (!validatorClass.EmptyRadioButton(this, bi.f0702, bi.f0702a, getString(R.string.f0702))) {
+                return false;
+            }
+            if (!validatorClass.EmptyRadioButton(this, bi.f0788, bi.f0788a, bi.f0788ax, getString(R.string.f0788))) {
+                return false;
+            }
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.f0702, bi.f0702a, getString(R.string.f0702))) {
-            return false;
-        }
-        if (!validatorClass.EmptyRadioButton(this, bi.f0788, bi.f0788a,bi.f0788ax, getString(R.string.f0788))) {
-            return false;
-        }
+
         if (!validatorClass.EmptyRadioButton(this, bi.f0801, bi.f0801a, getString(R.string.f0801))) {
             return false;
         }
@@ -249,17 +269,17 @@ public class FollowupActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.f0807, bi.f0807a, getString(R.string.f0807))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.f0808, bi.f0808a, getString(R.string.f0808))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.f0888, bi.f0888a, bi.f0888x, getString(R.string.f0808))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.f0809, bi.f0809a,bi.f0809ax, getString(R.string.f0809))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.f0808, bi.f0808a, getString(R.string.f0809))) {
             return false;
         }
         if (!validatorClass.EmptyRadioButton(this, bi.f0901, bi.f0901a, getString(R.string.f0901))) {
             return false;
         }
-        if (bi.f0901a.isChecked()){
-            if (!validatorClass.EmptyCheckBox(this,bi.fldGrpf0901check,bi.f0901sup88,bi.f0901sup88x,getString(R.string.f0901sup))){
+        if (bi.f0901a.isChecked()) {
+            if (!validatorClass.EmptyCheckBox(this, bi.fldGrpf0901check, bi.f0901sup88, bi.f0901sup88x, getString(R.string.f0901sup))) {
                 return false;
             }
         }
@@ -290,15 +310,15 @@ public class FollowupActivity extends AppCompatActivity {
         if (!validatorClass.EmptyRadioButton(this, bi.f0910, bi.f0910a, getString(R.string.f0910))) {
             return false;
         }
-        if (bi.f0910a.isChecked()){
+        if (bi.f0910a.isChecked()) {
             if (!validatorClass.EmptyRadioButton(this, bi.f0910op, bi.f0910op01, getString(R.string.f0910))) {
                 return false;
             }
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.f0911, bi.f0911a,bi.f0911x, getString(R.string.f0911))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.f0911, bi.f0911a, bi.f0911x, getString(R.string.f0911))) {
             return false;
         }
-        if (!validatorClass.EmptyRadioButton(this, bi.f11, bi.f11a,bi.f11x, getString(R.string.f11))) {
+        if (!validatorClass.EmptyRadioButton(this, bi.f11, bi.f11a, bi.f11x, getString(R.string.f11))) {
             return false;
         }
 
@@ -308,80 +328,81 @@ public class FollowupActivity extends AppCompatActivity {
     private void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
         JSONObject fup = new JSONObject();
-        fup.put("f01",bi.f01.getText().toString());
-        fup.put("f02w",bi.f02w.getText().toString());
-        fup.put("f02d",bi.f02d.getText().toString());
-        fup.put("f03hb",bi.f03hb.getText().toString());
-        fup.put("f03sf",bi.f03sf.getText().toString());
-        fup.put("f03crp",bi.f03crp.getText().toString());
-        fup.put("f03rbc",bi.f03rbc.getText().toString());
-        fup.put("f03tsi",bi.f03tsi.getText().toString());
-        fup.put("f04a",bi.f04a.getText().toString());
-        fup.put("f04b",bi.f04b01.isChecked() ? "1" : bi.f04b02.isChecked() ? "2":"0");
-        fup.put("f04bx",bi.f04bx.getText().toString());
-        fup.put("f05a",bi.f0501.getText().toString());
-        fup.put("f05b",bi.f0502.getText().toString());
-        fup.put("f06a",bi.f06sfa.isChecked() ? "1" : bi.f06sfb.isChecked() ? "2":"0");
-        fup.put("f06ax",bi.f06sfx.getText().toString());
-        fup.put("f06b",bi.f06aqa.isChecked() ? "1" : bi.f06aqb.isChecked() ? "2":"0");
-        fup.put("f06bx",bi.f06aqx.getText().toString());
-        fup.put("f07",bi.f07a.isChecked() ? "1" : bi.f07b.isChecked() ? "2":"0");
-        fup.put("f07x",bi.f07x.getText().toString());
-        fup.put("f0701",bi.f0701a.isChecked() ? "1" : bi.f0701b.isChecked() ? "2":"0");
-        fup.put("f0702",bi.f0702a.isChecked() ? "1" : bi.f0702b.isChecked() ? "2":"0");
-        fup.put("f0788",bi.f0788a.isChecked() ? "1" : bi.f0788b.isChecked() ? "2":"0");
-        fup.put("f0788x",bi.f0788ax.getText().toString());
-        fup.put("f0801",bi.f0801a.isChecked() ? "1" : bi.f0801b.isChecked() ? "2":"0");
-        fup.put("f0802",bi.f0802a.isChecked() ? "1" : bi.f0802b.isChecked() ? "2":"0");
-        fup.put("f0803",bi.f0803a.isChecked() ? "1" : bi.f0803b.isChecked() ? "2":"0");
-        fup.put("f0804",bi.f0804a.isChecked() ? "1" : bi.f0804b.isChecked() ? "2":"0");
-        fup.put("f0805",bi.f0805a.isChecked() ? "1" : bi.f0805b.isChecked() ? "2":"0");
-        fup.put("f0806",bi.f0806a.isChecked() ? "1" : bi.f0806b.isChecked() ? "2":"0");
-        fup.put("f0807",bi.f0807a.isChecked() ? "1" : bi.f0807b.isChecked() ? "2":"0");
-        fup.put("f0808",bi.f0808a.isChecked() ? "1" : bi.f0808b.isChecked() ? "2":"0");
-        fup.put("f0809",bi.f0809a.isChecked() ? "1" : bi.f0809b.isChecked() ? "2":"0");
-        fup.put("f0809x",bi.f0809ax.getText().toString());
-        fup.put("f0901",bi.f0901a.isChecked() ? "1" : bi.f0901b.isChecked() ? "2":"0");
-        fup.put("f0901a",bi.f0901sup01.isChecked() ? "1":"0");
-        fup.put("f0901b",bi.f0901sup02.isChecked() ? "2":"0");
-        fup.put("f0901c",bi.f0901sup03.isChecked() ? "3":"0");
-        fup.put("f0901d",bi.f0901sup04.isChecked() ? "4":"0");
-        fup.put("f0901e",bi.f0901sup05.isChecked() ? "5":"0");
-        fup.put("f0901f",bi.f0901sup06.isChecked() ? "6":"0");
-        fup.put("f0901g",bi.f0901sup07.isChecked() ? "7":"0");
-        fup.put("f0901h",bi.f0901sup08.isChecked() ? "8":"0");
-        fup.put("f0901i",bi.f0901sup09.isChecked() ? "9":"0");
-        fup.put("f0901j",bi.f0901sup10.isChecked() ? "10":"0");
-        fup.put("f0901k",bi.f0901sup11.isChecked() ? "11":"0");
-        fup.put("f0901l",bi.f0901sup12.isChecked() ? "12":"0");
-        fup.put("f0901m",bi.f0901sup13.isChecked() ? "13":"0");
-        fup.put("f0901n",bi.f0901sup14.isChecked() ? "14":"0");
-        fup.put("f0901o",bi.f0901sup15.isChecked() ? "15":"0");
-        fup.put("f0901p",bi.f0901sup16.isChecked() ? "16":"0");
-        fup.put("f0901q",bi.f0901sup17.isChecked() ? "17":"0");
-        fup.put("f0901r",bi.f0901sup18.isChecked() ? "18":"0");
-        fup.put("f0901s",bi.f0901sup19.isChecked() ? "19":"0");
-        fup.put("f090188",bi.f0901sup88.isChecked() ? "88":"0");
-        fup.put("f090188x",bi.f0901sup88x.getText().toString());
-        fup.put("f0902",bi.f0902a.isChecked() ? "1" : bi.f0902b.isChecked() ? "2":"0");
-        fup.put("f0903",bi.f0903a.isChecked() ? "1" : bi.f0903b.isChecked() ? "2":"0");
-        fup.put("f0904",bi.f0904a.isChecked() ? "1" : bi.f0904b.isChecked() ? "2":"0");
-        fup.put("f0905",bi.f0905a.isChecked() ? "1" : bi.f0905b.isChecked() ? "2":"0");
-        fup.put("f0906",bi.f0906a.isChecked() ? "1" : bi.f0906b.isChecked() ? "2":"0");
-        fup.put("f0907",bi.f0907a.isChecked() ? "1" : bi.f0907b.isChecked() ? "2":"0");
-        fup.put("f0908",bi.f0908a.isChecked() ? "1" : bi.f0908b.isChecked() ? "2":"0");
-        fup.put("f0909",bi.f0909a.isChecked() ? "1" : bi.f0909b.isChecked() ? "2":"0");
-        fup.put("f0910",bi.f0910a.isChecked() ? "1" : bi.f0910b.isChecked() ? "2":"0");
-        fup.put("f0910op",bi.f0910op01.isChecked() ? "1" : bi.f0910op02.isChecked() ? "2": bi.f0910op03.isChecked() ? "3":"0");
-        fup.put("f0911",bi.f0911a.isChecked() ? "1" : bi.f0911b.isChecked() ? "2":"0");
-        fup.put("f0911x",bi.f0911x.getText().toString());
-        fup.put("f11",bi.f11a.isChecked() ? "1" : bi.f11b.isChecked() ? "2":"0");
-        fup.put("f11x",bi.f11x.getText().toString());
+        fup.put("f01", bi.f01.getText().toString());
+        fup.put("f02w", bi.f02w.getText().toString());
+        fup.put("f02d", bi.f02d.getText().toString());
+        fup.put("f03hb", bi.f03hb.getText().toString());
+        fup.put("f03sf", bi.f03sf.getText().toString());
+        fup.put("f03crp", bi.f03crp.getText().toString());
+        fup.put("f03rbc", bi.f03rbc.getText().toString());
+        fup.put("f03tsi", bi.f03tsi.getText().toString());
+        fup.put("f04a", bi.f04a.getText().toString());
+        fup.put("f04b", bi.f04b01.isChecked() ? "1" : bi.f04b02.isChecked() ? "2" : "0");
+        fup.put("f04bx", bi.f04bx.getText().toString());
+        fup.put("f05a", bi.f0501.getText().toString());
+        fup.put("f05b", bi.f0502.getText().toString());
+        fup.put("f06a", bi.f06sfa.isChecked() ? "1" : bi.f06sfb.isChecked() ? "2" : "0");
+        fup.put("f06ax", bi.f06sfx.getText().toString());
+        fup.put("f06b", bi.f06aqa.isChecked() ? "1" : bi.f06aqb.isChecked() ? "2" : "0");
+        fup.put("f06bx", bi.f06aqx.getText().toString());
+        fup.put("f07", bi.f07a.isChecked() ? "1" : bi.f07b.isChecked() ? "2" : "0");
+//        fup.put("f07x", bi.f07x.getText().toString());
+        fup.put("f0701", bi.f0701a.isChecked() ? "1" : bi.f0701b.isChecked() ? "2" : "0");
+        fup.put("f0702", bi.f0702a.isChecked() ? "1" : bi.f0702b.isChecked() ? "2" : "0");
+        fup.put("f0788", bi.f0788a.isChecked() ? "1" : bi.f0788b.isChecked() ? "2" : "0");
+        fup.put("f0788x", bi.f0788ax.getText().toString());
+        fup.put("f0801", bi.f0801a.isChecked() ? "1" : bi.f0801b.isChecked() ? "2" : "0");
+        fup.put("f0802", bi.f0802a.isChecked() ? "1" : bi.f0802b.isChecked() ? "2" : "0");
+        fup.put("f0803", bi.f0803a.isChecked() ? "1" : bi.f0803b.isChecked() ? "2" : "0");
+        fup.put("f0804", bi.f0804a.isChecked() ? "1" : bi.f0804b.isChecked() ? "2" : "0");
+        fup.put("f0805", bi.f0805a.isChecked() ? "1" : bi.f0805b.isChecked() ? "2" : "0");
+        fup.put("f0806", bi.f0806a.isChecked() ? "1" : bi.f0806b.isChecked() ? "2" : "0");
+        fup.put("f0807", bi.f0807a.isChecked() ? "1" : bi.f0807b.isChecked() ? "2" : "0");
+        fup.put("f0808", bi.f0808a.isChecked() ? "1" : bi.f0808b.isChecked() ? "2" : "0");
+        fup.put("f0888", bi.f0888a.isChecked() ? "1" : bi.f0888b.isChecked() ? "2" : "0");
+        fup.put("f0888x", bi.f0888x.getText().toString());
+        fup.put("f0901", bi.f0901a.isChecked() ? "1" : bi.f0901b.isChecked() ? "2" : "0");
+        fup.put("f0901a", bi.f0901sup01.isChecked() ? "1" : "0");
+        fup.put("f0901b", bi.f0901sup02.isChecked() ? "2" : "0");
+        fup.put("f0901c", bi.f0901sup03.isChecked() ? "3" : "0");
+        fup.put("f0901d", bi.f0901sup04.isChecked() ? "4" : "0");
+        fup.put("f0901e", bi.f0901sup05.isChecked() ? "5" : "0");
+        fup.put("f0901f", bi.f0901sup06.isChecked() ? "6" : "0");
+        fup.put("f0901g", bi.f0901sup07.isChecked() ? "7" : "0");
+        fup.put("f0901h", bi.f0901sup08.isChecked() ? "8" : "0");
+        fup.put("f0901i", bi.f0901sup09.isChecked() ? "9" : "0");
+        fup.put("f0901j", bi.f0901sup10.isChecked() ? "10" : "0");
+        fup.put("f0901k", bi.f0901sup11.isChecked() ? "11" : "0");
+        fup.put("f0901l", bi.f0901sup12.isChecked() ? "12" : "0");
+        fup.put("f0901m", bi.f0901sup13.isChecked() ? "13" : "0");
+        fup.put("f0901n", bi.f0901sup14.isChecked() ? "14" : "0");
+        fup.put("f0901o", bi.f0901sup15.isChecked() ? "15" : "0");
+        fup.put("f0901p", bi.f0901sup16.isChecked() ? "16" : "0");
+        fup.put("f0901q", bi.f0901sup17.isChecked() ? "17" : "0");
+        fup.put("f0901r", bi.f0901sup18.isChecked() ? "18" : "0");
+        fup.put("f0901s", bi.f0901sup19.isChecked() ? "19" : "0");
+        fup.put("f090188", bi.f0901sup88.isChecked() ? "88" : "0");
+        fup.put("f090188x", bi.f0901sup88x.getText().toString());
+        fup.put("f0902", bi.f0902a.isChecked() ? "1" : bi.f0902b.isChecked() ? "2" : "0");
+        fup.put("f0903", bi.f0903a.isChecked() ? "1" : bi.f0903b.isChecked() ? "2" : "0");
+        fup.put("f0904", bi.f0904a.isChecked() ? "1" : bi.f0904b.isChecked() ? "2" : "0");
+        fup.put("f0905", bi.f0905a.isChecked() ? "1" : bi.f0905b.isChecked() ? "2" : "0");
+        fup.put("f0906", bi.f0906a.isChecked() ? "1" : bi.f0906b.isChecked() ? "2" : "0");
+        fup.put("f0907", bi.f0907a.isChecked() ? "1" : bi.f0907b.isChecked() ? "2" : "0");
+        fup.put("f0908", bi.f0908a.isChecked() ? "1" : bi.f0908b.isChecked() ? "2" : "0");
+        fup.put("f0909", bi.f0909a.isChecked() ? "1" : bi.f0909b.isChecked() ? "2" : "0");
+        fup.put("f0910", bi.f0910a.isChecked() ? "1" : bi.f0910b.isChecked() ? "2" : "0");
+        fup.put("f0910op", bi.f0910op01.isChecked() ? "1" : bi.f0910op02.isChecked() ? "2" : bi.f0910op03.isChecked() ? "3" : "0");
+        fup.put("f0911", bi.f0911a.isChecked() ? "1" : bi.f0911b.isChecked() ? "2" : "0");
+        fup.put("f0911x", bi.f0911x.getText().toString());
+        fup.put("f11", bi.f11a.isChecked() ? "1" : bi.f11b.isChecked() ? "2" : "0");
+        fup.put("f11x", bi.f11x.getText().toString());
         AppMain.TotalFetalCount = Integer.valueOf(bi.f04a.getText().toString().isEmpty() ? "0" : bi.f04a.getText().toString());
 
         AppMain.fc.setSfup(String.valueOf(fup));
-        AppMain.sf = bi.f06sfa.isChecked()? 1:0;
-        AppMain.aq = bi.f06aqa.isChecked()? 1:0;
+        AppMain.sf = bi.f06sfa.isChecked() ? 1 : 0;
+        AppMain.aq = bi.f06aqa.isChecked() ? 1 : 0;
+        AppMain.fetal = bi.f04b01.isChecked() ? 1 : 0;
         Toast.makeText(this, "Validation Successful! - Saving Draft...", Toast.LENGTH_SHORT).show();
     }
 

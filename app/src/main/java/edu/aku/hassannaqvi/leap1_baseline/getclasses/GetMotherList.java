@@ -62,7 +62,7 @@ public class GetMotherList extends AsyncTask<String,String,String> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            db.getAllUsers();
+//            db.getAllMotherlist();
         } else {
             pd.setMessage("Received: " + json.length() + "");
             pd.show();
