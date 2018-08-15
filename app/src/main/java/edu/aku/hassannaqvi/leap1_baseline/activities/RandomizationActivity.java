@@ -264,6 +264,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
                         && (Integer.valueOf(r0901.getText().toString()) > 12 && Integer.valueOf(r0901.getText().toString()) <= 26)) {
 
                     if ((Double.valueOf(r07.getText().toString()) >= 11.0 && Double.valueOf(r07.getText().toString()) <= 11.5) && Double.valueOf(r08.getText().toString()) < 15.0) {
+                        AppMain.fc.setisel(String.valueOf(AppMain.ELIGIBLE));
                         Intent EndingActivity = new Intent(this, BaselineActvity.class);
                         startActivity(EndingActivity);
                     } else {
@@ -318,6 +319,7 @@ public class RandomizationActivity extends AppCompatActivity implements RadioGro
 
         int updcount = db.updateSRandomization();
         if (updcount == 1) {
+            db.updateEnrolmentDate();
             Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
             long id = db.addMotherList(mlc);
             if (updcount != 0) {

@@ -62,6 +62,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + formsTable.COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT," +
             formsTable.COLUMN_PROJECTNAME + " TEXT," +
             formsTable.COLUMN_UID + " TEXT," +
+            formsTable.COLUMN_UUID + " TEXT," +
             formsTable.COLUMN_USERNAME + " TEXT," +
             formsTable.COLUMN_FORMDATE + " TEXT," +
             formsTable.COLUMN_FORMTYPE + " TEXT," +
@@ -76,6 +77,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             formsTable.COLUMN_SBASELINE + " TEXT," +
             formsTable.COLUMN_SFUP + " TEXT," +
             formsTable.COLUMN_SFUP_TYPE + " TEXT," +
+            formsTable.COLUMN_SEOT + " TEXT," +
+            formsTable.COLUMN_ISEl + " TEXT," +
             formsTable.COLUMN_DEVICEID + " TEXT," +
             formsTable.COLUMN_TAGID + " TEXT," +
             formsTable.COLUMN_GPSLAT + " TEXT," +
@@ -210,6 +213,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         ContentValues values = new ContentValues();
         values.put(formsTable.COLUMN_PROJECTNAME, fc.getProjectName());
         values.put(formsTable.COLUMN_UID, fc.getUID());
+        values.put(formsTable.COLUMN_UUID, fc.getUUID());
         values.put(formsTable.COLUMN_USERNAME, fc.getUserName());
         values.put(formsTable.COLUMN_FORMDATE, fc.getFormDate());
         values.put(formsTable.COLUMN_FORMTYPE, fc.getFormType());
@@ -224,6 +228,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         values.put(formsTable.COLUMN_SBASELINE, fc.getsBaseline());
         values.put(formsTable.COLUMN_SFUP, fc.getSfup());
         values.put(formsTable.COLUMN_SFUP_TYPE, fc.getSfuptype());
+        values.put(formsTable.COLUMN_SEOT, fc.getseot());
+        values.put(formsTable.COLUMN_ISEl, fc.getisel());
         values.put(formsTable.COLUMN_DEVICEID, fc.getDeviceID());
         values.put(formsTable.COLUMN_TAGID, fc.getTagID());
         values.put(formsTable.COLUMN_GPSLAT, fc.getGpsLat());
@@ -339,6 +345,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(formsTable.COLUMN_UID, AppMain.fc.getUID());
+
+// Which row to update, based on the ID
+        String selection = formsTable.COLUMN_ID + " LIKE ?";
+        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
+
+        int count = db.update(formsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateFormUUID() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(formsTable.COLUMN_UUID, AppMain.fc.getUUID());
 
 // Which row to update, based on the ID
         String selection = formsTable.COLUMN_ID + " LIKE ?";
@@ -536,6 +559,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         String[] columns = {
                 formsTable.COLUMN_ID,
                 formsTable.COLUMN_UID,
+                formsTable.COLUMN_UUID,
                 formsTable.COLUMN_USERNAME,
                 formsTable.COLUMN_FORMDATE,
                 formsTable.COLUMN_FORMTYPE,
@@ -550,6 +574,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SBASELINE,
                 formsTable.COLUMN_SFUP,
                 formsTable.COLUMN_SFUP_TYPE,
+                formsTable.COLUMN_SEOT,
+                formsTable.COLUMN_ISEl,
                 formsTable.COLUMN_DEVICEID,
                 formsTable.COLUMN_TAGID,
                 formsTable.COLUMN_GPSLAT,
@@ -658,6 +684,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 formsTable.COLUMN_ID,
                 formsTable.COLUMN_UID,
+                formsTable.COLUMN_UUID,
                 formsTable.COLUMN_USERNAME,
                 formsTable.COLUMN_FORMDATE,
                 formsTable.COLUMN_FORMTYPE,
@@ -672,6 +699,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SBASELINE,
                 formsTable.COLUMN_SFUP,
                 formsTable.COLUMN_SFUP_TYPE,
+                formsTable.COLUMN_SEOT,
+                formsTable.COLUMN_ISEl,
                 formsTable.COLUMN_DEVICEID,
                 formsTable.COLUMN_TAGID,
                 formsTable.COLUMN_GPSLAT,
@@ -722,6 +751,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
                 formsTable.COLUMN_ID,
                 formsTable.COLUMN_UID,
+                formsTable.COLUMN_UUID,
                 formsTable.COLUMN_USERNAME,
                 formsTable.COLUMN_FORMDATE,
                 formsTable.COLUMN_FORMTYPE,
@@ -736,6 +766,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 formsTable.COLUMN_SBASELINE,
                 formsTable.COLUMN_SFUP,
                 formsTable.COLUMN_SFUP_TYPE,
+                formsTable.COLUMN_SEOT,
+                formsTable.COLUMN_ISEl,
                 formsTable.COLUMN_DEVICEID,
                 formsTable.COLUMN_TAGID,
                 formsTable.COLUMN_GPSLAT,
@@ -1016,14 +1048,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 
-    public int updateSBaseLine() {
+    public int updateEOT() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(formsTable.COLUMN_SEOT, AppMain.fc.getseot());
+
+// Which row to update, based on the ID
+        String selection = formsTable.COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
+
+        int count = db.update(formsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    } public int updateSBaseLine() {
         SQLiteDatabase db = this.getReadableDatabase();
 
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(formsTable.COLUMN_SBASELINE, AppMain.fc.getsBaseline());
         values.put(formsTable.COLUMN_MSTUDYID, AppMain.fc.getmStudyID());
-
+        values.put(formsTable.COLUMN_ISEl, AppMain.fc.getisel());
 
 // Which row to update, based on the ID
         String selection = formsTable.COLUMN_ID + " = ?";
@@ -1042,6 +1090,23 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 // New value for one column
         ContentValues values = new ContentValues();
         values.put(formsTable.COLUMN_SRANDOMIZATION, AppMain.fc.getsRandomization());
+
+// Which row to update, based on the ID
+        String selection = formsTable.COLUMN_ID + " = ?";
+        String[] selectionArgs = {String.valueOf(AppMain.fc.getID())};
+
+        int count = db.update(formsTable.TABLE_NAME,
+                values,
+                selection,
+                selectionArgs);
+        return count;
+    }
+    public int updateEnrolmentDate() {
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// New value for one column
+        ContentValues values = new ContentValues();
+        values.put(formsTable.COLUMN_ENROLDATE, AppMain.fc.getenrolmentdt());
 
 // Which row to update, based on the ID
         String selection = formsTable.COLUMN_ID + " = ?";
@@ -1837,7 +1902,6 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
     public boolean isMotherFound(String mrno, String studyid) {
-
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = null;
         int count = 0;
@@ -1858,6 +1922,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             }
         }
         return count > 0;
+    }
+    public MotherListContract getMotherUUID(String mrno, String studyid) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+        MotherListContract vc = new MotherListContract();
+        try {
+            String query = "SELECT * FROM " + MotherListTable.TABLE_NAME + " WHERE " + MotherListTable.COLUMN_MRNO + " = ? AND " + MotherListTable.COLUMN_STUDYID + " =? ";
+            cursor = db.rawQuery(
+                    query,
+                    new String[]{String.valueOf(mrno), String.valueOf(studyid)}
+            );
+            if (cursor != null) {
+               cursor.moveToFirst();
+                    vc.Hydrate(cursor);
+            }
+        }finally {
+                if (cursor != null) {
+                    cursor.close();
+                }
+                if (db != null) {
+                    db.close();
+                }
+            }
+            return vc;
     }
     public boolean checkMotherDublicate(String studyid) {
 

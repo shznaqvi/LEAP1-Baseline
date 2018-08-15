@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.databinding.DataBindingUtil;
-import android.opengl.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -16,16 +15,12 @@ import android.view.View;
 import android.widget.Toast;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import javax.xml.validation.Validator;
-
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.FormsContract;
-import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import edu.aku.hassannaqvi.leap1_baseline.databinding.ActivityIdentificationBinding;
@@ -118,7 +113,7 @@ ActivityIdentificationBinding bi;
             if (AppMain.SELECTED_FUP_TYPE == AppMain.Fup30day){
                 clearError();
                 bi.btnNext.setVisibility(View.VISIBLE);
-            }else if(AppMain.SELECTED_FUP_TYPE == AppMain.Fupantenatal) {
+            }else if(AppMain.SELECTED_FUP_TYPE == AppMain.Fupantenatal || AppMain.SELECTED_FUP_TYPE == AppMain.Fupdefault) {
                 if (db.isMotherFound(bi.mrno.getText().toString(), bi.studyID.getText().toString())) {
                     clearError();
                     bi.btnNext.setVisibility(View.VISIBLE);
@@ -201,11 +196,18 @@ ActivityIdentificationBinding bi;
                 e.printStackTrace();
             }
             if (UpdateDB()) {
-                final Intent iA = new Intent(getApplicationContext(), FollowupActivity.class);
-                iA.putExtra(ACTIVITY_TYPE_KEY, fup_type);
-                iA.putExtra(ACTIVITY_TYPE_ID_KEY, fup_typeID);
-                iA.putExtra(MRNO_KEY,bi.mrno.getText().toString());
-                iA.putExtra(STUDY_ID_KEY,bi.studyID.getText().toString());
+                final Intent iA;
+                if(AppMain.formType != String.valueOf(AppMain.TYPE_EOT)){
+                    iA = new Intent(getApplicationContext(), FollowupActivity.class);
+                    iA.putExtra(ACTIVITY_TYPE_KEY, fup_type);
+                    iA.putExtra(ACTIVITY_TYPE_ID_KEY, fup_typeID);
+                    iA.putExtra(MRNO_KEY,bi.mrno.getText().toString());
+                    iA.putExtra(STUDY_ID_KEY,bi.studyID.getText().toString());
+                }else{
+                    iA = new Intent(getApplicationContext(), EndOfTreatmentActivity.class);
+                    iA.putExtra(MRNO_KEY,bi.mrno.getText().toString());
+                    iA.putExtra(STUDY_ID_KEY,bi.studyID.getText().toString());
+                }
                 startActivity(iA);
 
             } else {

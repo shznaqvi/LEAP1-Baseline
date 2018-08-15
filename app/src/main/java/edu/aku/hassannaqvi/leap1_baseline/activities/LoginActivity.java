@@ -119,14 +119,14 @@ public class LoginActivity extends Activity implements LoaderCallbacks<Cursor> {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-siteList = new ArrayList<>();
-siteList.add(0,"SELECT SITE");
-siteList.add(1,"AKU");
-siteList.add(2,"Kharadar");
+        siteList = new ArrayList<>();
+        siteList.add(0, "SELECT SITE");
+        siteList.add(1, "AKU");
+        siteList.add(2, "Kharadar");
 
 //        Get data from wrapper app
         Bundle b = getIntent().getExtras();
-        if(b!=null){
+        if (b != null) {
             String user = b.getString("userName_from_wrapper");
             AppMain.username = user;
             finish();
@@ -253,7 +253,6 @@ siteList.add(2,"Kharadar");
         valuesnlabels.put("91", "Rawalpindi");
         valuesnlabels.put("92", "Lahore");
         valuesnlabels.put("93", "Multan"); */
-
 
 
         // Creating adapter for spinner
@@ -574,13 +573,13 @@ siteList.add(2,"Kharadar");
                     AppMain.username = mEmail;
                     AppMain.admin = mEmail.contains("@");
 
-                    if (spSite.getSelectedItemPosition() != 0 ){
+                    if (spSite.getSelectedItemPosition() != 0) {
                         finish();
                         Intent iLogin = new Intent(LoginActivity.this, MainActivity.class);
                         startActivity(iLogin);
-                    }else {
+                    } else {
                         spSite.setFocusable(true);
-                        Toast.makeText(getApplicationContext(),"Please Select a site to enter!!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Please Select a site to enter!!", Toast.LENGTH_LONG).show();
                     }
 
                 } else {

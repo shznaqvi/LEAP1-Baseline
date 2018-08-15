@@ -10,8 +10,6 @@ import android.widget.Toast;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.SimpleDateFormat;
-
 import edu.aku.hassannaqvi.leap1_baseline.R;
 import edu.aku.hassannaqvi.leap1_baseline.contracts.NutritionContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;

@@ -1,6 +1,5 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -49,20 +48,14 @@ import edu.aku.hassannaqvi.leap1_baseline.contracts.TehsilsContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AndroidDatabaseManager;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
 import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
-import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetHFacilities;
-import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetLHWs;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetMotherList;
-import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetTehsil;
-import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUCs;
 import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetUsers;
-import edu.aku.hassannaqvi.leap1_baseline.getclasses.GetVillages;
 import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncAllData;
-import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncForms;
-import edu.aku.hassannaqvi.leap1_baseline.syncclasses.SyncNutrition;
 import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 
 import static edu.aku.hassannaqvi.leap1_baseline.core.AppMain.Fup30day;
 import static edu.aku.hassannaqvi.leap1_baseline.core.AppMain.Fupantenatal;
+import static edu.aku.hassannaqvi.leap1_baseline.core.AppMain.Fupdefault;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -323,9 +316,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void openantinatal(View v) {
 //        studyIdPrompt(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
-        AppMain.formType = String.valueOf(AppMain.TYPE_FUP);
+        Toast.makeText(this,"Followup will be available after 30th day of enrolment!",Toast.LENGTH_SHORT);
+     /*   AppMain.formType = String.valueOf(AppMain.TYPE_FUP);
         AppMain.SELECTED_FUP_TYPE = Fupantenatal;
-        openIdentificationActivity(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);
+        openIdentificationActivity(" Antenatal Visit (Monthly Follow Up) ", Fupantenatal);*/
+
+    }
+    public void openeot(View v) {
+        AppMain.formType = String.valueOf(AppMain.TYPE_EOT);
+        AppMain.SELECTED_FUP_TYPE = Fupdefault;
+        openIdentificationActivity("",0);
 
     }
 
@@ -519,6 +519,16 @@ public class MainActivity extends AppCompatActivity {
                     NetworkUtils.buildUrl(FormsContract.formsTable.URI.replace(".php", "bl.php")),
                     db.getUnsyncedForms(AppMain.TYPE_BASELINE), this.findViewById(R.id.syncStatus)
             ).execute();
+            // TODO : Syncing End of Treatment Form to server
+            Toast.makeText(getApplicationContext(), "Syncing End of Treatment Form", Toast.LENGTH_SHORT).show();
+            new SyncAllData(
+                    this,
+                    "End of Treatment",
+                    "updateForms",
+                    FormsContract.class,
+                    NetworkUtils.buildUrl(FormsContract.formsTable.URI.replace(".php", "eot.php")),
+                    db.getUnsyncedForms(AppMain.TYPE_EOT), this.findViewById(R.id.syncStatus)
+            ).execute();
             // TODO : Syncing 30 day Fup Form to server
             Toast.makeText(getApplicationContext(), "Syncing 30 Day Followup", Toast.LENGTH_SHORT).show();
             new SyncAllData(
@@ -664,106 +674,8 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void run() {
 
-                    //        Sync Spinners
 
                     AppMain.fc = null;
-
-                    // Spinner Drop down elements
-                    tehsils = new HashMap<>();
-                    final List<String> Tname = new ArrayList<>();
-                    Collection<TehsilsContract> Tc = db.getAllTehsil();
-                    Log.d(TAG, "onCreate: " + Tc.size());
-                    for (TehsilsContract hf : Tc) {
-                        tehsils.put(hf.getTehsil_name(), hf.getTehsil_code());
-                        Tname.add(hf.getTehsil_name());
-                    }
-
-                    mN01.setAdapter(new ArrayAdapter<>(mContext, android.R.layout.simple_spinner_dropdown_item, Tname));
-
-                    mN01.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            // Spinner Drop down elements
-                            List<String> hfNames = new ArrayList<>();
-
-                            hfCodes = new ArrayList<>();
-
-                            AppMain.tehsilCode = tehsils.get(Tname.get(position));
-
-                            Collection<HFacilitiesContract> hfc = db.getAllHFacilitiesByTehsil(AppMain.tehsilCode);
-                            Log.d(TAG, "onCreate: " + hfc.size());
-                            for (HFacilitiesContract hf : hfc) {
-                                hfNames.add(hf.gethFacilityName());
-                                hfCodes.add(hf.gethFacilityCode());
-                            }
-
-                            // attaching data adapter to spinner
-                            mN02.setAdapter(new ArrayAdapter<>(getBaseContext(),
-                                    android.R.layout.simple_spinner_dropdown_item, hfNames));
-
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-                    mN02.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            AppMain.hfCode = hfCodes.get(position);
-
-                            lhwName = new ArrayList<String>();
-                            lhws = new HashMap<String, String>();
-                            Collection<LHWsContract> lhwc = db.getAllLhwsByHf(hfCodes.get(position));
-                            for (LHWsContract lhw : lhwc) {
-                                lhws.put("" + (lhw.getLHWName() + " (" + lhw.getLHWCode() + ")"), lhw.getLHWCode());
-                                lhwName.add(lhw.getLHWName() + " (" + lhw.getLHWCode() + ")");
-                            }
-                            ArrayAdapter<String> psuAdapter = new ArrayAdapter<String>(MainActivity.this,
-                                    android.R.layout.simple_spinner_item, lhwName);
-
-                            psuAdapter
-                                    .setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-                            mN03.setAdapter(psuAdapter);
-
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
-                    mN03.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-                        @Override
-                        public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                            AppMain.lhwCode = lhws.get(lhwName.get(position));
-                /*Collection<LHWsContract> lhwc = db.getAllLhwsByHf(AppMain.hh01txt);
-                for (LHWsContract l : lhwc) {
-                    Log.d(TAG, "onItemSelected: " + l.getLHWCode() + " -" + AppMain.hh02txt);
-
-                    if (l.getLHWCode().equals(AppMain.hh02txt)) {
-                        Log.d(TAG, "onItemSelected: " + l.getLHWName());
-                        String[] psuNameS = l.getLHWName().toString().split("\\|");
-                        districtN.setText(psuNameS[0]);
-                        Log.d(TAG, "onItemSelected: " + psuNameS[0]);
-                        ucN.setText(psuNameS[1]);
-                        Log.d(TAG, "onItemSelected: " + psuNameS[1]);
-                        psuN.setText(psuNameS[2]);
-                        Log.d(TAG, "onItemSelected: " + psuNameS[2]);
-
-                    }
-                }*/
-                        }
-
-                        @Override
-                        public void onNothingSelected(AdapterView<?> parent) {
-
-                        }
-                    });
-
                 }
             }, 1200);
         }

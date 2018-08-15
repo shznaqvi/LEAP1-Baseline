@@ -78,6 +78,9 @@ public class AppMain extends Application {
     public static String formType;
     public static final int TYPE_BASELINE = 1;
     public static final int TYPE_FUP = 2;
+    public static final int TYPE_EOT = 3; //End of treatment
+
+    public static final int ELIGIBLE = 1;
 
     public static Boolean admin = false;
     public static int mna3 = -1;

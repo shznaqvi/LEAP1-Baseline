@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -18,7 +19,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            >
 
             <TextView
                 android:id="@+id/textView2"
@@ -59,20 +61,23 @@
                 <RadioGroup
                     android:id="@+id/eot02"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layoutDirection="rtl">
 
                     <RadioButton
                         android:id="@+id/eot02a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_weight="1"
                         android:text="@string/eot02a" />
 
                     <RadioButton
                         android:id="@+id/eot02b"
+                        android:layout_weight="1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/eot02b" />
-
 
                 </RadioGroup>
 
@@ -99,6 +104,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="g/dL"
+                    android:gravity="right"
                     android:inputType="numberDecimal"
                     android:maxLength="4" />
             </LinearLayout>
@@ -107,7 +113,8 @@
                 android:id="@+id/fldgrpeot04"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                >
 
                 <TextView
                     android:layout_width="match_parent"
@@ -118,7 +125,9 @@
                     android:id="@+id/eot04a"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/eot0401" />
+                    android:text="@string/eot0401"
+                    android:layoutDirection="rtl"
+                    />
 
                 <LinearLayout
                     android:id="@+id/eot0401"
@@ -149,7 +158,7 @@
 
 
                     <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
-                        android:text='@{eot04a.checked? eot0401a.getText.toString : ""}'
+                        android:text='@{eot04a.checked? eot0401b.getText.toString : ""}'
                         android:id="@+id/eot0401b"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -161,7 +170,9 @@
                     android:id="@+id/eot0402"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/eot0402" />
+                    android:text="@string/eot0402"
+                    android:layoutDirection="rtl"
+                    />
 
                 <EditText
                     android:text='@{eot0402.checked ? eot0402a.getText.toString : "" }'
@@ -176,7 +187,9 @@
                     android:id="@+id/eot0403"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/eot0403" />
+                    android:text="@string/eot0403"
+                    android:layoutDirection="rtl"
+                    />
 
                 <EditText
                     android:text='@{eot0403.checked ? eot0403a.getText.toString : "" }'
@@ -191,12 +204,15 @@
                     android:id="@+id/eot0404"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/eot0404" />
+                    android:text="@string/eot0404"
+                    android:layoutDirection="rtl"
+                    />
 
                 <LinearLayout
                     android:layout_marginBottom="2dp"
                     android:layout_marginTop="2dp"
                     android:visibility="gone"
+                    tools:visibility="visible"
                     android:id="@+id/fldgrpeot0404"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -206,16 +222,20 @@
                         android:id="@+id/eot0404a"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layoutDirection="rtl"
                         >
 
                         <RadioButton
                             android:id="@+id/eot040401a"
+                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/eot0404a" />
 
                         <RadioButton
                             android:id="@+id/eot040401b"
+                            android:layout_weight="1"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="@string/eot0404b" />
@@ -229,7 +249,9 @@
                     android:id="@+id/eot0405"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/eot0405" />
+                    android:text="@string/eot0405"
+                    android:layoutDirection="rtl"
+                    />
 
                 <io.blackbox_vision.datetimepickeredittext.view.DatePickerInputEditText
                     android:text='@{eot0405.checked ? eot0405a.getText.toString : "" }'
@@ -243,7 +265,9 @@
                     android:id="@+id/eot0406"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/eot0406" />
+                    android:text="@string/eot0406"
+                    android:layoutDirection="rtl"
+                    />
 
                 <EditText
                     android:id="@+id/eot0406a"

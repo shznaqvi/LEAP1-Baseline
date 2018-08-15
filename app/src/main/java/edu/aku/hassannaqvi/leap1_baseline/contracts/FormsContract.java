@@ -21,6 +21,7 @@ public class FormsContract {
     private String userName = "";
     private String ID = "";
     private String UID = "";
+    private String UUID = "";
     private String formDate = ""; // Date
     private String formType = "";
     private String iStatus = ""; // Form Status
@@ -29,13 +30,13 @@ public class FormsContract {
     private String mStudyID = "";
     private String enrolmentdt = "";
     private String participantName = "";
-
     private String sInfo = "";
     private String sRandomization = "";
     private String sBaseline = "";
     private String sfup = "";
     private String sfuptype = "";
-
+    private String isel = "";
+    private String seot = "";
     private String deviceID = "";
     private String tagID = "";
     private String gpsLat = "";
@@ -94,6 +95,14 @@ public class FormsContract {
 
     public void setUID(String UID) {
         this.UID = UID;
+    }
+
+    public String getUUID() {
+        return UUID;
+    }
+
+    public void setUUID(String UUID) {
+        this.UUID = UUID;
     }
 
     public String getFormDate() {
@@ -256,10 +265,27 @@ public class FormsContract {
         this.sfuptype = sfuptype;
     }
 
+    public String getisel() {
+        return isel;
+    }
+
+    public void setisel(String isel) {
+        this.isel = isel;
+    }
+
+    public String getseot() {
+        return seot;
+    }
+
+    public void setseot(String seot) {
+        this.seot = seot;
+    }
+
     public FormsContract sync(JSONObject jsonObject) throws JSONException {
 
         this.ID = jsonObject.getString(formsTable.COLUMN_ID);
         this.UID = jsonObject.getString(formsTable.COLUMN_UID);
+        this.UUID = jsonObject.getString(formsTable.COLUMN_UUID);
         this.userName = jsonObject.getString(formsTable.COLUMN_USERNAME);
         this.formDate = jsonObject.getString(formsTable.COLUMN_FORMDATE);
         this.formType = jsonObject.getString(formsTable.COLUMN_FORMTYPE);
@@ -274,6 +300,8 @@ public class FormsContract {
         this.sBaseline = jsonObject.getString(formsTable.COLUMN_SBASELINE);
         this.sfup = jsonObject.getString(formsTable.COLUMN_SFUP);
         this.sfuptype = jsonObject.getString(formsTable.COLUMN_SFUP_TYPE);
+        this.isel = jsonObject.getString(formsTable.COLUMN_ISEl);
+        this.seot = jsonObject.getString(formsTable.COLUMN_SEOT);
         this.deviceID = jsonObject.getString(formsTable.COLUMN_DEVICEID);
         this.tagID = jsonObject.getString(formsTable.COLUMN_TAGID);
         this.gpsLat = jsonObject.getString(formsTable.COLUMN_GPSLAT);
@@ -291,6 +319,7 @@ public class FormsContract {
 
         this.ID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_ID));
         this.UID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_UID));
+        this.UUID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_UUID));
         this.userName = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_USERNAME));
         this.formDate = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_FORMDATE));
         this.formType = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_FORMTYPE));
@@ -305,6 +334,8 @@ public class FormsContract {
         this.sBaseline = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SBASELINE));
         this.sfup = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SFUP));
         this.sfuptype = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SFUP_TYPE));
+        this.seot = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_SEOT));
+        this.isel = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_ISEl));
         this.deviceID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_DEVICEID));
         this.tagID = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_TAGID));
         this.gpsLat = cursor.getString(cursor.getColumnIndex(formsTable.COLUMN_GPSLAT));
@@ -326,6 +357,7 @@ public class FormsContract {
         json.put(formsTable.COLUMN_FORMDATE, this.formDate == null ? JSONObject.NULL : this.formDate);
         json.put(formsTable.COLUMN_PROJECTNAME, this.projectName == null ? JSONObject.NULL : this.projectName);
         json.put(formsTable.COLUMN_UID, this.UID == null ? JSONObject.NULL : this.UID);
+        json.put(formsTable.COLUMN_UUID, this.UUID == null ? JSONObject.NULL : this.UUID);
         json.put(formsTable.COLUMN_USERNAME, this.userName == null ? JSONObject.NULL : this.userName);
         json.put(formsTable.COLUMN_FORMTYPE, this.formType == null ? JSONObject.NULL : this.formType);
         json.put(formsTable.COLUMN_ISTATUS, this.iStatus == null ? JSONObject.NULL : this.iStatus);
@@ -350,6 +382,12 @@ public class FormsContract {
 
             json.put(formsTable.COLUMN_SFUP, this.sfup.equals("") ? JSONObject.NULL : new JSONObject(this.sfup));
         }
+        if (!this.seot.equals("")) {
+            json.put(formsTable.COLUMN_SEOT, this.seot.equals("") ? JSONObject.NULL : new JSONObject(this.seot));
+        }
+        if (!this.isel.equals("")) {
+            json.put(formsTable.COLUMN_ISEl, this.isel.equals("") ? JSONObject.NULL : this.isel);
+        }
         json.put(formsTable.COLUMN_SFUP_TYPE, this.sfuptype == null ? JSONObject.NULL : this.sfuptype);
         json.put(formsTable.COLUMN_TAGID, this.tagID == null ? JSONObject.NULL : this.tagID);
         json.put(formsTable.COLUMN_GPSLAT, this.gpsLat == null ? JSONObject.NULL : this.gpsLat);
@@ -358,6 +396,7 @@ public class FormsContract {
         json.put(formsTable.COLUMN_GPSACC, this.gpsAcc == null ? JSONObject.NULL : this.gpsAcc);
         json.put(formsTable.COLUMN_SYNCED, this.synced == null ? JSONObject.NULL : this.synced);
         json.put(formsTable.COLUMN_SYNCED_DATE, this.synced_date == null ? JSONObject.NULL : this.synced_date);
+        json.put(formsTable.COLUMN_APPVER, this.appVer == null ? JSONObject.NULL : this.appVer);
 
         return json;
     }
@@ -393,6 +432,7 @@ public class FormsContract {
         public static final String COLUMN_PROJECTNAME = "projectname";
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_UID = "uid";
+        public static final String COLUMN_UUID = "uuid";
         public static final String COLUMN_USERNAME = "username";
         public static final String COLUMN_FORMDATE = "formdate";
         public static final String COLUMN_FORMTYPE = "formtype";
@@ -406,6 +446,8 @@ public class FormsContract {
         public static final String COLUMN_SRANDOMIZATION = "srandomization";
         public static final String COLUMN_SBASELINE = "sbaseline";
         public static final String COLUMN_SFUP = "sfup";
+        public static final String COLUMN_ISEl = "isel";
+        public static final String COLUMN_SEOT = "seot";
         public static final String COLUMN_SFUP_TYPE = "sfuptype";
         public static final String COLUMN_DEVICEID = "deviceid";
         public static final String COLUMN_TAGID = "tagid";

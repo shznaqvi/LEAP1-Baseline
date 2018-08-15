@@ -1,5 +1,6 @@
 package edu.aku.hassannaqvi.leap1_baseline.activities;
 
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,13 +13,20 @@ import org.json.JSONObject;
 
 import edu.aku.hassannaqvi.leap1_baseline.ClearClass;
 import edu.aku.hassannaqvi.leap1_baseline.R;
+import edu.aku.hassannaqvi.leap1_baseline.contracts.MotherListContract;
 import edu.aku.hassannaqvi.leap1_baseline.core.AppMain;
+import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import edu.aku.hassannaqvi.leap1_baseline.databinding.ActivityEndOfTreatmentBinding;
 import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
+
+import static edu.aku.hassannaqvi.leap1_baseline.activities.IdentificationActivity.MRNO_KEY;
+import static edu.aku.hassannaqvi.leap1_baseline.activities.IdentificationActivity.STUDY_ID_KEY;
+import static edu.aku.hassannaqvi.leap1_baseline.core.AppMain.mlc;
 
 public class EndOfTreatmentActivity extends AppCompatActivity {
 
     ActivityEndOfTreatmentBinding bi;
+    String mrno,studyid;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +47,19 @@ public class EndOfTreatmentActivity extends AppCompatActivity {
 
     private void setupViews() {
 
+
+        Intent motherintent = getIntent();
+
+        if (motherintent.hasExtra(MRNO_KEY) && motherintent.hasExtra(STUDY_ID_KEY)) {
+            Bundle bundle = motherintent.getExtras();
+            mrno = bundle.getString(MRNO_KEY);
+            studyid = bundle.getString(STUDY_ID_KEY);
+        } else {
+            // Do something else
+            Toast.makeText(this, "Restart your app or contact your support team!", Toast.LENGTH_SHORT);
+
+        }
+
         bi.eot0404.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean checked) {
@@ -55,6 +76,22 @@ public class EndOfTreatmentActivity extends AppCompatActivity {
         });
     }
 
+    private boolean UpdateDB() {
+        DatabaseHelper db = new DatabaseHelper(this);
+        int updcount = db.updateEOT();
+
+        if (updcount == 1) {
+           db.updateFormUUID();
+            Toast.makeText(this, "Updating Database... Successful!", Toast.LENGTH_SHORT).show();
+            return true;
+        } else {
+            Toast.makeText(this, "Updating Database... ERROR!", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+
+    }
+
     public void BtnContinue() {
 
         if (formValidation()) {
@@ -62,6 +99,17 @@ public class EndOfTreatmentActivity extends AppCompatActivity {
                 SaveDraft();
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+            if (UpdateDB()) {
+                Toast.makeText(this, "Starting Next Section", Toast.LENGTH_SHORT).show();
+                finish();
+                Intent endSec = new Intent(this, EndingActivity.class);
+                endSec.putExtra("check", true);
+                startActivity(endSec);
+
+
+            } else {
+                Toast.makeText(this, "Failed to Update Database!", Toast.LENGTH_SHORT).show();
             }
         }
 
@@ -148,23 +196,27 @@ public class EndOfTreatmentActivity extends AppCompatActivity {
 
     }
 
-    public void SaveDraft() throws JSONException{
+    public void SaveDraft() throws JSONException {
         Toast.makeText(this, "Saving Draft for this Section", Toast.LENGTH_SHORT).show();
 
         JSONObject eot = new JSONObject();
 
-        eot.put("eot01" ,bi.eot01a.getText().toString());
-        eot.put("eot02" ,bi.eot02a.isChecked() ? "1" : "0" );
-        eot.put("eot03" ,bi.eot03a.getText().toString());
-        eot.put("eot0401a" ,bi.eot04a.isChecked()? bi.eot0401a.getText().toString() : "0");
-        eot.put("eot0401b" ,bi.eot04a.isChecked()? bi.eot0401b.getText().toString() : "0");
-        eot.put("eot0402" ,bi.eot0402.isChecked()? bi.eot0402a.getText().toString() : "0" );
-        eot.put("eot0403" ,bi.eot0403.isChecked()? bi.eot0403a.getText().toString() : "0" );
-        eot.put("eot0404" ,bi.eot040401a.isChecked()? "1" : bi.eot040401b.isChecked()? "2" : "0" );
-        eot.put("eot0405" ,bi.eot0405.isChecked()? bi.eot0405a.getText().toString() : "0" );
-        eot.put("eot0406" ,bi.eot0406.isChecked()? bi.eot0406a.getText().toString() : "0" );
+        eot.put("eot01", bi.eot01a.getText().toString());
+        eot.put("eot02", bi.eot02a.isChecked() ? "1" : bi.eot02b.isChecked() ? "2" : "0");
+        eot.put("eot03", bi.eot03a.getText().toString());
+        eot.put("eot0401", bi.eot04a.isChecked() ? "1" : "0");
+        eot.put("eot0401a", bi.eot0401a.getText().toString());
+        eot.put("eot0401b", bi.eot0401b.getText().toString());
+        eot.put("eot0402", bi.eot0402.isChecked() ? bi.eot0402a.getText().toString() : "0");
+        eot.put("eot0403", bi.eot0403.isChecked() ? bi.eot0403a.getText().toString() : "0");
+        eot.put("eot0404", bi.eot0404.isChecked() ? (bi.eot040401a.isChecked() ? "1" : bi.eot040401b.isChecked() ? "2" : "0") : "0");
+        eot.put("eot0405", bi.eot0405.isChecked() ? bi.eot0405a.getText().toString() : "0");
+        eot.put("eot0406", bi.eot0406.isChecked() ? bi.eot0406a.getText().toString() : "0");
 
-
+        AppMain.fc.setseot(String.valueOf(eot));
+        DatabaseHelper db = new DatabaseHelper(this);
+        MotherListContract mlc = db.getMotherUUID(mrno,studyid);
+        AppMain.fc.setUUID(mlc.get_UID());
     }
 
     public void BtnEnd() {
