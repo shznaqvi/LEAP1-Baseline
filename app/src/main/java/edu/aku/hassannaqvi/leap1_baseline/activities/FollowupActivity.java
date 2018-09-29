@@ -116,7 +116,7 @@ public class FollowupActivity extends AppCompatActivity {
 
                 finish();
                 if (AppMain.fetal == 1) {
-                    Intent secNext = new Intent(this, FetalAbnormalityActivity.class);
+                    Intent secNext = new Intent(this, FetalAnomalyActivity.class);
                     startActivity(secNext);
                 } else if (AppMain.sf == 1) {
                     startActivity(new Intent(this, HealthSurveyScoringActivity.class));

@@ -66,7 +66,7 @@
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
                 android:padding="4px"
-                tools:text="dmu@aku"
+                tools:text=""
                 android:textAlignment="center"/>
 
             <EditText
@@ -80,7 +80,7 @@
                 android:imeOptions="actionUnspecified"
                 android:inputType="textPassword"
                 android:maxLines="1"
-                tools:text="aku?dmu"
+                tools:text=""
                 android:textAlignment="center"/>
             <Spinner
                 android:id="@+id/spSite"

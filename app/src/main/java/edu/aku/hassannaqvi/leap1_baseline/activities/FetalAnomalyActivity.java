@@ -16,13 +16,13 @@ import edu.aku.hassannaqvi.leap1_baseline.core.DatabaseHelper;
 import edu.aku.hassannaqvi.leap1_baseline.databinding.ActivityFetalAbnormalityBinding;
 import edu.aku.hassannaqvi.leap1_baseline.validatorClass;
 
-public class FetalAbnormalityActivity extends AppCompatActivity {
+public class FetalAnomalyActivity extends AppCompatActivity {
     ActivityFetalAbnormalityBinding bi;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        bi = DataBindingUtil.setContentView(this, R.layout.activity_fetal_abnormality);
+        bi = DataBindingUtil.setContentView(this, R.layout.activity_fetal_anomaly);
         bi.setCallback(this);
         this.setTitle(getResources().getString(R.string.fetalheading));
         bi.count.setText("Fetus: " + AppMain.FetalCount + " out of " + AppMain.TotalFetalCount);
@@ -49,7 +49,7 @@ public class FetalAbnormalityActivity extends AppCompatActivity {
 
 
                 if (AppMain.FetalCount < AppMain.TotalFetalCount) {
-                    Intent intent = new Intent(this, FetalAbnormalityActivity.class);
+                    Intent intent = new Intent(this, FetalAnomalyActivity.class);
                     AppMain.FetalCount++;
                     startActivity(intent);
                 } else if (AppMain.sf == 1) {
